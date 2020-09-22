@@ -30,7 +30,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             ServerBlips.ServerMarkers_.Add(markerData);
             Alt.Log("Minijob: Busfahrer geladen...");
 
-            startJobShape.Radius = 2f;
+            startJobShape.Radiuss = 2f;
         }
 
         private static async void PlayerExitVehicle(IVehicle vehicle, IPlayer player, byte seat)
@@ -244,8 +244,8 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
         }
 
-        [AsyncClientEvent("Server:MinijobBusdriver:StartJob")]
-        public async Task StartMiniJob(IPlayer player, int routeId)
+        [ClientEvent("Server:MinijobBusdriver:StartJob")]
+        public static void StartMiniJob(IPlayer player, int routeId)
         {
             try
             {

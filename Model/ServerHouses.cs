@@ -42,7 +42,7 @@ namespace Altv_Roleplay.Model
                     entranceShape = Alt.CreateColShapeSphere(entrancePos, 2f)
                 };
                 houseData.entranceShape.SetColShapeId((ulong)id);
-                ((ClassicColshape)houseData.entranceShape).Radius = 2f;
+                ((ClassicColshape)houseData.entranceShape).Radiuss = 2f;
                 ServerHouses_.Add(houseData);
 
                 var blipData = new Server_Blips

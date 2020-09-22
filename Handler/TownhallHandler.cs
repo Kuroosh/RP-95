@@ -4,14 +4,13 @@ using AltV.Net.Elements.Entities;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
 using System;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
     class TownhallHandler : IScript
     {
-        [AsyncClientEvent("Server:HUD:sendIdentityCardApplyForm")]
-        public async Task sendIdentityCardApplyForm(IPlayer player, string birthplace)
+        [ClientEvent("Server:HUD:sendIdentityCardApplyForm")]
+        public static void sendIdentityCardApplyForm(IPlayer player, string birthplace)
         {
             if (player == null || !player.Exists) return;
             int charId = User.GetPlayerOnline(player);
@@ -45,8 +44,8 @@ namespace Altv_Roleplay.Handler
             player.EmitLocked("Client:Jobcenter:OpenCEF", jobs);
         }
 
-        [AsyncClientEvent("Server:Jobcenter:SelectJob")]
-        public async Task SelectJobcenterJob(IPlayer player, string jobName)
+        [ClientEvent("Server:Jobcenter:SelectJob")]
+        public static void SelectJobcenterJob(IPlayer player, string jobName)
         {
             try
             {

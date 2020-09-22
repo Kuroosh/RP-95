@@ -1,7 +1,5 @@
 ﻿using AltV.Net.Elements.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Altv_Roleplay.Factories
 {
@@ -11,7 +9,7 @@ namespace Altv_Roleplay.Factories
         public string ColshapeName { get; set; } = "None";
         public string CarDealerVehName { get; set; }
         public ulong CarDealerVehPrice { get; set; }
-        public float Radius { get; set; }
+        public float Radiuss { get; set; }
 
 
         public ClassicColshape(IntPtr nativePointer) : base(nativePointer)
@@ -25,7 +23,7 @@ namespace Altv_Roleplay.Factories
             {
                 if (!player.Exists) return false;
 
-                return player.Position.Distance(Position) <= Radius;
+                return player.Position.Distance(Position) <= Radiuss;
             }
         }
     }

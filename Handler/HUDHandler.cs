@@ -4,7 +4,6 @@ using AltV.Net.Elements.Entities;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
 using System;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
@@ -17,14 +16,14 @@ namespace Altv_Roleplay.Handler
             client.EmitLocked("Client:HUD:CreateCEF", Characters.GetCharacterHunger(User.GetPlayerOnline(client)), Characters.GetCharacterThirst(User.GetPlayerOnline(client)));
         }
 
-        [AsyncScriptEvent(ScriptEventType.PlayerEnterVehicle)]
-        public async Task OnPlayerEnterVehicle_Handler(IVehicle vehicle, IPlayer client, byte seat)
+        [ScriptEvent(ScriptEventType.PlayerEnterVehicle)]
+        public static void OnPlayerEnterVehicle_Handler(IVehicle vehicle, IPlayer client, byte seat)
         {
             try
             {
                 if (client == null || !client.Exists) return;
-                client.EmitLocked("Client:HUD:updateHUDPosInVeh", true, ServerVehicles.GetVehicleFuel(vehicle), ServerVehicles.GetVehicleKM(vehicle));
-                client.EmitLocked("Client:HUD:GetDistanceForVehicleKM");
+                client.Emit("Client:HUD:updateHUDPosInVeh", true, ServerVehicles.GetVehicleFuel(vehicle), ServerVehicles.GetVehicleKM(vehicle));
+                client.Emit("Client:HUD:GetDistanceForVehicleKM");
             }
             catch (Exception e)
             {
@@ -32,8 +31,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncScriptEvent(ScriptEventType.PlayerLeaveVehicle)]
-        public async Task OnPlayerLeaveVehicle_Handler(IVehicle vehicle, IPlayer client, byte seat)
+        [ScriptEvent(ScriptEventType.PlayerLeaveVehicle)]
+        public static void OnPlayerLeaveVehicle_Handler(IVehicle vehicle, IPlayer client, byte seat)
         {
             try
             {
@@ -70,7 +69,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [AsyncClientEvent("Server:Vehicle:UpdateVehicleKM")]
-        public async Task UpdateVehicleKM(IPlayer player, float km)
+        public static void UpdateVehicleKM(IPlayer player, float km)
         {
             //KM = bei 600 Meter = 600
             //600 / 1000 = 0,6   = 0,6km ?

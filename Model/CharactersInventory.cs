@@ -35,7 +35,7 @@ namespace Altv_Roleplay.Model
             return CharactersInventory_.ToList().Where(x => x.charId == charId && x.itemLocation == "backpack").Count();
         }
 
-        public static async void AddCharacterItem(int charId, string itemName, int itemAmount, string itemLocation)
+        public static void AddCharacterItem(int charId, string itemName, int itemAmount, string itemLocation)
         {
             if (charId == 0 || itemName == "" || itemLocation == "" || itemAmount == 0) return;
 

@@ -6,14 +6,13 @@ using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Factions.Justice
 {
     class Functions : IScript
     {
-        [AsyncClientEvent("Server:Tablet:JusticeAppGiveWeaponLicense")]
-        public async Task GiveWeaponLicense(IPlayer player, string targetCharName)
+        [ClientEvent("Server:Tablet:JusticeAppGiveWeaponLicense")]
+        public static void GiveWeaponLicense(IPlayer player, string targetCharName)
         {
             try
             {
@@ -41,8 +40,8 @@ namespace Altv_Roleplay.Factions.Justice
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:JusticeAppSearchBankAccounts")]
-        public async Task SearchBankAccounts(IPlayer player, string targetCharName)
+        [ClientEvent("Server:Tablet:JusticeAppSearchBankAccounts")]
+        public static void SearchBankAccounts(IPlayer player, string targetCharName)
         {
             try
             {
@@ -66,8 +65,8 @@ namespace Altv_Roleplay.Factions.Justice
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:JusticeAppViewBankTransactions")]
-        public async Task ViewBankTransactions(IPlayer player, int accNumber)
+        [ClientEvent("Server:Tablet:JusticeAppViewBankTransactions")]
+        public static void ViewBankTransactions(IPlayer player, int accNumber)
         {
             try
             {

@@ -1,5 +1,4 @@
 ﻿using AltV.Net;
-using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
@@ -9,14 +8,13 @@ using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
     public class AntiCheatHandler : IScript
     {
-        [AsyncScriptEvent(ScriptEventType.WeaponDamage)]
-        public async Task WeaponDamageEvent(ClassicPlayer player, ClassicPlayer target, uint weapon, ushort dmg, Position offset, BodyPart bodypart)
+        [ScriptEvent(ScriptEventType.WeaponDamage)]
+        public static void WeaponDamageEvent(ClassicPlayer player, ClassicPlayer target, uint weapon, ushort dmg, Position offset, BodyPart bodypart)
         {
             try
             {

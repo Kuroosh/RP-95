@@ -1,18 +1,16 @@
 ﻿using AltV.Net;
-using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Services;
 using Altv_Roleplay.Utils;
 using System;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
     class FactionHandler : IScript
     {
-        [AsyncClientEvent("Server:FactionStorage:StorageItem")]
-        public async Task FactionStorageStorageItem(IPlayer player, int factionId, int charId, string itemName, int amount, string fromContainer)
+        [ClientEvent("Server:FactionStorage:StorageItem")]
+        public static void FactionStorageStorageItem(IPlayer player, int factionId, int charId, string itemName, int amount, string fromContainer)
         {
             try
             {
@@ -37,8 +35,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:FactionStorage:TakeItem")]
-        public async Task FactionStorageTakeItem(IPlayer player, int factionId, int charId, string itemName, int amount)
+        [ClientEvent("Server:FactionStorage:TakeItem")]
+        public static void FactionStorageTakeItem(IPlayer player, int factionId, int charId, string itemName, int amount)
         {
             try
             {

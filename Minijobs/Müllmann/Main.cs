@@ -56,7 +56,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
             ServerBlips.ServerMarkers_.Add(markerData);
             Alt.Log("Minijob: Müllmann geladen...");
 
-            startJobShape.Radius = 3f;
+            startJobShape.Radiuss = 3f;
         }
 
         private static void PlayerDisconnectedHandler(IPlayer player, string reason)
@@ -321,7 +321,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
                     ClassicColshape throwCol = (ClassicColshape)Alt.CreateColShapeSphere(MMThrowPos, 2.5f);
                     throwCol.SetColShapeName("GarbageMinijobThrowInVehicle");
                     throwCol.SetColShapeId((ulong)charId);
-                    throwCol.Radius = 2.5f;
+                    throwCol.Radiuss = 2.5f;
                     return;
                 }
                 else if (client.GetPlayerCurrentMinijobStep() == "THROW_TRASH_IN_VEHICLE" && state && !client.IsInVehicle)

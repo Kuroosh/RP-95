@@ -128,7 +128,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
 
                 foreach (var item in ServerMinijobBusdriverSpots_)
                 {
-                    ((ClassicColshape)item.destinationColshape).Radius = 3f;
+                    ((ClassicColshape)item.destinationColshape).Radiuss = 3f;
                 }
             }
             catch (Exception e)

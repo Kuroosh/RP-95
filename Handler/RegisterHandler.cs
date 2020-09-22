@@ -2,14 +2,13 @@
 using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
 using Altv_Roleplay.Model;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
     class RegisterHandler : IScript
     {
-        [AsyncClientEvent("Server:Register:RegisterNewPlayer")]
-        public async Task RegisterNewPlayer(IPlayer player, string username, string email, string pass, string passrepeat)
+        [ClientEvent("Server:Register:RegisterNewPlayer")]
+        public static void RegisterNewPlayer(IPlayer player, string username, string email, string pass, string passrepeat)
         {
             if (player == null || !player.Exists) return;
 

@@ -10,14 +10,13 @@ using Altv_Roleplay.Utils;
 using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
     class RaycastHandler : IScript
     {
-        [AsyncClientEvent("Server:InteractionMenu:GetMenuVehicleItems")]
-        public async Task GetMenuVehicleItems(IPlayer player, string type, IVehicle veh)
+        [ClientEvent("Server:InteractionMenu:GetMenuVehicleItems")]
+        public static void GetMenuVehicleItems(IPlayer player, string type, IVehicle veh)
         {
             try
             {
@@ -83,8 +82,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:InteractionMenu:GetMenuPlayerItems")]
-        public async Task GetMenuPlayerItems(IPlayer player, string type, IPlayer targetPlayer)
+        [ClientEvent("Server:InteractionMenu:GetMenuPlayerItems")]
+        public static void GetMenuPlayerItems(IPlayer player, string type, IPlayer targetPlayer)
         {
             try
             {
@@ -150,8 +149,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Raycast:jailPlayer")]
-        public async Task jailPlayer(ClassicPlayer player, ClassicPlayer targetPlayer)
+        [ClientEvent("Server:Raycast:jailPlayer")]
+        public static void jailPlayer(ClassicPlayer player, ClassicPlayer targetPlayer)
         {
             try
             {
@@ -194,8 +193,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Raycast:OpenVehicleFuelMenu")]
-        public async Task OpenVehicleFuelMenu(IPlayer player, IVehicle veh)
+        [ClientEvent("Server:Raycast:OpenVehicleFuelMenu")]
+        public static void OpenVehicleFuelMenu(IPlayer player, IVehicle veh)
         {
             try
             {
@@ -227,8 +226,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Raycast:LockVehicle")]
-        public async Task LockVehicle(IPlayer player, IVehicle veh)
+        [ClientEvent("Server:Raycast:LockVehicle")]
+        public static void LockVehicle(IPlayer player, IVehicle veh)
         {
             if (player == null || !player.Exists || veh == null || !veh.Exists) return;
             Stopwatch stopwatch = new Stopwatch();
@@ -266,8 +265,8 @@ namespace Altv_Roleplay.Handler
             if (stopwatch.Elapsed.Milliseconds > 30) Alt.Log($"{charId} - LocKVehicle benötigte {stopwatch.Elapsed.Milliseconds}ms");
         }
 
-        [AsyncClientEvent("Server:Raycast:ToggleVehicleEngine")]
-        public async Task ToggleVehicleEngine(IPlayer player, IVehicle veh)
+        [ClientEvent("Server:Raycast:ToggleVehicleEngine")]
+        public static void ToggleVehicleEngine(IPlayer player, IVehicle veh)
         {
             if (player == null || !player.Exists || veh == null || !veh.Exists) return;
             Stopwatch stopwatch = new Stopwatch();
@@ -301,8 +300,8 @@ namespace Altv_Roleplay.Handler
             if (stopwatch.Elapsed.Milliseconds > 30) Alt.Log($"{charId} - ToggleVehicleEngine benötigte {stopwatch.Elapsed.Milliseconds}ms");
         }
 
-        [AsyncClientEvent("Server:Raycast:OpenCloseVehicleTrunk")]
-        public async Task OpenCloseVehicleTrunk(IPlayer player, IVehicle veh)
+        [ClientEvent("Server:Raycast:OpenCloseVehicleTrunk")]
+        public static void OpenCloseVehicleTrunk(IPlayer player, IVehicle veh)
         {
             try
             {
@@ -336,8 +335,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Raycast:ViewVehicleTrunk")]
-        public async Task ViewVehicleTrunk(ClassicPlayer player, ClassicVehicle veh)
+        [ClientEvent("Server:Raycast:ViewVehicleTrunk")]
+        public static void ViewVehicleTrunk(ClassicPlayer player, ClassicVehicle veh)
         {
             try
             {
@@ -359,7 +358,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [AsyncClientEvent("Server:Raycast:ViewVehicleGlovebox")]
-        public async Task ViewVehicleGlovebox(ClassicPlayer player, ClassicVehicle veh)
+        public static void ViewVehicleGlovebox(ClassicPlayer player, ClassicVehicle veh)
         {
             try
             {
@@ -369,7 +368,7 @@ namespace Altv_Roleplay.Handler
                 var characterInvArray = CharactersInventory.GetCharacterInventory(player.CharacterId); //Inventar Items
                 var vehicleGloveboxArray = ServerVehicles.GetVehicleTrunkItems(veh.VehicleId, true); //Handschuhfach Items
                 Alt.Log($"{player.Name} ({player.CharacterId}) öffnet Handschuhfach von {veh.VehicleId}: {characterInvArray} ||| {vehicleGloveboxArray}");
-                player.EmitLocked("Client:VehicleTrunk:openCEF", player.CharacterId, veh.VehicleId, "glovebox", characterInvArray, vehicleGloveboxArray); //trunk oder glovebox
+                player.Emit("Client:VehicleTrunk:openCEF", player.CharacterId, veh.VehicleId, "glovebox", characterInvArray, vehicleGloveboxArray); //trunk oder glovebox
             }
             catch (Exception e)
             {
@@ -377,8 +376,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Raycast:showPlayerSupportId")]
-        public async Task showPlayerSupportId(IPlayer player, IPlayer targetPlayer)
+        [ClientEvent("Server:Raycast:showPlayerSupportId")]
+        public static void showPlayerSupportId(IPlayer player, IPlayer targetPlayer)
         {
             if (player == null || !player.Exists || targetPlayer == null || !targetPlayer.Exists) return;
             int targetCharId = User.GetPlayerOnline(targetPlayer);
@@ -386,8 +385,8 @@ namespace Altv_Roleplay.Handler
             HUDHandler.SendNotification(player, 1, 5000, $"Die Charakter-ID des Spielers lautet: {targetCharId}");
         }
 
-        [AsyncClientEvent("Server:Raycast:givePlayerItemRequest")]
-        public async Task givePlayerItemRequest(IPlayer player, IPlayer targetPlayer)
+        [ClientEvent("Server:Raycast:givePlayerItemRequest")]
+        public static void givePlayerItemRequest(IPlayer player, IPlayer targetPlayer)
         {
             if (player == null || !player.Exists || targetPlayer == null || !targetPlayer.Exists) return;
             Stopwatch stopwatch = new Stopwatch();
@@ -401,8 +400,8 @@ namespace Altv_Roleplay.Handler
             if (stopwatch.Elapsed.Milliseconds > 30) Alt.Log($"{charId} - givePlayerItemRequest benötigte {stopwatch.Elapsed.Milliseconds}ms");
         }
 
-        [AsyncClientEvent("Server:Raycast:OpenGivePlayerBillCEF")]
-        public async Task OpenGivePlayerBillCEF(IPlayer player, IPlayer targetPlayer, string type) //Types:  faction | company
+        [ClientEvent("Server:Raycast:OpenGivePlayerBillCEF")]
+        public static void OpenGivePlayerBillCEF(IPlayer player, IPlayer targetPlayer, string type) //Types:  faction | company
         {
             try
             {
@@ -434,8 +433,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Raycast:openGivePlayerLicenseCEF")]
-        public async Task openGivePlayerLicenseCEF(IPlayer player, IPlayer targetPlayer)
+        [ClientEvent("Server:Raycast:openGivePlayerLicenseCEF")]
+        public static void openGivePlayerLicenseCEF(IPlayer player, IPlayer targetPlayer)
         {
             try
             {
@@ -456,8 +455,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:PlayerBill:giveBill")]
-        public async Task PlayerBillGiveBill(IPlayer player, string type, string reason, int targetCharId, int moneyAmount) //Types:  faction | company
+        [ClientEvent("Server:PlayerBill:giveBill")]
+        public static void PlayerBillGiveBill(IPlayer player, string type, string reason, int targetCharId, int moneyAmount) //Types:  faction | company
         {
             try
             {
@@ -492,8 +491,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:PlayerBill:BillAction")]
-        public async Task PlayerBillAction(IPlayer player, string action, string type, int factionCompanyId, int moneyAmount, string reason, int givenBillOwnerCharId)
+        [ClientEvent("Server:PlayerBill:BillAction")]
+        public static void PlayerBillAction(IPlayer player, string action, string type, int factionCompanyId, int moneyAmount, string reason, int givenBillOwnerCharId)
         {
             try
             {
@@ -554,8 +553,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Raycast:GiveTakeHandcuffs")]
-        public async Task GiveTakeHandcuffs(IPlayer player, IPlayer targetPlayer)
+        [ClientEvent("Server:Raycast:GiveTakeHandcuffs")]
+        public static void GiveTakeHandcuffs(IPlayer player, IPlayer targetPlayer)
         {
             try
             {
@@ -625,8 +624,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Raycast:GiveTakeRopeCuffs")]
-        public async Task GiveTakeRopeCuffs(IPlayer player, IPlayer targetPlayer)
+        [ClientEvent("Server:Raycast:GiveTakeRopeCuffs")]
+        public static void GiveTakeRopeCuffs(IPlayer player, IPlayer targetPlayer)
         {
             try
             {
@@ -695,8 +694,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Raycast:SearchPlayerInventory")]
-        public async Task SearchPlayerInventory(IPlayer player, IPlayer targetPlayer)
+        [ClientEvent("Server:Raycast:SearchPlayerInventory")]
+        public static void SearchPlayerInventory(IPlayer player, IPlayer targetPlayer)
         {
             try
             {
@@ -716,8 +715,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Raycast:showIdcard")]
-        public async Task showIdCard(IPlayer player, IPlayer targetPlayer)
+        [ClientEvent("Server:Raycast:showIdcard")]
+        public static void showIdCard(IPlayer player, IPlayer targetPlayer)
         {
             try
             {

@@ -7,7 +7,6 @@ using Altv_Roleplay.Utils;
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
@@ -30,8 +29,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Hotel:RentHotel")]
-        public async Task RentHotel(IPlayer player, int hotelId, int apartmentId)
+        [ClientEvent("Server:Hotel:RentHotel")]
+        public static void RentHotel(IPlayer player, int hotelId, int apartmentId)
         {
             try
             {
@@ -57,8 +56,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Hotel:LockHotel")]
-        public static async Task LockHotel(IPlayer player, int hotelId, int apartmentId)
+        [ClientEvent("Server:Hotel:LockHotel")]
+        public static void LockHotel(IPlayer player, int hotelId, int apartmentId)
         {
             try
             {
@@ -80,8 +79,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Hotel:EnterHotel")]
-        public async Task EnterHotel(IPlayer player, int hotelId, int apartmentId)
+        [ClientEvent("Server:Hotel:EnterHotel")]
+        public static void EnterHotel(IPlayer player, int hotelId, int apartmentId)
         {
             try
             {
@@ -148,8 +147,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:HotelStorage:StorageItem")]
-        public async Task StorageHotelItem(IPlayer player, int apartmentId, string itemName, int itemAmount, string fromContainer)
+        [ClientEvent("Server:HotelStorage:StorageItem")]
+        public static void StorageHotelItem(IPlayer player, int apartmentId, string itemName, int itemAmount, string fromContainer)
         {
             try
             {
@@ -177,8 +176,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:HotelStorage:TakeItem")]
-        public async Task TakeHotelItem(IPlayer player, int apartmentId, string itemName, int itemAmount)
+        [ClientEvent("Server:HotelStorage:TakeItem")]
+        public static void TakeHotelItem(IPlayer player, int apartmentId, string itemName, int itemAmount)
         {
             try
             {

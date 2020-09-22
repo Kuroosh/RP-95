@@ -49,11 +49,11 @@ namespace Altv_Roleplay.Minijobs.Elektrolieferant
             MinijobSpots_.Add(new Minijob_Spots() { id = 6, pos = new Position((float)-199.8989, (float)-1381.1736, (float)30.476196), depositPos = new Position((float)-229.72915649414062, (float)-1377.137939453125, (float)31.25824737548828), depositColshape = Alt.CreateColShapeSphere(new Position((float)-229.72915649414062, (float)-1377.137939453125, (float)31.25824737548828), 2f) }); //Glass Heroes
             Alt.Log("Minijob: Elektrolieferant geladen...");
 
-            startJobShape.Radius = 2f;
+            startJobShape.Radiuss = 2f;
 
             foreach (var item in MinijobSpots_)
             {
-                ((ClassicColshape)item.depositColshape).Radius = 2f;
+                ((ClassicColshape)item.depositColshape).Radiuss = 2f;
             }
         }
 
@@ -140,7 +140,7 @@ namespace Altv_Roleplay.Minijobs.Elektrolieferant
             }
         }
 
-        private static async void PlayerExitVehicle(IVehicle vehicle, IPlayer player, byte seat)
+        private static void PlayerExitVehicle(IVehicle vehicle, IPlayer player, byte seat)
         {
             try
             {

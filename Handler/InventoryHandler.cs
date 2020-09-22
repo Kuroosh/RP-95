@@ -8,14 +8,13 @@ using Altv_Roleplay.Utils;
 using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
     class InventoryHandler : IScript
     {
-        [AsyncClientEvent("Server:Inventory:RequestInventoryItems")]
-        public static async Task RequestInventoryItems(IPlayer player)
+        [ClientEvent("Server:Inventory:RequestInventoryItems")]
+        public static void RequestInventoryItems(IPlayer player)
         {
             try
             {
@@ -39,15 +38,15 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Inventory:closeCEF")]
-        public async Task CloseInventoryCEF(IPlayer player)
+        [ClientEvent("Server:Inventory:closeCEF")]
+        public static void CloseInventoryCEF(IPlayer player)
         {
             if (player == null || !player.Exists) return;
             player.EmitLocked("Client:Inventory:closeCEF");
         }
 
-        [AsyncClientEvent("Server:Inventory:switchItemToDifferentInv")]
-        public async Task switchItemToDifferentInv(ClassicPlayer player, string itemname, int itemAmount, string fromContainer, string toContainer)
+        [ClientEvent("Server:Inventory:switchItemToDifferentInv")]
+        public static void switchItemToDifferentInv(ClassicPlayer player, string itemname, int itemAmount, string fromContainer, string toContainer)
         {
             try
             {
@@ -76,8 +75,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Inventory:UseItem")]
-        public async Task UseItem(ClassicPlayer player, string itemname, int itemAmount, string fromContainer)
+        [ClientEvent("Server:Inventory:UseItem")]
+        public static void UseItem(ClassicPlayer player, string itemname, int itemAmount, string fromContainer)
         {
             try
             {
@@ -246,8 +245,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Inventory:DropItem")]
-        public async Task DropItem(ClassicPlayer player, string itemname, int itemAmount, string fromContainer)
+        [ClientEvent("Server:Inventory:DropItem")]
+        public static void DropItem(ClassicPlayer player, string itemname, int itemAmount, string fromContainer)
         {
             try
             {
@@ -332,8 +331,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Inventory:GiveItem")]
-        public async Task GiveItem(ClassicPlayer player, string itemname, int itemAmount, string fromContainer, int targetPlayerId)
+        [ClientEvent("Server:Inventory:GiveItem")]
+        public static void GiveItem(ClassicPlayer player, string itemname, int itemAmount, string fromContainer, int targetPlayerId)
         {
             try
             {
@@ -378,8 +377,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:PlayerSearch:TakeItem")]
-        public async Task PlayerSearchTakeItem(ClassicPlayer player, int givenTargetCharId, string itemName, string itemLocation, int itemAmount)
+        [ClientEvent("Server:PlayerSearch:TakeItem")]
+        public static void PlayerSearchTakeItem(ClassicPlayer player, int givenTargetCharId, string itemName, string itemLocation, int itemAmount)
         {
             try
             {

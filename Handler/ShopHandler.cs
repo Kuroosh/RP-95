@@ -19,8 +19,8 @@ namespace Altv_Roleplay.Handler
     {
 
         #region Shops
-        [AsyncClientEvent("Server:Shop:buyItem")]
-        public async Task buyShopItem(IPlayer player, int shopId, int amount, string itemname)
+        [ClientEvent("Server:Shop:buyItem")]
+        public static void buyShopItem(IPlayer player, int shopId, int amount, string itemname)
         {
             if (player == null || !player.Exists || shopId <= 0 || amount <= 0 || itemname == "") return;
             Stopwatch stopwatch = new Stopwatch();
@@ -177,7 +177,6 @@ namespace Altv_Roleplay.Handler
                     HUDHandler.SendNotification(player, 3, 5000, "Du bist zu weit entfernt, der Raub wurde abgebrochen.");
                     return;
                 }
-
                 int amount = new Random().Next(6000, 9000);
                 HUDHandler.SendNotification(player, 2, 2500, $"Shop ausgeraubt - du erhälst {amount}$.");
                 CharactersInventory.AddCharacterItem(player.CharacterId, "Bargeld", amount, "inventory");
@@ -189,8 +188,8 @@ namespace Altv_Roleplay.Handler
         }
 
 
-        [AsyncClientEvent("Server:Shop:sellItem")]
-        public async Task sellShopItem(IPlayer player, int shopId, int amount, string itemname)
+        [ClientEvent("Server:Shop:sellItem")]
+        public static void sellShopItem(IPlayer player, int shopId, int amount, string itemname)
         {
             if (player == null || !player.Exists || shopId <= 0 || amount <= 0 || itemname == "") return;
             Stopwatch stopwatch = new Stopwatch();
@@ -235,8 +234,8 @@ namespace Altv_Roleplay.Handler
             player.EmitLocked("Client:VehicleShop:OpenCEF", shopId, shopname, array);
         }
 
-        [AsyncClientEvent("Server:VehicleShop:BuyVehicle")]
-        public async Task BuyVehicle(IPlayer player, int shopid, string hash)
+        [ClientEvent("Server:VehicleShop:BuyVehicle")]
+        public static void BuyVehicle(IPlayer player, int shopid, string hash)
         {
             try
             {
@@ -256,7 +255,8 @@ namespace Altv_Roleplay.Handler
                 if (ServerVehicles.ExistServerVehiclePlate($"NL{rnd}")) { BuyVehicle(player, shopid, hash); return; }
                 if (!CharactersInventory.ExistCharacterItem(charId, "Bargeld", "inventory") || CharactersInventory.GetCharacterItemAmount(charId, "Bargeld", "inventory") < Price) { HUDHandler.SendNotification(player, 4, 5000, $"Du hast nicht genügend Bargeld dabei ({Price}$)."); return; }
                 CharactersInventory.RemoveCharacterItemAmount(charId, "Bargeld", Price, "inventory");
-                ServerVehicles.CreateVehicle(fHash, charId, 0, 0, false, 100, ParkOut, RotOut, $"NL{rnd}", 134, 134);
+                Server_Vehicles vehh = ServerVehicles.CreateVehicle(fHash, charId, 0, 0, false, 100, ParkOut, RotOut, $"NL{rnd}", 134, 134);
+                vehh.fuel = 100;
                 CharactersInventory.AddCharacterItem(charId, $"Fahrzeugschluessel NL{rnd}", 2, "inventory");
                 HUDHandler.SendNotification(player, 2, 5000, $"Fahrzeug erfolgreich gekauft.");
                 if (!CharactersTablet.HasCharacterTutorialEntryFinished(charId, "buyVehicle"))
@@ -329,8 +329,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:ClothesShop:buyItem")]
-        public async Task buyClothesShopItem(ClassicPlayer player, int shopId, int amount, string clothesName)
+        [ClientEvent("Server:ClothesShop:buyItem")]
+        public static void buyClothesShopItem(ClassicPlayer player, int shopId, int amount, string clothesName)
         {
             try
             {

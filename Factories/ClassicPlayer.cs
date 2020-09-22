@@ -1,7 +1,5 @@
 ﻿using AltV.Net.Elements.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Altv_Roleplay.Factories
 {
@@ -15,7 +13,6 @@ namespace Altv_Roleplay.Factories
         public string CurrentMinijobStep { get; set; } = "None";
         public int CurrentMinijobActionCount { get; set; } = 0;
         public int CurrentMinijobRouteId { get; set; } = 0;
-        public bool isAduty { get; set; } = false;
         public bool isRobbingAShop { get; set; } = false;
 
 

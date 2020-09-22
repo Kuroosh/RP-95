@@ -7,14 +7,13 @@ using Altv_Roleplay.Model;
 using Altv_Roleplay.Services;
 using Altv_Roleplay.Utils;
 using System;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Factions.ACLS
 {
     class Functions : IScript
     {
-        [AsyncClientEvent("Server:Raycast:RepairVehicle")]
-        public async Task RepairVehicle(IPlayer player, IVehicle vehicle)
+        [ClientEvent("Server:Raycast:RepairVehicle")]
+        public static void RepairVehicle(IPlayer player, IVehicle vehicle)
         {
             try
             {
@@ -35,8 +34,8 @@ namespace Altv_Roleplay.Factions.ACLS
             }
         }
 
-        [AsyncClientEvent("Server:Raycast:towVehicle")]
-        public async Task TowVehicle(IPlayer player, IVehicle vehicle)
+        [ClientEvent("Server:Raycast:towVehicle")]
+        public static void TowVehicle(IPlayer player, IVehicle vehicle)
         {
             try
             {
@@ -69,8 +68,8 @@ namespace Altv_Roleplay.Factions.ACLS
         }
 
 
-        [AsyncClientEvent("Server:Raycast:tuneVehicle")]
-        public async Task openTuningMenu(IPlayer player, IVehicle vehicle)
+        [ClientEvent("Server:Raycast:tuneVehicle")]
+        public static void openTuningMenu(IPlayer player, IVehicle vehicle)
         {
             try
             {
@@ -125,8 +124,8 @@ namespace Altv_Roleplay.Factions.ACLS
             }
         }
 
-        [AsyncClientEvent("Server:Tuning:switchTuningColor")]
-        public async Task switchTuningColor(IPlayer player, IVehicle vehicle, string Type, string Data, int R, int G, int B)
+        [ClientEvent("Server:Tuning:switchTuningColor")]
+        public static void switchTuningColor(IPlayer player, IVehicle vehicle, string Type, string Data, int R, int G, int B)
         {
             try
             {
@@ -173,8 +172,8 @@ namespace Altv_Roleplay.Factions.ACLS
             }
         }
 
-        [AsyncClientEvent("Server:Tuning:resetToNormal")]
-        public async Task resetTuningToNormal(IPlayer player, IVehicle vehicle)
+        [ClientEvent("Server:Tuning:resetToNormal")]
+        public static void resetTuningToNormal(IPlayer player, IVehicle vehicle)
         {
             try
             {
@@ -188,8 +187,8 @@ namespace Altv_Roleplay.Factions.ACLS
             }
         }
 
-        [AsyncClientEvent("Server:Tuning:switchTuning")]
-        public async Task switchTuning(IPlayer player, IVehicle vehicle, string Type, int ModType, string Action)
+        [ClientEvent("Server:Tuning:switchTuning")]
+        public static void switchTuning(IPlayer player, IVehicle vehicle, string Type, int ModType, string Action)
         {
             try
             {

@@ -1,5 +1,4 @@
 ﻿using AltV.Net;
-using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
 using Altv_Roleplay.Handler;
 using Altv_Roleplay.Model;
@@ -7,14 +6,13 @@ using Altv_Roleplay.Utils;
 using System;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Factions.LSFS
 {
     class Functions : IScript
     {
-        [AsyncClientEvent("Server:GivePlayerLicense:GiveLicense")]
-        public async Task GiveLicense(IPlayer player, int targetCharId, string licShort)
+        [ClientEvent("Server:GivePlayerLicense:GiveLicense")]
+        public static void GiveLicense(IPlayer player, int targetCharId, string licShort)
         {
             try
             {

@@ -9,40 +9,38 @@ using Altv_Roleplay.Utils;
 using System;
 using System.Diagnostics;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
     class LoginHandler : IScript
     {
-        [AsyncScriptEvent(ScriptEventType.PlayerConnect)]
-        public async Task OnPlayerConnect_Handler(ClassicPlayer player, string reason)
+        [ScriptEvent(ScriptEventType.PlayerConnect)]
+        public static void OnPlayerConnect_Handler(ClassicPlayer player, string reason)
         {
             if (player == null || !player.Exists) return;
-
             player.SetSyncedMetaData("PLAYER_SPAWNED", false);
             player.SetSyncedMetaData("ADMINLEVEL", 0);
             player.SetPlayerIsCuffed("handcuffs", false);
             player.SetPlayerIsCuffed("ropecuffs", false);
-            await setCefStatus(player, false);
+            setCefStatus(player, false);
             player.SetPlayerCurrentMinijob("None");
             player.SetPlayerCurrentMinijobRouteId(0);
             player.SetPlayerCurrentMinijobStep("None");
             player.SetPlayerCurrentMinijobActionCount(0);
             player.SetPlayerFarmingActionMeta("None");
-            await User.SetPlayerOnline(player, 0);
+            User.SetPlayerOnline(player, 0);
             player.EmitLocked("Client:Pedcreator:spawnPed", ServerPeds.GetAllServerPeds());
             CreateLoginBrowser(player);
         }
 
-        [AsyncScriptEvent(ScriptEventType.PlayerDisconnect)]
-        public async Task OnPlayerDisconnected_Handler(ClassicPlayer player, string reason)
+        [ScriptEvent(ScriptEventType.PlayerDisconnect)]
+        public static void OnPlayerDisconnected_Handler(ClassicPlayer player, string reason)
         {
             try
             {
                 if (player == null) return;
                 if (User.GetPlayerOnline(player) != 0) Characters.SetCharacterLastPosition(User.GetPlayerOnline(player), player.Position, player.Dimension);
-                await User.SetPlayerOnline(player, 0);
+                User.SetPlayerOnline(player, 0);
                 Characters.SetCharacterCurrentFunkFrequence(player.CharacterId, null);
             }
             catch (Exception e)
@@ -51,11 +49,11 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:CEF:setCefStatus")]
-        public static async Task setCefStatus(IPlayer player, bool status)
+        [ClientEvent("Server:CEF:setCefStatus")]
+        public static void setCefStatus(IPlayer player, bool status)
         {
             if (player == null || !player.Exists) return;
-            AltAsync.Do(() => player.SetSyncedMetaData("IsCefOpen", status));
+            player.SetSyncedMetaData("IsCefOpen", status);
         }
 
         public static void CreateLoginBrowser(IPlayer client)
@@ -67,8 +65,8 @@ namespace Altv_Roleplay.Handler
             client.EmitLocked("Client:Login:CreateCEF"); //Login triggern
         }
 
-        [AsyncClientEvent("Server:Login:ValidateLoginCredentials")]
-        public async Task ValidateLoginCredentials(IPlayer client, string username, string password)
+        [ClientEvent("Server:Login:ValidateLoginCredentials")]
+        public static void ValidateLoginCredentials(IPlayer client, string username, string password)
         {
             if (client == null || !client.Exists) return;
             Console.WriteLine($"ValidateLoginCredentials - Thread = {Thread.CurrentThread.ManagedThreadId}");
@@ -120,7 +118,7 @@ namespace Altv_Roleplay.Handler
             }
             client.Dimension = (short)User.GetPlayerAccountId(client);
             client.EmitLocked("Client:Login:SaveLoginCredentialsToStorage", username, password);
-            await User.SetPlayerOnline((ClassicPlayer)client, 0);
+            User.SetPlayerOnline((ClassicPlayer)client, 0);
             SendDataToCharselectorArea(client);
             LoggingService.NewLoginLog(username, client.SocialClubId, client.Ip, client.HardwareIdHash, true, "Erfolgreich eingeloggt.");
             stopwatch.Stop();
@@ -130,8 +128,8 @@ namespace Altv_Roleplay.Handler
             client.SetSyncedMetaData("PLAYER_USERNAME", username);
         }
 
-        [AsyncClientEvent("Server:Charselector:PreviewCharacter")]
-        public async Task PreviewCharacter(IPlayer client, int charid)
+        [ClientEvent("Server:Charselector:PreviewCharacter")]
+        public static void PreviewCharacter(IPlayer client, int charid)
         {
             if (client == null || !client.Exists) return;
             client.EmitLocked("Client:Charselector:ViewCharacter", Characters.GetCharacterGender(charid), Characters.GetCharacterSkin("facefeatures", charid), Characters.GetCharacterSkin("headblendsdata", charid), Characters.GetCharacterSkin("headoverlays", charid));
@@ -146,8 +144,8 @@ namespace Altv_Roleplay.Handler
             client.EmitLocked("Client:Login:showArea", "charselect");
         }
 
-        [AsyncClientEvent("Server:Charselector:spawnChar")]
-        public async Task CharacterSelectedSpawnPlace(ClassicPlayer client, string spawnstr, string charcid)
+        [ClientEvent("Server:Charselector:spawnChar")]
+        public static void CharacterSelectedSpawnPlace(ClassicPlayer client, string spawnstr, string charcid)
         {
             if (client == null || !client.Exists || spawnstr == null || charcid == null) return;
             Stopwatch stopwatch = new Stopwatch();
@@ -155,7 +153,7 @@ namespace Altv_Roleplay.Handler
             int charid = Convert.ToInt32(charcid);
             if (charid <= 0) return;
             string charName = Characters.GetCharacterName(charid);
-            await User.SetPlayerOnline(client, charid); //Online Feld = CharakterID
+            User.SetPlayerOnline(client, charid); //Online Feld = CharakterID
             client.CharacterId = charid;
             client.SetSyncedMetaData("PLAYER_ID", charid);
 
@@ -232,7 +230,7 @@ namespace Altv_Roleplay.Handler
                 Characters.SetCharacterPhoneEquipped(charid, false);
             }
             SmartphoneHandler.RequestLSPDIntranet(client);
-            await setCefStatus(client, false);
+            setCefStatus(client, false);
             AltAsync.Do(() =>
             {
                 client.SetStreamSyncedMetaData("sharedUsername", $"{charName} ({Characters.GetCharacterAccountId(charid)})");

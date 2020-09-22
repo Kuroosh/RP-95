@@ -11,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Minijobs.Pilot
 {
@@ -38,7 +37,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
             var markerData = new Server_Markers { type = 33, posX = Constants.Positions.Minijob_Pilot_VehOutPos.X, posY = Constants.Positions.Minijob_Pilot_VehOutPos.Y, posZ = Constants.Positions.Minijob_Pilot_VehOutPos.Z + 0.25f, scaleX = 1, scaleY = 1, scaleZ = 1, red = 46, green = 133, blue = 232, alpha = 150, bobUpAndDown = true };
             ServerBlips.ServerMarkers_.Add(markerData);
 
-            startJobShape.Radius = 2f;
+            startJobShape.Radiuss = 2f;
 
             MinijobSpots_.Add(new Minijob_Spots() { id = 1, depositShape = Alt.CreateColShapeSphere(new Position((float)-991.3714, (float)-3147.745, (float)14.873291), 2.5f) }); //International Airport
             MinijobSpots_.Add(new Minijob_Spots() { id = 2, depositShape = Alt.CreateColShapeSphere(new Position((float)2011.5601806640625, (float)4743.40966796875, (float)41.199241638183594), 2.5f) }); //Grapeseed
@@ -47,7 +46,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
 
             foreach (var item in MinijobSpots_)
             {
-                ((ClassicColshape)item.depositShape).Radius = 2.5f;
+                ((ClassicColshape)item.depositShape).Radiuss = 2.5f;
             }
         }
 
@@ -209,8 +208,8 @@ namespace Altv_Roleplay.Minijobs.Pilot
             }
         }
 
-        [AsyncClientEvent("Server:MinijobPilot:StartJob")]
-        public async Task StartMiniJob(IPlayer player, int level)
+        [ClientEvent("Server:MinijobPilot:StartJob")]
+        public static void StartMiniJob(IPlayer player, int level)
         {
             try
             {

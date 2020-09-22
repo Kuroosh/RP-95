@@ -9,14 +9,13 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
     class VehicleHandler : IScript
     {
-        [AsyncClientEvent("Server:VehicleTrunk:StorageItem")]
-        public async Task VehicleTrunkStorageItem(ClassicPlayer player, int vehId, int charId, string itemName, int itemAmount, string fromContainer, string type)
+        [ClientEvent("Server:VehicleTrunk:StorageItem")]
+        public static void VehicleTrunkStorageItem(ClassicPlayer player, int vehId, int charId, string itemName, int itemAmount, string fromContainer, string type)
         {
             try
             {
@@ -80,8 +79,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:VehicleTrunk:TakeItem")]
-        public async Task VehicleTrunkTakeItem(ClassicPlayer player, int vehId, int charId, string itemName, int itemAmount, string type)
+        [ClientEvent("Server:VehicleTrunk:TakeItem")]
+        public static void VehicleTrunkTakeItem(ClassicPlayer player, int vehId, int charId, string itemName, int itemAmount, string type)
         {
             try
             {
@@ -174,8 +173,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:VehicleLicensing:LicensingAction")]
-        public async Task LicensingAction(IPlayer player, string action, int vehId, string vehPlate, string newPlate)
+        [ClientEvent("Server:VehicleLicensing:LicensingAction")]
+        public static void LicensingAction(IPlayer player, string action, int vehId, string vehPlate, string newPlate)
         {
             try
             {

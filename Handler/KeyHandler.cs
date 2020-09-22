@@ -8,14 +8,13 @@ using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
     class KeyHandler : IScript
     {
-        [AsyncClientEvent("Server:KeyHandler:PressE")]
-        public async Task PressE(IPlayer player)
+        [ClientEvent("Server:KeyHandler:PressE")]
+        public static void PressE(IPlayer player)
         {
             try
             {
@@ -284,8 +283,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:KeyHandler:PressU")]
-        public async Task PressU(IPlayer player)
+        [ClientEvent("Server:KeyHandler:PressU")]
+        public static void PressU(IPlayer player)
         {
             try
             {

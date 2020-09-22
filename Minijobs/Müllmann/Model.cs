@@ -31,7 +31,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
 
             foreach (var item in ServerMinijobGarbageSpots_)
             {
-                ((ClassicColshape)item.destinationColshape).Radius = 1.5f;
+                ((ClassicColshape)item.destinationColshape).Radiuss = 1.5f;
             }
         }
 

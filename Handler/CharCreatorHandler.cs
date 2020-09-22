@@ -3,15 +3,13 @@ using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using Altv_Roleplay.Model;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
     class CharCreatorHandler : IScript
     {
-        [AsyncClientEvent("Server:Charcreator:CreateCEF")]
-        public async Task CreateCefBrowser(IPlayer client)
+        [ClientEvent("Server:Charcreator:CreateCEF")]
+        public static void CreateCefBrowser(IPlayer client)
         {
             if (client == null || !client.Exists) return;
             client.EmitLocked("Client:Charcreator:CreateCEF");
@@ -19,11 +17,11 @@ namespace Altv_Roleplay.Handler
             client.Rotation = new Rotation(0, 0, (float)3.1168559);
         }
 
-        [AsyncClientEvent("Server:Charcreator:CreateCharacter")]
-        public async Task CreateCharacter(IPlayer client, string charname, string birthdate, bool gender, string facefeaturesarray, string headblendsdataarray, string headoverlaysarray)
+        [ClientEvent("Server:Charcreator:CreateCharacter")]
+        public static void CreateCharacter(IPlayer client, string charname, string birthdate, bool gender, string facefeaturesarray, string headblendsdataarray, string headoverlaysarray)
         {
             if (client == null || !client.Exists) return;
-            if(Characters.ExistCharacterName(charname))
+            if (Characters.ExistCharacterName(charname))
             {
                 client.EmitLocked("Client:Charcreator:showError", "Der eingegebene Charaktername ist bereits vergeben.");
                 return;
@@ -35,19 +33,19 @@ namespace Altv_Roleplay.Handler
             LoginHandler.CreateLoginBrowser(client);
         }
 
-        [AsyncClientEvent("Server:Barber:finishBarber")]
-        public async Task finishBarber(IPlayer player, string headoverlaysarray)
+        [ClientEvent("Server:Barber:finishBarber")]
+        public static void finishBarber(IPlayer player, string headoverlaysarray)
         {
             if (player == null || !player.Exists) return;
             int charId = User.GetPlayerOnline(player);
             if (charId == 0 || headoverlaysarray == "") return;
-            if(!CharactersInventory.ExistCharacterItem(charId, "Bargeld", "inventory") || CharactersInventory.GetCharacterItemAmount(charId, "Bargeld", "inventory") < 50) { HUDHandler.SendNotification(player, 3, 5000, $"Du hast nicht genug Bargeld dabei (50$)."); SetCorrectCharacterSkin(player);  return; }
+            if (!CharactersInventory.ExistCharacterItem(charId, "Bargeld", "inventory") || CharactersInventory.GetCharacterItemAmount(charId, "Bargeld", "inventory") < 50) { HUDHandler.SendNotification(player, 3, 5000, $"Du hast nicht genug Bargeld dabei (50$)."); SetCorrectCharacterSkin(player); return; }
             CharactersInventory.RemoveCharacterItemAmount(charId, "Bargeld", 50, "inventory");
             Characters.SetCharacterHeadOverlays(charId, headoverlaysarray);
         }
 
-        [AsyncClientEvent("Server:Barber:RequestCurrentSkin")]
-        public async Task SetCorrectCharacterSkin(IPlayer player)
+        [ClientEvent("Server:Barber:RequestCurrentSkin")]
+        public static void SetCorrectCharacterSkin(IPlayer player)
         {
             if (player == null || !player.Exists) return;
             int charid = User.GetPlayerOnline(player);

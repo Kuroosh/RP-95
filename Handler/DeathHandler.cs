@@ -9,15 +9,14 @@ using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 
 namespace Altv_Roleplay.Handler
 {
     class DeathHandler : IScript
     {
-        [AsyncScriptEvent(ScriptEventType.PlayerDead)]
-        public async Task OnPlayerDeath(ClassicPlayer player, IEntity killer, uint weapon)
+        [ScriptEvent(ScriptEventType.PlayerDead)]
+        public static void OnPlayerDeath(ClassicPlayer player, IEntity killer, uint weapon)
         {
             try
             {
@@ -32,7 +31,7 @@ namespace Altv_Roleplay.Handler
                     return;
                 }
                 openDeathscreen(player);
-                Characters.SetCharacterUnconscious(charId, true, 10); // Von 15 auf 10 geändert.
+                Characters.SetCharacterUnconscious(charId, true, 1); // Von 15 auf 10 geändert.
                 ServerFactions.createFactionDispatch(player, 3, $"HandyNotruf", $"Eine Verletzte Person wurde gemeldet");
 
                 if (!(killer is ClassicPlayer killerPlayer)) return;
@@ -83,13 +82,13 @@ namespace Altv_Roleplay.Handler
                 if (player == null || !player.Exists) return;
                 int charId = (int)player.GetCharacterMetaId();
                 if (charId <= 0) return;
-                player.EmitLocked("Client:Deathscreen:closeCEF");
+                player.Emit("Client:Deathscreen:closeCEF");
                 player.SetPlayerIsUnconscious(false);
                 player.SetPlayerIsFastFarm(false);
-                player.EmitLocked("Client:Ragdoll:SetPedToRagdoll", false, 2000);
+                player.Emit("Client:Ragdoll:SetPedToRagdoll", false, 2000);
                 Characters.SetCharacterUnconscious(charId, false, 0);
                 Characters.SetCharacterFastFarm(charId, false, 0);
-                player.EmitLocked("Client:Inventory:StopEffect", "DrugsMichaelAliensFight");
+                player.Emit("Client:Inventory:StopEffect", "DrugsMichaelAliensFight");
 
                 foreach (var item in CharactersInventory.CharactersInventory_.ToList().Where(x => x.charId == charId))
                 {
@@ -105,9 +104,9 @@ namespace Altv_Roleplay.Handler
                 Characters.SetCharacterWeapon(player, "SecondaryAmmo", 0);
                 Characters.SetCharacterWeapon(player, "FistWeapon", "None");
                 Characters.SetCharacterWeapon(player, "FistWeaponAmmo", 0);
-                player.EmitLocked("Client:Smartphone:equipPhone", false, Characters.GetCharacterPhonenumber(charId), Characters.IsCharacterPhoneFlyModeEnabled(charId));
+                player.Emit("Client:Smartphone:equipPhone", false, Characters.GetCharacterPhonenumber(charId), Characters.IsCharacterPhoneFlyModeEnabled(charId));
                 Characters.SetCharacterPhoneEquipped(charId, false);
-                player.RemoveAllWeaponsAsync();
+                player.RemoveAllWeapons();
             }
             catch (Exception e)
             {
@@ -122,11 +121,14 @@ namespace Altv_Roleplay.Handler
                 int charId = (int)player.GetCharacterMetaId();
                 if (charId <= 0) return;
                 player.EmitLocked("Client:Deathscreen:closeCEF");
-                player.SetPlayerIsUnconscious(false);
+                //player.SetPlayerIsUnconscious(false);
                 player.Spawn(player.Position);
-                player.Health = 200;
-                //player.EmitLocked("Client:Ragdoll:SetPedToRagdoll", false, 2000);
                 Characters.SetCharacterUnconscious(charId, false, 0);
+                //DeathHandler.closeDeathscreen(player);
+                //player.Spawn(new Position(355.54285f, -596.33405f, 28.75768f));
+                player.Health = player.MaxHealth;
+                player.Emit("Client:Ragdoll:SetPedToRagdoll", false, 2000);
+                //Characters.SetCharacterUnconscious(charId, false, 0);
                 ServerFactions.SetFactionBankMoney(3, ServerFactions.GetFactionBankMoney(3) + 1500); //ToDo: Preis anpassen
             }
             catch (Exception e)

@@ -29,8 +29,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:House:BuyHouse")]
-        public async Task BuyHouse(IPlayer player, int houseId)
+        [ClientEvent("Server:House:BuyHouse")]
+        public static void BuyHouse(IPlayer player, int houseId)
         {
             try
             {
@@ -75,8 +75,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:House:EnterHouse")]
-        public async Task EnterHouse(IPlayer player, int houseId)
+        [ClientEvent("Server:House:EnterHouse")]
+        public static void EnterHouse(IPlayer player, int houseId)
         {
             try
             {
@@ -169,8 +169,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:HouseStorage:StorageItem")]
-        public async Task StorageItem(IPlayer player, int houseId, string itemName, int itemAmount, string fromContainer)
+        [ClientEvent("Server:HouseStorage:StorageItem")]
+        public static void StorageItem(IPlayer player, int houseId, string itemName, int itemAmount, string fromContainer)
         {
             try
             {
@@ -202,8 +202,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:HouseStorage:TakeItem")]
-        public async Task TakeItem(IPlayer player, int houseId, string itemName, int itemAmount)
+        [ClientEvent("Server:HouseStorage:TakeItem")]
+        public static void TakeItem(IPlayer player, int houseId, string itemName, int itemAmount)
         {
             try
             {
@@ -302,8 +302,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:House:setMainHouse")]
-        public async Task setMainHouse(IPlayer player, int houseId)
+        [ClientEvent("Server:House:setMainHouse")]
+        public static void setMainHouse(IPlayer player, int houseId)
         {
             try
             {
@@ -320,8 +320,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:House:SellHouse")]
-        public async Task SellHouse(IPlayer player, int houseId)
+        [ClientEvent("Server:House:SellHouse")]
+        public static void SellHouse(IPlayer player, int houseId)
         {
             try
             {
@@ -345,8 +345,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:HouseManage:DepositMoney")]
-        public async Task DepositMoney(IPlayer player, int houseId, int money)
+        [ClientEvent("Server:HouseManage:DepositMoney")]
+        public static void DepositMoney(IPlayer player, int houseId, int money)
         {
             if (player == null || !player.Exists || houseId <= 0 || money <= 0) return;
             int charId = (int)player.GetCharacterMetaId();
@@ -362,8 +362,8 @@ namespace Altv_Roleplay.Handler
             HUDHandler.SendNotification(player, 2, 2500, $"Du hast erfolgreich {money}$ in den Tresor gelagert.");
         }
 
-        [AsyncClientEvent("Server:HouseManage:WithdrawMoney")]
-        public async Task WithdrawMoney(IPlayer player, int houseId, int money)
+        [ClientEvent("Server:HouseManage:WithdrawMoney")]
+        public static void WithdrawMoney(IPlayer player, int houseId, int money)
         {
             try
             {
@@ -386,8 +386,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:HouseManage:BuyUpgrade")]
-        public async Task BuyUpgrade(IPlayer player, int houseId, string upgrade)
+        [ClientEvent("Server:HouseManage:BuyUpgrade")]
+        public static void BuyUpgrade(IPlayer player, int houseId, string upgrade)
         {
             try
             {
@@ -436,8 +436,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:HouseManage:RemoveRenter")]
-        public async Task RemoveRenter(IPlayer player, int houseId, int renterId)
+        [ClientEvent("Server:HouseManage:RemoveRenter")]
+        public static void RemoveRenter(IPlayer player, int houseId, int renterId)
         {
             try
             {
@@ -460,8 +460,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:HouseManage:setRentState")]
-        public async Task setRentState(IPlayer player, int houseId, string rentState)
+        [ClientEvent("Server:HouseManage:setRentState")]
+        public static void setRentState(IPlayer player, int houseId, string rentState)
         {
             try
             {
@@ -485,8 +485,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:HouseManage:setRentPrice")]
-        public async Task setRentPrice(IPlayer player, int houseId, int rentPrice)
+        [ClientEvent("Server:HouseManage:setRentPrice")]
+        public static void setRentPrice(IPlayer player, int houseId, int rentPrice)
         {
             try
             {
@@ -509,8 +509,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:House:RentHouse")]
-        public async Task RentHouse(IPlayer player, int houseId)
+        [ClientEvent("Server:House:RentHouse")]
+        public static void RentHouse(IPlayer player, int houseId)
         {
             try
             {
@@ -541,8 +541,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:House:UnrentHouse")]
-        public async Task UnrentHouse(IPlayer player, int houseId)
+        [ClientEvent("Server:House:UnrentHouse")]
+        public static void UnrentHouse(IPlayer player, int houseId)
         {
             try
             {

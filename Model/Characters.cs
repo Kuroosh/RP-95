@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Model
 {
@@ -444,8 +443,8 @@ namespace Altv_Roleplay.Model
             }
         }
 
-        [AsyncClientEvent("Server:Charselector:KillCharacter")]
-        public async Task KillCharacter(IPlayer client, int charId)
+        [ClientEvent("Server:Charselector:KillCharacter")]
+        public static void KillCharacter(IPlayer client, int charId)
         {
             try
             {
@@ -1948,8 +1947,8 @@ namespace Altv_Roleplay.Model
             player.EmitLocked("Client:SpawnArea:setCharClothes", 3, CTorso, 0);
         }
 
-        [AsyncClientEvent("Server:ClothesShop:RequestCurrentSkin")]
-        public static async Task SetCharacterCorrectClothes(IPlayer player)
+        [ClientEvent("Server:ClothesShop:RequestCurrentSkin")]
+        public static void SetCharacterCorrectClothes(IPlayer player)
         {
             if (player == null || !player.Exists) return;
             int charid = User.GetPlayerOnline(player);
@@ -1957,59 +1956,59 @@ namespace Altv_Roleplay.Model
             bool gender = GetCharacterGender(charid);
             SetCharacterBackpack(player, GetCharacterBackpack(charid));
 
-            if (GetCharacterClothes(charid, "Top") == "None") player.EmitLocked("Client:SpawnArea:setCharClothes", 11, 15, 0);
-            else player.EmitLocked("Client:SpawnArea:setCharClothes", 11, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Top")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Top")));
+            if (GetCharacterClothes(charid, "Top") == "None") player.Emit("Client:SpawnArea:setCharClothes", 11, 15, 0);
+            else player.Emit("Client:SpawnArea:setCharClothes", 11, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Top")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Top")));
 
-            if (GetCharacterClothes(charid, "Torso") == "None") player.EmitLocked("Client:SpawnArea:setCharClothes", 3, 15, 0);
-            else player.EmitLocked("Client:SpawnArea:setCharClothes", 3, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Torso")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Torso")));
+            if (GetCharacterClothes(charid, "Torso") == "None") player.Emit("Client:SpawnArea:setCharClothes", 3, 15, 0);
+            else player.Emit("Client:SpawnArea:setCharClothes", 3, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Torso")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Torso")));
 
             if (GetCharacterClothes(charid, "Leg") == "None")
             {
-                if (gender) player.EmitLocked("Client:SpawnArea:setCharClothes", 4, 15, 0);
-                else player.EmitLocked("Client:SpawnArea:setCharClothes", 4, 21, 0);
+                if (gender) player.Emit("Client:SpawnArea:setCharClothes", 4, 15, 0);
+                else player.Emit("Client:SpawnArea:setCharClothes", 4, 21, 0);
             }
-            else player.EmitLocked("Client:SpawnArea:setCharClothes", 4, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Leg")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Leg")));
+            else player.Emit("Client:SpawnArea:setCharClothes", 4, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Leg")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Leg")));
 
             if (GetCharacterClothes(charid, "Feet") == "None")
             {
-                if (gender) player.EmitLocked("Client:SpawnArea:setCharClothes", 6, 35, 0);
-                else player.EmitLocked("Client:SpawnArea:setCharClothes", 6, 34, 0);
+                if (gender) player.Emit("Client:SpawnArea:setCharClothes", 6, 35, 0);
+                else player.Emit("Client:SpawnArea:setCharClothes", 6, 34, 0);
             }
-            else player.EmitLocked("Client:SpawnArea:setCharClothes", 6, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Feet")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Feet")));
+            else player.Emit("Client:SpawnArea:setCharClothes", 6, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Feet")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Feet")));
 
             if (GetCharacterClothes(charid, "Mask") == "None") player.EmitLocked("Client:SpawnArea:setCharClothes", 1, 0, 0);
-            else player.EmitLocked("Client:SpawnArea:setCharClothes", 1, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Mask")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Mask")));
+            else player.Emit("Client:SpawnArea:setCharClothes", 1, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Mask")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Mask")));
 
             if (GetCharacterClothes(charid, "Necklace") == "None") player.EmitLocked("Client:SpawnArea:setCharClothes", 7, 0, 0);
-            else player.EmitLocked("Client:SpawnArea:setCharClothes", 7, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Necklace")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Necklace")));
+            else player.Emit("Client:SpawnArea:setCharClothes", 7, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Necklace")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Necklace")));
 
             if (GetCharacterClothes(charid, "Armor") == "None") player.EmitLocked("Client:SpawnArea:setCharClothes", 9, 0, 0);
-            else player.EmitLocked("Client:SpawnArea:setCharClothes", 9, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Armor")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Armor")));
+            else player.Emit("Client:SpawnArea:setCharClothes", 9, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Armor")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Armor")));
 
             if (GetCharacterClothes(charid, "Hat") == "None") player.EmitLocked("Client:SpawnArea:clearCharAccessory", 0);
-            else player.EmitLocked("Client:SpawnArea:setCharAccessory", 0, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Hat")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Hat")));
+            else player.Emit("Client:SpawnArea:setCharAccessory", 0, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Hat")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Hat")));
 
             if (GetCharacterClothes(charid, "Glass") == "None") player.EmitLocked("Client:SpawnArea:clearCharAccessory", 1);
-            else player.EmitLocked("Client:SpawnArea:setCharAccessory", 1, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Glass")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Glass")));
+            else player.Emit("Client:SpawnArea:setCharAccessory", 1, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Glass")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Glass")));
 
             if (GetCharacterClothes(charid, "Earring") == "None") player.EmitLocked("Client:SpawnArea:clearCharAccessory", 2);
-            else player.EmitLocked("Client:SpawnArea:setCharAccessory", 2, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Earring")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Earring")));
+            else player.Emit("Client:SpawnArea:setCharAccessory", 2, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Earring")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Earring")));
 
             if (GetCharacterClothes(charid, "Watch") == "None") player.EmitLocked("Client:SpawnArea:clearCharAccessory", 6);
-            else player.EmitLocked("Client:SpawnArea:setCharAccessory", 6, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Watch")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Watch")));
+            else player.Emit("Client:SpawnArea:setCharAccessory", 6, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Watch")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Watch")));
 
             if (GetCharacterClothes(charid, "Bracelet") == "None") player.EmitLocked("Client:SpawnArea:clearCharAccessory", 7);
-            else player.EmitLocked("Client:SpawnArea:setCharAccessory", 7, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Bracelet")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Bracelet")));
+            else player.Emit("Client:SpawnArea:setCharAccessory", 7, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Bracelet")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Bracelet")));
 
             if (GetCharacterClothes(charid, "Undershirt") == "None")
             {
-                if (!gender) player.EmitLocked("Client:SpawnArea:setCharClothes", 8, 57, 0);
-                else if (gender) player.EmitLocked("Client:SpawnArea:setCharClothes", 8, 34, 0);
+                if (!gender) player.Emit("Client:SpawnArea:setCharClothes", 8, 57, 0);
+                else if (gender) player.Emit("Client:SpawnArea:setCharClothes", 8, 34, 0);
             }
-            else player.EmitLocked("Client:SpawnArea:setCharClothes", 8, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Undershirt")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Undershirt")));
+            else player.Emit("Client:SpawnArea:setCharClothes", 8, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Undershirt")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Undershirt")));
 
-            if (GetCharacterClothes(charid, "Decal") == "None") player.EmitLocked("Client:SpawnArea:setCharClothes", 10, 0, 0);
-            else player.EmitLocked("Client:SpawnArea:setCharClothes", 10, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Decal")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Decal")));
+            if (GetCharacterClothes(charid, "Decal") == "None") player.Emit("Client:SpawnArea:setCharClothes", 10, 0, 0);
+            else player.Emit("Client:SpawnArea:setCharClothes", 10, ServerClothes.GetClothesDraw(GetCharacterClothes(charid, "Decal")), ServerClothes.GetClothesTexture(GetCharacterClothes(charid, "Decal")));
 
             string primaryWeapon = (string)GetCharacterWeapon(player, "PrimaryWeapon");
             int primaryAmmo = (int)GetCharacterWeapon(player, "PrimaryAmmo");
@@ -2169,8 +2168,8 @@ namespace Altv_Roleplay.Model
                }
            }*/
 
-        [AsyncClientEvent("Server:ClothesStorage:setCharacterClothes")]
-        public static async Task SwitchCharacterClothes(ClassicPlayer player, string Type, string clothesName)
+        [ClientEvent("Server:ClothesStorage:setCharacterClothes")]
+        public static void SwitchCharacterClothes(ClassicPlayer player, string Type, string clothesName)
         {
             try
             {
@@ -2182,48 +2181,48 @@ namespace Altv_Roleplay.Model
                     switch (Type)
                     {
                         case "Hat":
-                            player.EmitLocked("Client:SpawnArea:setCharAccessory", 0, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharAccessory", 0, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Glass":
-                            player.EmitLocked("Client:SpawnArea:setCharAccessory", 1, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharAccessory", 1, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Earring":
-                            player.EmitLocked("Client:SpawnArea:setCharAccessory", 2, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharAccessory", 2, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Watch":
-                            player.EmitLocked("Client:SpawnArea:setCharAccessory", 6, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharAccessory", 6, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Bracelet":
-                            player.EmitLocked("Client:SpawnArea:setCharAccessory", 7, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharAccessory", 7, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Mask":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 1, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharClothes", 1, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Necklace":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 7, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharClothes", 7, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Undershirt":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 8, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharClothes", 8, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Decal":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 10, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharClothes", 10, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Armor":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 9, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharClothes", 9, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             SetCharacterArmor(player.CharacterId, 100);
                             player.Armor = 100;
                             break;
                         case "Feet":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 6, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharClothes", 6, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Top":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 11, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharClothes", 11, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Torso":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 3, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharClothes", 3, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                         case "Leg":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 4, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
+                            player.Emit("Client:SpawnArea:setCharClothes", 4, ServerClothes.GetClothesDraw(clothesName), ServerClothes.GetClothesTexture(clothesName));
                             break;
                     }
                 }
@@ -2233,51 +2232,51 @@ namespace Altv_Roleplay.Model
                     switch (Type)
                     {
                         case "Hat":
-                            player.EmitLocked("Client:SpawnArea:clearCharAccessory", 0);
+                            player.Emit("Client:SpawnArea:clearCharAccessory", 0);
                             break;
                         case "Glass":
-                            player.EmitLocked("Client:SpawnArea:clearCharAccessory", 1);
+                            player.Emit("Client:SpawnArea:clearCharAccessory", 1);
                             break;
                         case "Earring":
-                            player.EmitLocked("Client:SpawnArea:clearCharAccessory", 2);
+                            player.Emit("Client:SpawnArea:clearCharAccessory", 2);
                             break;
                         case "Watch":
-                            player.EmitLocked("Client:SpawnArea:clearCharAccessory", 6);
+                            player.Emit("Client:SpawnArea:clearCharAccessory", 6);
                             break;
                         case "Bracelet":
-                            player.EmitLocked("Client:SpawnArea:clearCharAccessory", 7);
+                            player.Emit("Client:SpawnArea:clearCharAccessory", 7);
                             break;
                         case "Mask":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 1, 0, 0);
+                            player.Emit("Client:SpawnArea:setCharClothes", 1, 0, 0);
                             break;
                         case "Necklace":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 7, 0, 0);
+                            player.Emit("Client:SpawnArea:setCharClothes", 7, 0, 0);
                             break;
                         case "Undershirt":
-                            if (!gender) player.EmitLocked("Client:SpawnArea:setCharClothes", 8, 57, 0);
-                            else if (gender) player.EmitLocked("Client:SpawnArea:setCharClothes", 8, 34, 0);
+                            if (!gender) player.Emit("Client:SpawnArea:setCharClothes", 8, 57, 0);
+                            else if (gender) player.Emit("Client:SpawnArea:setCharClothes", 8, 34, 0);
                             break;
                         case "Decal":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 10, 0, 0);
+                            player.Emit("Client:SpawnArea:setCharClothes", 10, 0, 0);
                             break;
                         case "Armor":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 9, 0, 0);
+                            player.Emit("Client:SpawnArea:setCharClothes", 9, 0, 0);
                             SetCharacterArmor(player.CharacterId, 0);
                             player.Armor = 0;
                             break;
                         case "Feet":
-                            if (!gender) player.EmitLocked("Client:SpawnArea:setCharClothes", 34, 0);
-                            else if (gender) player.EmitLocked("Client:SpawnArea:setCharClothes", 35, 0);
+                            if (!gender) player.Emit("Client:SpawnArea:setCharClothes", 34, 0);
+                            else if (gender) player.Emit("Client:SpawnArea:setCharClothes", 35, 0);
                             break;
                         case "Leg":
-                            if (!gender) player.EmitLocked("Client:SpawnArea:setCharClothes", 4, 21, 0);
-                            else if (gender) player.EmitLocked("Client:SpawnArea:setCharClothes", 4, 15, 0);
+                            if (!gender) player.Emit("Client:SpawnArea:setCharClothes", 4, 21, 0);
+                            else if (gender) player.Emit("Client:SpawnArea:setCharClothes", 4, 15, 0);
                             break;
                         case "Top":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 11, 15, 0);
+                            player.Emit("Client:SpawnArea:setCharClothes", 11, 15, 0);
                             break;
                         case "Torso":
-                            player.EmitLocked("Client:SpawnArea:setCharClothes", 3, 15, 0);
+                            player.Emit("Client:SpawnArea:setCharClothes", 3, 15, 0);
                             break;
                     }
                 }
@@ -2380,11 +2379,9 @@ namespace Altv_Roleplay.Model
                 {
                     chars.isUnconscious = isUnconscious;
                     chars.unconsciousTime = unconsciousTime;
-                    using (gtaContext db = new gtaContext())
-                    {
-                        db.AccountsCharacters.Update(chars);
-                        db.SaveChanges();
-                    }
+                    using gtaContext db = new gtaContext();
+                    db.AccountsCharacters.Update(chars);
+                    db.SaveChanges();
                 }
             }
             catch (Exception e)

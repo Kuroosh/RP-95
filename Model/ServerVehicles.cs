@@ -495,7 +495,7 @@ namespace Altv_Roleplay.Model
 
         public static int GetVehicleFuelLimitOnHash(ulong hash)
         {
-            return ServerAllVehicles.ServerAllVehicles_.FirstOrDefault(x => x.hash == hash)?.maxFuel ?? 0;
+            return ServerAllVehicles.ServerAllVehicles_.FirstOrDefault(x => x.hash == hash)?.maxFuel ?? 50;
         }
 
         public static int GetVehicleTrunkCapacityOnHash(ulong hash)
@@ -958,11 +958,11 @@ namespace Altv_Roleplay.Model
             }
         }
 
-        public static void CreateVehicle(ulong hash, int charid, int vehtype, int faction, bool isInGarage, int garageId, Position pos, Rotation rot, string plate, int primaryColor, int secondaryColor)
+        public static Server_Vehicles CreateVehicle(ulong hash, int charid, int vehtype, int faction, bool isInGarage, int garageId, Position pos, Rotation rot, string plate, int primaryColor, int secondaryColor)
         {
             try
             {
-                var nVehicle = new Server_Vehicles
+                Server_Vehicles nVehicle = new Server_Vehicles
                 {
                     charid = charid,
                     hash = hash,
@@ -994,7 +994,7 @@ namespace Altv_Roleplay.Model
                 }
 
                 if (vehtype != 2) { AddVehicleModToList(nVehicle.id, nVehicle.id, primaryColor, secondaryColor, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 0, 0, 0, 0, 0); }
-                if (isInGarage) return;
+                if (isInGarage) return new Server_Vehicles();
                 ClassicVehicle veh = (ClassicVehicle)Alt.CreateVehicle((uint)hash, pos, rot);
                 veh.NumberplateText = plate;
                 veh.LockState = VehicleLockState.Locked;
@@ -1002,10 +1002,12 @@ namespace Altv_Roleplay.Model
                 veh.SetVehicleId((ulong)nVehicle.id);
                 veh.SetVehicleTrunkState(false);
                 if (vehtype != 2) { SetVehicleModsCorrectly(veh); }
+                return nVehicle;
             }
             catch (Exception e)
             {
                 Core.Debug.CatchExceptions("CreateVehicle", e);
+                return new Server_Vehicles();
             }
         }
 

@@ -5,7 +5,6 @@ using Altv_Roleplay.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Model
 {
@@ -253,7 +252,7 @@ namespace Altv_Roleplay.Model
             }
         }
 
-        public static async Task SetPlayerOnline(ClassicPlayer player, int charId)
+        public static void SetPlayerOnline(ClassicPlayer player, int charId)
         {
             if (player == null || !player.Exists) return;
             player.SetCharacterMetaId(Convert.ToUInt64(charId));
@@ -310,11 +309,9 @@ namespace Altv_Roleplay.Model
                 {
                     pl.ban = state;
                     pl.banReason = reason;
-                    using (gtaContext db = new gtaContext())
-                    {
-                        db.Accounts.Update(pl);
-                        db.SaveChanges();
-                    }
+                    using gtaContext db = new gtaContext();
+                    db.Accounts.Update(pl);
+                    db.SaveChanges();
                 }
             }
             catch (Exception e)

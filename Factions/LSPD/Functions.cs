@@ -6,14 +6,13 @@ using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
 using System;
 using System.Globalization;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Factions.LSPD
 {
     class Functions : IScript
     {
-        [AsyncClientEvent("Server:Tablet:LSPDAppSearchPerson")]
-        public async Task LSPDAppSearchPerson(IPlayer player, string targetCharname)
+        [ClientEvent("Server:Tablet:LSPDAppSearchPerson")]
+        public static void LSPDAppSearchPerson(IPlayer player, string targetCharname)
         {
             try
             {
@@ -48,8 +47,8 @@ namespace Altv_Roleplay.Factions.LSPD
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:LSPDAppSearchVehiclePlate")]
-        public async Task LSPDAppSearchVehiclePlate(IPlayer player, string targetPlate)
+        [ClientEvent("Server:Tablet:LSPDAppSearchVehiclePlate")]
+        public static void LSPDAppSearchVehiclePlate(IPlayer player, string targetPlate)
         {
             try
             {
@@ -82,8 +81,8 @@ namespace Altv_Roleplay.Factions.LSPD
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:LSPDAppSearchLicense")]
-        public async Task LSPDAppSearchLicense(IPlayer player, string targetCharname)
+        [ClientEvent("Server:Tablet:LSPDAppSearchLicense")]
+        public static void LSPDAppSearchLicense(IPlayer player, string targetCharname)
         {
             try
             {
@@ -108,8 +107,8 @@ namespace Altv_Roleplay.Factions.LSPD
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:LSPDAppTakeLicense")]
-        public async Task LSPDAppTakeLicense(IPlayer player, string targetCharname, string licName)
+        [ClientEvent("Server:Tablet:LSPDAppTakeLicense")]
+        public static void LSPDAppTakeLicense(IPlayer player, string targetCharname, string licName)
         {
             try
             {

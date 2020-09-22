@@ -3,19 +3,19 @@ using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using Altv_Roleplay.Model;
+using Altv_Roleplay.models;
 using Altv_Roleplay.Services;
 using Altv_Roleplay.Utils;
 using System;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
     class TabletHandler : IScript
     {
-        [AsyncClientEvent("Server:Tablet:openCEF")]
-        public async Task openCEF(IPlayer player)
+        [ClientEvent("Server:Tablet:openCEF")]
+        public static void openCEF(IPlayer player)
         {
             try
             {
@@ -32,8 +32,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:RequestTabletData")]
-        public async Task RequestTabletData(IPlayer player)
+        [ClientEvent("Server:Tablet:RequestTabletData")]
+        public static void RequestTabletData(IPlayer player)
         {
             try
             {
@@ -136,8 +136,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:AppStoreInstallUninstallApp")]
-        public async Task AppStoreInstallUninstallApp(IPlayer player, string appName, bool isInstalling)
+        [ClientEvent("Server:Tablet:AppStoreInstallUninstallApp")]
+        public static void AppStoreInstallUninstallApp(IPlayer player, string appName, bool isInstalling)
         {
             try
             {
@@ -170,8 +170,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:BankingAppNewTransaction")]
-        public async Task BankingAppNewTransaction(IPlayer player, int targetAccountNumber, string transactionMessage, int moneyAmount)
+        [ClientEvent("Server:Tablet:BankingAppNewTransaction")]
+        public static void BankingAppNewTransaction(IPlayer player, int targetAccountNumber, string transactionMessage, int moneyAmount)
         {
             try
             {
@@ -196,8 +196,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:EventsAppNewEntry")]
-        public async Task EventsAppNewEntry(IPlayer player, string title, string callNumber, string eventDate, string eventTime, string location, string eventType, string information)
+        [ClientEvent("Server:Tablet:EventsAppNewEntry")]
+        public static void EventsAppNewEntry(IPlayer player, string title, string callNumber, string eventDate, string eventTime, string location, string eventType, string information)
         {
             try
             {
@@ -226,8 +226,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:VehicleStoreBuyVehicle")]
-        public async Task VehicleStoreBuyVehicle(IPlayer player, string hash, int shopId, string color)
+        [ClientEvent("Server:Tablet:VehicleStoreBuyVehicle")]
+        public static void VehicleStoreBuyVehicle(IPlayer player, string hash, int shopId, string color)
         {
             try
             {
@@ -256,7 +256,8 @@ namespace Altv_Roleplay.Handler
                 DateTime dateTime = DateTime.Now;
                 CharactersBank.SetBankAccountMoney(bankAccountNumber, (CharactersBank.GetBankAccountMoney(bankAccountNumber) - Price));
                 ServerBankPapers.CreateNewBankPaper(bankAccountNumber, dateTime.ToString("dd.MM.yyyy"), dateTime.ToString("HH.mm"), "Ausgehende Überweisung", "Online Fahrzeugshop", $"Fahrzeugkauf: {ServerVehicles.GetVehicleNameOnHash(fHash)}", $"-{Price}", "Online Banking");
-                ServerVehicles.CreateVehicle(fHash, charId, 0, 0, true, 5, new Position(0, 0, 0), new Rotation(0, 0, 0), $"NL{rnd}", fColor, fColor);
+                Server_Vehicles veh = ServerVehicles.CreateVehicle(fHash, charId, 0, 0, true, 5, new Position(0, 0, 0), new Rotation(0, 0, 0), $"NL{rnd}", fColor, fColor);
+                veh.fuel = 100;
                 CharactersInventory.AddCharacterItem(charId, $"Fahrzeugschluessel NL{rnd}", 2, "inventory");
                 HUDHandler.SendNotification(player, 2, 5000, $"Fahrzeug '{ServerVehicles.GetVehicleNameOnHash(fHash)}' erfolgreich für {Price}$ erworben.<br>Lieferort: La Mesa Fahrzeuggarage.");
             }
@@ -266,8 +267,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:NotesAppNewNote")]
-        public async Task NotesAppNewNote(IPlayer player, string title, string text, string color)
+        [ClientEvent("Server:Tablet:NotesAppNewNote")]
+        public static void NotesAppNewNote(IPlayer player, string title, string text, string color)
         {
             try
             {
@@ -284,8 +285,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:NotesAppDeleteNote")]
-        public async Task NotesAppDeleteNote(IPlayer player, int noteId)
+        [ClientEvent("Server:Tablet:NotesAppDeleteNote")]
+        public static void NotesAppDeleteNote(IPlayer player, int noteId)
         {
             try
             {
@@ -301,8 +302,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:DeleteFactionDispatch")]
-        public async Task DeleteFactionDispatch(IPlayer player, int factionId, int senderId)
+        [ClientEvent("Server:Tablet:DeleteFactionDispatch")]
+        public static void DeleteFactionDispatch(IPlayer player, int factionId, int senderId)
         {
             try
             {
@@ -319,8 +320,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:CompanyAppInviteNewMember")]
-        public async Task CompanyAppInviteNewMember(IPlayer player, string targetCharName, int companyId)
+        [ClientEvent("Server:Tablet:CompanyAppInviteNewMember")]
+        public static void CompanyAppInviteNewMember(IPlayer player, string targetCharName, int companyId)
         {
             try
             {
@@ -350,8 +351,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:FactionManagerAppInviteNewMember")]
-        public async Task FactionManagerAppInviteNewMember(IPlayer player, string targetCharName, int dienstnummer, int factionId)
+        [ClientEvent("Server:Tablet:FactionManagerAppInviteNewMember")]
+        public static void FactionManagerAppInviteNewMember(IPlayer player, string targetCharName, int dienstnummer, int factionId)
         {
             try
             {
@@ -380,8 +381,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:CompanyAppLeaveCompany")]
-        public async Task CompanyAppLeaveCompany(IPlayer player)
+        [ClientEvent("Server:Tablet:CompanyAppLeaveCompany")]
+        public static void CompanyAppLeaveCompany(IPlayer player)
         {
             try
             {
@@ -406,8 +407,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:CompanyAppRankAction")]
-        public async Task CompanyAppRankAction(IPlayer player, int rankId, int targetCharId)
+        [ClientEvent("Server:Tablet:CompanyAppRankAction")]
+        public static void CompanyAppRankAction(IPlayer player, int rankId, int targetCharId)
         {
             try
             {
@@ -458,8 +459,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:FactionManagerRankAction")]
-        public async Task FactionManagerRankAction(IPlayer player, string action, int targetCharId)
+        [ClientEvent("Server:Tablet:FactionManagerRankAction")]
+        public static void FactionManagerRankAction(IPlayer player, string action, int targetCharId)
         {
             try
             {
@@ -525,8 +526,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:FactionManagerSetRankPaycheck")]
-        public async Task FactionManagerSetRankPaycheck(IPlayer player, int rankId, int paycheck)
+        [ClientEvent("Server:Tablet:FactionManagerSetRankPaycheck")]
+        public static void FactionManagerSetRankPaycheck(IPlayer player, int rankId, int paycheck)
         {
             try
             {
@@ -554,8 +555,8 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Tablet:sendDispatchToFaction")]
-        public async Task sendDispatchToFaction(IPlayer player, int factionId, string msg)
+        [ClientEvent("Server:Tablet:sendDispatchToFaction")]
+        public static void sendDispatchToFaction(IPlayer player, int factionId, string msg)
         {
             try
             {

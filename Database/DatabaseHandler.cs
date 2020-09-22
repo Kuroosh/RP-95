@@ -189,7 +189,7 @@ namespace Altv_Roleplay.Database
                     ClassicColshape cols = (ClassicColshape)Alt.CreateColShapeSphere(new Position(spot.posX, spot.posY, spot.posZ), spot.range + 0.5f);
                     cols.SetColShapeName("Farmfield");
                     cols.SetColShapeId((ulong)spot.id);
-                    cols.Radius = spot.range + 0.5f;
+                    cols.Radiuss = spot.range + 0.5f;
                     ServerFarmingSpots.ServerFarmingSpotsColshapes_.Add(cols);
                 }
 
@@ -394,7 +394,7 @@ namespace Altv_Roleplay.Database
                     ClassicColshape cols = (ClassicColshape)Alt.CreateColShapeSphere(new Position(door.posX, door.posY, door.posZ), 20f);
                     cols.SetColShapeName("DoorShape");
                     cols.SetColShapeId((ulong)door.id);
-                    cols.Radius = 20f;
+                    cols.Radiuss = 20f;
                     ServerDoors.ServerDoorsColshapes_.Add(cols);
 
                     if (door.type == "Door")
@@ -402,7 +402,7 @@ namespace Altv_Roleplay.Database
                         ClassicColshape lockCol = (ClassicColshape)Alt.CreateColShapeSphere(new Position(door.lockPosX, door.lockPosY, door.lockPosZ), 1.3f);
                         lockCol.SetColShapeName("DoorShape");
                         lockCol.SetColShapeId((ulong)door.id);
-                        lockCol.Radius = 1.3f;
+                        lockCol.Radiuss = 1.3f;
                         ServerDoors.ServerDoorsLockColshapes_.Add(lockCol);
                         continue;
                     }
@@ -411,7 +411,7 @@ namespace Altv_Roleplay.Database
                         ClassicColshape lockCol = (ClassicColshape)Alt.CreateColShapeSphere(new Position(door.lockPosX, door.lockPosY, door.lockPosZ), 2f);
                         lockCol.SetColShapeName("DoorShape");
                         lockCol.SetColShapeId((ulong)door.id);
-                        lockCol.Radius = 2f;
+                        lockCol.Radiuss = 2f;
                         ServerDoors.ServerDoorsLockColshapes_.Add(lockCol);
                         continue;
                     }
@@ -460,7 +460,7 @@ namespace Altv_Roleplay.Database
             try
             {
                 // just to unuse the stuff 
-                return;
+                /*
                 using (var db = new gtaContext())
                 {
                     ServerFactions.ServerFactions_ = new List<Server_Factions>(db.Server_Factions);
@@ -524,7 +524,7 @@ namespace Altv_Roleplay.Database
                         };
                         ServerBlips.ServerMarkers_.Add(markerData);
                     }
-                }
+                }*/
             }
             catch (Exception e)
             {
@@ -765,7 +765,7 @@ namespace Altv_Roleplay.Database
                     ClassicColshape cols = (ClassicColshape)Alt.CreateColShapeSphere(new Position(producer.posX, producer.posY, producer.posZ), producer.range);
                     cols.SetColShapeName("Farmproducer");
                     cols.SetColShapeId((ulong)producer.id);
-                    cols.Radius = producer.range;
+                    cols.Radiuss = producer.range;
                     ServerFarmingSpots.ServerFarmingProducerColshapes_.Add(cols);
                 }
             }
@@ -851,7 +851,7 @@ namespace Altv_Roleplay.Database
                     colShape.CarDealerVehName = ServerVehicles.GetVehicleNameOnHash(veh.hash);
                     colShape.CarDealerVehPrice = (ulong)veh.price;
 
-                    colShape.Radius = 2.25f;
+                    colShape.Radiuss = 2.25f;
                 }
             }
             catch (Exception e) { Alt.Log($"{e}"); }

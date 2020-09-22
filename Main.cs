@@ -13,7 +13,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using System.Timers;
 
 namespace Altv_Roleplay
 {
@@ -229,7 +228,12 @@ namespace Altv_Roleplay
             Alt.OnClient<IPlayer, string>("Server:Utilities:BanMe", BanPlayer);
             #endregion
 
-            #region Init Timer
+            //WTF ?!!!!!!!!
+            //WTF ?!!!!!!!!
+            //WTF ?!!!!!!!!
+            //WTF ?!!!!!!!!
+            //WTF ?!!!!!!!!
+            /*
             System.Timers.Timer entityTimer = new System.Timers.Timer();
             //System.Timers.Timer desireTimer = new System.Timers.Timer();
             System.Timers.Timer VehicleAutomaticParkFetchTimer = new System.Timers.Timer();
@@ -243,7 +247,8 @@ namespace Altv_Roleplay
             //desireTimer.Enabled = true;
             VehicleAutomaticParkFetchTimer.Enabled = true;
             #endregion
-
+*/
+            Timer entityTimer = new Timer(TimerHandler.OnMinuteSpent, null, 60000, 60000);
             Console.WriteLine($"Main-Thread = {Thread.CurrentThread.ManagedThreadId}");
         }
 
