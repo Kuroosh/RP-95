@@ -22,7 +22,6 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             Alt.Log("Lade Minijob: Busfahrer...");
             Alt.OnColShape += ColshapeEnterExitHandler;
             Alt.OnPlayerEnterVehicle += PlayerEnterVehicle;
-            Alt.OnPlayerLeaveVehicle += PlayerExitVehicle;
 
             var data = new Server_Peds { model = "cs_tom", posX = startJobShape.Position.X, posY = startJobShape.Position.Y, posZ = startJobShape.Position.Z - 1, rotation = -106.16410064697266f };
             ServerPeds.ServerPeds_.Add(data);
@@ -32,47 +31,24 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
 
             startJobShape.Radiuss = 2f;
         }
-
-        private static async void PlayerExitVehicle(IVehicle vehicle, IPlayer player, byte seat)
+        [AsyncScriptEvent(ScriptEventType.PlayerLeaveVehicle)]
+        public static async void PlayerExitVehicle(ClassicVehicle vehicle, ClassicPlayer player, byte seat)
         {
             try
             {
-                if (player == null || !player.Exists)
-                {
-                    return;
-                }
-                if (vehicle == null || !vehicle.Exists)
-                {
-                    return;
-                }
+                if (player == null || !player.Exists) return;
+                if (vehicle == null || !vehicle.Exists) return;
+                if (vehicle.IsAdmin && seat == 1) { vehicle.Remove(); return; }
                 int charId = User.GetPlayerOnline(player);
-                if (charId <= 0)
-                {
-                    return;
-                }
+                if (charId <= 0) return;
+                if (ServerVehicles.GetVehicleType(vehicle) != 2) return;
+                if (ServerVehicles.GetVehicleOwner(vehicle) != charId) return;
 
-                if (ServerVehicles.GetVehicleType(vehicle) != 2)
-                {
-                    return;
-                }
-                if (ServerVehicles.GetVehicleOwner(vehicle) != charId)
-                {
-                    return;
-                }
+                if (player.GetPlayerCurrentMinijob() != "Busfahrer") return;
 
-                if (player.GetPlayerCurrentMinijob() != "Busfahrer")
-                {
-                    return;
-                }
+                if (player.GetPlayerCurrentMinijobStep() != "DRIVE_BACK_TO_START") return;
 
-                if (player.GetPlayerCurrentMinijobStep() != "DRIVE_BACK_TO_START")
-                {
-                    return;
-                }
-                if (!vehicle.Position.IsInRange(Constants.Positions.Minijob_Busdriver_VehOutPos, 8f))
-                {
-                    return;
-                }
+                if (!vehicle.Position.IsInRange(Constants.Positions.Minijob_Busdriver_VehOutPos, 8f)) return;
 
                 player.EmitLocked("Client:Minijob:RemoveJobMarker");
 

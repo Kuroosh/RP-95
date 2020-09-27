@@ -361,7 +361,7 @@ namespace Altv_Roleplay
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            foreach (IVehicle Veh in Alt.Server.GetVehicles().ToList())
+            foreach (ClassicVehicle Veh in Alt.Server.GetVehicles().ToList())
             {
                 if (Veh == null || !Veh.Exists) { continue; }
                 using (var vRef = new VehicleRef(Veh))
@@ -383,7 +383,7 @@ namespace Altv_Roleplay
                         ServerVehicles.SaveVehiclePositionAndStates(Veh);
                         if (Veh.EngineOn == true)
                         {
-                            ServerVehicles.SetVehicleFuel(Veh, ServerVehicles.GetVehicleFuel(Veh) - 0.03f);
+                            Veh.Fuel -= 0.03f;
                         }
                     }
                 }

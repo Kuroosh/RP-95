@@ -3,16 +3,12 @@ using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
-using AltV.Net.Enums;
 using Altv_Roleplay.Factories;
 using Altv_Roleplay.Handler;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Utils
 {
@@ -21,7 +17,8 @@ namespace Altv_Roleplay.Utils
         public static bool IsInRange(this Position currentPosition, Position otherPosition, float distance)
             => currentPosition.Distance(otherPosition) <= distance;
 
-        public static void kickWithMessage(this IPlayer player, string reason) {
+        public static void kickWithMessage(this IPlayer player, string reason)
+        {
             HUDHandler.SendNotification(player, 3, 250000, $"Du wurdest vom Server gekickt. Grund: {reason}");
             player.Kick(reason);
         }
@@ -138,7 +135,8 @@ namespace Altv_Roleplay.Utils
             if (cuffType == "handcuffs")
             {
                 AltAsync.Do(() => player.SetSyncedMetaData("HasHandcuffs", isCuffed));
-            } else if(cuffType == "ropecuffs")
+            }
+            else if (cuffType == "ropecuffs")
             {
                 AltAsync.Do(() => player.SetSyncedMetaData("HasRopeCuffs", isCuffed));
             }
@@ -211,7 +209,7 @@ namespace Altv_Roleplay.Utils
         public static int AdminLevel(this IPlayer player)
         {
             if (player == null || !player.Exists) return 0;
-            var playerDb = User.Player.FirstOrDefault(p => p.socialClub == player.SocialClubId && player.GetCharacterMetaId() == (ulong)p.Online);
+            Accounts playerDb = User.Player.FirstOrDefault(p => p.socialClub == player.SocialClubId && player.GetCharacterMetaId() == (ulong)p.Online);
             return playerDb == null ? 0 : Convert.ToInt32(playerDb.adminLevel);
         }
 

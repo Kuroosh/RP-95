@@ -84,6 +84,36 @@ namespace Altv_Roleplay.Model
             }
         }
 
+        private static void SaveAccountInformation(ClassicPlayer player)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex) { Core.Debug.CatchExceptions("SaveAccountInformation", ex); }
+        }
+
+        private static void SaveCharacterInformation(ClassicPlayer player)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex) { Core.Debug.CatchExceptions("SaveCharacterInformation", ex); }
+        }
+
+
+        public static void UpdatePlayerInformation(ClassicPlayer player)
+        {
+            try
+            {
+                //Core.Debug.OutputDebugString()
+                SaveAccountInformation(player);
+                SaveCharacterInformation(player);
+            }
+            catch (Exception ex) { Core.Debug.CatchExceptions("UpdatePlayerInformation", ex); }
+        }
+
         public static void CreateCharacterSkin(string charname, string facefeaturesarray, string headblendsdataarray, string headoverlaysarray)
         {
             int charId = GetCharacterIdFromCharName(charname);
@@ -867,7 +897,7 @@ namespace Altv_Roleplay.Model
 
         public static void SetCharacterLastPosition(int charId, Position pos, int dimension)
         {
-            var chars = CharactersLastPos.FirstOrDefault(p => p.charId == charId);
+            Characters_LastPos chars = CharactersLastPos.FirstOrDefault(p => p.charId == charId);
 
             if (chars != null)
             {
@@ -1208,7 +1238,6 @@ namespace Altv_Roleplay.Model
             if (chars != null)
             {
                 chars.health = health - 100;
-
                 try
                 {
                     using (gtaContext db = new gtaContext())
@@ -1276,11 +1305,9 @@ namespace Altv_Roleplay.Model
 
                 try
                 {
-                    using (gtaContext db = new gtaContext())
-                    {
-                        db.AccountsCharacters.Update(chars);
-                        db.SaveChanges();
-                    }
+                    using gtaContext db = new gtaContext();
+                    db.AccountsCharacters.Update(chars);
+                    db.SaveChanges();
                 }
                 catch (Exception e)
                 {

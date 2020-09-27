@@ -1,6 +1,7 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
 using System;
@@ -17,13 +18,12 @@ namespace Altv_Roleplay.Handler
         }
 
         [ScriptEvent(ScriptEventType.PlayerEnterVehicle)]
-        public static void OnPlayerEnterVehicle_Handler(IVehicle vehicle, IPlayer client, byte seat)
+        public static void OnPlayerEnterVehicle_Handler(ClassicVehicle vehicle, IPlayer client, byte seat)
         {
             try
             {
                 if (client == null || !client.Exists) return;
-                client.Emit("Client:HUD:updateHUDPosInVeh", true, ServerVehicles.GetVehicleFuel(vehicle), ServerVehicles.GetVehicleKM(vehicle));
-                client.Emit("Client:HUD:GetDistanceForVehicleKM");
+                client.Emit("Client:HUD:updateHUDPosInVeh", true, vehicle.Fuel, vehicle.KM);
             }
             catch (Exception e)
             {
@@ -48,11 +48,11 @@ namespace Altv_Roleplay.Handler
         public static void SendInformationToVehicleHUD(IPlayer player)
         {
             if (player == null || !player.Exists) return;
-            IVehicle Veh = player.Vehicle;
+            ClassicVehicle Veh = (ClassicVehicle)player.Vehicle;
             if (!Veh.Exists) return;
             ulong vehID = Veh.GetVehicleId();
             if (vehID == 0) return;
-            player.EmitLocked("Client:HUD:SetPlayerHUDVehicleInfos", ServerVehicles.GetVehicleFuel(Veh), ServerVehicles.GetVehicleKM(Veh));
+            player.EmitLocked("Client:HUD:SetPlayerHUDVehicleInfos", Veh.Fuel, Veh.KM);
         }
 
         public static void SendNotification(IPlayer client, int type, int duration, string msg, int delay = 0) //1 Info | 2 Success | 3 Warning | 4 Error
@@ -68,7 +68,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        [AsyncClientEvent("Server:Vehicle:UpdateVehicleKM")]
+        [ClientEvent("Server:Vehicle:UpdateVehicleKM")]
         public static void UpdateVehicleKM(IPlayer player, float km)
         {
             //KM = bei 600 Meter = 600
@@ -78,8 +78,8 @@ namespace Altv_Roleplay.Handler
                 if (player == null || !player.Exists || km <= 0) return;
                 if (!player.IsInVehicle || player.Vehicle == null) return;
                 float fKM = km / 1000;
-                fKM = fKM + ServerVehicles.GetVehicleKM(player.Vehicle);
-                ServerVehicles.SetVehicleKM(player.Vehicle, fKM);
+                ClassicVehicle veh = (ClassicVehicle)player.Vehicle;
+                veh.KM = (fKM += veh.KM);
             }
             catch (Exception e)
             {

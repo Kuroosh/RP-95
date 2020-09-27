@@ -51,7 +51,9 @@ namespace Altv_Roleplay.Model
             ServerVehicles_.Add(newVehicleData);
 
             if (isInGarage) return;
-            IVehicle veh = Alt.CreateVehicle(hash, position, rotation);
+            ClassicVehicle veh = (ClassicVehicle)Alt.CreateVehicle(hash, position, rotation);
+            veh.Fuel = fuel;
+            veh.KM = km;
             if (position == new Position(0, 0, 0)) { SetVehicleInGarage(veh, true, 10); return; }
             if (lockState == true) { veh.LockState = VehicleLockState.Locked; }
             else if (lockState == false) { veh.LockState = VehicleLockState.Unlocked; }
@@ -365,74 +367,6 @@ namespace Altv_Roleplay.Model
             return -1;
         }
 
-        public static float GetVehicleFuel(IVehicle veh)
-        {
-            ulong vehID = veh.GetVehicleId();
-            if (veh == null || !veh.Exists || vehID == 0) return 0;
-            var vehs = ServerVehicles_.FirstOrDefault(v => (ulong)v.id == vehID);
-            if (vehs != null)
-            {
-                return vehs.fuel;
-            }
-            return 0;
-        }
-
-        public static void SetVehicleFuel(IVehicle veh, float fuel)
-        {
-            try
-            {
-                if (veh == null || !veh.Exists) return;
-                ulong vehID = veh.GetVehicleId();
-                if (vehID == 0) return;
-                var vehs = ServerVehicles_.FirstOrDefault(v => (ulong)v.id == vehID);
-                if (vehs != null)
-                {
-                    vehs.fuel = fuel;
-                    if (vehs.fuel <= 0)
-                    {
-                        vehs.fuel = 0f;
-                        SetVehicleEngineState(veh, false);
-                    }
-                    else if (vehs.fuel > GetVehicleFuelLimitOnHash(veh.Model)) vehs.fuel = (float)GetVehicleFuelLimitOnHash(veh.Model);
-                }
-            }
-            catch (Exception e)
-            {
-                Core.Debug.CatchExceptions("SetVehicleFuel", e);
-            }
-        }
-
-        public static float GetVehicleKM(IVehicle veh)
-        {
-            ulong vehID = veh.GetVehicleId();
-            if (veh == null || !veh.Exists || vehID == 0) return 0;
-            var vehs = ServerVehicles_.FirstOrDefault(v => (ulong)v.id == vehID);
-            if (vehs != null)
-            {
-                return vehs.KM;
-            }
-            return 0;
-        }
-
-        public static void SetVehicleKM(IVehicle veh, float km)
-        {
-            try
-            {
-                if (veh == null || !veh.Exists) return;
-                ulong vehID = veh.GetVehicleId();
-                if (vehID == 0) return;
-                var vehs = ServerVehicles_.FirstOrDefault(v => (ulong)v.id == vehID);
-                if (vehs != null)
-                {
-                    vehs.KM = km;
-                }
-            }
-            catch (Exception e)
-            {
-                Core.Debug.CatchExceptions("SetVehicleKM", e);
-            }
-        }
-
         public static void SetVehicleEngineHealthy(IVehicle veh, bool state)
         {
             try
@@ -644,7 +578,7 @@ namespace Altv_Roleplay.Model
         }
 
 
-        public static void SaveVehiclePositionAndStates(IVehicle veh)
+        public static void SaveVehiclePositionAndStates(ClassicVehicle veh)
         {
             try
             {
@@ -662,8 +596,8 @@ namespace Altv_Roleplay.Model
                     vehs.engineState = veh.EngineOn;
                     if (veh.LockState == VehicleLockState.Locked) { vehs.lockState = true; }
                     else if (veh.LockState == VehicleLockState.Unlocked) { vehs.lockState = false; }
-                    vehs.KM = GetVehicleKM(veh);
-                    vehs.fuel = GetVehicleFuel(veh);
+                    vehs.KM = veh.KM;
+                    vehs.fuel = veh.Fuel;
 
                     using (gtaContext db = new gtaContext())
                     {

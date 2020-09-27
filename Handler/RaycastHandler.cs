@@ -26,7 +26,7 @@ namespace Altv_Roleplay.Handler
                 if (veh == null || !veh.Exists || player == null || !player.Exists) return;
                 ulong vehID = veh.GetVehicleId();
                 int charId = (int)player.GetCharacterMetaId();
-                Alt.Log($"GetVehicleItems: {vehID} - {charId}");
+                //Alt.Log($"GetVehicleItems: {vehID} - {charId}");
                 bool vehTrunkIsOpen = veh.GetVehicleTrunkState(); //false = zu || true = offen
                 if (charId <= 0 || vehID <= 0) return;
                 var interactHTML = "";
@@ -56,9 +56,7 @@ namespace Altv_Roleplay.Handler
                         interactHTML += "<li class='interactitem' id='InteractionMenu-vehTuning' data-action='vehTuning' data-actionstring='Fahrzeug modifizieren'><img src='../utils/img/vehTuning.png'></li>";
 
                         if (veh.Position.IsInRange(Constants.Positions.AutoClubLosSantos_StoreVehPosition, 5f) && veh.GetVehicleId() > 0)
-                        {
                             interactHTML += "<li class='interactitem' id='InteractionMenu-towVehicle' data-action='vehTow' data-actionstring='Fahrzeug verwahren'><img src='../utils/img/towvehicle.png'></li>";
-                        }
                     }
                 }
                 else if (type == "vehicleIn")
@@ -69,10 +67,12 @@ namespace Altv_Roleplay.Handler
                     if (player.IsInVehicle && (player.Seat == 1 || player.Seat == 2) && ServerVehicles.GetVehicleType(veh) != 2)
                     {
                         interactHTML += "<li class='interactitem' id='InteractionMenu-vehViewGloveboxContent' data-action='vehViewGloveboxContent' data-actionstring='Handschuhfach ansehen'><img src='../utils/img/viewglovebox.png'></li>";
+                        interactHTML += "<li class='interactitem' id='InteractionMenu-vehbuckleup' data-action='vehbuckleup' data-actionstring='Anschnallen'><img src='../utils/img/buckleup.png'></li>";
                     }
+
                 }
 
-                player.EmitLocked("Client:RaycastMenu:SetMenuItems", type, interactHTML);
+                player.Emit("Client:RaycastMenu:SetMenuItems", type, interactHTML);
                 stopwatch.Stop();
                 if (stopwatch.Elapsed.Milliseconds > 30) Alt.Log($"{charId} - GetMenuVehicleItems benötigte {stopwatch.Elapsed.Milliseconds}ms");
             }
@@ -81,6 +81,22 @@ namespace Altv_Roleplay.Handler
                 Core.Debug.CatchExceptions("GetMenuVehicleItems", e);
             }
         }
+        [ClientEvent("InteractionMenu:BuckleUp")]
+        public static void BuckleUp(ClassicPlayer player, ClassicVehicle veh)
+        {
+            try
+            {
+                if (veh is null || player is null) return;
+                player.Seatbelt = !player.Seatbelt;
+                player.Emit("Player:SetSeatbeltState", player.Seatbelt);
+                if (player.Seatbelt)
+                    HUDHandler.SendNotification(player, 4, 5000, "Du hast dich angeschnallt!");
+                else
+                    HUDHandler.SendNotification(player, 4, 5000, "Du bist nun nicht mehr angeschnallt!");
+            }
+            catch (Exception ex) { Core.Debug.CatchExceptions("BuckleUp", ex); }
+        }
+
 
         [ClientEvent("Server:InteractionMenu:GetMenuPlayerItems")]
         public static void GetMenuPlayerItems(IPlayer player, string type, IPlayer targetPlayer)
@@ -176,11 +192,11 @@ namespace Altv_Roleplay.Handler
                 targetPlayer.Position = new Position(1691.4594f, 2565.7056f, 45.556763f);
                 if (Characters.GetCharacterGender(targetPlayer.CharacterId) == false)
                 {
-                    targetPlayer.EmitLocked("Client:SpawnArea:setCharClothes", 11, 5, 0);
-                    targetPlayer.EmitLocked("Client:SpawnArea:setCharClothes", 3, 5, 0);
-                    targetPlayer.EmitLocked("Client:SpawnArea:setCharClothes", 4, 7, 15);
-                    targetPlayer.EmitLocked("Client:SpawnArea:setCharClothes", 6, 7, 0);
-                    targetPlayer.EmitLocked("Client:SpawnArea:setCharClothes", 8, 1, 88);
+                    targetPlayer.Emit("Client:SpawnArea:setCharClothes", 11, 5, 0);
+                    targetPlayer.Emit("Client:SpawnArea:setCharClothes", 3, 5, 0);
+                    targetPlayer.Emit("Client:SpawnArea:setCharClothes", 4, 7, 15);
+                    targetPlayer.Emit("Client:SpawnArea:setCharClothes", 6, 7, 0);
+                    targetPlayer.Emit("Client:SpawnArea:setCharClothes", 8, 1, 88);
                 }
                 else
                 {
@@ -194,7 +210,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Raycast:OpenVehicleFuelMenu")]
-        public static void OpenVehicleFuelMenu(IPlayer player, IVehicle veh)
+        public static void OpenVehicleFuelMenu(ClassicPlayer player, ClassicVehicle veh)
         {
             try
             {
@@ -214,8 +230,8 @@ namespace Altv_Roleplay.Handler
                 var fuelArray = ServerFuelStations.GetFuelStationAvailableFuel(fuelStationId);
                 string stationName = ServerFuelStations.GetFuelStationName(fuelStationId);
                 string ownerName = ServerFuelStations.GetFuelStationOwnerName(ServerFuelStations.GetFuelStationOwnerId(fuelStationId));
-                var maxFuel = ServerVehicles.GetVehicleFuelLimitOnHash(veh.Model);
-                var curFuel = Convert.ToInt32(ServerVehicles.GetVehicleFuel(veh));
+                float maxFuel = ServerVehicles.GetVehicleFuelLimitOnHash(veh.Model);
+                var curFuel = veh.Fuel;
                 maxFuel -= curFuel;
 
                 player.EmitLocked("Client:FuelStation:OpenCEF", fuelStationId, stationName, ownerName, maxFuel, availableLiter, fuelArray, vehID);
@@ -266,7 +282,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Raycast:ToggleVehicleEngine")]
-        public static void ToggleVehicleEngine(IPlayer player, IVehicle veh)
+        public static void ToggleVehicleEngine(ClassicPlayer player, ClassicVehicle veh)
         {
             if (player == null || !player.Exists || veh == null || !veh.Exists) return;
             Stopwatch stopwatch = new Stopwatch();
@@ -292,7 +308,7 @@ namespace Altv_Roleplay.Handler
 
             bool engineState = ServerVehicles.GetVehicleEngineState(veh);
             if (engineState == false && !ServerVehicles.IsVehicleEngineHealthy(veh)) { HUDHandler.SendNotification(player, 3, 5000, "Dieses Fahrzeug hat einen Motorschaden."); return; }
-            if (engineState == false && ServerVehicles.GetVehicleFuel(veh) <= 0) { HUDHandler.SendNotification(player, 3, 5000, "Dieses Fahrzeug hat keinen Treibstoff mehr."); return; }
+            if (engineState == false && veh.Fuel <= 0) { HUDHandler.SendNotification(player, 3, 5000, "Dieses Fahrzeug hat keinen Treibstoff mehr."); return; }
             ServerVehicles.SetVehicleEngineState(veh, !engineState);
             if (engineState == true) { HUDHandler.SendNotification(player, 4, 2500, "Du hast den Motor ausgeschaltet."); }
             else { HUDHandler.SendNotification(player, 2, 2500, "Du hast den Motor eingeschaltet."); }

@@ -1,6 +1,4 @@
-﻿using AltV.Net;
-using AltV.Net.Async;
-using AltV.Net.Data;
+﻿using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using Altv_Roleplay.Handler;
 using Altv_Roleplay.models;
@@ -13,7 +11,7 @@ namespace Altv_Roleplay.Model
     {
         public static List<Server_ATM> ServerATM_ = new List<Server_ATM>();
 
-        public static void CreateNewATM(IPlayer client, int maxmoney, Position pos, string zoneName)
+        public static void CreateNewATM(IPlayer client, Position pos, string zoneName)
         {
             if (client == null || !client.Exists) return;
             var ServerATMData = new Server_ATM
@@ -35,11 +33,11 @@ namespace Altv_Roleplay.Model
 
                 HUDHandler.SendNotification(client, 2, 5000, $"ATM in der Zone ({ServerATMData.zoneName}) an deiner Position erstellt.");
 
-                foreach (IPlayer player in Alt.Server.GetPlayers())
+                /*foreach (IPlayer player in Alt.Server.GetPlayers())
                 {
                     if (player == null || !player.Exists) return;
-                    player.EmitLocked("Client:ServerBlips:AddNewBlip", "Bankautomat", 2, 0.8, true, 277, pos.X, pos.Y, pos.Z);
-                }
+                    player.Emit("Client:ServerBlips:AddNewBlip", "Bankautomat", 2, 0.8, true, 277, pos.X, pos.Y, pos.Z);
+                }*/
             }
             catch (Exception e)
             {

@@ -364,11 +364,9 @@ namespace Altv_Roleplay.Model
                 if (pl != null)
                 {
                     pl.adminLevel = adminLevel;
-                    using (gtaContext db = new gtaContext())
-                    {
-                        db.Accounts.Update(pl);
-                        db.SaveChanges();
-                    }
+                    using gtaContext db = new gtaContext();
+                    db.Accounts.Update(pl);
+                    db.SaveChanges();
                 }
             }
             catch (Exception e)

@@ -3,6 +3,7 @@ using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using AltV.Net.Elements.Refs;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.models;
 using Altv_Roleplay.Services;
@@ -22,18 +23,18 @@ namespace Altv_Roleplay.Handler
                 /*Console.WriteLine($"Timer - Thread = {Thread.CurrentThread.ManagedThreadId}");
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();*/
-                foreach (IVehicle Veh in Alt.Server.GetVehicles().ToList())
+                foreach (ClassicVehicle Veh in Alt.Server.GetVehicles().ToList())
                 {
                     if (Veh == null || !Veh.Exists) { continue; }
                     using var vRef = new VehicleRef(Veh);
                     if (!vRef.Exists) continue;
                     lock (Veh)
                     {
-                        if (Veh == null || !Veh.Exists) continue;
+                        if (Veh == null) continue;
                         ulong vehID = Veh.GetVehicleId();
                         if (vehID <= 0) { continue; }
                         ServerVehicles.SaveVehiclePositionAndStates(Veh);
-                        if (Veh.EngineOn == true) { ServerVehicles.SetVehicleFuel(Veh, ServerVehicles.GetVehicleFuel(Veh) - 0.03f); }
+                        if (Veh.EngineOn == true) { Veh.Fuel -= 0.03f; }
                     }
                 }
 

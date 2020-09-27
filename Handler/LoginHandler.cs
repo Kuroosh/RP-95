@@ -66,7 +66,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Login:ValidateLoginCredentials")]
-        public static void ValidateLoginCredentials(IPlayer client, string username, string password)
+        public static void ValidateLoginCredentials(ClassicPlayer client, string username, string password)
         {
             if (client == null || !client.Exists) return;
             Console.WriteLine($"ValidateLoginCredentials - Thread = {Thread.CurrentThread.ManagedThreadId}");
@@ -123,16 +123,14 @@ namespace Altv_Roleplay.Handler
             LoggingService.NewLoginLog(username, client.SocialClubId, client.Ip, client.HardwareIdHash, true, "Erfolgreich eingeloggt.");
             stopwatch.Stop();
             if (stopwatch.Elapsed.Milliseconds > 30) Alt.Log($"ValidateLoginCredentials benötigte {stopwatch.Elapsed.Milliseconds}ms");
-            //client.SetSyncedMetaData("PLAYER_ID", User.GetPlayerOnline(client));
-            client.SetSyncedMetaData("PLAYER_ID", 0);
-            client.SetSyncedMetaData("PLAYER_USERNAME", username);
+            client.Username = username;
         }
 
         [ClientEvent("Server:Charselector:PreviewCharacter")]
         public static void PreviewCharacter(IPlayer client, int charid)
         {
-            if (client == null || !client.Exists) return;
-            client.EmitLocked("Client:Charselector:ViewCharacter", Characters.GetCharacterGender(charid), Characters.GetCharacterSkin("facefeatures", charid), Characters.GetCharacterSkin("headblendsdata", charid), Characters.GetCharacterSkin("headoverlays", charid));
+            if (client == null) return;
+            client.Emit("Client:Charselector:ViewCharacter", Characters.GetCharacterGender(charid), Characters.GetCharacterSkin("facefeatures", charid), Characters.GetCharacterSkin("headblendsdata", charid), Characters.GetCharacterSkin("headoverlays", charid));
         }
 
         public static void SendDataToCharselectorArea(IPlayer client)
@@ -140,8 +138,8 @@ namespace Altv_Roleplay.Handler
             if (client == null || !client.Exists) return;
             var charArray = Characters.GetPlayerCharacters(client);
             client.Position = new Position((float)402.778, (float)-996.9758, (float)-98);
-            client.EmitLocked("Client:Charselector:sendCharactersToCEF", charArray);
-            client.EmitLocked("Client:Login:showArea", "charselect");
+            client.Emit("Client:Charselector:sendCharactersToCEF", charArray);
+            client.Emit("Client:Login:showArea", "charselect");
         }
 
         [ClientEvent("Server:Charselector:spawnChar")]
@@ -155,7 +153,7 @@ namespace Altv_Roleplay.Handler
             string charName = Characters.GetCharacterName(charid);
             User.SetPlayerOnline(client, charid); //Online Feld = CharakterID
             client.CharacterId = charid;
-            client.SetSyncedMetaData("PLAYER_ID", charid);
+            client.CharacterName = charName;
 
             if (Characters.GetCharacterFirstJoin(charid) && Characters.GetCharacterFirstSpawnPlace(client, charid) == "unset")
             {
@@ -191,9 +189,9 @@ namespace Altv_Roleplay.Handler
             if (Characters.GetCharacterGender(charid)) client.Model = 0x9C9EFFD8;
             else client.Model = 0x705E61F2;
 
-            client.EmitLocked("Client:ServerBlips:LoadAllBlips", ServerBlips.GetAllServerBlips());
-            client.EmitLocked("Client:ServerMarkers:LoadAllMarkers", ServerBlips.GetAllServerMarkers());
-            client.EmitLocked("Client:SpawnArea:setCharSkin", Characters.GetCharacterSkin("facefeatures", charid), Characters.GetCharacterSkin("headblendsdata", charid), Characters.GetCharacterSkin("headoverlays", charid));
+            client.Emit("Client:ServerBlips:LoadAllBlips", ServerBlips.GetAllServerBlips());
+            client.Emit("Client:ServerMarkers:LoadAllMarkers", ServerBlips.GetAllServerMarkers());
+            client.Emit("Client:SpawnArea:setCharSkin", Characters.GetCharacterSkin("facefeatures", charid), Characters.GetCharacterSkin("headblendsdata", charid), Characters.GetCharacterSkin("headoverlays", charid));
             Position dbPos = Characters.GetCharacterLastPosition(charid);
             client.Position = dbPos;
             client.Spawn(dbPos, 0);
@@ -215,28 +213,25 @@ namespace Altv_Roleplay.Handler
             if (Characters.IsCharacterFastFarm(charid))
             {
                 var fastFarmTime = Characters.GetCharacterFastFarmTime(charid) * 60000;
-                client.EmitLocked("Client:Inventory:PlayEffect", "DrugsMichaelAliensFight", fastFarmTime);
+                client.Emit("Client:Inventory:PlayEffect", "DrugsMichaelAliensFight", fastFarmTime);
                 HUDHandler.SendNotification(client, 2, 2000, $"Du bist durch dein Koks noch {fastFarmTime} Minuten effektiver.");
             }
             ServerAnimations.RequestAnimationMenuContent(client);
             if (Characters.IsCharacterPhoneEquipped(charid) && CharactersInventory.ExistCharacterItem(charid, "Smartphone", "inventory") && CharactersInventory.GetCharacterItemAmount(charid, "Smartphone", "inventory") > 0)
             {
-                client.EmitLocked("Client:Smartphone:equipPhone", true, Characters.GetCharacterPhonenumber(charid), Characters.IsCharacterPhoneFlyModeEnabled(charid));
+                client.Emit("Client:Smartphone:equipPhone", true, Characters.GetCharacterPhonenumber(charid), Characters.IsCharacterPhoneFlyModeEnabled(charid));
                 Characters.SetCharacterPhoneEquipped(charid, true);
             }
             else if (!Characters.IsCharacterPhoneEquipped(charid) || !CharactersInventory.ExistCharacterItem(charid, "Smartphone", "inventory") || CharactersInventory.GetCharacterItemAmount(charid, "Smartphone", "inventory") <= 0)
             {
-                client.EmitLocked("Client:Smartphone:equipPhone", false, Characters.GetCharacterPhonenumber(charid), Characters.IsCharacterPhoneFlyModeEnabled(charid));
+                client.Emit("Client:Smartphone:equipPhone", false, Characters.GetCharacterPhonenumber(charid), Characters.IsCharacterPhoneFlyModeEnabled(charid));
                 Characters.SetCharacterPhoneEquipped(charid, false);
             }
             SmartphoneHandler.RequestLSPDIntranet(client);
             setCefStatus(client, false);
-            AltAsync.Do(() =>
-            {
-                client.SetStreamSyncedMetaData("sharedUsername", $"{charName} ({Characters.GetCharacterAccountId(charid)})");
-                client.SetSyncedMetaData("ADMINLEVEL", client.AdminLevel());
-                client.SetSyncedMetaData("PLAYER_SPAWNED", true);
-            });
+            client.SetStreamSyncedMetaData("sharedUsername", $"{charName} ({Characters.GetCharacterAccountId(charid)})");
+            client.SetSyncedMetaData("ADMINLEVEL", client.AdminLevel());
+            client.SetSyncedMetaData("PLAYER_SPAWNED", true);
 
             if (Characters.IsCharacterInJail(charid))
             {
@@ -244,11 +239,11 @@ namespace Altv_Roleplay.Handler
                 client.Position = new Position(1691.4594f, 2565.7056f, 45.556763f);
                 if (Characters.GetCharacterGender(charid) == false)
                 {
-                    client.EmitLocked("Client:SpawnArea:setCharClothes", 11, 5, 0);
-                    client.EmitLocked("Client:SpawnArea:setCharClothes", 3, 5, 0);
-                    client.EmitLocked("Client:SpawnArea:setCharClothes", 4, 7, 15);
-                    client.EmitLocked("Client:SpawnArea:setCharClothes", 6, 7, 0);
-                    client.EmitLocked("Client:SpawnArea:setCharClothes", 8, 1, 88);
+                    client.Emit("Client:SpawnArea:setCharClothes", 11, 5, 0);
+                    client.Emit("Client:SpawnArea:setCharClothes", 3, 5, 0);
+                    client.Emit("Client:SpawnArea:setCharClothes", 4, 7, 15);
+                    client.Emit("Client:SpawnArea:setCharClothes", 6, 7, 0);
+                    client.Emit("Client:SpawnArea:setCharClothes", 8, 1, 88);
                 }
                 else
                 {

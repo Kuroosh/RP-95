@@ -32,11 +32,9 @@ namespace Altv_Roleplay.Database
         {
             try
             {
-                using (var db = new gtaContext())
-                {
-                    Characters.PlayerCharacters = new List<AccountsCharacters>(db.AccountsCharacters);
-                    Alt.Log($"{Characters.PlayerCharacters.Count} Charakter wurden geladen.");
-                }
+                using var db = new gtaContext();
+                Characters.PlayerCharacters = new List<AccountsCharacters>(db.AccountsCharacters);
+                Alt.Log($"{Characters.PlayerCharacters.Count} Charakter wurden geladen.");
             }
             catch (Exception e)
             {
@@ -1206,14 +1204,12 @@ namespace Altv_Roleplay.Database
         {
             try
             {
-                using (var db = new gtaContext())
+                using var db = new gtaContext();
+                foreach (var veh in db.Server_Vehicles)
                 {
-                    foreach (var veh in db.Server_Vehicles)
-                    {
-                        ServerVehicles.CreateServerVehicle(veh.id, veh.charid, (uint)(veh.hash), veh.vehType, veh.faction, veh.fuel, veh.KM, veh.engineState, veh.isEngineHealthy, true, veh.isInGarage, veh.garageId, new Position(veh.posX, veh.posY, veh.posZ), new Rotation(veh.rotX, veh.rotY, veh.rotZ), veh.plate, veh.lastUsage, veh.buyDate);
-                    }
-                    Alt.Log($"{ServerVehicles.ServerVehicles_.Count} Server-Vehicles wurden geladen.");
+                    ServerVehicles.CreateServerVehicle(veh.id, veh.charid, (uint)(veh.hash), veh.vehType, veh.faction, veh.fuel, veh.KM, veh.engineState, veh.isEngineHealthy, true, veh.isInGarage, veh.garageId, new Position(veh.posX, veh.posY, veh.posZ), new Rotation(veh.rotX, veh.rotY, veh.rotZ), veh.plate, veh.lastUsage, veh.buyDate);
                 }
+                Alt.Log($"{ServerVehicles.ServerVehicles_.Count} Server-Vehicles wurden geladen.");
             }
             catch (Exception e)
             {
@@ -1350,11 +1346,9 @@ namespace Altv_Roleplay.Database
         {
             try
             {
-                using (var db = new gtaContext())
-                {
-                    ServerATM.ServerATM_ = new List<Server_ATM>(db.Server_ATM);
-                    Alt.Log($"{ServerATM.ServerATM_.Count} Server-ATMs wurden geladen.");
-                }
+                using var db = new gtaContext();
+                ServerATM.ServerATM_ = new List<Server_ATM>(db.Server_ATM);
+                Alt.Log($"{ServerATM.ServerATM_.Count} Server-ATMs wurden geladen.");
             }
             catch (Exception e)
             {

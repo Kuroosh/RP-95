@@ -181,9 +181,10 @@ namespace Altv_Roleplay.Handler
                 }
                 else if (itemname == "Benzinkanister" && player.IsInVehicle && player.Vehicle.Exists)
                 {
-                    if (ServerVehicles.GetVehicleFuel(player.Vehicle) >= ServerVehicles.GetVehicleFuelLimitOnHash(player.Vehicle.Model)) { HUDHandler.SendNotification(player, 4, 2000, "Der Tank ist bereits voll."); return; }
+                    ClassicVehicle vehClass = (ClassicVehicle)player.Vehicle;
+                    if (vehClass.Fuel >= ServerVehicles.GetVehicleFuelLimitOnHash(player.Vehicle.Model)) { HUDHandler.SendNotification(player, 4, 2000, "Der Tank ist bereits voll."); return; }
                     CharactersInventory.RemoveCharacterItemAmount(charId, "Benzinkanister", 1, fromContainer);
-                    ServerVehicles.SetVehicleFuel(player.Vehicle, ServerVehicles.GetVehicleFuel(player.Vehicle) + 15.0f);
+                    vehClass.Fuel += 15.0f;
                     HUDHandler.SendNotification(player, 2, 2000, "Du hast das Fahrzeug erfolgreich aufgetankt.");
                 }
                 else if (itemname == "Weste")
