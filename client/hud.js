@@ -564,12 +564,6 @@ alt.onServer("Client:Smartphone:setCurrentFunkFrequence", (funkfrequence) => {
     currentRadioFrequence = funkfrequence;
 });
 
-alt.onServer("Client:HUD:UpdateDesire", (hunger, thirst) => {
-    if (hudBrowser != null) {
-        hudBrowser.emit("CEF:HUD:updateDesireHUD", hunger, thirst);
-    }
-});
-
 alt.onServer("Client:HUD:updateHUDPosInVeh", (state, fuel, km) => {
     if (hudBrowser != null) {
         hudBrowser.emit("CEF:HUD:updateHUDPosInVeh", state, fuel, km);
@@ -1113,20 +1107,16 @@ alt.onServer("Client:Animations:setupItems", (array) => {
 });
 
 let OldVehKMPos,
-    curVehKMid = 0,
     GetVehKMPos = false;
 
-alt.onServer("Client:HUD:GetDistanceForVehicleKM", () => {
-    if (hudBrowser != null && alt.Player.local.vehicle != null) {
-        if (curVehKMid == 0) { curVehKMid = alt.Player.local.vehicle.scriptID; }
-        if (curVehKMid != alt.Player.local.vehicle.scriptID) { GetVehKMPos = false; }
 
+function GetDistanceForVehicleKM(){
+    if (hudBrowser != null && alt.Player.local.vehicle) {
         if (!GetVehKMPos) {
             OldVehKMPos = alt.Player.local.vehicle.pos;
             GetVehKMPos = true;
             return;
         }
-
         if (GetVehKMPos) {
             let curPos = alt.Player.local.vehicle.pos;
             let dist = game.getDistanceBetweenCoords(OldVehKMPos.x, OldVehKMPos.y, OldVehKMPos.z, curPos.x, curPos.y, curPos.z, false);
@@ -1134,7 +1124,7 @@ alt.onServer("Client:HUD:GetDistanceForVehicleKM", () => {
             OldVehKMPos = alt.Player.local.vehicle.pos;
         }
     }
-});
+}
 
 let vehicle = null;
 let interactVehicle = null;
@@ -1201,6 +1191,23 @@ alt.on('keydown', (key) => {
     }
 });
 
+alt.on('syncedMetaChange', (Entity, key, value, oldValue) => {
+    if (hudBrowser == null) return;
+	if (Entity == alt.Player.local.vehicle) {
+		switch (key) {
+			case 'VEHICLE_FUEL':
+                hudBrowser.emit("CEF:HUD:updateHUDPosInVeh", true, value, alt.Player.local.vehicle.getSyncedMeta('VEHICLE_KM'));
+                break;
+            case "VEHICLE_KM": 
+                hudBrowser.emit("CEF:HUD:updateHUDPosInVeh", true, alt.Player.local.vehicle.getSyncedMeta('VEHICLE_FUEL'), value);
+                break;
+            case "VEHICLE_LOCKED":
+                hudBrowser.emit("HUD:UpdateLockState", value);
+                break;
+		}
+    }
+});
+
 alt.on('keyup', (key) => {
     if (key == 'X'.charCodeAt(0)) {
         if (hudBrowser == null || InteractMenuUsing == false) return;
@@ -1246,63 +1253,106 @@ alt.on('keyup', (key) => {
 
 function InterActionMenuDoAction(type, action) {
     if (selectedRaycastId != null && selectedRaycastId != 0 && type != "none") {
-        if (type == "vehicleOut" || type == "vehicleIn") { type = "vehicle"; }
+        if (type == "vehicleOut" || type == "vehicleIn") type = "vehicle";
         if (type == "vehicle") {
             vehicle = alt.Vehicle.all.find(x => x.scriptID == selectedRaycastId);
             if (!vehicle) return;
-            if (action == "vehtoggleLock") {
-                alt.emitServer("Server:Raycast:LockVehicle", vehicle);
-            } else if (action == "vehtoggleEngine") {
-                alt.emitServer("Server:Raycast:ToggleVehicleEngine", vehicle);
-            } else if (action == "vehFuelVehicle") {
-                alt.emitServer("Server:Raycast:OpenVehicleFuelMenu", vehicle);
-            } else if (action == "vehRepair") {
-                alt.emitServer("Server:Raycast:RepairVehicle", vehicle);
-            } else if (action == "vehOpenCloseTrunk") {
-                alt.emitServer("Server:Raycast:OpenCloseVehicleTrunk", vehicle);
-            } else if (action == "vehViewTrunkContent") {
-                alt.emitServer("Server:Raycast:ViewVehicleTrunk", vehicle);
-            } else if (action == "vehViewGloveboxContent") {
-                alt.emitServer("Server:Raycast:ViewVehicleGlovebox", vehicle);
-            } else if (action == "vehTow") {
-                alt.emitServer("Server:Raycast:towVehicle", vehicle);
-            } else if (action == "vehTuning") {
-                alt.emitServer("Server:Raycast:tuneVehicle", vehicle);
+            switch(action){
+                case "vehtoggleLock":
+                    alt.emitServer("Server:Raycast:LockVehicle", vehicle);
+                    break;
+                case "vehtoggleEngine":
+                    alt.emitServer("Server:Raycast:ToggleVehicleEngine", vehicle);
+                    break;
+                case "vehFuelVehicle":
+                    alt.emitServer("Server:Raycast:OpenVehicleFuelMenu", vehicle);
+                    break;
+                case "vehRepair":
+                    alt.emitServer("Server:Raycast:RepairVehicle", vehicle);
+                    break;
+                case "vehOpenCloseTrunk":
+                    alt.emitServer("Server:Raycast:OpenCloseVehicleTrunk", vehicle);
+                    break;
+                case "vehViewTrunkContent":
+                    alt.emitServer("Server:Raycast:ViewVehicleTrunk", vehicle);
+                    break;
+                case "vehViewGloveboxContent":
+                    alt.emitServer("Server:Raycast:ViewVehicleGlovebox", vehicle);
+                    break;
+                case "vehbuckleup":
+                    alt.emitServer("InteractionMenu:BuckleUp", vehicle);
+                    break;
+                case "vehTow":
+                    alt.emitServer("Server:Raycast:towVehicle", vehicle);
+                    break;
+                case "vehTuning":
+                    alt.emitServer("Server:Raycast:tuneVehicle", vehicle);
+                    break;
             }
             vehicle = null;
         } else if (type == "player") {
             playerRC = alt.Player.all.find(x => x.scriptID == selectedRaycastId);
             if (!playerRC) return;
-            if (action == "playersupportId") {
-                alt.emitServer("Server:Raycast:showPlayerSupportId", playerRC);
-            } else if (action == "playergiveItem") {
-                alt.emitServer("Server:Raycast:givePlayerItemRequest", playerRC);
-            } else if (action == "playergiveFactionBill") {
-                alt.emitServer("Server:Raycast:OpenGivePlayerBillCEF", playerRC, "faction");
-            } else if (action == "playergiveCompanyBill") {
-                alt.emitServer("Server:Raycast:OpenGivePlayerBillCEF", playerRC, "company");
-            } else if (action == "playerGiveTakeHandcuffs") {
-                alt.emitServer("Server:Raycast:GiveTakeHandcuffs", playerRC);
-            } else if (action == "playerGiveTakeRopeCuffs") {
-                alt.emitServer("Server:Raycast:GiveTakeRopeCuffs", playerRC);
-            } else if (action == "playerSearchInventory") {
-                alt.emitServer("Server:Raycast:SearchPlayerInventory", playerRC);
-            } else if (action == "playerGiveLicense") {
-                alt.emitServer("Server:Raycast:openGivePlayerLicenseCEF", playerRC);
-            } else if (action == "playerRevive") {
-                alt.emitServer("Server:Raycast:RevivePlayer", playerRC);
-            } else if (action == "playerJail") {
-                alt.emitServer("Server:Raycast:jailPlayer", playerRC);
-            } else if (action == "showIdCard") {
-                alt.emitServer("Server:Raycast:showIdcard", playerRC);
-            } else if (action == "healPlayer") {
-                alt.emitServer("Server:Raycast:healPlayer", playerRC);
+            switch(action){
+                case "playersupportId":
+                    alt.emitServer("Server:Raycast:showPlayerSupportId", playerRC);
+                    break;
+                case "playergiveItem":
+                    alt.emitServer("Server:Raycast:givePlayerItemRequest", playerRC);
+                    break;
+                case "playergiveFactionBill":
+                    alt.emitServer("Server:Raycast:OpenGivePlayerBillCEF", playerRC, "faction");
+                    break;
+                case "playergiveCompanyBill":
+                    alt.emitServer("Server:Raycast:OpenGivePlayerBillCEF", playerRC, "company");
+                    break;
+                case "playerGiveTakeHandcuffs":
+                    alt.emitServer("Server:Raycast:GiveTakeHandcuffs", playerRC);
+                    break;
+                case "playerGiveTakeRopeCuffs":
+                    alt.emitServer("Server:Raycast:GiveTakeRopeCuffs", playerRC);
+                    break;
+                case "playerSearchInventory":
+                    alt.emitServer("Server:Raycast:SearchPlayerInventory", playerRC);
+                    break;
+                case "playerGiveLicense":
+                    alt.emitServer("Server:Raycast:openGivePlayerLicenseCEF", playerRC);
+                    break;
+                case "playerRevive":
+                    alt.emitServer("Server:Raycast:RevivePlayer", playerRC);
+                    break;
+                case "playerJail":
+                    alt.emitServer("Server:Raycast:jailPlayer", playerRC);
+                    break;
+                case "showIdCard":
+                    alt.emitServer("Server:Raycast:showIdcard", playerRC);
+                    break;
+                case "healPlayer":
+                    alt.emitServer("Server:Raycast:healPlayer", playerRC);
+                    break;
             }
             playerRC = null;
         }
         selectedRaycastId = null;
-    }
+    } 
 }
+alt.onServer('Player:SetSeatbeltState', state => {
+    game.setPedConfigFlag(alt.Player.local.scriptID, 32, !state);
+    if(!hudBrowser) return;
+    hudBrowser.emit("HUD:UpdateSeatbelt", state);
+});
+
+alt.onServer('ChangeVehicleLockState', state => {
+    if(!hudBrowser) return;
+    hudBrowser.emit("HUD:UpdateLockState", state);
+});
+
+alt.setInterval(() =>{
+    if(alt.Player.local.vehicle){
+        GetDistanceForVehicleKM();
+        //alt.emitServer('Vehicle:UpdateStats');
+    }
+}, 1250);
 
 alt.everyTick(() => {
     if (alt.Player.local.getSyncedMeta("HasHandcuffs") == true || alt.Player.local.getSyncedMeta("HasRopeCuffs") == true) {
