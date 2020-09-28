@@ -65,8 +65,8 @@ namespace Altv_Roleplay.Handler
                 if (charId <= 0) return;
                 Position pos = new Position(player.Position.X, player.Position.Y, player.Position.Z + 1);
                 player.Spawn(pos);
-                player.EmitLocked("Client:Ragdoll:SetPedToRagdoll", true, 0); //Ragdoll setzen
-                player.EmitLocked("Client:Deathscreen:openCEF"); // Deathscreen öffnen
+                player.Emit("Client:Ragdoll:SetPedToRagdoll", true, 0); //Ragdoll setzen
+                player.Emit("Client:Deathscreen:openCEF"); // Deathscreen öffnen
                 player.SetPlayerIsUnconscious(true);
             }
             catch (Exception e)
