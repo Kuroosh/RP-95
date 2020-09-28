@@ -171,7 +171,7 @@ namespace Altv_Roleplay.Handler
                 stopwatch.Start();
                 int charId = User.GetPlayerOnline(player);
                 if (charId <= 0) return;
-                var vehicle = Alt.Server.GetVehicles().ToList().FirstOrDefault(x => x.GetVehicleId() == (ulong)vehID);
+                ClassicVehicle vehicle = (ClassicVehicle)Alt.Server.GetVehicles().ToList().FirstOrDefault(x => x.GetVehicleId() == (ulong)vehID);
                 if (action == "storage")
                 {
                     //Fahrzeug einparken
@@ -201,7 +201,7 @@ namespace Altv_Roleplay.Handler
                                 curPid++;
                                 break;
                             }
-                            else { slotAreFree = true; }
+                            else slotAreFree = true;
                         }
                         if (slotAreFree) break;
                     }
@@ -213,9 +213,10 @@ namespace Altv_Roleplay.Handler
                     altVeh.LockState = VehicleLockState.Locked;
                     altVeh.EngineOn = false;
                     altVeh.NumberplateText = finalVeh.plate;
+                    altVeh.Fuel = finalVeh.fuel;
+                    altVeh.KM = finalVeh.KM;
                     altVeh.SetVehicleId((ulong)finalVeh.id);
                     altVeh.SetVehicleTrunkState(false);
-                    altVeh.Fuel = 100;
                     ServerVehicles.SetVehicleModsCorrectly(altVeh);
                     ServerVehicles.SetVehicleInGarage(altVeh, false, garageid);
                 }

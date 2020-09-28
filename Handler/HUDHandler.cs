@@ -79,7 +79,7 @@ namespace Altv_Roleplay.Handler
             //600 / 1000 = 0,6   = 0,6km ?
             try
             {
-                Core.Debug.OutputDebugString(player.Username + " | " + km);
+                //Core.Debug.OutputDebugString(player.Username + " | " + km);
                 if (player is null || km <= 0) return;
                 if (!player.IsInVehicle || player.Vehicle == null) return;
                 float fKM = km / 1000;
@@ -88,7 +88,7 @@ namespace Altv_Roleplay.Handler
                 float FuelCalculation = km / 1000f;
                 if ((veh.Fuel -= FuelCalculation) <= 0) { veh.EngineOn = false; veh.Fuel = 0; return; }
                 veh.Fuel -= FuelCalculation;
-                Core.Debug.OutputDebugString("Fuel from " + player.Username + " | fKM : " + fKM + " | " + FuelCalculation.ToString());
+                //Core.Debug.OutputDebugString("Fuel from " + player.Username + " | fKM : " + fKM + " | " + FuelCalculation.ToString());
             }
             catch (Exception e)
             {
