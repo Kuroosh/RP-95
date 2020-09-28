@@ -216,18 +216,12 @@ namespace Altv_Roleplay.Model
             var vehs = ServerVehicles_.FirstOrDefault(v => (ulong)v.id == vehID);
             if (vehs != null)
             {
-                AltAsync.Do(() =>
-                {
-                    if (state == true) { veh.LockState = VehicleLockState.Locked; }
-                    else if (state == false) { veh.LockState = VehicleLockState.Unlocked; }
-                });
+                if (state == true) veh.LockState = VehicleLockState.Locked;
+                else if (state == false) veh.LockState = VehicleLockState.Unlocked;
                 vehs.lockState = state;
-
-                using (gtaContext db = new gtaContext())
-                {
-                    db.Server_Vehicles.Update(vehs);
-                    db.SaveChanges();
-                }
+                using gtaContext db = new gtaContext();
+                db.Server_Vehicles.Update(vehs);
+                db.SaveChanges();
             }
         }
 
@@ -892,7 +886,7 @@ namespace Altv_Roleplay.Model
             }
         }
 
-        public static Server_Vehicles CreateVehicle(ulong hash, int charid, int vehtype, int faction, bool isInGarage, int garageId, Position pos, Rotation rot, string plate, int primaryColor, int secondaryColor)
+        public static ClassicVehicle CreateVehicle(ulong hash, int charid, int vehtype, int faction, bool isInGarage, int garageId, Position pos, Rotation rot, string plate, int primaryColor, int secondaryColor)
         {
             try
             {
@@ -928,20 +922,21 @@ namespace Altv_Roleplay.Model
                 }
 
                 if (vehtype != 2) { AddVehicleModToList(nVehicle.id, nVehicle.id, primaryColor, secondaryColor, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 0, 0, 0, 0, 0); }
-                if (isInGarage) return new Server_Vehicles();
+                if (isInGarage) return null;
                 ClassicVehicle veh = (ClassicVehicle)Alt.CreateVehicle((uint)hash, pos, rot);
                 veh.NumberplateText = plate;
                 veh.LockState = VehicleLockState.Locked;
                 veh.EngineOn = false;
                 veh.SetVehicleId((ulong)nVehicle.id);
                 veh.SetVehicleTrunkState(false);
+                veh.Fuel = GetVehicleFuelLimitOnHash(hash);
                 if (vehtype != 2) { SetVehicleModsCorrectly(veh); }
-                return nVehicle;
+                return veh;
             }
             catch (Exception e)
             {
                 Core.Debug.CatchExceptions("CreateVehicle", e);
-                return new Server_Vehicles();
+                return null;
             }
         }
 
