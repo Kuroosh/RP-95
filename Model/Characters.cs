@@ -1420,11 +1420,9 @@ namespace Altv_Roleplay.Model
                 try
                 {
                     chars.clothesBag = backpack;
-                    using (gtaContext db = new gtaContext())
-                    {
-                        db.Characters_Skin.Update(chars);
-                        db.SaveChanges();
-                    }
+                    using gtaContext db = new gtaContext();
+                    db.Characters_Skin.Update(chars);
+                    db.SaveChanges();
                 }
                 catch (Exception e)
                 {

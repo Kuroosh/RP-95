@@ -506,7 +506,7 @@ namespace Altv_Roleplay.Model
             return 0;
         }
 
-        public static void SetVehicleInGarage(IVehicle veh, bool state, int garageId)
+        public static void SetVehicleInGarage(ClassicVehicle veh, bool state, int garageId)
         {
             try
             {
@@ -517,12 +517,12 @@ namespace Altv_Roleplay.Model
                 if (dbVehicle == null) return;
                 dbVehicle.isInGarage = state;
                 dbVehicle.lastUsage = DateTime.Now;
+                dbVehicle.KM = veh.KM;
+                dbVehicle.fuel = veh.Fuel;
                 if (state == true) { dbVehicle.garageId = garageId; dbVehicle.engineState = false; dbVehicle.lockState = true; veh.Remove(); }
-                using (gtaContext db = new gtaContext())
-                {
-                    db.Server_Vehicles.Update(dbVehicle);
-                    db.SaveChanges();
-                }
+                using gtaContext db = new gtaContext();
+                db.Server_Vehicles.Update(dbVehicle);
+                db.SaveChanges();
             }
             catch (Exception e)
             {

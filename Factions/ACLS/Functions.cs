@@ -2,6 +2,7 @@
 using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Handler;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Services;
@@ -35,7 +36,7 @@ namespace Altv_Roleplay.Factions.ACLS
         }
 
         [ClientEvent("Server:Raycast:towVehicle")]
-        public static void TowVehicle(IPlayer player, IVehicle vehicle)
+        public static void TowVehicle(ClassicPlayer player, ClassicVehicle vehicle)
         {
             try
             {

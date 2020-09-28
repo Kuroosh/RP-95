@@ -14,7 +14,7 @@ namespace Altv_Roleplay.Model
 
         public static string GetCharacterInventory(int charId)
         {
-            var items = CharactersInventory_.ToList().Where(x => x.charId == charId).Select(x => new
+            var items = CharactersInventory_.ToList().Where(x => x.charId == charId && !x.itemName.Contains("Fahrzeugschluessel")).Select(x => new
             {
                 itemName = x.itemName,
                 itemAmount = x.itemAmount,
