@@ -1255,48 +1255,46 @@ namespace Altv_Roleplay.Database
         {
             try
             {
-                using (var db = new gtaContext())
+                using var db = new gtaContext();
+                ServerGarages.ServerGarages_ = new List<Server_Garages>(db.Server_Garages);
+                Alt.Log($"{ServerGarages.ServerGarages_.Count} Server-Garagen wurden geladen.");
+
+                foreach (var garage in ServerGarages.ServerGarages_)
                 {
-                    ServerGarages.ServerGarages_ = new List<Server_Garages>(db.Server_Garages);
-                    Alt.Log($"{ServerGarages.ServerGarages_.Count} Server-Garagen wurden geladen.");
-
-                    foreach (var garage in ServerGarages.ServerGarages_)
+                    if (garage.isBlipVisible)
                     {
-                        if (garage.isBlipVisible)
+                        string garageType = ""; int garageSprite = 0, garageColor = 0;
+                        switch (garage.type)
                         {
-                            string garageType = ""; int garageSprite = 0, garageColor = 0;
-                            switch (garage.type)
-                            {
-                                case 0: garageType = "Garage"; garageSprite = 473; garageColor = 0; break;
-                                case 1: garageType = "Bootsgarage"; garageSprite = 356; garageColor = 77; break;
-                                case 2: garageType = "Flugzeuggarage"; garageSprite = 359; garageColor = 77; break;
-                                case 3: garageType = "Helikoptergarage"; garageSprite = 360; garageColor = 77; break;
-                            }
-
-                            var ServerGarageBlipData = new Server_Blips
-                            {
-                                name = $"{garageType}: {garage.name}",
-                                color = garageColor,
-                                scale = 0.75f,
-                                shortRange = true,
-                                sprite = garageSprite,
-                                posX = garage.posX,
-                                posY = garage.posY,
-                                posZ = garage.posZ
-                            };
-                            ServerBlips.ServerBlips_.Add(ServerGarageBlipData);
+                            case 0: garageType = "Garage"; garageSprite = 473; garageColor = 0; break;
+                            case 1: garageType = "Bootsgarage"; garageSprite = 356; garageColor = 77; break;
+                            case 2: garageType = "Flugzeuggarage"; garageSprite = 359; garageColor = 77; break;
+                            case 3: garageType = "Helikoptergarage"; garageSprite = 360; garageColor = 77; break;
                         }
 
-                        var ServerGaragePedData = new Server_Peds
+                        var ServerGarageBlipData = new Server_Blips
                         {
-                            model = "s_m_m_autoshop_02",
+                            name = $"{garageType}: {garage.name}",
+                            color = garageColor,
+                            scale = 0.75f,
+                            shortRange = true,
+                            sprite = garageSprite,
                             posX = garage.posX,
                             posY = garage.posY,
-                            posZ = garage.posZ,
-                            rotation = garage.rotation
+                            posZ = garage.posZ
                         };
-                        ServerPeds.ServerPeds_.Add(ServerGaragePedData);
+                        ServerBlips.ServerBlips_.Add(ServerGarageBlipData);
                     }
+
+                    var ServerGaragePedData = new Server_Peds
+                    {
+                        model = "s_m_m_autoshop_02",
+                        posX = garage.posX,
+                        posY = garage.posY,
+                        posZ = garage.posZ,
+                        rotation = garage.rotation
+                    };
+                    ServerPeds.ServerPeds_.Add(ServerGaragePedData);
                 }
             }
             catch (Exception e)
@@ -1309,30 +1307,28 @@ namespace Altv_Roleplay.Database
         {
             try
             {
-                using (var db = new gtaContext())
-                {
-                    ServerGarages.ServerGarageSlots_ = new List<Server_Garage_Slots>(db.Server_Garage_Slots);
-                    Alt.Log($"{ServerGarages.ServerGarageSlots_.Count} Server-Garagen Slots wurden geladen.");
+                using var db = new gtaContext();
+                ServerGarages.ServerGarageSlots_ = new List<Server_Garage_Slots>(db.Server_Garage_Slots);
+                Alt.Log($"{ServerGarages.ServerGarageSlots_.Count} Server-Garagen Slots wurden geladen.");
 
-                    foreach (var slot in ServerGarages.ServerGarageSlots_)
+                foreach (var slot in ServerGarages.ServerGarageSlots_)
+                {
+                    /*var ServerGarageSlotMarkerData = new Server_Markers
                     {
-                        var ServerGarageSlotMarkerData = new Server_Markers
-                        {
-                            type = 30,
-                            posX = slot.posX,
-                            posY = slot.posY,
-                            posZ = (float)(slot.posZ + 0.25),
-                            scaleX = 1,
-                            scaleY = 1,
-                            scaleZ = 1,
-                            red = 27,
-                            green = 124,
-                            blue = 227,
-                            alpha = 75,
-                            bobUpAndDown = false
-                        };
-                        ServerBlips.ServerMarkers_.Add(ServerGarageSlotMarkerData);
-                    }
+                        type = 30,
+                        posX = slot.posX,
+                        posY = slot.posY,
+                        posZ = (float)(slot.posZ + 0.25),
+                        scaleX = 1,
+                        scaleY = 1,
+                        scaleZ = 1,
+                        red = 27,
+                        green = 124,
+                        blue = 227,
+                        alpha = 75,
+                        bobUpAndDown = false
+                    };
+                    ServerBlips.ServerMarkers_.Add(ServerGarageSlotMarkerData);*/
                 }
             }
             catch (Exception e)
