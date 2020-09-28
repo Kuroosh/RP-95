@@ -15,237 +15,126 @@
 </head>
 
 <body>
+
+    <!-- Fahrzeug Anzeige -->
+
     <div id="hudbox">
-        <!--<div id="drinkbox">
-            <img src="../utils/img/water.png">
-        </div>-->
-        <!--<div id="foodbox">
-            <img src="../utils/img/hamburger.png">
-        </div>-->
-        <div id="voicebox">
-            <img id="voicemic" src="../utils/img/microphone.png">
-        </div>
         <div id="locationbox">
             <img src="../utils/img/placeholder.png">
         </div>
-        <div id="VehicleSpeedBox">
-            <div class="hud dashboard">
-        <!--<div class="clignotant clignotant-gauche">
-            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip0)">
-                    <path d="M20.6583 13.7215H12.5064V19.2405C12.5064 19.4937 12.2026 19.5949 12.0507 19.443L0.60762 9.8734C0.455722 9.77213 0.455722 9.51897 0.60762 9.4177L12.0507 0.556942C12.2532 0.405044 12.5064 0.556942 12.5064 0.810107V6.27846H20.6583C20.8102 6.27846 20.9621 6.43036 20.9621 6.58226V13.4683C20.9621 13.5696 20.8102 13.7215 20.6583 13.7215Z"
-                          stroke="white" stroke-opacity="1" stroke-width="1.5" stroke-miterlimit="10"/>
-                </g>
-                <defs>
-                    <clipPath id="clip0">
-                        <rect width="21.4684" height="20" fill="white" transform="matrix(-1 0 0 1 21.4684 0)"/>
-                    </clipPath>
-                </defs>
-            </svg>
-        </div>-->
+        <p id="locationtext">Fehlerhafter Straßenname.</p>
 
-        <!--<div class="clignotant clignotant-droite">
-            <svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip1)">
-                    <path d="M0.81013 13.7215H8.96203V19.2405C8.96203 19.4937 9.26583 19.5949 9.41773 19.443L20.8608 9.8734C21.0127 9.77213 21.0127 9.51897 20.8608 9.4177L9.41773 0.556942C9.21519 0.405044 8.96203 0.556942 8.96203 0.810107V6.27846H0.81013C0.658231 6.27846 0.506332 6.43036 0.506332 6.58226V13.4683C0.506332 13.5696 0.658231 13.7215 0.81013 13.7215Z"
-                          stroke="white" stroke-opacity="1" stroke-width="1.5" stroke-miterlimit="10"/>
-                </g>
-                <defs>
-                    <clipPath id="clip1">
-                        <rect width="21.4684" height="20" fill="white"/>
-                    </clipPath>
-                </defs>
-            </svg>
-        </div>-->
-
-        <div class="seatbelt active">
-            <svg width="30" height="30" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-<g>
-	<g>
-		<path fill="#fff" d="M378.826,183.512c-1.029-12.147-5.406-23.607-12.557-33.235L207.287,347.595c62.389-5.125,125.389-0.403,186.647,14.197
-			L378.826,183.512z"/>
-	</g>
-</g>
-                <g>
-	<g>
-		<path fill="#fff" d="M256,0c-42.458,0-77,34.542-77,77s34.542,77,77,77s77-34.542,77-77S298.458,0,256,0z"/>
-	</g>
-</g>
-                <g>
-	<g>
-		<path fill="#fff" d="M256,184c-38.466,0-72.25-20.406-91.112-50.957c-3.88,2.295-7.548,4.991-10.925,8.094
-			c-12.027,11.051-19.41,26.1-20.789,42.375l-15.108,178.28c15.443-3.68,30.998-6.718,46.625-9.145L314.785,166.36
-			C297.903,177.502,277.698,184,256,184z"/>
-	</g>
-</g>
-                <g>
-	<g>
-		<path fill="#fff" d="M8.772,399.353L0,403.358V433h30v-10.269c27.706-12.084,85-29.277,85-29.277l3.066-31.664
-			C80.814,370.668,44.204,383.18,8.772,399.353z"/>
-	</g>
-</g>
-                <g>
-	<g>
-		<path fill="#fff" d="M503.229,399.354c-35.432-16.172-72.042-28.685-109.294-37.563L397,393.455c0,0,57.294,17.193,85,29.277V433h30v-29.642
-			L503.229,399.354z"/>
-	</g>
-</g>
-                <g>
-	<g>
-		<path fill="#fff" d="M146,386.397V512h100V390h20v122h100V386.401C293.377,371.986,218.623,371.981,146,386.397z"/>
-	</g>
-</g>
-                <g>
-	<g>
-		<path fill="#fff"
-              d="M164.691,352.645l-2.371,2.944l23.36,18.822l21.607-26.817C193.047,348.764,178.84,350.448,164.691,352.645z"/>
-	</g>
-</g>
-                <g>
-	<g>
-		<path fill="#fff" d="M448.823,0L343.315,130.949c5.303,2.676,10.26,6.088,14.722,10.187c3.051,2.804,5.801,5.867,8.232,9.14L463.177,30H486V0
-			H448.823z"/>
-	</g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-                <g>
-</g>
-</svg>
-        </div>
-
-        <!--<div class="speedometer">
-            <svg class="circle" width="50" height="50">
-                <circle class="outer" stroke="#FFFFFF" stroke-width="0.5" style="stroke-opacity: 0.2;"
-                        fill="transparent" r="18" cx="25" cy="25" stroke-dasharray="70 30" stroke-dashoffset="0"/>
-                <circle class="background" stroke="#FFFFFF" stroke-width="1.5" style="stroke-opacity: 0.2;"
-                        fill="transparent" r="18" cx="25" cy="25" stroke-dasharray="70 30" stroke-dashoffset="0"/>
-                <circle class="progress progress-speed" stroke="url(#gradient)" stroke-width="1.5"
-                        style="stroke-opacity: 1;" fill="transparent" r="18" cx="25" cy="25" stroke-dasharray="70 30"
-                        stroke-dashoffset="0"/>
-                <defs>
-                    <linearGradient id="gradient">
-                        <stop offset="30%" stop-color="#FF0245"/>
-                        <stop offset="100%" stop-color="#BBFFFE"/>
-                    </linearGradient>
-                </defs>
-            </svg>
-            <div class="text">
-                <span class="speed"></span>
-                <div class="kmh">km/h</div>
-            </div>
-        </div>-->
-
-        <!--<div class="feu-position">
-            <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip2)">
-                    <path d="M14.7312 0C11.8638 0 9.78494 4.19355 9.78494 10C9.78494 16.3441 11.5771 20 14.7312 20C20.2509 20 24.7312 15.5197 24.7312 10C24.767 4.48029 20.2509 0 14.7312 0ZM14.7312 18.2079C12.7957 18.2079 11.5771 15.0538 11.5771 10C11.6129 5.08961 13.2258 1.79211 14.7312 1.79211C19.2473 1.79211 22.9391 5.48387 22.9391 10C22.9391 14.5161 19.2832 18.2079 14.7312 18.2079Z"
-                          fill="white" fill-opacity="1"/>
-                    <path d="M8.1362 1.14697H0.896057C0.394265 1.14697 0 1.57708 0 2.04303C0 2.50898 0.394265 2.93909 0.896057 2.93909H8.1362C8.63799 2.93909 9.03226 2.54482 9.03226 2.04303C9.03226 1.54124 8.60215 1.14697 8.1362 1.14697Z"
-                          fill="white" fill-opacity="1"/>
-                    <path d="M8.1362 6.45166H0.896057C0.394265 6.45166 0 6.84593 0 7.34772C0 7.84951 0.394265 8.24378 0.896057 8.24378H8.1362C8.63799 8.24378 9.03226 7.84951 9.03226 7.34772C9.03226 6.84593 8.60215 6.45166 8.1362 6.45166Z"
-                          fill="white" fill-opacity="1"/>
-                    <path d="M8.1362 11.7563H0.896057C0.394265 11.7563 0 12.1506 0 12.6524C0 13.1542 0.394265 13.5485 0.896057 13.5485H8.1362C8.63799 13.5485 9.03226 13.1542 9.03226 12.6524C9.03226 12.1506 8.60215 11.7563 8.1362 11.7563Z"
-                          fill="white" fill-opacity="1"/>
-                    <path d="M8.1362 17.0608H0.896057C0.394265 17.0608 0 17.4551 0 17.9568C0 18.4586 0.394265 18.8529 0.896057 18.8529H8.1362C8.63799 18.8529 9.03226 18.4586 9.03226 17.9568C9.03226 17.4551 8.60215 17.0608 8.1362 17.0608Z"
-                          fill="white" fill-opacity="1"/>
-                </g>
-                <defs>
-                    <clipPath id="clip2">
-                        <rect width="24.767" height="20" fill="white"/>
-                    </clipPath>
-                </defs>
-            </svg>
-        </div>-->
-
-        <!--<div class="feu-route">
-            <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g clip-path="url(#clip3)">
-                    <path d="M14.6479 0C11.831 0 9.78873 4.11972 9.78873 9.82394C9.78873 16.0563 11.5493 19.6479 14.6479 19.6479C20.0704 19.6479 24.4718 15.2465 24.4718 9.82394C24.4718 4.40141 20.0704 0 14.6479 0ZM22.7113 9.82394C22.7113 14.2606 19.0845 17.8873 14.6479 17.8873C12.7465 17.8873 11.5493 14.7887 11.5493 9.82394C11.5493 5 13.169 1.76056 14.6479 1.76056C19.0845 1.76056 22.7113 5.38732 22.7113 9.82394Z"
-                          fill="white" fill-opacity="1"/>
-                    <path d="M0.880277 5.38729C0.950699 5.38729 1.02112 5.38729 1.09154 5.35208L8.20422 3.48588C8.41549 3.41546 8.62676 3.27461 8.73239 3.06335C8.83802 2.85208 8.87323 2.64081 8.83802 2.39433C8.7676 2.18306 8.62676 1.9718 8.41549 1.86616C8.20422 1.72532 7.99295 1.72532 7.74647 1.76053L0.669009 3.62673C0.211262 3.76757 -0.0704279 4.22532 0.035206 4.71828C0.14084 5.1056 0.492952 5.38729 0.880277 5.38729Z"
-                          fill="white" fill-opacity="1"/>
-                    <path d="M8.41549 6.72528C8.20422 6.61965 7.99295 6.58444 7.74648 6.61965L0.66901 8.52106C0.457743 8.59148 0.246475 8.73233 0.140841 8.94359C0.0352074 9.15486 -3.86871e-06 9.36613 0.0352074 9.61261C0.140841 9.99993 0.492954 10.2816 0.880278 10.2816C0.9507 10.2816 1.02112 10.2816 1.09155 10.2464L8.20422 8.38021C8.41549 8.30979 8.62676 8.16895 8.73239 7.95768C8.83802 7.74641 8.87324 7.49993 8.83802 7.28866C8.7676 7.04219 8.62676 6.86613 8.41549 6.72528Z"
-                          fill="white" fill-opacity="1"/>
-                    <path d="M7.74647 11.5141L0.669009 13.4155C0.211262 13.5564 -0.0704279 14.0141 0.035206 14.5071C0.14084 14.8592 0.492952 15.1409 0.880277 15.1409C0.950699 15.1409 1.02112 15.1409 1.09154 15.1057L8.20422 13.2395C8.41549 13.169 8.62676 13.0282 8.73239 12.8169C8.83802 12.6057 8.87323 12.3944 8.83802 12.1479C8.69718 11.6902 8.23943 11.4085 7.74647 11.5141Z"
-                          fill="white" fill-opacity="1"/>
-                    <path d="M8.41549 16.5141C8.20422 16.4085 7.95774 16.3733 7.74647 16.4085L0.669009 18.2747C0.211262 18.4155 -0.0704279 18.8733 0.035206 19.3662C0.14084 19.7535 0.492952 20.0352 0.880277 20.0352C0.950699 20.0352 1.02112 20.0352 1.09154 20L8.20422 18.1338C8.41549 18.0634 8.62676 17.9226 8.73239 17.7113C8.83802 17.5 8.87323 17.2888 8.83802 17.0423C8.80281 16.7958 8.62676 16.6197 8.41549 16.5141Z"
-                          fill="white" fill-opacity="1"/>
-                </g>
-                <defs>
-                    <clipPath id="clip3">
-                        <rect width="24.4718" height="20" fill="white"/>
-                    </clipPath>
-                </defs>
-            </svg>
-        </div>-->
-
-        <div class="hud fuel">
-            <svg class="circle" width="30" height="30">
-                <circle class="background" stroke="#FFFFFF" stroke-width="3" style="stroke-opacity: .2;"
-                        fill="transparent" r="18" cx="20" cy="20" stroke-dasharray="70 30" stroke-dashoffset="0"/>
-                <circle class="progress progress-fuel" stroke="#FFF" style="stroke-opacity: .7;" stroke-width="3"
-                        fill="transparent" r="18" cx="20" cy="20" stroke-dasharray="70 30" stroke-dashoffset="0"/>
-                <g opacity="1" clip-path="url(#clip0)">
-                    <path d="M9.2084 4.27568V1.82575V1.59168V0.920676C9.2084 0.795839 9.09531 0.686606 8.96607 0.686606C8.83683 0.686606 8.72375 0.795839 8.72375 0.920676V1.56047C8.65913 1.90377 8.43296 2.85566 8.01292 3.24577C7.96446 3.29259 7.9483 3.35501 7.9483 3.41743V3.90117C7.9483 4.02601 8.06139 4.13524 8.19063 4.13524H8.72375V4.44733V4.46294C8.72375 4.58778 8.83683 4.69701 8.96607 4.69701C9.27302 4.69701 9.51535 4.93108 9.51535 5.22757V9.58127C9.51535 9.87776 9.27302 10.1118 8.96607 10.1118C8.65913 10.1118 8.4168 9.87776 8.4168 9.58127V8.20806C8.4168 8.08322 8.30371 7.97399 8.17447 7.97399H7.67367V4.43173C7.67367 4.22887 7.57674 4.04161 7.4475 3.91677V0.905072C7.4475 0.405722 7.02746 0 6.5105 0H1.69628C1.17932 0 0.759289 0.405722 0.759289 0.905072V3.91677C0.613893 4.04161 0.533118 4.22887 0.533118 4.43173V11.5319H0.242326C0.113086 11.5319 0 11.6411 0 11.7659C0 11.8908 0.113086 12 0.242326 12H0.759289H7.1567H7.9483C8.07754 12 8.19063 11.8908 8.19063 11.7659C8.19063 11.6411 8.07754 11.5319 7.9483 11.5319H7.65751V8.45774H7.91599V9.59688C7.91599 10.143 8.38449 10.5956 8.94992 10.5956C9.51535 10.5956 9.98384 10.143 9.98384 9.59688V5.24317C10 4.77503 9.66074 4.36931 9.2084 4.27568ZM1.69628 0.780234H6.5105C6.57512 0.780234 6.63974 0.842653 6.63974 0.905072V3.72952H1.56704V0.905072C1.56704 0.842653 1.63166 0.780234 1.69628 0.780234Z"
-                          fill="white"/>
-                </g>
-                <defs>
-                    <clipPath id="clip0">
-                        <rect width="12" height="13" fill="white"/>
-                    </clipPath>
-                </defs>
-            </svg>
-            <span></span>
-        </div>
-    </div>
-        </div>
         <div id="VehicleFuelBox">
             <img src="../utils/img/fuel.png">
         </div>
+        <p id="VehicleFuelBoxText">125 Liter</p>
+
         <div id="VehicleKMBox">
             <img src="../utils/img/dashboard.png">
         </div>
+        <p id="VehicleKMBoxText">10000 KM</p>
+
+        <div id="VehicleKmhBox">
+            <img src="../utils/img/speedometer.png">
+        </div>
+        <p id="VehicleSpeedBoxText">240 km/h</p>
+
+        <div class="lockstate-true d-none" id="VehicleOpenImage">
+            <img src="../utils/img/padlocktrue.png">
+        </div>
+        <div class="lockstate-false d-none" id="VehicleLockedImage">
+            <img src="../utils/img/padlock.png">
+        </div>
+
+        <div id="VehicleSpeedBox">
+            <div class="hud dashboard">
+                <div id="seatbelt-true" class="seatbelt active d-none">
+                    <svg width="30" height="30" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <g>
+                            <path fill="rgba(0,255,0,0.8)" d="M378.826,183.512c-1.029-12.147-5.406-23.607-12.557-33.235L207.287,347.595c62.389-5.125,125.389-0.403,186.647,14.197
+										L378.826,183.512z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(0,255,0,0.8)" d="M256,0c-42.458,0-77,34.542-77,77s34.542,77,77,77s77-34.542,77-77S298.458,0,256,0z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(0,255,0,0.8)" d="M256,184c-38.466,0-72.25-20.406-91.112-50.957c-3.88,2.295-7.548,4.991-10.925,8.094
+										c-12.027,11.051-19.41,26.1-20.789,42.375l-15.108,178.28c15.443-3.68,30.998-6.718,46.625-9.145L314.785,166.36
+										C297.903,177.502,277.698,184,256,184z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(0,255,0,0.8)" d="M8.772,399.353L0,403.358V433h30v-10.269c27.706-12.084,85-29.277,85-29.277l3.066-31.664
+										C80.814,370.668,44.204,383.18,8.772,399.353z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(0,255,0,0.8)" d="M503.229,399.354c-35.432-16.172-72.042-28.685-109.294-37.563L397,393.455c0,0,57.294,17.193,85,29.277V433h30v-29.642
+										L503.229,399.354z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(0,255,0,0.8)" d="M146,386.397V512h100V390h20v122h100V386.401C293.377,371.986,218.623,371.981,146,386.397z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(0,255,0,0.8)" d="M164.691,352.645l-2.371,2.944l23.36,18.822l21.607-26.817C193.047,348.764,178.84,350.448,164.691,352.645z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(0,255,0,0.8)" d="M448.823,0L343.315,130.949c5.303,2.676,10.26,6.088,14.722,10.187c3.051,2.804,5.801,5.867,8.232,9.14L463.177,30H486V0
+										H448.823z" />
+                        </g>
+                    </svg>
+                </div>
+                <div id="seatbelt-false" class="seatbelt d-none">
+                    <svg width="30" height="30" id="Capa_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <g>
+                            <path fill="rgba(255,255,255,0.8)" d="M378.826,183.512c-1.029-12.147-5.406-23.607-12.557-33.235L207.287,347.595c62.389-5.125,125.389-0.403,186.647,14.197
+										L378.826,183.512z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(255,255,255,0.8)" d="M256,0c-42.458,0-77,34.542-77,77s34.542,77,77,77s77-34.542,77-77S298.458,0,256,0z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(255,255,255,0.8)" d="M256,184c-38.466,0-72.25-20.406-91.112-50.957c-3.88,2.295-7.548,4.991-10.925,8.094
+										c-12.027,11.051-19.41,26.1-20.789,42.375l-15.108,178.28c15.443-3.68,30.998-6.718,46.625-9.145L314.785,166.36
+										C297.903,177.502,277.698,184,256,184z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(255,255,255,0.8)" d="M8.772,399.353L0,403.358V433h30v-10.269c27.706-12.084,85-29.277,85-29.277l3.066-31.664
+										C80.814,370.668,44.204,383.18,8.772,399.353z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(255,255,255,0.8)" d="M503.229,399.354c-35.432-16.172-72.042-28.685-109.294-37.563L397,393.455c0,0,57.294,17.193,85,29.277V433h30v-29.642
+										L503.229,399.354z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(255,255,255,0.8)" d="M146,386.397V512h100V390h20v122h100V386.401C293.377,371.986,218.623,371.981,146,386.397z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(255,255,255,0.8)" d="M164.691,352.645l-2.371,2.944l23.36,18.822l21.607-26.817C193.047,348.764,178.84,350.448,164.691,352.645z" />
+                        </g>
+                        <g>
+                            <path fill="rgba(255,255,255,0.8)" d="M448.823,0L343.315,130.949c5.303,2.676,10.26,6.088,14.722,10.187c3.051,2.804,5.801,5.867,8.232,9.14L463.177,30H486V0
+										H448.823z" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
     </div>
-    <p id="locationtext">Fehlerhafter Straßenname.</p>
-    <p id="VehicleFuelBoxText">125 Liter</p>
-    <p id="VehicleSpeedBoxText">240km/h</p>
-    <p id="VehicleKMBoxText">20 KM</p>
+
+    <!-- Mic Box -->
+
+    <div id="voicebox">
+        <img id="voicemic" src="../utils/img/microphone.png">
+    </div>
 
     <ul id="InteractionMenu-List"></ul>
 
+    <!-- Ausweis beantragen -->
+
     <div id="identityCardApplyForm">
-        <img src="../utils/img/logo_transparent_red_512.png" style="width: 156px; margin-bottom: -3px">
+        <img src="../utils/img/identityCard.png" style="width: 156px; margin-bottom: -3px">
         <p class="title">EINREISEFORMULAR</p>
         <p class="description">Damit du dich legal in San Andreas aufhalten kannst ist ein Personalausweis erforderlich, diesen kannst du hier beantragen jedoch benötigen wir noch einige Informationen von dir.</p>
-        <hr/>
+        <hr />
         <div class="inputgroup">
             <div class="icon"><i class="fas fa-user"></i></div>
             <input id="identityCardApplyFormCharname" type="text" maxlength="32" placeholder="Vor- und Nachname" spellcheck="false" value="Hans Parker" disabled>
@@ -269,14 +158,18 @@
         <img id="sendIdentityCardApplyForm" src="../utils/img/penwrite.png" onclick="SendIdentityCardApplyForm();">
     </div>
 
+    <!-- Arbeitsamt Jobs -->
+
     <div id="jobCenterApplyForm">
         <p class="closebtn" onclick="closeJobcenterCEF();"><i class="fas fa-times"></i></p>
-        <img src="../utils/img/logo_transparent_red_512.png" style="width: 128px; margin-bottom: -8px">
+        <img src="../utils/img/agentur_arbeit.png" style="width: 128px; margin-bottom: -8px">
         <p class="title">ARBEITSAMT</p>
         <p class="description">Um in deiner Abwesenheit in der puren Öffentlichkeit dennoch Geld zu verdienen haben wir eine Auswahl an verschiedenen Jobangeboten zusammengestellt.</p>
         <hr>
         <ul id="jobCenterApplyForm-JobList" class="list-group"></ul>
     </div>
+
+    <!-- Tankstelle -->
 
     <div id="VehicleFuelstationCEFBox">
         <p class="closebtn" onclick="closeFuelstationCEF();"><i class="fas fa-times"></i></p>
@@ -304,6 +197,8 @@
         </div>
     </div>
 
+    <!-- Spieler Rechnung schreiben -->
+
     <div id="GivePlayerBillCEFBox">
         <p class="closebtn" onclick="closeGivePlayerBillCEFBox();"><i class="fas fa-times"></i></p>
         <img src="../utils/img/bill.png" style="margin-top: 15px; margin-bottom: 12px;">
@@ -319,6 +214,8 @@
         </div>
         <button id="GivePlayerBillCEFBox-FinishBtn" type="btn" class="btn">Rechnung ausstellen</button>
     </div>
+
+    <!-- Spieler Rechnung erhalten -->
 
     <div id="RecievePlayerBillCEFBox">
         <img src="../utils/img/bill.png" style="margin-top: 15px; margin-bottom: 12px;">
@@ -342,6 +239,8 @@
         <button onclick="RecievePlayerBillCEFBoxAction(`decline`);" type="btn" class="btn">Ablehnen</button>
     </div>
 
+    <!-- Fraktions Lager -->
+
     <div id="FactionStorageCEFBox">
         <p class="closebtn" onclick="closeFactionStorageCEFBox();"><i class="fas fa-times"></i></p>
         <img src="../utils/img/lockers.png" style="margin-top: 15px; margin-bottom: 12px;">
@@ -356,6 +255,8 @@
             <ul class="list-group" id="FactionStorageCEFBox-StorageList"></ul>
         </div>
     </div>
+
+    <!-- Fahrzeug Kofferraum -->
 
     <div id="VehicleTrunkCEFBox">
         <p class="closebtn" tabindex="-1" onclick="closeVehicleTrunkCEFBox();"><i class="fas fa-times"></i></p>
@@ -372,6 +273,8 @@
         </div>
     </div>
 
+    <!-- Spieler durschsuchen -->
+
     <div id="PlayerSearchInventoryCEFBox">
         <p class="closebtn" onclick="closePlayerSearchCEFBox();"><i class="fas fa-times"></i></p>
         <img src="../utils/img/searchbag.png" style="margin-top: 15px; margin-bottom: 12px;">
@@ -381,6 +284,8 @@
             <ul id="PlayerSearchInventoryCEFBox-List" class="list-group"></ul>
         </div>
     </div>
+
+    <!-- Spieler Animationen -->
 
     <div id="AnimationMenuBox">
         <p class="title">ANIMATIONEN</p>
@@ -478,6 +383,8 @@
         </ul>
     </div>
 
+    <!-- Fahrzeug Anmeldung / Zulassungsstelle -->
+
     <div id="VehicleLicensingCEFBox">
         <p class="closebtn" onclick="closeVehicleLicensingCEFBox();"><i class="fas fa-times"></i></p>
         <img src="../utils/img/license-plate.png" style="margin-top: 15px; margin-bottom: 12px;">
@@ -486,6 +393,8 @@
         <hr>
         <ul id="VehicleLicensingCEFBox-List" class="list-group"></ul>
     </div>
+
+    <!-- Hotel Zimmer mieten -->
 
     <div id="HotelManageCEFBox">
         <p class="closebtn" onclick="closeHotelManageCEFBox();"><i class="fas fa-times"></i></p>
@@ -496,6 +405,8 @@
         <ul id="HotelManageCEFBox-ApartmentList" class="list-group"></ul>
     </div>
 
+    <!-- Haus kaufen / mieten / betreten -->
+
     <div id="HouseEntranceCEFBox">
         <p class="closebtn" onclick="closeHouseEntranceCEFBox();"><i class="fas fa-times"></i></p>
         <img src="../tablet/img/51buyapp/house.png" style="margin-top: 15px; margin-bottom: 12px;">
@@ -505,6 +416,8 @@
         <div id="HouseEntranceCEFBox-List"></div>
     </div>
 
+    <!-- Einwohnermeldeamt / Wohnsitz wählen -->
+
     <div id="TownhallHouseSelectorBox">
         <p class="closebtn" onclick="closeTownHallHouseSelector();"><i class="fas fa-times"></i></p>
         <img src="../tablet/img/51buyapp/house.png" style="margin-top: 15px; margin-bottom: 12px">
@@ -513,6 +426,8 @@
         <hr>
         <ul id="TownHallHouseSelector-List" class="list-group"></ul>
     </div>
+
+    <!-- Haus verwalten -->
 
     <div id="HouseManageCEFBox">
         <p class="closebtn" onclick="closeHouseManageCEFBox();"><i class="fas fa-times"></i></p>
@@ -570,6 +485,8 @@
         </div>
     </div>
 
+    <!-- Lizenz ausstellen -->
+
     <div id="GivePlayerLicenseCEFBox">
         <p class="closebtn" onclick="closeGivePlayerLicenseCEFBox();"><i class="fas fa-times"></i></p>
         <img src="../utils/img/drivingschool.png" style="margin-top: 15px; margin-bottom: 12px;">
@@ -578,6 +495,8 @@
         <hr>
         <ul id="GivePlayerLicenseCEFBox-List" class="list-group"></ul>
     </div>
+
+    <!-- Pilot Job -->
 
     <div id="Minijob-PilotCEFBox">
         <p class="closebtn" onclick="closeMinijobPilotCEFBox();"><i class="fas fa-times"></i></p>
@@ -601,17 +520,21 @@
         </ul>
     </div>
 
+    <!-- Bus Job -->
+
     <div id="Minijob-BusDriverCEFBox">
         <p class="closebtn" onclick="closeMinijobBusDriverCEFBox();"><i class="fas fa-times"></i></p>
-        <img src="../utils/img/logo_transparent_red_512.png" style="width: 110px; margin-top: 5px; margin-bottom: 10px; filter: hue-rotate(255deg)">
+        <img src="../utils/img/bus_job.png" style="width: 110px; margin-top: 5px; margin-bottom: 10px; filter: hue-rotate(255deg)">
         <p class="title">MINIJOB: BUSFAHRER</p>
         <p class="description">Als Busfahrer versorgst du den Stadtverkehr.<br>Jede Linie hat einen anderen Verdienst und eine andere Dauer.</p>
         <div id="Minijob-BusDriverCEFBox-List"></div>
     </div>
 
+    <!-- Kleidungsshop -->
+
     <div id="ClothesShopCEFBox">
         <p class="closebtn" onclick="closeClothesShopCEF();"><i class="fas fa-times"></i></p>
-        <img src="../utils/img/logo_transparent_red_512.png" style="width: 96px; filter: hue-rotate(90deg);">
+        <img src="../utils/img/clothes_shop.png" style="width: 96px; filter: hue-rotate(90deg);">
         <p class="title">KLEIDUNGSLADEN</p>
         <hr>
         <div id="ClothesShop-HatContainer" class="container">
@@ -732,11 +655,15 @@
         </div>
     </div>
 
+    <!-- Fraktions Bank -->
+
     <div id="bankFactionATMForm">
         <span class="closeBankManageForm" onclick="BankFactionATMFormDestroyCEF();"><i class="fas fa-times"></i></span>
-        <img src="../utils/img/logo_transparent_red_512.png" style="width: 126px; margin-bottom: -3px">
+        <img src="../utils/img/faction_bank.png" style="width: 126px; margin-bottom: -3px">
         <p id="bankFactionATMForm-Title" class="title">FRAKTIONSBANK</p>
-        <p class="description">Ihr aktueller Fraktionsstand: <b><font id="bankFactionATMForm-CurBalance">250000</font>$</b>.<br> Nachfolgend können Sie über Ihr Fraktionskonto verfügen.</p>
+        <p class="description">Ihr aktueller Fraktionsstand: <b>
+                <font id="bankFactionATMForm-CurBalance">250000</font>$
+            </b>.<br> Nachfolgend können Sie über Ihr Fraktionskonto verfügen.</p>
         <ul class="list-group">
             <li class="list-group-item">
                 <p id="bankFactionATMForm-DepositBtn" class="title">EINZAHLEN</p>
@@ -749,18 +676,22 @@
         </ul>
     </div>
 
+    <!-- Bank Konto erstellen -->
+
     <div id="bankAccountManageForm">
         <span class="closeBankManageForm" onclick="BankAccountManageFormDestroyCEF();"><i class="fas fa-times"></i></span>
-        <img src="../utils/img/logo_transparent_red_512.png" style="width: 156px; margin-bottom: -3px; filter: hue-rotate(160deg)">
+        <img src="../utils/img/bank.png" style="width: 156px; margin-bottom: -3px; filter: hue-rotate(160deg)">
         <p class="title">BANKSCHALTER</p>
         <p class="description">Willkommen in unserer Bankfiliale.<br> Nachfolgend können Sie ein Konto erstellen oder ihr bisheriges Konto verwalten.</p>
         <hr>
         <ul id="bankAccountManageFormList" class="list-group"></ul>
     </div>
 
+    <!-- Bank ATM -->
+
     <div id="bankATMbox">
         <span id="bankATMbox-CloseBankCEF" onclick="BankATMdestroyCEF();">Karte auswerfen</span>
-        <img src="../utils/img/logo_transparent_red_512.png" style="width: 156px; margin-bottom: -3px; filter: hue-rotate(160deg)">
+        <img src="../utils/img/atm.png" style="width: 156px; margin-bottom: -3px; filter: hue-rotate(160deg)">
         <p class="title">BANKAUTOMAT</p>
         <p id="bankATMboxDescriptionTitle" class="description">Um weitere Aktionen durchführen zu können geben Sie bitte Ihre Geheimzahl ein.<br>Geben Sie Ihre Geheimzahl zu oft falsch ein wird Ihre Karte gesperrt.</p>
         <hr>
@@ -826,15 +757,19 @@
         </div>
     </div>
 
+    <!-- 24/7 Shop -->
+
     <div id="shopCEFBox">
         <!-- 24/7 Shops -->
         <span class="closeBankManageForm" onclick="shopCEFBoxDestroy();"><i class="fas fa-times"></i></span>
-        <span id="shopCEFBox-RobButton" style="position: absolute; border-bottom-left-radius: 4px; top: 0; right: 0; background: rgba(0,0,0,0.5); color: #d2d2d2; text-align: center; font-family: PEL; font-size: 14px; padding: 4px;" class="robShop">Shop ausrauben</span>
-        <img src="../utils/img/logo_transparent_red_512.png" style="width: 86px; filter: hue-rotate(200deg)">
+        <!-- <span id="shopCEFBox-RobButton" style="position: absolute; border-bottom-left-radius: 4px; top: 0; right: 0; background: rgba(0,0,0,0.5); color: #d2d2d2; text-align: center; font-family: PEL; font-size: 14px; padding: 4px;" class="robShop">Shop ausrauben</span> -->
+        <img src="../utils/img/shop.png" style="width: 86px; filter: hue-rotate(200deg)">
         <p id="shopCEFBox-Title" class="title" style="color: #fff; font-family: PEL; letter-spacing: 2px;">EINKAUFSLADEN</p>
         <hr>
         <ul id="shopCEFBox-List" class="list-group"></ul>
     </div>
+
+    <!-- Spieler Friseur -->
 
     <div id="barberCEFBox">
         <!-- Friseur HUD -->
@@ -979,29 +914,35 @@
         <button type="button" id="BarberBuyButton" onclick="BarberBuyHairStyles();" class="btn btn-success">Bezahlen (50$)</button>
     </div>
 
+
+    <!-- Fahrzeug Garage -->
+
     <div id="GarageCEFBox">
         <p class="closebtn" onclick="GarageCEFBoxdestroy();"><i class="fas fa-times"></i></p>
         <p id="GarageCEFBOX-title">Fahrzeuggarage: Paleto Bay</p>
-        <img class="Pic" src="../utils/img/vjet.png">
         <img class="Pic" style="margin-left: 0.5rem; height: 80px;" src="../utils/img/vcars.png">
-        <img class="Pic" style="margin-bottom: 1.5rem;" src="../utils/img/vheli.png">
         <hr>
         <div class="secbox">
             <p class="title">GARAGE</p>
             <p class="infotext">Wähle ein Fahrzeug aus welches du
                 <font style="font-weight: bold; color: #21c378;">einparken</font> oder
-                <font style="font-weight: bold; color: #c32121;">ausparken</font> möchtest.</p>
+                <font style="font-weight: bold; color: #c32121;">ausparken</font> möchtest.
+            </p>
             <ul id="GarageCEFBox-VehList" class="list-group"></ul>
         </div>
     </div>
 
+    <!-- Fahrzeug shop -->
+
     <div id="VehicleShopCEFBox">
         <p class="closebtn" onclick="CloseVehicleShopCEF();"><i class="fas fa-times"></i></p>
-        <img src="../utils/img/logo_transparent_red_512.png">
+        <img src="../utils/img/car_dealer.png">
         <p id="VehicleShopCEFBox-title">Fahrzeugshop: Morningwood</p>
         <hr>
         <ul id="VehicleShopCEFBox-StoreList" class="list-group"></ul>
     </div>
+
+    <!-- Spieler Ausweis -->
 
     <div id="UserIdCard">
         <span class="nameTitle">Vor- und Nachname</span>
@@ -1017,6 +958,8 @@
         <span id="UserIdCard-joinInfo">01.01.2020 (122)</span>
     </div>
 
+    <!-- Fraktions Ausweis -->
+
     <div id="UserFactionCard">
         <span class="nameTitle FactionCardTitleColor">Vor- und Nachname</span>
         <span id="UserFactionCard-name" class="FactionCardColor">Maximilian von Mustermann</span>
@@ -1031,11 +974,15 @@
         <span id="UserFactionCard-joinInfo" class="FactionCardColor">01.01.2020 (122)</span>
     </div>
 
+    <!-- Fahrzeug Tuning -->
+
     <div id="VehicleTuningMainMenuBox">
         <span class="title">Fahrzeug tunen</span>
         <div class="circlediv" onclick="closeTuningMenuCEF();"><i class="fa fa-times-circle"></i></div>
         <ul id="VehicleTuningMainMenuBoxList"></ul>
     </div>
+
+    <!-- Fahrzeug Lackieren -->
 
     <div id="VehicleTuningMenuColorSelection">
         <span class="title">Farbe auswählen</span>
@@ -1057,13 +1004,17 @@
         <button type="button" class="btn btn-success" onclick="VehicleTuningMenuColorSelectionTestColor(true)">Einbauen</button>
     </div>
 
+    <!-- Spieler Todesscreen -->
+
     <div id="Deathscreen-Box">
         <video style="width: 100%; height: 100%;" id="deathvideo" muted loop autoplay>
             <source src="../utils/img/deathscreen.webm" type="video/webm">
         </video>
     </div>
 
+    <!-- Spieler Kleiderschrank -->
     <!-- #Hudlist in Arbeit -->
+
     <div id="pseudo-box-hudlist">
         <div id="HUDlist-Box" data-target class="scss-mdb rounded">
             <div id="HUDlist-labelbox">
@@ -1101,7 +1052,8 @@
             </div>
         </div>
     </div>
-    </div>
+
+    <!-- Spieler Handy -->
 
     <div class="phone scss-mdb" id="Smartphone-Box" data-phonenumber="">
         <div class="image-based full-phone">
@@ -1186,7 +1138,7 @@
             <div class="in-screen-content">
                 <h1 class="text-center text-white">Anrufen</h1>
                 <div class="input-group">
-                    <input type="text" id="phone-call-input" class="form-control" placeholder="Telefonnummer"></input>
+                    <input type="text" id="phone-call-input" class="form-control" placeholder="Telefonnummer">
                 </div>
                 <table class="phone-dial-table text-center">
                     <tbody>
@@ -1561,9 +1513,9 @@
             </div>
             <div class="phone-switch d-inline">
                 <label class="switch switch-flat align-middle mx-auto">
-                    <input class="switch-input" type="checkbox" name="switch-group" id="phone-radio-switch" onchange="phoneSwapRadio()" value="1"/>
-                    <span class="switch-label" data-on="An" data-off="Aus"></span> 
-                    <span class="switch-handle"></span> 
+                    <input class="switch-input" type="checkbox" name="switch-group" id="phone-radio-switch" onchange="phoneSwapRadio()" value="1" />
+                    <span class="switch-label" data-on="An" data-off="Aus"></span>
+                    <span class="switch-handle"></span>
                 </label>
             </div>
         </div>
@@ -1571,36 +1523,36 @@
             <div class="phone-header-markdown phone-grey-color-header"></div>
             <div class="in-screen-content phone-scaleable">
                 <h1 class="text-center">Einstellungen</h1>
-                <hr/>
+                <hr />
                 <div class="text-center">
                     <div class="d-inline form-group">
                         <label for="phone-flightmode-switch align-middle d-inline"> Flugmodus </label>
                         <div class="phone-switch d-inline">
                             <label class="switch switch-flat align-middle mx-auto">
-                                <input class="switch-input" type="checkbox" name="switch-group" id="phone-flightmode-switch" onchange="phoneSwapFlightmode()" value="1"/>
-                                <span class="switch-label" data-on="An" data-off="Aus"></span> 
-                                <span class="switch-handle"></span> 
+                                <input class="switch-input" type="checkbox" name="switch-group" id="phone-flightmode-switch" onchange="phoneSwapFlightmode()" value="1" />
+                                <span class="switch-label" data-on="An" data-off="Aus"></span>
+                                <span class="switch-handle"></span>
                             </label>
                         </div>
                     </div>
-                    <hr/>
+                    <hr />
                     <div class="d-inline form-group">
                         <label for="phone-nodisturb-switch align-middle d-inline"> Nicht-St&ouml;ren-Modus </label>
                         <div class="phone-switch d-inline">
                             <label class="switch switch-flat align-middle mx-auto">
-                                <input class="switch-input" type="checkbox" name="switch-group" id="phone-nodisturb-switch" onchange="phoneSwapNodisturb()" value="1"/>
-                                <span class="switch-label" data-on="An" data-off="Aus"></span> 
-                                <span class="switch-handle"></span> 
+                                <input class="switch-input" type="checkbox" name="switch-group" id="phone-nodisturb-switch" onchange="phoneSwapNodisturb()" value="1" />
+                                <span class="switch-label" data-on="An" data-off="Aus"></span>
+                                <span class="switch-handle"></span>
                             </label>
                         </div>
                     </div>
                     <hr>
                     <div>
-                        Telefonnummer:<br/>
+                        Telefonnummer:<br />
                         <span id="phone-settings-number" class="phone-number-disp" data-number=""></span>
                     </div>
                 </div>
-                <hr/>
+                <hr />
             </div>
         </div>
         <div class="image-based full-phone layer3"></div>
@@ -1616,6 +1568,17 @@
     <script src="../utils/toastr.js"></script>
     <script defer src="../utils/fontawesome/js/all.js"></script>
 </body>
+
+
+
+
+
+<!-- SCRIPT SCRIPT SCRIPT SCRIPT -->
+
+
+
+
+
 
 <script>
     var type = 1,
@@ -1721,11 +1684,11 @@
             }
         }
     });
-    
+
     function ShowNotification(notificationtype, message, time) {
         toastr.options.progressBar = true;
         toastr.options.positionClass = "toast-top-right";
-        
+
         switch (notificationtype) {
             case 0:
                 break;
@@ -1764,20 +1727,15 @@
         $("#VehicleFuelBox").hide();
         $("#VehicleFuelBoxText").hide();
         $("#VehicleKMBox").hide();
+        $("#hudbox").hide();
+        $("#VehicleKmhBox").hide();
         $("#VehicleKMBoxText").hide();
+        $("#VehicleLockedBox").hide();
 
         if (state == false) {
             // nicht im Auto
-            anime({
-                targets: '#hudbox',
-                left: 50
-            });
         } else {
             // im Auto
-            anime({
-                targets: '#hudbox',
-                left: 330
-            });
             $("#VehicleSpeedBoxText").html(`0km/h`);
             $("#VehicleKMBoxText").html(`${km} KM`);
             $("#VehicleFuelBoxText").html(`${fuel} Liter`);
@@ -1788,12 +1746,15 @@
             $("#VehicleFuelBox").fadeTo(1, 1, function() {});
             $("#VehicleFuelBoxText").fadeTo(1, 1, function() {});
             $("#VehicleKMBox").fadeTo(1, 1, function() {});
+            $("#hudbox").fadeTo(1, 1, function() {});
+            $("#VehicleKmhBox").fadeTo(1, 1, function() {});
             $("#VehicleKMBoxText").fadeTo(1, 1, function() {});
+            $("#VehicleLockedBox").fadeTo(1, 1, function() {});
         }
     }
 
     function SetPlayerHUDVehicleSpeed(speed) {
-        $("#VehicleSpeedBoxText").html(`${speed}km/h`);
+        $("#VehicleSpeedBoxText").html(`${speed}  Km/h`);
     }
 
     function SetPlayerHUDVehicleInfos(fuel, km) {
@@ -1850,42 +1811,6 @@
         } else {
             $("#voicebox").css("border", "2px solid #0000006e");
         }
-    }
-
-    function updateDesireHUD(food, thirst) {
-        if (food >= 50) {
-            $("#foodbox").css("background", "#448a328a");
-            $("#foodbox").css("opacity", "1");
-        } else if (food < 50 && food >= 15) {
-            $("#foodbox").css("background", "#8a6f328a");
-            $("#foodbox").css("opacity", "1");
-        } else if (food < 15) {
-            $("#foodbox").css("background", "#7925258a");
-            $("#foodbox").css("opacity", "0");
-        }
-
-        if (thirst >= 50) {
-            $("#drinkbox").css("background", "#448a328a");
-            $("#drinkbox").css("opacity", "1");
-        } else if (thirst < 50 && thirst >= 15) {
-            $("#drinkbox").css("background", "#8a6f328a");
-            $("#drinkbox").css("opacity", "1");
-        } else if (thirst < 15) {
-            $("#drinkbox").css("background", "#7925258a");
-            $("#drinkbox").css("opacity", "0");
-        }
-
-        document.getElementById("foodbox").style.animation = "none";
-        document.getElementById("drinkbox").style.animation = "none";
-
-        setTimeout(function() {
-            if (food < 15) {
-                document.getElementById("foodbox").style.animation = "flickerAnimationn 2.5s infinite";
-            }
-            if (thirst < 15) {
-                document.getElementById("drinkbox").style.animation = "flickerAnimationn 2.5s infinite";
-            }
-        }, 1);
     }
 
     function updateStreetLocation(loc) {
@@ -2436,12 +2361,12 @@
 
         for (var i in garageInArray) {
             garageHTML += "<li class='list-group-item green' onclick='GarageCEFBoxDoAction(`storage`, `" + garageInArray[i].vehid + "`);'>" +
-                `<span class='vehname'>${garageInArray[i].name}</span><span class='vehkz'>${garageInArray[i].plate}</span><img src='../utils/img/vehicles/${garageInArray[i].hash}.png'></li>`;
+                `<span class='vehname'>${garageInArray[i].name}</span><span class='vehkz'>${garageInArray[i].plate}</span></li>`;
         }
 
         for (var i in garageOutArray) {
             garageHTML += "<li class='list-group-item red' onclick='GarageCEFBoxDoAction(`take`, `" + garageOutArray[i].vehid + "`);'>" +
-                `<span class='vehname'>${garageOutArray[i].name}</span><span class='vehkz'>${garageOutArray[i].plate}</span><img src='../utils/img/vehicles/${garageOutArray[i].hash}.png'></li>`;
+                `<span class='vehname'>${garageOutArray[i].name}</span><span class='vehkz'>${garageOutArray[i].plate}</span></li>`;
         }
 
         $("#GarageCEFBOX-title").html(`${garagename}`);
@@ -3442,15 +3367,8 @@
             maxFuelAmount = parseInt(maxFuelAmount);
 
         for (var i in fuelArray) {
-            if (fuelArray[i].fueltype == "Benzin") {
+            if (fuelArray[i].fueltype == "Benzin") 
                 globalFuelstationBenzinPrice = fuelArray[i].fuelPrice;
-            } else if (fuelArray[i].fueltype == "Diesel") {
-                globalFuelstationDieselPrice = fuelArray[i].fuelPrice;
-            } else if (fuelArray[i].fueltype == "Strom") {
-                globalFuelstationStromPrice = fuelArray[i].fuelPrice;
-            } else if (fuelArray[i].fueltype == "Kerosin") {
-                globalFuelstationKerosinPrice = fuelArray[i].fuelPrice;
-            }
 
             fuelstationHTML += "<li class='list-group-item' onclick='VehicleFuelStationFuelVehicle(" + vehID + ", " + fuelStationId + ", `" + fuelArray[i].fueltype + "`);'>" +
                 `<img src='../utils/img/vehfuel.png'><p id='VehicleFuelStationCEFBox-${fuelArray[i].fueltype}Price'>${fuelArray[i].fueltype} tanken</p></li>`;
@@ -4232,7 +4150,7 @@
             routeArray = JSON.parse(routeArray);
 
         for (var i in routeArray) {
-            busHTML += `<div class='container' onclick='MinijobBusDriverStartRoute(${routeArray[i].routeId});'><img src='../utils/img/vehicles/${routeArray[i].hash}.png'><p class='title'>${routeArray[i].routeName}</p><p class='subtitle'>Geschätzte Fahrtdauer: <font>${routeArray[i].neededTime}</font></p>` +
+            busHTML += `<div class='container' onclick='MinijobBusDriverStartRoute(${routeArray[i].routeId});'><img src='../../../../vehicles/vehicles/${routeArray[i].hash}.png'><p class='title'>${routeArray[i].routeName}</p><p class='subtitle'>Geschätzte Fahrtdauer: <font>${routeArray[i].neededTime}</font></p>` +
                 `<p class='subtitle'>Entlohnung: <font>${routeArray[i].paycheck}$</font></p></div>`;
         }
         $("#Minijob-BusDriverCEFBox-List").html(busHTML);
@@ -4663,27 +4581,29 @@
             deployFreq = 0,
             htmlFreq,
             dispLabel;
-        slider.max = RadioFreqMax;
-        slider.min = RadioFreqMin;
-        slider.step = RadioFreqSteps;
-        totalFreq = parseInt((RadioFreqMax - RadioFreqMin) / RadioFreqSteps);
-        slider.style.width = (RadioFreqSpacing * (RadioFreqSteps / RadioMarkSteps)) * totalFreq + "px";
-        datalist.style.width = (RadioFreqSpacing * (RadioFreqSteps / RadioMarkSteps)) * (totalFreq + 1) + 15 + "px";
-        if (totalFreq > 0) {
-            while (deployFreq <= totalFreq) {
-                htmlFreq = RadioFreqMin + (deployFreq * RadioFreqSteps);
-                if (htmlFreq % RadioLabelSteps == 0) {
-                    dispLabel = parseFloat(htmlFreq / 1000);
-                    html += "<option value='" + htmlFreq + "' label='" + dispLabel + "'>" + dispLabel + "</option>";
-                } else {
-                    if (htmlFreq % RadioMarkSteps == 0) {
-                        html += "<option value='" + htmlFreq + "'></option>";
+        setTimeout(() => {
+            slider.max = RadioFreqMax;
+            slider.min = RadioFreqMin;
+            slider.step = RadioFreqSteps;
+            totalFreq = parseInt((RadioFreqMax - RadioFreqMin) / RadioFreqSteps);
+            slider.style.width = (RadioFreqSpacing * (RadioFreqSteps / RadioMarkSteps)) * totalFreq + "px";
+            datalist.style.width = (RadioFreqSpacing * (RadioFreqSteps / RadioMarkSteps)) * (totalFreq + 1) + 15 + "px";
+            if (totalFreq > 0) {
+                while (deployFreq <= totalFreq) {
+                    htmlFreq = RadioFreqMin + (deployFreq * RadioFreqSteps);
+                    if (htmlFreq % RadioLabelSteps == 0) {
+                        dispLabel = parseFloat(htmlFreq / 1000);
+                        html += "<option value='" + htmlFreq + "' label='" + dispLabel + "'>" + dispLabel + "</option>";
+                    } else {
+                        if (htmlFreq % RadioMarkSteps == 0) {
+                            html += "<option value='" + htmlFreq + "'></option>";
+                        }
                     }
+                    deployFreq++;
                 }
-                deployFreq++;
             }
-        }
-        document.getElementById("freqTickmarks").innerHTML = html;
+            document.getElementById("freqTickmarks").innerHTML = html;
+        }, 300);
     }
 
     function swapPhoneFrequency() {
@@ -5229,19 +5149,26 @@
 
     checkChatAlerts();
     phoneFlightmodeOff(true);
+
 </script>
 <script type="text/javascript">
     //Alt On Events
+    alt.on('HUD:UpdateLockState', state => {
+        $('.lockstate-' + state).removeClass('d-none');
+        $('.lockstate-' + !state).addClass('d-none');
+    });
+
+    alt.on('HUD:UpdateSeatbelt', state => {
+        $('#seatbelt-' + state).removeClass('d-none');
+        $('#seatbelt-' + !state).addClass('d-none');
+    });
+
     alt.on("CEF:HUD:sendNotification", (type, time, message) => {
         ShowNotification(type, message, time);
     });
 
     alt.on("CEF:HUD:updateStreetLocation", (loc) => {
         updateStreetLocation(loc);
-    });
-
-    alt.on("CEF:HUD:updateDesireHUD", (food, drink) => {
-        updateDesireHUD(food, drink);
     });
 
     alt.on("CEF:HUD:updateSpeakState", (state) => {
@@ -5253,6 +5180,8 @@
     });
 
     alt.on("CEF:HUD:updateHUDPosInVeh", (state, fuel, km) => {
+        if (fuel == null) fuel = 0;
+        if (km == null) km = 0;
         SetPlayerHUDInVehicle(state, fuel.toFixed(2), km.toFixed(2));
     });
 
@@ -5300,7 +5229,7 @@
         $("#identityCardApplyForm").fadeOut(300, 0, function() {
             $("#identityCardApplyForm").hide();
         });
-        
+
         $("#shopCEFBox").fadeOut(500, function() {
             $("#shopCEFBox").hide();
         });
@@ -5659,6 +5588,7 @@
     alt.on("CEF:Smartphone:setPoliceAppMostWanteds", (mostWanteds) => {
         setPoliceAppMostWanteds(mostWanteds);
     });
+
 </script>
 <script type="text/javascript">
     ColorPicker(
@@ -5670,6 +5600,7 @@
             document.getElementById("rgbGvalField").value = rgb.g;
             document.getElementById("rgbBvalField").value = rgb.b;
         });
+
 </script>
 
 </html>

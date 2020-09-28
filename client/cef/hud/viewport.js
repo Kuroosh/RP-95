@@ -15,6 +15,6 @@ function getViewportPhoneMarginBot() {
     var e = document.getElementById("Smartphone-Box").offsetHeight;
     return height = .85 * e, -height
 }
-window.addEventListener("resize", resizePhone), window.addEventListener("resize", resizePseudo), window.onload = function() {
+window.addEventListener("resize", resizePhone), window.addEventListener("resize", resizePseudo), window.onload = function () {
     resizePhone(), resizePseudo()
 };

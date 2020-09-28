@@ -42,9 +42,11 @@
     0% {
         opacity: 0;
     }
+
     50% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
     }
@@ -55,6 +57,7 @@
         opacity: 0;
         transform: translateX(100%);
     }
+
     100% {
         opacity: 0.95;
         transform: translateX(0%);
@@ -74,17 +77,24 @@ body {
 
 #hudbox {
     position: absolute;
-    left: 50px;
-    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    left: 46%;
+    width: 1000px;
+    bottom: 0px;
+    height: 65px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    transform: translate(-50%);
 }
 
-#hudbox>#foodbox,
-#hudbox>#drinkbox,
-#hudbox>#voicebox,
-#hudbox>#locationbox,
-#hudbox>#VehicleSpeedBox,
-#hudbox>#VehicleFuelBox,
-#hudbox>#VehicleKMBox p#locationtext,
+#hudbox,
+#hudbox > #foodbox,
+#hudbox > #drinkbox,
+#voicebox,
+#hudbox > #locationbox,
+#hudbox > #VehicleFuelBox,
+#hudbox > #VehicleSpeedBox,
+#hudbox > #VehicleKMBox p#locationtext,
 p#VehicleFuelBoxText,
 p#VehicleKMBoxText,
 p#VehicleSpeedBoxText,
@@ -127,44 +137,136 @@ div#Smartphone-Box {
     opacity: 0;
 }
 
-p#VehicleFuelBoxText {
-    left: 770px !important;
+#hudbox > #foodbox,
+#hudbox > #drinkbox,
+#hudbox > #locationbox,
+#hudbox > #VehicleSpeedBox,
+#hudbox > #VehicleFuelBox,
+#hudbox > #VehicleKmhBox,
+#hudbox > #VehicleKMBox,
+#hudbox > #VehicleOpenImage,
+#hudbox > #VehicleLockedImage {
+    position: absolute !important;
+    width: 47.19px !important;
+    padding: 6.6px !important;
+    z-index: 100 !important;
+    top: 50% !important;
+    transform: translate(0%, -50%) !important;
+    border-radius: 4px !important;
+    box-shadow: 1px 4px 22px rgba(25, 25, 25, 0.8) !important;
+    background: #0000007d !important;
+    border: 2px solid #0000006e !important;
+    float: left !important;
 }
 
-#hudbox>#foodbox,
-#hudbox>#drinkbox,
-#hudbox>#voicebox,
-#hudbox>#locationbox,
-#hudbox>#VehicleSpeedBox,
-#hudbox>#VehicleFuelBox,
-#hudbox>#VehicleKMBox {
+#hudbox > #locationbox {
+    left: 25px;
+}
+
+#hudbox > #VehicleFuelBox {
+    left: 490px;
+}
+
+#hudbox > #VehicleKMBox {
+    left: 605px;
+}
+
+#hudbox > #VehicleKmhBox {
+    left: 750px;
+}
+
+#hudbox > #VehicleOpenImage {
+    left: 925px;
+}
+
+#hudbox > #VehicleLockedImage {
+    left: 925px;
+}
+
+
+p#locationtext,
+p#VehicleSpeedBoxText,
+p#VehicleFuelBoxText,
+p#VehicleKMBoxText {
+    position: absolute;
+    height: 55px;
+    margin: 5px;
+    color: #d2d2d2;
+    text-shadow: 2px 2px 4px black;
+    font-family: PT;
+    font-weight: bold;
+    float: left;
+    display: flex !important;
+    align-items: center !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
+p#locationtext {
+    left: 75px;
+    width: 400px;
+}
+
+p#VehicleFuelBoxText {
+    left: 540px;
+    width: 50px;
+}
+
+p#VehicleKMBoxText {
+    left: 655px;
+    width: 80px;
+}
+
+p#VehicleSpeedBoxText {
+    left: 800px;
+    width: 50px;
+}
+
+#voicebox {
+    position: absolute;
     width: auto;
     padding: 6.6px;
     z-index: 100;
-    transform: translate(-50%, -50%);
     border-radius: 4px;
     box-shadow: 1px 4px 22px rgba(25, 25, 25, 0.8) !important;
     background: #0000007d;
-    position: relative;
     margin-top: 0.8rem;
     margin-bottom: -0.5rem;
     border: 2px solid #0000006e;
+    left: 350px;
+    bottom: 15px;
+    transform: translate(-50%);
+    float: right;
 }
 
-#hudbox>#foodbox>img,
-#hudbox>#drinkbox>img,
-#hudbox>#voicebox>img,
-#hudbox>#locationbox>img,
-#hudbox>#VehicleSpeedBox>img,
-#hudbox>#VehicleFuelBox>img,
-#hudbox>#VehicleKMBox>img {
+#hudbox > #VehicleSpeedBox {
+    bottom: 40px;
+    left: 865px;
+    float: left !important;
+    height: 47.19px;
+    width: 47.19px;
+}
+
+.seatbelt.active {
+    position: relative;
     width: 30px;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    float: left;
 }
 
-#hudbox>#VehicleSpeedBox {
-    bottom: 0px;
-    left: 960px;
-    position: absolute;
+#hudbox > #foodbox > img,
+#hudbox > #drinkbox > img,
+#hudbox > #locationbox > img,
+#hudbox > #VehicleSpeedBox > img,
+#hudbox > #VehicleFuelBox > img,
+#hudbox > #VehicleKMBox > img,
+#hudbox > #VehicleKmhBox > img,
+#voicebox > img,
+#hudbox > #VehicleOpenImage > img,
+#hudbox > #VehicleLockedImage > img {
+    width: 30px;
 }
 
 img#waterMarkImage {
@@ -174,10 +276,12 @@ img#waterMarkImage {
     right: 4px;
 }
 
-#hudbox>#locationbox,
-#hudbox>#VehicleSpeedBox,
-#hudbox>#VehicleFuelBox,
-#hudbox>#VehicleKMBox,
+#hudbox,
+#hudbox > #locationbox,
+#hudbox > #VehicleSpeedBox,
+#hudbox > #VehicleFuelBox,
+#hudbox > #VehicleKMBox,
+#hudbox > #VehicleKmhBox,
 p#locationtext,
 p#VehicleFuelBoxText,
 p#VehicleKMBoxText,
@@ -227,40 +331,6 @@ div#Deathscreen-Box {
     overflow: hidden;
 }
 
-p#VehicleSpeedBoxText {
-    left: 920px !important;
-}
-
-p#VehicleKMBoxText {
-    left: 1075px !important;
-}
-
-#hudbox>#VehicleFuelBox {
-    bottom: 0;
-    position: absolute;
-    left: 410px;
-}
-
-#hudbox>#VehicleKMBox {
-    left: 710px !important;
-    bottom: 0;
-    position: absolute;
-}
-
-p#locationtext,
-p#VehicleSpeedBoxText,
-p#VehicleFuelBoxText,
-p#VehicleKMBoxText {
-    bottom: 6px;
-    position: absolute;
-    color: #d2d2d2;
-    left: 367px;
-    text-shadow: 2px 2px 4px black;
-    font-family: PT;
-    font-weight: bold;
-    width: auto;
-}
-
 ul#InteractionMenu-List {
     display: none;
     position: relative;
@@ -272,7 +342,7 @@ ul#InteractionMenu-List {
     max-width: 300px;
 }
 
-ul#InteractionMenu-List>li {
+ul#InteractionMenu-List > li {
     position: absolute;
     background-color: #100f0f;
     opacity: .95;
@@ -291,26 +361,26 @@ ul#InteractionMenu-List>li {
     align-items: center;
 }
 
-ul#InteractionMenu-List>li:hover {
+ul#InteractionMenu-List > li:hover {
     cursor: pointer;
     filter: grayscale(0);
     background-color: #23a55dbd;
     border-color: #0a0a0ab8;
 }
 
-ul#InteractionMenu-List>li>img {
+ul#InteractionMenu-List > li > img {
     height: 64px;
     width: 64px;
 }
 
-ul#InteractionMenu-List>li>p {
+ul#InteractionMenu-List > li > p {
     margin-bottom: 0;
     margin-top: 10px;
     font-family: PEL;
     font-size: 14px;
 }
 
-ul#InteractionMenu-List>li:nth-child(1) {
+ul#InteractionMenu-List > li:nth-child(1) {
     background-color: #171717ad;
     color: #fff;
     filter: grayscale(0.5);
@@ -326,7 +396,7 @@ ul#InteractionMenu-List>li:nth-child(1) {
     align-items: center;
 }
 
-ul#InteractionMenu-List>li:nth-child(1)>p {
+ul#InteractionMenu-List > li:nth-child(1) > p {
     font-size: 15px;
     word-break: break-word;
 }
@@ -527,10 +597,10 @@ div#bankFactionATMForm {
     border: 2px solid #1ca46d33;
 }
 
-#identityCardApplyForm>p.title,
-#bankAccountManageForm>p.title,
-div#bankFactionATMForm>p.title,
-#bankATMbox>p.title {
+#identityCardApplyForm > p.title,
+#bankAccountManageForm > p.title,
+div#bankFactionATMForm > p.title,
+#bankATMbox > p.title {
     color: #d2d2d2;
     font-size: 20px;
     font-family: PEL;
@@ -539,21 +609,21 @@ div#bankFactionATMForm>p.title,
     margin-bottom: 6px;
 }
 
-#jobCenterApplyForm>p.title,
-div#VehicleFuelstationCEFBox>p.title,
-div#GivePlayerBillCEFBox>p.title,
-div#RecievePlayerBillCEFBox>p.title,
-div#FactionStorageCEFBox>p.title,
-div#VehicleTrunkCEFBox>p.title,
-div#VehicleLicensingCEFBox>p.title,
-div#PlayerSearchInventoryCEFBox>p.title,
-div#GivePlayerLicenseCEFBox>p.title,
-div#Minijob-PilotCEFBox>p.title,
-div#Minijob-BusDriverCEFBox>p.title,
-div#HotelManageCEFBox>p.title,
-div#HouseEntranceCEFBox>p.title,
-div#TownhallHouseSelectorBox>p.title,
-div#HouseManageCEFBox>p.title {
+#jobCenterApplyForm > p.title,
+div#VehicleFuelstationCEFBox > p.title,
+div#GivePlayerBillCEFBox > p.title,
+div#RecievePlayerBillCEFBox > p.title,
+div#FactionStorageCEFBox > p.title,
+div#VehicleTrunkCEFBox > p.title,
+div#VehicleLicensingCEFBox > p.title,
+div#PlayerSearchInventoryCEFBox > p.title,
+div#GivePlayerLicenseCEFBox > p.title,
+div#Minijob-PilotCEFBox > p.title,
+div#Minijob-BusDriverCEFBox > p.title,
+div#HotelManageCEFBox > p.title,
+div#HouseEntranceCEFBox > p.title,
+div#TownhallHouseSelectorBox > p.title,
+div#HouseManageCEFBox > p.title {
     font-size: 20px;
     font-family: PEL;
     letter-spacing: 1px;
@@ -564,38 +634,38 @@ div#HouseManageCEFBox>p.title {
     margin-bottom: 2px;
 }
 
-div#HouseEntranceCEFBox>p.title.green {
+div#HouseEntranceCEFBox > p.title.green {
     background-image: linear-gradient(to right, #7bef73, #33e841);
 }
 
-div#GivePlayerLicenseCEFBox>p.title {
+div#GivePlayerLicenseCEFBox > p.title {
     background-image: linear-gradient(to right, #efc973, #e83333);
 }
 
-div#Minijob-PilotCEFBox>p.title {
+div#Minijob-PilotCEFBox > p.title {
     background-image: linear-gradient(to right, #efc973, #e83333);
 }
 
-div#Minijob-BusDriverCEFBox>p.title {
+div#Minijob-BusDriverCEFBox > p.title {
     background-image: linear-gradient(to right, #828cee, #414dd8);
 }
 
-div#VehicleLicensingCEFBox>p.title {
+div#VehicleLicensingCEFBox > p.title {
     background-image: linear-gradient(to right, #738eef, #3380e8) !important;
 }
 
-div#PlayerSearchInventoryCEFBox>p.title {
+div#PlayerSearchInventoryCEFBox > p.title {
     background-image: linear-gradient(to right, #738eef, #3380e8) !important;
 }
 
-div#GivePlayerBillCEFBox>p.title,
-div#RecievePlayerBillCEFBox>p.title,
-div#FactionStorageCEFBox>p.title,
-div#VehicleTrunkCEFBox>p.title {
+div#GivePlayerBillCEFBox > p.title,
+div#RecievePlayerBillCEFBox > p.title,
+div#FactionStorageCEFBox > p.title,
+div#VehicleTrunkCEFBox > p.title {
     background-image: linear-gradient(to right, #ffffff, #c1c1c1) !important;
 }
 
-div#ClothesShopCEFBox>p.title {
+div#ClothesShopCEFBox > p.title {
     font-size: 18px;
     font-family: PEL;
     letter-spacing: 1px;
@@ -606,27 +676,27 @@ div#ClothesShopCEFBox>p.title {
     margin-bottom: 2px;
 }
 
-#jobCenterApplyForm>p.description {
+#jobCenterApplyForm > p.description {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 14px;
 }
 
-#jobCenterApplyForm>hr,
-div#VehicleFuelstationCEFBox>hr,
-div#GivePlayerBillCEFBox>hr,
-div#RecievePlayerBillCEFBox>hr,
-div#FactionStorageCEFBox>hr,
-div#VehicleTrunkCEFBox>hr,
-div#VehicleLicensingCEFBox>hr,
-div#PlayerSearchInventoryCEFBox>hr,
-div#GivePlayerLicenseCEFBox>hr,
-div#Minijob-PilotCEFBox>hr,
-div#Minijob-BusDriverCEFBox>hr,
-div#HotelManageCEFBox>hr,
-div#HouseEntranceCEFBox>hr,
-div#TownhallHouseSelectorBox>hr,
-div#HouseManageCEFBox>hr {
+#jobCenterApplyForm > hr,
+div#VehicleFuelstationCEFBox > hr,
+div#GivePlayerBillCEFBox > hr,
+div#RecievePlayerBillCEFBox > hr,
+div#FactionStorageCEFBox > hr,
+div#VehicleTrunkCEFBox > hr,
+div#VehicleLicensingCEFBox > hr,
+div#PlayerSearchInventoryCEFBox > hr,
+div#GivePlayerLicenseCEFBox > hr,
+div#Minijob-PilotCEFBox > hr,
+div#Minijob-BusDriverCEFBox > hr,
+div#HotelManageCEFBox > hr,
+div#HouseEntranceCEFBox > hr,
+div#TownhallHouseSelectorBox > hr,
+div#HouseManageCEFBox > hr {
     border: 1px solid transparent;
     border-image: linear-gradient(to right, #ef7385d1, #e8334cd4);
     border-image-slice: 1;
@@ -636,7 +706,7 @@ div#HouseManageCEFBox>hr {
     opacity: .75;
 }
 
-div#HouseEntranceCEFBox>hr.green {
+div#HouseEntranceCEFBox > hr.green {
     border: 1px solid transparent;
     border-image: linear-gradient(to right, #7bef73, #33e841);
     border-image-slice: 1;
@@ -645,20 +715,20 @@ div#HouseEntranceCEFBox>hr.green {
     border-bottom: none;
 }
 
-div#GivePlayerLicenseCEFBox>hr {
+div#GivePlayerLicenseCEFBox > hr {
     border: 1px solid transparent !important;
     border-image: linear-gradient(to right, #efc973, #e83333) !important;
     border-image-slice: 1 !important;
 }
 
-div#Minijob-PilotCEFBox>hr,
-div#Minijob-BusDriverCEFBox>hr {
+div#Minijob-PilotCEFBox > hr,
+div#Minijob-BusDriverCEFBox > hr {
     border: 1px solid transparent !important;
     border-image: linear-gradient(to right, #efc973, #e83333) !important;
     border-image-slice: 1 !important;
 }
 
-div#Minijob-BusDriverCEFBox>div#Minijob-BusDriverCEFBox-List>div.container {
+div#Minijob-BusDriverCEFBox > div#Minijob-BusDriverCEFBox-List > div.container {
     background: #1b1b1bc4;
     width: 90%;
     border: 1px solid #404ecd;
@@ -671,13 +741,13 @@ div#Minijob-BusDriverCEFBox>div#Minijob-BusDriverCEFBox-List>div.container {
     transition: all 0.3s ease-in-out;
 }
 
-div#Minijob-BusDriverCEFBox>div#Minijob-BusDriverCEFBox-List>div.container:hover {
+div#Minijob-BusDriverCEFBox > div#Minijob-BusDriverCEFBox-List > div.container:hover {
     cursor: pointer;
     opacity: 1;
     transform: scale(1.05);
 }
 
-div#Minijob-BusDriverCEFBox>div#Minijob-BusDriverCEFBox-List>div.container>p.title {
+div#Minijob-BusDriverCEFBox > div#Minijob-BusDriverCEFBox-List > div.container > p.title {
     color: #d2d2d2;
     font-family: PEL;
     font-weight: bold;
@@ -687,12 +757,12 @@ div#Minijob-BusDriverCEFBox>div#Minijob-BusDriverCEFBox-List>div.container>p.tit
     margin-bottom: 5px;
 }
 
-div#Minijob-BusDriverCEFBox>div#Minijob-BusDriverCEFBox-List {
+div#Minijob-BusDriverCEFBox > div#Minijob-BusDriverCEFBox-List {
     overflow-y: auto;
     max-height: 375px;
 }
 
-div#Minijob-BusDriverCEFBox>div#Minijob-BusDriverCEFBox-List>div.container>p.subtitle {
+div#Minijob-BusDriverCEFBox > div#Minijob-BusDriverCEFBox-List > div.container > p.subtitle {
     float: left;
     color: #d2d2d2;
     font-family: PEL;
@@ -703,48 +773,48 @@ div#Minijob-BusDriverCEFBox>div#Minijob-BusDriverCEFBox-List>div.container>p.sub
     margin-bottom: 5px;
 }
 
-div#Minijob-BusDriverCEFBox>div#Minijob-BusDriverCEFBox-List>div.container>p.subtitle>font {
+div#Minijob-BusDriverCEFBox > div#Minijob-BusDriverCEFBox-List > div.container > p.subtitle > font {
     float: right;
     font-weight: bold;
 }
 
-div#Minijob-BusDriverCEFBox>div#Minijob-BusDriverCEFBox-List>div.container>img {
+div#Minijob-BusDriverCEFBox > div#Minijob-BusDriverCEFBox-List > div.container > img {
     float: left;
     width: 156px;
 }
 
-div#Minijob-BusDriverCEFBox>hr {
+div#Minijob-BusDriverCEFBox > hr {
     border: 1px solid transparent !important;
     border-image: linear-gradient(to right, #828cee, #414dd8) !important;
     border-image-slice: 1 !important;
 }
 
-div#VehicleLicensingCEFBox>hr {
+div#VehicleLicensingCEFBox > hr {
     border: 1px solid transparent !important;
     border-image: linear-gradient(to right, #738eef, #3380e8) !important;
     border-image-slice: 1 !important;
 }
 
-div#PlayerSearchInventoryCEFBox>hr {
+div#PlayerSearchInventoryCEFBox > hr {
     border: 1px solid transparent !important;
     border-image: linear-gradient(to right, #738eef, #3380e8) !important;
     border-image-slice: 1 !important;
 }
 
-div#VehicleLicensingCEFBox>p.description,
-div#GivePlayerLicenseCEFBox>p.description,
-div#Minijob-PilotCEFBox>p.description,
-div#Minijob-BusDriverCEFBox>p.description,
-div#HotelManageCEFBox>p.description,
-div#HouseEntranceCEFBox>p.description,
-div#TownhallHouseSelectorBox>p.description,
-div#HouseManageCEFBox>p.description {
+div#VehicleLicensingCEFBox > p.description,
+div#GivePlayerLicenseCEFBox > p.description,
+div#Minijob-PilotCEFBox > p.description,
+div#Minijob-BusDriverCEFBox > p.description,
+div#HotelManageCEFBox > p.description,
+div#HouseEntranceCEFBox > p.description,
+div#TownhallHouseSelectorBox > p.description,
+div#HouseManageCEFBox > p.description {
     color: #d2d2d2;
     font-size: 14px;
     font-family: PEL;
 }
 
-div#VehicleLicensingCEFBox>ul.list-group {
+div#VehicleLicensingCEFBox > ul.list-group {
     background: rgba(23, 23, 23, 0.7);
     width: 100%;
     margin-bottom: 15px;
@@ -755,7 +825,7 @@ div#VehicleLicensingCEFBox>ul.list-group {
     display: block;
 }
 
-div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item {
+div#VehicleLicensingCEFBox > ul.list-group > li.list-group-item {
     position: relative;
     height: 70px;
     border-top: 1px solid #000000c4;
@@ -763,33 +833,33 @@ div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item {
     max-height: 70px;
 }
 
-div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item:nth-child(odd) {
+div#VehicleLicensingCEFBox > ul.list-group > li.list-group-item:nth-child(odd) {
     background: rgb(27, 27, 27);
 }
 
-div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item:nth-child(1) {
+div#VehicleLicensingCEFBox > ul.list-group > li.list-group-item:nth-child(1) {
     border-top: none;
 }
 
-div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item:nth-child(even) {
+div#VehicleLicensingCEFBox > ul.list-group > li.list-group-item:nth-child(even) {
     background: rgb(39, 39, 39);
 }
 
-div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item>div.container.left {
+div#VehicleLicensingCEFBox > ul.list-group > li.list-group-item > div.container.left {
     height: 100%;
     width: 32%;
     float: left;
     border-right: 2px solid #5387ec36;
 }
 
-div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item>div.container.mid {
+div#VehicleLicensingCEFBox > ul.list-group > li.list-group-item > div.container.mid {
     height: 100%;
     width: 25%;
     float: left;
     border-right: 2px solid #5387ec36;
 }
 
-div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item>div.container.right {
+div#VehicleLicensingCEFBox > ul.list-group > li.list-group-item > div.container.right {
     height: 100%;
     width: 40%;
     float: left;
@@ -834,7 +904,7 @@ button.btn-abmelden:hover {
     opacity: 1;
 }
 
-div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item>div.container.right>input {
+div#VehicleLicensingCEFBox > ul.list-group > li.list-group-item > div.container.right > input {
     outline: none;
     border: 1px solid #00000026;
     background: rgba(0, 0, 0, 0.2);
@@ -848,7 +918,7 @@ div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item>div.container.right>
     margin-right: 5px;
 }
 
-div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item>div.container>p.title {
+div#VehicleLicensingCEFBox > ul.list-group > li.list-group-item > div.container > p.title {
     color: #5387ec;
     font-family: PEL;
     font-weight: bold;
@@ -857,26 +927,26 @@ div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item>div.container>p.titl
     margin-bottom: auto;
 }
 
-div#VehicleLicensingCEFBox>ul.list-group>li.list-group-item>div.container>p.name {
+div#VehicleLicensingCEFBox > ul.list-group > li.list-group-item > div.container > p.name {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 14px;
 }
 
-div#GivePlayerBillCEFBox>hr,
-div#RecievePlayerBillCEFBox>hr,
-div#FactionStorageCEFBox>hr,
-div#VehicleTrunkCEFBox>hr {
+div#GivePlayerBillCEFBox > hr,
+div#RecievePlayerBillCEFBox > hr,
+div#FactionStorageCEFBox > hr,
+div#VehicleTrunkCEFBox > hr {
     border: 1px solid transparent !important;
     border-image: linear-gradient(to right, #ffffff, #c1c1c1) !important;
     border-image-slice: 1 !important;
 }
 
-div#FactionStorageCEFBox>div.container>ul.list-group,
-div#VehicleTrunkCEFBox>div.container>ul.list-group,
-div#PlayerSearchInventoryCEFBox>div.container>ul.list-group,
-div#GivePlayerLicenseCEFBox>ul.list-group,
-div#HotelManageCEFBox>ul.list-group {
+div#FactionStorageCEFBox > div.container > ul.list-group,
+div#VehicleTrunkCEFBox > div.container > ul.list-group,
+div#PlayerSearchInventoryCEFBox > div.container > ul.list-group,
+div#GivePlayerLicenseCEFBox > ul.list-group,
+div#HotelManageCEFBox > ul.list-group {
     background: rgb(23, 23, 23);
     height: 210px;
     width: 100%;
@@ -888,16 +958,16 @@ div#HotelManageCEFBox>ul.list-group {
     display: block;
 }
 
-div#HotelManageCEFBox>ul.list-group {
+div#HotelManageCEFBox > ul.list-group {
     height: 450px !important;
     max-height: 450px !important;
 }
 
-div#HotelManageCEFBox>ul.list-group {
+div#HotelManageCEFBox > ul.list-group {
     border: none !important;
 }
 
-div#Minijob-PilotCEFBox>ul.list-group {
+div#Minijob-PilotCEFBox > ul.list-group {
     background: transparent;
     height: 150px;
     width: 100%;
@@ -909,28 +979,28 @@ div#Minijob-PilotCEFBox>ul.list-group {
     display: block;
 }
 
-div#GivePlayerLicenseCEFBox>ul.list-group {
+div#GivePlayerLicenseCEFBox > ul.list-group {
     height: 300px;
     max-height: 300px;
 }
 
-div#PlayerSearchInventoryCEFBox>div.container>ul.list-group {
+div#PlayerSearchInventoryCEFBox > div.container > ul.list-group {
     height: 310px !important;
     max-height: 310px !important;
 }
 
-div#GivePlayerLicenseCEFBox>ul.list-group>li.list-group-item>p {
+div#GivePlayerLicenseCEFBox > ul.list-group > li.list-group-item > p {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 14px;
 }
 
-div#FactionStorageCEFBox>div.container>ul.list-group>li.list-group-item,
-div#VehicleTrunkCEFBox>div.container>ul.list-group>li.list-group-item,
-div#PlayerSearchInventoryCEFBox>div.container>ul.list-group>li.list-group-item,
-div#GivePlayerLicenseCEFBox>ul.list-group>li.list-group-item,
-div#Minijob-PilotCEFBox>ul.list-group>li.list-group-item,
-div#HotelManageCEFBox>ul.list-group>li.list-group-item {
+div#FactionStorageCEFBox > div.container > ul.list-group > li.list-group-item,
+div#VehicleTrunkCEFBox > div.container > ul.list-group > li.list-group-item,
+div#PlayerSearchInventoryCEFBox > div.container > ul.list-group > li.list-group-item,
+div#GivePlayerLicenseCEFBox > ul.list-group > li.list-group-item,
+div#Minijob-PilotCEFBox > ul.list-group > li.list-group-item,
+div#HotelManageCEFBox > ul.list-group > li.list-group-item {
     width: 30%;
     margin-left: 2%;
     margin-top: 1%;
@@ -949,7 +1019,7 @@ div#HotelManageCEFBox>ul.list-group>li.list-group-item {
     transition: all 0.3s ease-in-out;
 }
 
-div#HotelManageCEFBox>ul.list-group>li.list-group-item {
+div#HotelManageCEFBox > ul.list-group > li.list-group-item {
     width: 278px !important;
     margin-left: 16px !important;
     border: 2px solid #0a0a0a !important;
@@ -961,7 +1031,7 @@ div#HotelManageCEFBox>ul.list-group>li.list-group-item {
     max-height: 200px !important;
 }
 
-div#HotelManageCEFBox>ul.list-group>li.list-group-item>p.title {
+div#HotelManageCEFBox > ul.list-group > li.list-group-item > p.title {
     color: #eaeaea;
     font-family: PEL;
     letter-spacing: 1px;
@@ -978,7 +1048,7 @@ div#HotelManageCEFBox>ul.list-group>li.list-group-item>p.title {
     margin-bottom: 0;
 }
 
-div#HouseEntranceCEFBox>div#HouseEntranceCEFBox-List>div.container>p {
+div#HouseEntranceCEFBox > div#HouseEntranceCEFBox-List > div.container > p {
     color: #eaeaea;
     font-family: PEL;
     letter-spacing: 1px;
@@ -994,15 +1064,15 @@ div#HouseEntranceCEFBox>div#HouseEntranceCEFBox-List>div.container>p {
     border-bottom: 0;
 }
 
-div#HouseEntranceCEFBox>div#HouseEntranceCEFBox-List>div.container:nth-last-of-type(1)>p {
+div#HouseEntranceCEFBox > div#HouseEntranceCEFBox-List > div.container:nth-last-of-type(1) > p {
     border-bottom: 1px solid black !important;
 }
 
-div#HouseEntranceCEFBox>div#HouseEntranceCEFBox-List>div.container:nth-last-of-type(1) {
+div#HouseEntranceCEFBox > div#HouseEntranceCEFBox-List > div.container:nth-last-of-type(1) {
     margin-bottom: 15px;
 }
 
-div#HouseEntranceCEFBox>div#HouseEntranceCEFBox-List>button {
+div#HouseEntranceCEFBox > div#HouseEntranceCEFBox-List > button {
     font-family: PEL;
     font-size: 14px;
     opacity: .25;
@@ -1010,30 +1080,30 @@ div#HouseEntranceCEFBox>div#HouseEntranceCEFBox-List>button {
     margin-left: 5px;
 }
 
-div#HouseEntranceCEFBox>div#HouseEntranceCEFBox-List>button.green {
+div#HouseEntranceCEFBox > div#HouseEntranceCEFBox-List > button.green {
     background: #33c76799 !important;
     border-color: #33c76799 !important;
 }
 
-div#HouseEntranceCEFBox>div#HouseEntranceCEFBox-List>button:hover {
+div#HouseEntranceCEFBox > div#HouseEntranceCEFBox-List > button:hover {
     letter-spacing: 1px;
     opacity: 1 !important;
 }
 
-div#HouseEntranceCEFBox>div#HouseEntranceCEFBox-List>div.container>p.red {
+div#HouseEntranceCEFBox > div#HouseEntranceCEFBox-List > div.container > p.red {
     background: #c73340eb;
 }
 
-div#HouseEntranceCEFBox>div#HouseEntranceCEFBox-List>div.container>p.green {
+div#HouseEntranceCEFBox > div#HouseEntranceCEFBox-List > div.container > p.green {
     background: #33c76799;
 }
 
-div#HouseEntranceCEFBox>div#HouseEntranceCEFBox-List>div.container>p>font {
+div#HouseEntranceCEFBox > div#HouseEntranceCEFBox-List > div.container > p > font {
     float: right;
     padding-right: 10px;
 }
 
-div#HotelManageCEFBox>ul.list-group>li.list-group-item>p.rentstate {
+div#HotelManageCEFBox > ul.list-group > li.list-group-item > p.rentstate {
     color: #d2d2d2;
     font-family: PEL;
     text-align: left;
@@ -1045,23 +1115,23 @@ div#HotelManageCEFBox>ul.list-group>li.list-group-item>p.rentstate {
     border-bottom: 1px solid #080808;
 }
 
-div#HotelManageCEFBox>ul>li>p.rentstate:nth-child(odd) {
+div#HotelManageCEFBox > ul > li > p.rentstate:nth-child(odd) {
     background: rgba(0, 0, 0, 0.34);
 }
 
-div#HotelManageCEFBox>ul>li>p.rentstate:nth-child(even) {
+div#HotelManageCEFBox > ul > li > p.rentstate:nth-child(even) {
     background: rgba(23, 23, 23, 0.34);
 }
 
-div#HotelManageCEFBox>ul>li>p.rentstate:nth-last-child(4) {
+div#HotelManageCEFBox > ul > li > p.rentstate:nth-last-child(4) {
     margin-bottom: 8px !important;
 }
 
-div#HotelManageCEFBox>ul.list-group>li.list-group-item>p.rentstate>i {
+div#HotelManageCEFBox > ul.list-group > li.list-group-item > p.rentstate > i {
     padding-right: 6px;
 }
 
-div#HotelManageCEFBox>ul.list-group>li.list-group-item>p.rentstate>font {
+div#HotelManageCEFBox > ul.list-group > li.list-group-item > p.rentstate > font {
     float: right;
     padding-top: 2px;
     font-size: 14px;
@@ -1069,7 +1139,7 @@ div#HotelManageCEFBox>ul.list-group>li.list-group-item>p.rentstate>font {
     color: #e83838;
 }
 
-div#HotelManageCEFBox>ul>li>button.btn-sm.btn-danger {
+div#HotelManageCEFBox > ul > li > button.btn-sm.btn-danger {
     background: #252525;
     border: 1px solid #151515;
     opacity: .25;
@@ -1077,12 +1147,12 @@ div#HotelManageCEFBox>ul>li>button.btn-sm.btn-danger {
     transition: all 0.3s ease-in-out;
 }
 
-div#HotelManageCEFBox>ul>li>button.btn-sm.btn-danger:hover {
+div#HotelManageCEFBox > ul > li > button.btn-sm.btn-danger:hover {
     opacity: 1;
     background: #e83838;
 }
 
-div#Minijob-PilotCEFBox>ul.list-group>li.list-group-item {
+div#Minijob-PilotCEFBox > ul.list-group > li.list-group-item {
     background: rgb(19, 19, 19);
     border: 2px solid #00000029;
     display: grid;
@@ -1093,13 +1163,13 @@ div#Minijob-PilotCEFBox>ul.list-group>li.list-group-item {
     filter: grayscale(1);
 }
 
-div#Minijob-PilotCEFBox>ul.list-group>li.list-group-item:hover {
+div#Minijob-PilotCEFBox > ul.list-group > li.list-group-item:hover {
     cursor: pointer;
     filter: grayscale(0);
     transform: scale(1.08);
 }
 
-div#Minijob-PilotCEFBox>ul.list-group>li.list-group-item>p.title {
+div#Minijob-PilotCEFBox > ul.list-group > li.list-group-item > p.title {
     background-image: linear-gradient(to right, #efc973, #e83333);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -1109,35 +1179,35 @@ div#Minijob-PilotCEFBox>ul.list-group>li.list-group-item>p.title {
     margin-bottom: -40;
 }
 
-div#Minijob-PilotCEFBox>ul.list-group>li.list-group-item>p.veh {
+div#Minijob-PilotCEFBox > ul.list-group > li.list-group-item > p.veh {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 14px;
     letter-spacing: 1px;
 }
 
-div#GivePlayerLicenseCEFBox>ul.list-group>li.list-group-item:hover {
+div#GivePlayerLicenseCEFBox > ul.list-group > li.list-group-item:hover {
     opacity: 1;
     cursor: pointer;
     background: rgba(54, 191, 103, 0.78);
     transform: scale(1.05);
 }
 
-div#PlayerSearchInventoryCEFBox>div.container>ul.list-group>li.list-group-item {
+div#PlayerSearchInventoryCEFBox > div.container > ul.list-group > li.list-group-item {
     padding-top: 15px !important;
     max-height: 140px;
     height: 140px;
 }
 
-div#FactionStorageCEFBox>div.container>ul.list-group>li.list-group-item>img,
-div#VehicleTrunkCEFBox>div.container>ul.list-group>li.list-group-item>img,
-div#PlayerSearchInventoryCEFBox>div.container>ul.list-group>li.list-group-item>img {
+div#FactionStorageCEFBox > div.container > ul.list-group > li.list-group-item > img,
+div#VehicleTrunkCEFBox > div.container > ul.list-group > li.list-group-item > img,
+div#PlayerSearchInventoryCEFBox > div.container > ul.list-group > li.list-group-item > img {
     width: 32px;
 }
 
-div#FactionStorageCEFBox>div.container>ul.list-group>li.list-group-item>button,
-div#VehicleTrunkCEFBox>div.container>ul.list-group>li.list-group-item>button,
-div#PlayerSearchInventoryCEFBox>div.container>ul.list-group>li.list-group-item>button {
+div#FactionStorageCEFBox > div.container > ul.list-group > li.list-group-item > button,
+div#VehicleTrunkCEFBox > div.container > ul.list-group > li.list-group-item > button,
+div#PlayerSearchInventoryCEFBox > div.container > ul.list-group > li.list-group-item > button {
     border-color: #0e0e0ea8;
     background: #3a3a3a;
     font-size: 12px;
@@ -1145,18 +1215,18 @@ div#PlayerSearchInventoryCEFBox>div.container>ul.list-group>li.list-group-item>b
     transition: all 0.3s ease-in-out;
 }
 
-div#FactionStorageCEFBox>div.container>ul.list-group>li.list-group-item>button:hover,
-div#VehicleTrunkCEFBox>div.container>ul.list-group>li.list-group-item>button:hover,
-div#PlayerSearchInventoryCEFBox>div.container>ul.list-group>li.list-group-item>button:hover {
+div#FactionStorageCEFBox > div.container > ul.list-group > li.list-group-item > button:hover,
+div#VehicleTrunkCEFBox > div.container > ul.list-group > li.list-group-item > button:hover,
+div#PlayerSearchInventoryCEFBox > div.container > ul.list-group > li.list-group-item > button:hover {
     cursor: pointer;
     transform: scale(1.05);
     background: #2cbf60b5;
     opacity: 1;
 }
 
-div#FactionStorageCEFBox>div.container>ul.list-group>li.list-group-item>input,
-div#VehicleTrunkCEFBox>div.container>ul.list-group>li.list-group-item>input,
-div#PlayerSearchInventoryCEFBox>div.container>ul.list-group>li.list-group-item>input {
+div#FactionStorageCEFBox > div.container > ul.list-group > li.list-group-item > input,
+div#VehicleTrunkCEFBox > div.container > ul.list-group > li.list-group-item > input,
+div#PlayerSearchInventoryCEFBox > div.container > ul.list-group > li.list-group-item > input {
     width: 40%;
     outline: none;
     border: 1px solid #0e0e0ea8;
@@ -1170,9 +1240,9 @@ div#PlayerSearchInventoryCEFBox>div.container>ul.list-group>li.list-group-item>i
     font-weight: bold;
 }
 
-div#FactionStorageCEFBox>div.container>ul.list-group>li.list-group-item>p.name,
-div#VehicleTrunkCEFBox>div.container>ul.list-group>li.list-group-item>p.name,
-div#PlayerSearchInventoryCEFBox>div.container>ul.list-group>li.list-group-item>p.name {
+div#FactionStorageCEFBox > div.container > ul.list-group > li.list-group-item > p.name,
+div#VehicleTrunkCEFBox > div.container > ul.list-group > li.list-group-item > p.name,
+div#PlayerSearchInventoryCEFBox > div.container > ul.list-group > li.list-group-item > p.name {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 13px;
@@ -1180,16 +1250,16 @@ div#PlayerSearchInventoryCEFBox>div.container>ul.list-group>li.list-group-item>p
     margin-bottom: 8px;
 }
 
-div#FactionStorageCEFBox>div.container>p.title,
-div#VehicleTrunkCEFBox>div.container>p.title {
+div#FactionStorageCEFBox > div.container > p.title,
+div#VehicleTrunkCEFBox > div.container > p.title {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 16px;
     margin-bottom: 0.35rem;
 }
 
-div#GivePlayerBillCEFBox>div.container>p,
-div#RecievePlayerBillCEFBox>div.container>p {
+div#GivePlayerBillCEFBox > div.container > p,
+div#RecievePlayerBillCEFBox > div.container > p {
     color: #d2d2d2;
     font-family: PEL;
     text-transform: uppercase;
@@ -1197,11 +1267,11 @@ div#RecievePlayerBillCEFBox>div.container>p {
     margin-bottom: 0.35rem;
 }
 
-div#GivePlayerBillCEFBox>div.container>input#GivePlayerBillCEFBox-AmountInput,
-div#GivePlayerBillCEFBox>div.container>input#GivePlayerBillCEFBox-ReasonInput,
-div#RecievePlayerBillCEFBox>div.container>input#RecievePlayerBillCEFBox-NameInput,
-div#RecievePlayerBillCEFBox>div.container>input#RecievePlayerBillCEFBox-AmountInput,
-div#RecievePlayerBillCEFBox>div.container>input#RecievePlayerBillCEFBox-ReasonInput {
+div#GivePlayerBillCEFBox > div.container > input#GivePlayerBillCEFBox-AmountInput,
+div#GivePlayerBillCEFBox > div.container > input#GivePlayerBillCEFBox-ReasonInput,
+div#RecievePlayerBillCEFBox > div.container > input#RecievePlayerBillCEFBox-NameInput,
+div#RecievePlayerBillCEFBox > div.container > input#RecievePlayerBillCEFBox-AmountInput,
+div#RecievePlayerBillCEFBox > div.container > input#RecievePlayerBillCEFBox-ReasonInput {
     outline: none;
     border: 1px solid #131212;
     background: rgba(51, 51, 51, 0.82);
@@ -1213,8 +1283,8 @@ div#RecievePlayerBillCEFBox>div.container>input#RecievePlayerBillCEFBox-ReasonIn
     padding: 2px 0px;
 }
 
-div#GivePlayerBillCEFBox>button.btn,
-div#RecievePlayerBillCEFBox>button.btn {
+div#GivePlayerBillCEFBox > button.btn,
+div#RecievePlayerBillCEFBox > button.btn {
     border-color: #1d1d1d;
     font-family: PEL;
     color: #d2d2d2;
@@ -1225,8 +1295,8 @@ div#RecievePlayerBillCEFBox>button.btn {
     transition: all 0.3s ease-in-out;
 }
 
-div#GivePlayerBillCEFBox>button.btn:hover,
-div#RecievePlayerBillCEFBox>button.btn:hover {
+div#GivePlayerBillCEFBox > button.btn:hover,
+div#RecievePlayerBillCEFBox > button.btn:hover {
     cursor: pointer;
     transform: scale(1.05);
     color: #d2d2d2;
@@ -1235,8 +1305,8 @@ div#RecievePlayerBillCEFBox>button.btn:hover {
     opacity: 1;
 }
 
-div#ClothesShopCEFBox>hr,
-div#ClothesShopCEFBox>div.container>hr {
+div#ClothesShopCEFBox > hr,
+div#ClothesShopCEFBox > div.container > hr {
     border: 1px solid transparent;
     border-image: linear-gradient(to right, #879c31, #4c6d00);
     border-image-slice: 1;
@@ -1246,12 +1316,12 @@ div#ClothesShopCEFBox>div.container>hr {
     opacity: .75;
 }
 
-div#ClothesShopCEFBox>div.container>hr {
+div#ClothesShopCEFBox > div.container > hr {
     border-image: linear-gradient(to right, #7d7d7d, #545454);
     border-image-slice: 1;
 }
 
-div#ClothesShopCEFBox>div.container>p.title {
+div#ClothesShopCEFBox > div.container > p.title {
     color: #d2d2d2;
     font-family: PEL;
     margin-block-start: 0;
@@ -1262,14 +1332,14 @@ div#ClothesShopCEFBox>div.container>p.title {
     font-size: 16px;
 }
 
-div#ClothesShopCEFBox>div.container>p.name {
+div#ClothesShopCEFBox > div.container > p.name {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 12px;
     margin-bottom: 20px;
 }
 
-div#ClothesShopCEFBox>div.container>img {
+div#ClothesShopCEFBox > div.container > img {
     float: left;
     width: 46px;
     position: absolute;
@@ -1277,7 +1347,7 @@ div#ClothesShopCEFBox>div.container>img {
     margin-top: 28px;
 }
 
-div#ClothesShopCEFBox>div.container>button.clothbtn {
+div#ClothesShopCEFBox > div.container > button.clothbtn {
     background-image: linear-gradient(to right, #4f752b, #3b5206);
     border: none;
     color: #d2d2d2;
@@ -1293,7 +1363,7 @@ div#ClothesShopCEFBox>div.container>button.clothbtn {
     opacity: .5;
 }
 
-div#ClothesShopCEFBox>div.container>button.buybtn {
+div#ClothesShopCEFBox > div.container > button.buybtn {
     background-image: linear-gradient(to right, #2b7538, #06523b);
     border: none;
     color: #d2d2d2;
@@ -1309,27 +1379,27 @@ div#ClothesShopCEFBox>div.container>button.buybtn {
     transition: all 0.5s ease-in-out;
 }
 
-div#ClothesShopCEFBox>div.container>button.clothbtn:hover,
-div#ClothesShopCEFBox>div.container>button.buybtn:hover {
+div#ClothesShopCEFBox > div.container > button.clothbtn:hover,
+div#ClothesShopCEFBox > div.container > button.buybtn:hover {
     cursor: pointer;
     transform: scale(1.02);
     filter: grayscale(0);
     opacity: 1;
 }
 
-div#VehicleFuelstationCEFBox>div.container>p.subtitle {
+div#VehicleFuelstationCEFBox > div.container > p.subtitle {
     text-align: left;
     color: #d2d2d2;
     font-family: PEL;
     font-size: 15px;
 }
 
-div#VehicleFuelstationCEFBox>div.container>p.subtitle>font {
+div#VehicleFuelstationCEFBox > div.container > p.subtitle > font {
     float: right;
     color: #ec566b;
 }
 
-div#VehicleFuelstationCEFBox>div.container>p.title {
+div#VehicleFuelstationCEFBox > div.container > p.title {
     font-size: 16px;
     font-family: PEL;
     letter-spacing: 1px;
@@ -1338,10 +1408,10 @@ div#VehicleFuelstationCEFBox>div.container>p.title {
     font-weight: bold;
 }
 
-#identityCardApplyForm>p.description,
-#bankAccountManageForm>p.description,
-div#bankFactionATMForm>p.description,
-#bankATMbox>p.description {
+#identityCardApplyForm > p.description,
+#bankAccountManageForm > p.description,
+div#bankFactionATMForm > p.description,
+#bankATMbox > p.description {
     color: #d2d2d2;
     font-size: 14px;
     padding-left: 12px;
@@ -1349,24 +1419,24 @@ div#bankFactionATMForm>p.description,
     padding-right: 12px;
 }
 
-#identityCardApplyForm>hr {
+#identityCardApplyForm > hr {
     border-top: 1px solid rgba(229, 52, 75, 0.57);
     margin-left: -20px;
     width: 650px;
 }
 
-#bankAccountManageForm>hr,
-#bankATMbox>hr {
+#bankAccountManageForm > hr,
+#bankATMbox > hr {
     border-top: 1px solid rgba(63, 169, 105, 0.57);
     margin-left: -20px;
     width: 650px;
 }
 
-#identityCardApplyForm>.inputgroup {
+#identityCardApplyForm > .inputgroup {
     margin-bottom: 0.75rem;
 }
 
-#identityCardApplyForm>.inputgroup>.icon {
+#identityCardApplyForm > .inputgroup > .icon {
     display: inline;
     background: #e5324bd9;
     color: white;
@@ -1378,11 +1448,11 @@ div#bankFactionATMForm>p.description,
     padding-right: 13px;
 }
 
-#identityCardApplyForm>.inputgroup>#identityCardApplyFormCharname,
-#identityCardApplyForm>.inputgroup>#identityCardApplyFormGender,
-#identityCardApplyForm>.inputgroup>#identityCardApplyFormAdress,
-#identityCardApplyForm>.inputgroup>#identityCardApplyFormBirthdate,
-#identityCardApplyForm>.inputgroup>#identityCardApplyFormBirthplace {
+#identityCardApplyForm > .inputgroup > #identityCardApplyFormCharname,
+#identityCardApplyForm > .inputgroup > #identityCardApplyFormGender,
+#identityCardApplyForm > .inputgroup > #identityCardApplyFormAdress,
+#identityCardApplyForm > .inputgroup > #identityCardApplyFormBirthdate,
+#identityCardApplyForm > .inputgroup > #identityCardApplyFormBirthplace {
     background: #00000066;
     outline: none;
     border: 1px solid #0c0c0c;
@@ -1397,7 +1467,7 @@ div#bankFactionATMForm>p.description,
     width: 300px;
 }
 
-#identityCardApplyForm>img#sendIdentityCardApplyForm {
+#identityCardApplyForm > img#sendIdentityCardApplyForm {
     width: 186px;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -1407,7 +1477,7 @@ div#bankFactionATMForm>p.description,
     filter: grayscale(.7);
 }
 
-#identityCardApplyForm>img#sendIdentityCardApplyForm:hover {
+#identityCardApplyForm > img#sendIdentityCardApplyForm:hover {
     cursor: pointer;
     opacity: 1;
     transform: rotate(0deg);
@@ -1415,9 +1485,9 @@ div#bankFactionATMForm>p.description,
     filter: grayscale(0);
 }
 
-#bankAccountManageForm>ul.list-group,
-#bankATMbox>div#bankATMbox-OverviewArea>ul.list-group,
-div#bankFactionATMForm>ul.list-group {
+#bankAccountManageForm > ul.list-group,
+#bankATMbox > div#bankATMbox-OverviewArea > ul.list-group,
+div#bankFactionATMForm > ul.list-group {
     float: left;
     background: transparent;
     padding: 1.5rem;
@@ -1426,11 +1496,11 @@ div#bankFactionATMForm>ul.list-group {
     display: block;
 }
 
-div#bankFactionATMForm>ul.list-group {
+div#bankFactionATMForm > ul.list-group {
     padding: 0 !important;
 }
 
-div#jobCenterApplyForm>ul.list-group {
+div#jobCenterApplyForm > ul.list-group {
     float: left;
     background: rgba(0, 0, 0, 0.1);
     padding: 15px;
@@ -1447,7 +1517,7 @@ div#jobCenterApplyForm>ul.list-group {
     overflow-y: auto;
 }
 
-div#VehicleFuelstationCEFBox>div.container>ul.list-group {
+div#VehicleFuelstationCEFBox > div.container > ul.list-group {
     float: left;
     background: rgba(51, 51, 51, 0.1);
     padding: 5px;
@@ -1463,7 +1533,7 @@ div#VehicleFuelstationCEFBox>div.container>ul.list-group {
     overflow-y: auto;
 }
 
-div#jobCenterApplyForm>ul.list-group>li.list-group-item>i.fa.fa-check {
+div#jobCenterApplyForm > ul.list-group > li.list-group-item > i.fa.fa-check {
     position: absolute;
     color: #d2d2d2;
     background: #e9374f;
@@ -1480,13 +1550,13 @@ div#jobCenterApplyForm>ul.list-group>li.list-group-item>i.fa.fa-check {
     transition: all 0.5s ease-in-out;
 }
 
-div#jobCenterApplyForm>ul.list-group>li.list-group-item>i.fa.fa-check:hover {
+div#jobCenterApplyForm > ul.list-group > li.list-group-item > i.fa.fa-check:hover {
     cursor: pointer;
     opacity: .8;
     transform: scale(1.05);
 }
 
-div#shopCEFBox>ul.list-group {
+div#shopCEFBox > ul.list-group {
     float: left;
     background: #13121266;
     padding: 12px;
@@ -1496,12 +1566,12 @@ div#shopCEFBox>ul.list-group {
     overflow-y: auto;
 }
 
-#bankATMbox>div#bankATMbox-OverviewArea>ul.list-group,
-div#bankFactionATMForm>ul.list-group {
+#bankATMbox > div#bankATMbox-OverviewArea > ul.list-group,
+div#bankFactionATMForm > ul.list-group {
     margin-bottom: -15px;
 }
 
-div#shopCEFBox>ul.list-group>li.list-group-item {
+div#shopCEFBox > ul.list-group > li.list-group-item {
     background: #181918 !important;
     float: left;
     padding: 15px;
@@ -1517,7 +1587,7 @@ div#shopCEFBox>ul.list-group>li.list-group-item {
     margin-bottom: 5px;
 }
 
-div#jobCenterApplyForm>ul.list-group>li.list-group-item {
+div#jobCenterApplyForm > ul.list-group > li.list-group-item {
     background: #181918 !important;
     float: left;
     padding: 15px;
@@ -1532,7 +1602,7 @@ div#jobCenterApplyForm>ul.list-group>li.list-group-item {
     margin-top: 10px;
 }
 
-div#VehicleFuelstationCEFBox>div.container>ul.list-group>li.list-group-item {
+div#VehicleFuelstationCEFBox > div.container > ul.list-group > li.list-group-item {
     background: #181918 !important;
     float: left;
     padding: 15px;
@@ -1549,20 +1619,20 @@ div#VehicleFuelstationCEFBox>div.container>ul.list-group>li.list-group-item {
     filter: grayscale(1);
 }
 
-div#VehicleFuelstationCEFBox>div.container>ul.list-group>li.list-group-item>img {
+div#VehicleFuelstationCEFBox > div.container > ul.list-group > li.list-group-item > img {
     margin-top: 5px;
 }
 
-div#VehicleFuelstationCEFBox>div.container>ul.list-group>li.list-group-item:hover {
+div#VehicleFuelstationCEFBox > div.container > ul.list-group > li.list-group-item:hover {
     filter: grayscale(0);
     cursor: pointer;
 }
 
-div#VehicleFuelstationCEFBox>div.container>ul.list-group>li.list-group-item:hover>p {
+div#VehicleFuelstationCEFBox > div.container > ul.list-group > li.list-group-item:hover > p {
     color: #fff;
 }
 
-div#VehicleFuelstationCEFBox>div.container>ul.list-group>li.list-group-item>p {
+div#VehicleFuelstationCEFBox > div.container > ul.list-group > li.list-group-item > p {
     margin-bottom: 0;
     margin-top: 15px;
     color: #a5a5a5;
@@ -1570,11 +1640,11 @@ div#VehicleFuelstationCEFBox>div.container>ul.list-group>li.list-group-item>p {
     text-transform: uppercase;
 }
 
-div#VehicleFuelstationCEFBox>div.container>form {
+div#VehicleFuelstationCEFBox > div.container > form {
     margin-block-end: 0.25rem;
 }
 
-div#jobCenterApplyForm>ul.list-group>li.list-group-item>p.title {
+div#jobCenterApplyForm > ul.list-group > li.list-group-item > p.title {
     color: #d2d2d2;
     font-family: OSR;
     text-transform: uppercase;
@@ -1582,19 +1652,19 @@ div#jobCenterApplyForm>ul.list-group>li.list-group-item>p.title {
     margin-top: 12px;
 }
 
-div#jobCenterApplyForm>ul.list-group>li.list-group-item>hr {
+div#jobCenterApplyForm > ul.list-group > li.list-group-item > hr {
     margin-top: -6px;
     border-color: #383838;
 }
 
-div#jobCenterApplyForm>ul.list-group>li.list-group-item>p.subtitle>font.content {
+div#jobCenterApplyForm > ul.list-group > li.list-group-item > p.subtitle > font.content {
     color: #e93f54;
     float: right;
     font-family: PEL;
     font-weight: bold;
 }
 
-div#jobCenterApplyForm>ul.list-group>li.list-group-item>p.subtitle {
+div#jobCenterApplyForm > ul.list-group > li.list-group-item > p.subtitle {
     color: #d2d2d2;
     font-family: OSR;
     font-size: 15px;
@@ -1602,12 +1672,12 @@ div#jobCenterApplyForm>ul.list-group>li.list-group-item>p.subtitle {
     margin-bottom: 4px;
 }
 
-div#shopCEFBox>ul.list-group>li.list-group-item>img {
+div#shopCEFBox > ul.list-group > li.list-group-item > img {
     width: 46px;
     margin-bottom: 5px;
 }
 
-div#shopCEFBox>ul.list-group>li.list-group-item>p.name {
+div#shopCEFBox > ul.list-group > li.list-group-item > p.name {
     color: #d2d2d2;
     font-family: PT;
     font-weight: bold;
@@ -1615,12 +1685,12 @@ div#shopCEFBox>ul.list-group>li.list-group-item>p.name {
     font-size: 14px;
 }
 
-div#shopCEFBox>ul.list-group>li.list-group-item>hr {
+div#shopCEFBox > ul.list-group > li.list-group-item > hr {
     margin-top: 5px;
     margin-bottom: 5px;
 }
 
-div#shopCEFBox>ul.list-group>li.list-group-item>p.price {
+div#shopCEFBox > ul.list-group > li.list-group-item > p.price {
     color: #34a1b7eb;
     font-family: PT;
     font-size: 15px;
@@ -1628,7 +1698,7 @@ div#shopCEFBox>ul.list-group>li.list-group-item>p.price {
     font-weight: bold;
 }
 
-div#shopCEFBox>ul.list-group>li.list-group-item>input {
+div#shopCEFBox > ul.list-group > li.list-group-item > input {
     outline: none;
     border: none;
     width: 100px;
@@ -1640,7 +1710,7 @@ div#shopCEFBox>ul.list-group>li.list-group-item>input {
     margin-top: 5px;
 }
 
-div#shopCEFBox>ul.list-group>li.list-group-item>button {
+div#shopCEFBox > ul.list-group > li.list-group-item > button {
     font-size: 12px;
     padding-left: 10px;
     padding-right: 10px;
@@ -1655,15 +1725,15 @@ div#shopCEFBox>ul.list-group>li.list-group-item>button {
     transition: all 0.5s ease-in-out;
 }
 
-div#shopCEFBox>ul.list-group>li.list-group-item>button:hover {
+div#shopCEFBox > ul.list-group > li.list-group-item > button:hover {
     cursor: pointer;
     background: #00c2ff63;
     color: #d2d2d2;
 }
 
-#bankAccountManageForm>ul.list-group>li.list-group-item,
-#bankATMbox>div#bankATMbox-OverviewArea>ul.list-group>li.list-group-item,
-div#bankFactionATMForm>ul.list-group>li.list-group-item {
+#bankAccountManageForm > ul.list-group > li.list-group-item,
+#bankATMbox > div#bankATMbox-OverviewArea > ul.list-group > li.list-group-item,
+div#bankFactionATMForm > ul.list-group > li.list-group-item {
     background: #181918 !important;
     float: left;
     padding: 1rem;
@@ -1676,8 +1746,8 @@ div#bankFactionATMForm>ul.list-group>li.list-group-item {
     border: 2px groove #00ff6d63;
 }
 
-#bankATMbox>div#bankATMbox-OverviewArea>ul.list-group>li.list-group-item,
-div#bankFactionATMForm>ul.list-group>li.list-group-item {
+#bankATMbox > div#bankATMbox-OverviewArea > ul.list-group > li.list-group-item,
+div#bankFactionATMForm > ul.list-group > li.list-group-item {
     padding: 2rem !important;
     margin-left: 50px !important;
     width: 200px !important;
@@ -1687,7 +1757,7 @@ div#bankFactionATMForm>ul.list-group>li.list-group-item {
     border-color: #34ad79 !important;
 }
 
-div#bankFactionATMForm>ul.list-group>li.list-group-item {
+div#bankFactionATMForm > ul.list-group > li.list-group-item {
     margin-left: 40px !important;
     width: 230px !important;
     border-color: #ad3434 !important;
@@ -1695,26 +1765,26 @@ div#bankFactionATMForm>ul.list-group>li.list-group-item {
     padding-top: 15px !important;
 }
 
-#bankATMbox>div#bankATMbox-OverviewArea>ul.list-group>li.list-group-item:hover {
+#bankATMbox > div#bankATMbox-OverviewArea > ul.list-group > li.list-group-item:hover {
     opacity: .85;
     cursor: pointer;
 }
 
-#bankATMbox>div#bankATMbox-OverviewArea>ul.list-group>li.list-group-item>p.title,
-div#bankFactionATMForm>ul.list-group>li.list-group-item>p.title {
+#bankATMbox > div#bankATMbox-OverviewArea > ul.list-group > li.list-group-item > p.title,
+div#bankFactionATMForm > ul.list-group > li.list-group-item > p.title {
     color: #fff;
     padding-top: 12px;
     font-family: PEL;
 }
 
-div#bankFactionATMForm>ul.list-group>li.list-group-item>p.title {
+div#bankFactionATMForm > ul.list-group > li.list-group-item > p.title {
     padding-top: 0px !important;
     margin-bottom: 0.6vw;
     transition: all 0.3s ease-in-out;
     border: 1px solid transparent;
 }
 
-div#bankFactionATMForm>ul.list-group>li.list-group-item>p.title:hover {
+div#bankFactionATMForm > ul.list-group > li.list-group-item > p.title:hover {
     cursor: pointer;
     border-color: #0c0c0c;
     background: #ad3434;
@@ -1735,20 +1805,20 @@ input#bankFactionATMForm-WithDrawInput {
     padding: 0.2rem 0rem;
 }
 
-#bankAccountManageForm>ul.list-group>li.list-group-item.new {
+#bankAccountManageForm > ul.list-group > li.list-group-item.new {
     border: 2px dashed #fbfbfb57;
     height: 230px;
     transition: all 0.5s ease-in-out;
     color: #23262b;
 }
 
-#bankAccountManageForm>ul.list-group>li.list-group-item.new:hover {
+#bankAccountManageForm > ul.list-group > li.list-group-item.new:hover {
     background: #317d50 !important;
     color: #d2d2d2 !important;
     cursor: pointer;
 }
 
-#bankAccountManageForm>ul.list-group>li.list-group-item.new>i {
+#bankAccountManageForm > ul.list-group > li.list-group-item.new > i {
     font-size: 50px;
     display: flex;
     justify-content: center;
@@ -1758,7 +1828,7 @@ input#bankFactionATMForm-WithDrawInput {
     left: 100px;
 }
 
-#bankAccountManageForm>ul.list-group>li.list-group-item>p.title {
+#bankAccountManageForm > ul.list-group > li.list-group-item > p.title {
     color: #d2d2d2;
     font-family: PEL;
     font-weight: bold;
@@ -1768,7 +1838,7 @@ input#bankFactionATMForm-WithDrawInput {
     padding-bottom: 10px;
 }
 
-#bankAccountManageForm>ul.list-group>li.list-group-item>p.floatleft {
+#bankAccountManageForm > ul.list-group > li.list-group-item > p.floatleft {
     float: left;
     width: 50%;
     text-align: left;
@@ -1779,7 +1849,7 @@ input#bankFactionATMForm-WithDrawInput {
     font-family: OSR;
 }
 
-#bankAccountManageForm>ul.list-group>li.list-group-item>p.floatright {
+#bankAccountManageForm > ul.list-group > li.list-group-item > p.floatright {
     float: left;
     width: 50%;
     text-align: right;
@@ -1791,7 +1861,7 @@ input#bankFactionATMForm-WithDrawInput {
     font-weight: bold;
 }
 
-#bankAccountManageForm>ul.list-group>li.list-group-item>button {
+#bankAccountManageForm > ul.list-group > li.list-group-item > button {
     margin-left: 8px;
     padding: 9px;
     font-size: 16px;
@@ -1801,24 +1871,24 @@ input#bankFactionATMForm-WithDrawInput {
     transition: all 0.3s ease-in-out;
 }
 
-#bankAccountManageForm>ul.list-group>li.list-group-item>button:hover {
+#bankAccountManageForm > ul.list-group > li.list-group-item > button:hover {
     transform: scale(1.08);
     cursor: pointer;
     background: #34be6994;
 }
 
-#bankAccountManageForm>ul.list-group>li.list-group-item>button:focus {
+#bankAccountManageForm > ul.list-group > li.list-group-item > button:focus {
     box-shadow: 0 0 0 0.1rem rgba(50, 51, 50, 0.5);
 }
 
-div#bankATMbox>div#bankATMbox-PinArea>input#bankATMBox-PinInput,
-div#bankATMbox>div#bankATMbox-DepositArea>input#bankATMBox-DepositBalanceInput,
-div#bankATMbox>div#bankATMbox-DepositArea>input#bankATMBox-DepositInput,
-div#bankATMbox>div#bankATMbox-WithdrawArea>input#bankATMBox-WithdrawInput,
-div#bankATMbox>div#bankATMbox-WithdrawArea>input#bankATMBox-WithdrawBalanceInput,
-div#bankATMbox>div#bankATMbox-DoMoneyTransfer>input#bankATMBox-MoneyTransferBalanceInput,
-div#bankATMbox>div#bankATMbox-DoMoneyTransfer>input#bankATMBox-MoneyTransferTargetInput,
-div#banKATMbox>div#bankATMbox-DoMoneyTransfer>input#bankATMBox-MoneytransferInput {
+div#bankATMbox > div#bankATMbox-PinArea > input#bankATMBox-PinInput,
+div#bankATMbox > div#bankATMbox-DepositArea > input#bankATMBox-DepositBalanceInput,
+div#bankATMbox > div#bankATMbox-DepositArea > input#bankATMBox-DepositInput,
+div#bankATMbox > div#bankATMbox-WithdrawArea > input#bankATMBox-WithdrawInput,
+div#bankATMbox > div#bankATMbox-WithdrawArea > input#bankATMBox-WithdrawBalanceInput,
+div#bankATMbox > div#bankATMbox-DoMoneyTransfer > input#bankATMBox-MoneyTransferBalanceInput,
+div#bankATMbox > div#bankATMbox-DoMoneyTransfer > input#bankATMBox-MoneyTransferTargetInput,
+div#banKATMbox > div#bankATMbox-DoMoneyTransfer > input#bankATMBox-MoneytransferInput {
     margin-top: 20px;
     outline: none;
     border: none;
@@ -1835,13 +1905,13 @@ div#banKATMbox>div#bankATMbox-DoMoneyTransfer>input#bankATMBox-MoneytransferInpu
     transition: all 0.5s ease-in-out;
 }
 
-div#bankATMbox>div#bankATMbox-DepositArea>input#bankATMBox-DepositBalanceInput,
-div#bankATMbox>div#bankATMbox-DepositArea>input#bankATMBox-DepositInput,
-div#bankATMbox>div#bankATMbox-WithdrawArea>input#bankATMBox-WithdrawInput,
-div#bankATMbox>div#bankATMbox-WithdrawArea>input#bankATMBox-WithdrawBalanceInput,
-div#bankATMbox>div#banKATMbox-DoMoneyTransfer>input#bankATMBox-MoneyTransferBalanceInput,
-div#bankATMbox>div#bankATMbox-DoMoneyTransfer>input#bankATMBox-MoneyTransferTargetInput,
-div#banKATMbox>div#bankATMbox-DoMoneyTransfer>input#bankATMBox-MoneytransferInput {
+div#bankATMbox > div#bankATMbox-DepositArea > input#bankATMBox-DepositBalanceInput,
+div#bankATMbox > div#bankATMbox-DepositArea > input#bankATMBox-DepositInput,
+div#bankATMbox > div#bankATMbox-WithdrawArea > input#bankATMBox-WithdrawInput,
+div#bankATMbox > div#bankATMbox-WithdrawArea > input#bankATMBox-WithdrawBalanceInput,
+div#bankATMbox > div#banKATMbox-DoMoneyTransfer > input#bankATMBox-MoneyTransferBalanceInput,
+div#bankATMbox > div#bankATMbox-DoMoneyTransfer > input#bankATMBox-MoneyTransferTargetInput,
+div#banKATMbox > div#bankATMbox-DoMoneyTransfer > input#bankATMBox-MoneytransferInput {
     margin-top: 0 !important;
     padding-bottom: 6px !important;
     padding-top: 6px !important;
@@ -1849,32 +1919,32 @@ div#banKATMbox>div#bankATMbox-DoMoneyTransfer>input#bankATMBox-MoneytransferInpu
     padding-right: 14px !important;
 }
 
-div#bankATMbox>div#bankATMbox-PinArea>input#bankATMBox-PinInput::placeholder,
-div#bankATMbox>div#bankATMbox-DepositArea>input#bankATMBox-DepositBalanceInput::placeholder,
-div#bankATMbox>div#bankATMbox-DepositArea>input#bankATMBox-DepositInput::placeholder,
-div#bankATMbox>div#bankATMbox-WithdrawArea>input#bankATMBox-WithdrawInput::placeholder,
-div#bankATMbox>div#bankATMbox-WithdrawArea>input#bankATMBox-WithdrawBalanceInput::placeholder,
-div#bankATMbox>div#banKATMbox-DoMoneyTransfer>input#bankATMBox-MoneyTransferBalanceInput::placeholder,
-div#bankATMbox>div#bankATMbox-DoMoneyTransfer>input#bankATMBox-MoneyTransferTargetInput::placeholder,
-div#banKATMbox>div#bankATMbox-DoMoneyTransfer>input#bankATMBox-MoneytransferInput::placeholder {
+div#bankATMbox > div#bankATMbox-PinArea > input#bankATMBox-PinInput::placeholder,
+div#bankATMbox > div#bankATMbox-DepositArea > input#bankATMBox-DepositBalanceInput::placeholder,
+div#bankATMbox > div#bankATMbox-DepositArea > input#bankATMBox-DepositInput::placeholder,
+div#bankATMbox > div#bankATMbox-WithdrawArea > input#bankATMBox-WithdrawInput::placeholder,
+div#bankATMbox > div#bankATMbox-WithdrawArea > input#bankATMBox-WithdrawBalanceInput::placeholder,
+div#bankATMbox > div#banKATMbox-DoMoneyTransfer > input#bankATMBox-MoneyTransferBalanceInput::placeholder,
+div#bankATMbox > div#bankATMbox-DoMoneyTransfer > input#bankATMBox-MoneyTransferTargetInput::placeholder,
+div#banKATMbox > div#bankATMbox-DoMoneyTransfer > input#bankATMBox-MoneytransferInput::placeholder {
     color: #313131;
 }
 
-div#bankATMbox>div#bankATMbox-PinArea>input#bankATMBox-PinInput:focus,
-div#bankATMbox>div#bankATMbox-DepositArea>input#bankATMBox-DepositBalanceInput:focus,
-div#bankATMbox>div#bankATMbox-DepositArea>input#bankATMBox-DepositInput:focus,
-div#bankATMbox>div#bankATMbox-WithdrawArea>input#bankATMBox-WithdrawBalanceInput:focus,
-div#bankATMbox>div#bankATMbox-WithdrawArea>input#bankATMBox-WithdrawInput:focus,
-div#bankATMbox>div#banKATMbox-DoMoneyTransfer>input#bankATMBox-MoneyTransferBalanceInput:focus,
-div#bankATMbox>div#bankATMbox-DoMoneyTransfer>input#bankATMBox-MoneyTransferTargetInput:focus,
-div#banKATMbox>div#bankATMbox-DoMoneyTransfer>input#bankATMBox-MoneytransferInput:focus {
+div#bankATMbox > div#bankATMbox-PinArea > input#bankATMBox-PinInput:focus,
+div#bankATMbox > div#bankATMbox-DepositArea > input#bankATMBox-DepositBalanceInput:focus,
+div#bankATMbox > div#bankATMbox-DepositArea > input#bankATMBox-DepositInput:focus,
+div#bankATMbox > div#bankATMbox-WithdrawArea > input#bankATMBox-WithdrawBalanceInput:focus,
+div#bankATMbox > div#bankATMbox-WithdrawArea > input#bankATMBox-WithdrawInput:focus,
+div#bankATMbox > div#banKATMbox-DoMoneyTransfer > input#bankATMBox-MoneyTransferBalanceInput:focus,
+div#bankATMbox > div#bankATMbox-DoMoneyTransfer > input#bankATMBox-MoneyTransferTargetInput:focus,
+div#banKATMbox > div#bankATMbox-DoMoneyTransfer > input#bankATMBox-MoneytransferInput:focus {
     opacity: .8;
     transform: scale(1.05);
 }
 
-div#bankATMbox>div#bankATMbox-DepositArea>p.title,
-div#bankATMbox>div#bankATMbox-WithDrawArea>p.title,
-div#bankATMbox>div#banKATMbox-DoMoneyTransfer>p.title {
+div#bankATMbox > div#bankATMbox-DepositArea > p.title,
+div#bankATMbox > div#bankATMbox-WithDrawArea > p.title,
+div#bankATMbox > div#banKATMbox-DoMoneyTransfer > p.title {
     color: #d2d2d2;
     font-size: 16px;
     font-family: PEL;
@@ -1883,10 +1953,10 @@ div#bankATMbox>div#banKATMbox-DoMoneyTransfer>p.title {
     letter-spacing: 1px;
 }
 
-div#bankATMbox>div#bankATMbox-PinArea>button#bankATMBox-PinInput-Button,
-div#bankATMbox>div#bankATMbox-DepositArea>button#bankATMBox-DepositArea-Button,
-div#bankATMbox>div#bankATMbox-WithdrawArea>button#bankATMBox-WithdrawArea-Button,
-div#bankATMbox>div#bankATMbox-DoMoneyTransfer>button#bankATMBox-DoMoneyTransfer-Button {
+div#bankATMbox > div#bankATMbox-PinArea > button#bankATMBox-PinInput-Button,
+div#bankATMbox > div#bankATMbox-DepositArea > button#bankATMBox-DepositArea-Button,
+div#bankATMbox > div#bankATMbox-WithdrawArea > button#bankATMBox-WithdrawArea-Button,
+div#bankATMbox > div#bankATMbox-DoMoneyTransfer > button#bankATMBox-DoMoneyTransfer-Button {
     border: 1px solid #2194636e;
     margin-top: 12px;
     color: #d2d2d2;
@@ -1903,10 +1973,10 @@ div#bankATMbox>div#bankATMbox-DoMoneyTransfer>button#bankATMBox-DoMoneyTransfer-
     transition: all 0.5s ease-in-out;
 }
 
-div#bankATMbox>div#bankATMbox-PinArea>button#bankATMBox-PinInput-Button:hover,
-div#bankATMbox>div#bankATMbox-DepositArea>button#bankATMBox-DepositArea-Button:hover,
-div#bankATMbox>div#bankATMbox-WithdrawArea>button#bankATMBox-WithdrawArea-Button:hover,
-div#bankATMbox>div#bankATMbox-DoMoneyTransfer>button#bankATMBox-DoMoneyTransfer-Button:hover {
+div#bankATMbox > div#bankATMbox-PinArea > button#bankATMBox-PinInput-Button:hover,
+div#bankATMbox > div#bankATMbox-DepositArea > button#bankATMBox-DepositArea-Button:hover,
+div#bankATMbox > div#bankATMbox-WithdrawArea > button#bankATMBox-WithdrawArea-Button:hover,
+div#bankATMbox > div#bankATMbox-DoMoneyTransfer > button#bankATMBox-DoMoneyTransfer-Button:hover {
     cursor: pointer;
     background: #219463;
     opacity: .8;
@@ -1914,7 +1984,7 @@ div#bankATMbox>div#bankATMbox-DoMoneyTransfer>button#bankATMBox-DoMoneyTransfer-
     border: 1px solid #3b3b3b;
 }
 
-div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionArea-List {
+div#bankATMbox > div#bankATMbox-ViewTransactionArea > ul#bankATMbox-ViewTransactionArea-List {
     display: block;
     float: left;
     top: 46px;
@@ -1922,21 +1992,21 @@ div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionA
     overflow-y: auto;
 }
 
-div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionArea-List>div.card.green {
+div#bankATMbox > div#bankATMbox-ViewTransactionArea > ul#bankATMbox-ViewTransactionArea-List > div.card.green {
     border-left: 5px solid #23a55d !important;
 }
 
-div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionArea-List>div.card.red {
+div#bankATMbox > div#bankATMbox-ViewTransactionArea > ul#bankATMbox-ViewTransactionArea-List > div.card.red {
     border-left: 5px solid #bf3f32 !important;
     background: rgba(204, 70, 70, 0.32) !important;
 }
 
-div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionArea-List>div.card.blue {
+div#bankATMbox > div#bankATMbox-ViewTransactionArea > ul#bankATMbox-ViewTransactionArea-List > div.card.blue {
     border-left: 5px solid #3287bf !important;
     background: rgba(70, 133, 204, 0.32) !important;
 }
 
-div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionArea-List>div.card {
+div#bankATMbox > div#bankATMbox-ViewTransactionArea > ul#bankATMbox-ViewTransactionArea-List > div.card {
     min-width: 600px;
     max-width: 600px;
     max-height: 190px;
@@ -1946,37 +2016,37 @@ div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionA
     background: rgba(82, 191, 128, 0.25) !important;
 }
 
-div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionArea-List>div.card>div.card-header {
+div#bankATMbox > div#bankATMbox-ViewTransactionArea > ul#bankATMbox-ViewTransactionArea-List > div.card > div.card-header {
     font-size: 0.9rem;
     font-family: PEL;
     letter-spacing: 0.1px;
     padding-left: 0.8rem;
 }
 
-div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionArea-List>div.card>div.card-body>h6.card-title {
+div#bankATMbox > div#bankATMbox-ViewTransactionArea > ul#bankATMbox-ViewTransactionArea-List > div.card > div.card-body > h6.card-title {
     font-family: OSR;
     margin-bottom: 5px;
 }
 
-div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionArea-List>div.card>div.card-body>p.card-text {
+div#bankATMbox > div#bankATMbox-ViewTransactionArea > ul#bankATMbox-ViewTransactionArea-List > div.card > div.card-body > p.card-text {
     font-family: PEL;
     font-size: 15px;
     text-align: left;
 }
 
-div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionArea-List>div.card.green>div.card-body>p.card-text>b {
+div#bankATMbox > div#bankATMbox-ViewTransactionArea > ul#bankATMbox-ViewTransactionArea-List > div.card.green > div.card-body > p.card-text > b {
     color: #23a55d !important;
 }
 
-div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionArea-List>div.card.red>div.card-body>p.card-text>b {
+div#bankATMbox > div#bankATMbox-ViewTransactionArea > ul#bankATMbox-ViewTransactionArea-List > div.card.red > div.card-body > p.card-text > b {
     color: #bf3f32 !important;
 }
 
-div#bankATMbox>div#bankATMbox-ViewTransactionArea>ul#bankATMbox-ViewTransactionArea-List>div.card.blue>div.card-body>p.card-text>b {
+div#bankATMbox > div#bankATMbox-ViewTransactionArea > ul#bankATMbox-ViewTransactionArea-List > div.card.blue > div.card-body > p.card-text > b {
     color: #3287bf !important;
 }
 
-div#bankATMbox>span#bankATMbox-CloseBankCef {
+div#bankATMbox > span#bankATMbox-CloseBankCef {
     position: absolute;
     color: #d2d2d2;
     font-family: PEL;
@@ -1995,7 +2065,7 @@ div#bankATMbox>span#bankATMbox-CloseBankCef {
     border-top: none;
 }
 
-div#bankATMbox>span#bankATMbox-CloseBankCef:hover {
+div#bankATMbox > span#bankATMbox-CloseBankCef:hover {
     cursor: pointer;
 }
 
@@ -2005,10 +2075,10 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-div#bankAccountManageForm>span.closeBankManageForm,
-div#shopCEFBox>span.closeBankManageForm,
-div#barberCEFBox>span.closeBarberCEF,
-div#bankFactionATMForm>span.closeBankManageForm {
+div#bankAccountManageForm > span.closeBankManageForm,
+div#shopCEFBox > span.closeBankManageForm,
+div#barberCEFBox > span.closeBarberCEF,
+div#bankFactionATMForm > span.closeBankManageForm {
     background: rgba(0, 0, 0, 0.5);
     color: #d2d2d2;
     padding-left: 10px;
@@ -2025,10 +2095,10 @@ div#bankFactionATMForm>span.closeBankManageForm {
     transition: all 0.5s ease-in-out;
 }
 
-div#bankAccountManageForm>span.closeBankManageForm:hover,
-div#shopCEFBox>span.closeBankManageForm:hover,
-div#barberCEFBox>span.closeBarberCEF:hover,
-div#bankFactionATMForm>span.closeBankManageForm:hover {
+div#bankAccountManageForm > span.closeBankManageForm:hover,
+div#shopCEFBox > span.closeBankManageForm:hover,
+div#barberCEFBox > span.closeBarberCEF:hover,
+div#bankFactionATMForm > span.closeBankManageForm:hover {
     opacity: .8;
     background: rgba(160, 28, 28, 0.68);
     cursor: pointer;
@@ -2064,7 +2134,7 @@ div#barberCEFBox {
     padding-bottom: 12px;
 }
 
-div#barberCEFBox>p.title {
+div#barberCEFBox > p.title {
     text-align: center;
     color: #d2d2d2;
     font-family: PEL;
@@ -2072,7 +2142,7 @@ div#barberCEFBox>p.title {
     margin-top: -10px;
 }
 
-div#barberCEFBox>div.dropdown>div.dropdown-caption>i.fas.fa-angle-double-right.dropdown {
+div#barberCEFBox > div.dropdown > div.dropdown-caption > i.fas.fa-angle-double-right.dropdown {
     background: rgba(0, 0, 0, 0.5);
     font-size: 1rem;
     padding-left: 7px;
@@ -2083,14 +2153,14 @@ div#barberCEFBox>div.dropdown>div.dropdown-caption>i.fas.fa-angle-double-right.d
     margin-right: 0.25rem;
 }
 
-div#barberCEFBox>div.dropdown>div.dropdown-content>div.subboxcontent {
+div#barberCEFBox > div.dropdown > div.dropdown-content > div.subboxcontent {
     background: rgba(10, 10, 10, 0.38);
     padding-left: 8px;
     padding-top: 6px;
     border-bottom: 1px solid #252525;
 }
 
-div#barberCEFBox>div.dropdown>div.dropdown-content>div.subboxcontent>p {
+div#barberCEFBox > div.dropdown > div.dropdown-content > div.subboxcontent > p {
     color: #d2d2d2;
     font-family: PT;
     font-size: 0.8rem;
@@ -2098,12 +2168,12 @@ div#barberCEFBox>div.dropdown>div.dropdown-content>div.subboxcontent>p {
     margin-bottom: 0.05rem;
 }
 
-div#barberCEFBox>div.dropdown>div.dropdown-content>div.subboxcontent>div.nose-pegel {
+div#barberCEFBox > div.dropdown > div.dropdown-content > div.subboxcontent > div.nose-pegel {
     margin-bottom: -0.8rem;
 }
 
-div#barberCEFBox>div.dropdown>div.dropdown-content>div.subboxcontent>div.nose-pegel>form>input.slider,
-div#VehicleFuelstationCEFBox>div.container>form>input#VehicleFuelStationCEFBox-LiterSlider {
+div#barberCEFBox > div.dropdown > div.dropdown-content > div.subboxcontent > div.nose-pegel > form > input.slider,
+div#VehicleFuelstationCEFBox > div.container > form > input#VehicleFuelStationCEFBox-LiterSlider {
     opacity: 0.5;
     -webkit-appearance: none;
     width: 298px;
@@ -2115,7 +2185,7 @@ div#VehicleFuelstationCEFBox>div.container>form>input#VehicleFuelStationCEFBox-L
     border-radius: 2px
 }
 
-div#barberCEFBox>div.dropdown>div.dropdown-content>div.subboxcontent>div.nose-pegel>form>input.slider::-webkit-slider-thumb {
+div#barberCEFBox > div.dropdown > div.dropdown-content > div.subboxcontent > div.nose-pegel > form > input.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 18px;
@@ -2125,7 +2195,7 @@ div#barberCEFBox>div.dropdown>div.dropdown-content>div.subboxcontent>div.nose-pe
     border-radius: 2px;
 }
 
-div#VehicleFuelstationCEFBox>div.container>form>input#VehicleFuelStationCEFBox-LiterSlider::-webkit-slider-thumb {
+div#VehicleFuelstationCEFBox > div.container > form > input#VehicleFuelStationCEFBox-LiterSlider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 18px;
@@ -2135,8 +2205,8 @@ div#VehicleFuelstationCEFBox>div.container>form>input#VehicleFuelStationCEFBox-L
     border-radius: 2px;
 }
 
-div#barberCEFBox>div.dropdown>div.dropdown-content>div.subboxcontent>div.nose-pegel>form>output.numberfield,
-div#VehicleFuelstationCEFBox>div.container>form>output.numberfield {
+div#barberCEFBox > div.dropdown > div.dropdown-content > div.subboxcontent > div.nose-pegel > form > output.numberfield,
+div#VehicleFuelstationCEFBox > div.container > form > output.numberfield {
     display: inline-block;
     background: rgba(0, 0, 0, 0.5);
     font-family: PEL;
@@ -2153,18 +2223,18 @@ div#VehicleFuelstationCEFBox>div.container>form>output.numberfield {
     position: relative;
 }
 
-div#barberCEFBox>div.dropdown {
+div#barberCEFBox > div.dropdown {
     width: 360px;
 }
 
-div#barberCEFBox>div.dropdown div.dropdown-caption {
+div#barberCEFBox > div.dropdown div.dropdown-caption {
     display: block;
     box-sizing: border-box;
     padding: 15px;
     transition: all .25 ease;
 }
 
-div#barberCEFBox>div.dropdown .dropdown-selector {
+div#barberCEFBox > div.dropdown .dropdown-selector {
     position: absolute;
     top: 0;
     left: 0;
@@ -2174,7 +2244,7 @@ div#barberCEFBox>div.dropdown .dropdown-selector {
     opacity: 0;
 }
 
-div#barberCEFBox>button {
+div#barberCEFBox > button {
     background: #1c4a3196;
     border: none;
     color: #d2d2d2;
@@ -2192,12 +2262,12 @@ div#barberCEFBox>button {
     transition: all 0.3s ease-in-out;
 }
 
-div#barberCEFBox>button:hover {
+div#barberCEFBox > button:hover {
     opacity: .9;
     cursor: pointer;
 }
 
-div#barberCEFBox>div.dropdown div.dropdown-content {
+div#barberCEFBox > div.dropdown div.dropdown-content {
     position: relative;
     z-index: 2;
     box-sizing: border-box;
@@ -2207,24 +2277,24 @@ div#barberCEFBox>div.dropdown div.dropdown-content {
     overflow: hidden;
 }
 
-div#barberCEFBox>div.dropdown div.dropdown-content li {
+div#barberCEFBox > div.dropdown div.dropdown-content li {
     list-style: none;
     display: block;
     padding: 15px;
 }
 
-div#barberCEFBox>div.dropdown .dropdown-selector:checked~.dropdown-content {
+div#barberCEFBox > div.dropdown .dropdown-selector:checked ~ .dropdown-content {
     max-height: 500px;
     opacity: 1;
 }
 
-div#barberCEFBox>div.dropdown {
+div#barberCEFBox > div.dropdown {
     font-family: Proxima Nova, Arial, sans-serif;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 14px;
 }
 
-div#barberCEFBox>div.dropdown .dropdown-caption {
+div#barberCEFBox > div.dropdown .dropdown-caption {
     line-height: 20px;
     padding: 5px 10px;
     color: #d2d2d2;
@@ -2235,18 +2305,18 @@ div#barberCEFBox>div.dropdown .dropdown-caption {
     border-radius: 2px;
 }
 
-div#barberCEFBox>div.dropdown .dropdown-caption:after {
+div#barberCEFBox > div.dropdown .dropdown-caption:after {
     -webkit-transform: rotateZ(-45deg);
     transform: rotateZ(-45deg);
     right: 17px;
 }
 
-div#barberCEFBox>.dropdown-selector:checked~.dropdown-caption:before {
+div#barberCEFBox > .dropdown-selector:checked ~ .dropdown-caption:before {
     -webkit-transform: rotateZ(135deg);
     transform: rotateZ(135deg);
 }
 
-div#barberCEFBox>.dropdown-selector:checked~.dropdown-caption:after {
+div#barberCEFBox > .dropdown-selector:checked ~ .dropdown-caption:after {
     -webkit-transform: rotateZ(-135deg);
     transform: rotateZ(-135deg);
 }
@@ -2273,10 +2343,9 @@ div#GarageCEFBox {
     left: 20px;
 }
 
-div#GarageCEFBox>p#GarageCEFBOX-title {
-    display: table;
+div#GarageCEFBox > p#GarageCEFBOX-title {
+    /* display: table;
     color: #d2d2d2;
-    text-align: left;
     margin-left: -35px;
     margin-top: -35px;
     background: rgba(70, 70, 70, 0.25);
@@ -2291,16 +2360,26 @@ div#GarageCEFBox>p#GarageCEFBOX-title {
     border-bottom-right-radius: 4px;
     border: 1px solid #33323240;
     border-top: none;
-    border-left: none;
+    border-left: none; */
+    position: absolute;
+    border-bottom-left-radius: 4px;
+    border-top-right-radius: 12px;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #d2d2d2;
+    text-align: center;
+    font-size: 14px;
+    padding: 4px;
 }
 
-div#GarageCEFBox>img.Pic {
+div#GarageCEFBox > img.Pic {
     width: 150px;
     height: 100px;
     margin-top: -0.5rem;
 }
 
-div#GarageCEFBox>hr {
+div#GarageCEFBox > hr {
     margin-top: 1.45px;
     margin-bottom: 1rem;
     border: 0;
@@ -2309,7 +2388,7 @@ div#GarageCEFBox>hr {
     margin-left: -35px;
 }
 
-div#GarageCEFBox>div.secbox {
+div#GarageCEFBox > div.secbox {
     background: rgba(0, 0, 0, 0.2);
     margin-left: -35px;
     margin-right: -35px;
@@ -2323,20 +2402,20 @@ div#GarageCEFBox>div.secbox {
     border-bottom-right-radius: 12px;
 }
 
-div#GarageCEFBox>div.secbox>p.title {
+div#GarageCEFBox > div.secbox > p.title {
     font-size: 1.25rem;
     margin-bottom: 0.2rem;
     color: #dedbdb;
 }
 
-div#GarageCEFBox>div.secbox>p.infotext {
+div#GarageCEFBox > div.secbox > p.infotext {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 0.9rem;
     word-break: break-word;
 }
 
-div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList {
+div#GarageCEFBox > div.secbox > ul#GarageCEFBox-VehList {
     margin-bottom: 0.5rem;
     display: block;
     float: left;
@@ -2344,7 +2423,7 @@ div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList {
     overflow-y: auto;
 }
 
-div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList>li.list-group-item {
+div#GarageCEFBox > div.secbox > ul#GarageCEFBox-VehList > li.list-group-item {
     background: #31313170;
     padding: 0 0;
     text-align: left;
@@ -2358,8 +2437,8 @@ div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList>li.list-group-item {
     filter: grayscale(0.3);
 }
 
-div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList>li.list-group-item>span.vehname,
-div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList>li.list-group-item>span.vehkz {
+div#GarageCEFBox > div.secbox > ul#GarageCEFBox-VehList > li.list-group-item > span.vehname,
+div#GarageCEFBox > div.secbox > ul#GarageCEFBox-VehList > li.list-group-item > span.vehkz {
     color: #c3bcbc;
     font-family: OSL;
     font-weight: bold;
@@ -2371,32 +2450,32 @@ div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList>li.list-group-item>span.vehk
     border-top: none;
 }
 
-div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList>li.list-group-item>span.vehname {
+div#GarageCEFBox > div.secbox > ul#GarageCEFBox-VehList > li.list-group-item > span.vehname {
     border-bottom-right-radius: 4px;
     border-top-left-radius: 4px;
     border-left: none;
     float: left;
 }
 
-div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList>li.list-group-item>span.vehkz {
+div#GarageCEFBox > div.secbox > ul#GarageCEFBox-VehList > li.list-group-item > span.vehkz {
     float: right;
     border-right: none;
     border-bottom-left-radius: 4px;
     border-top-right-radius: 4px;
 }
 
-div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList>li.list-group-item>img {
+div#GarageCEFBox > div.secbox > ul#GarageCEFBox-VehList > li.list-group-item > img {
     margin-left: 35px;
     margin-bottom: 15px;
 }
 
-div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList>li.list-group-item.green:hover {
+div#GarageCEFBox > div.secbox > ul#GarageCEFBox-VehList > li.list-group-item.green:hover {
     cursor: pointer;
     background: rgba(40, 158, 99, 0.3);
     filter: grayscale(0);
 }
 
-div#GarageCEFBox>div.secbox>ul#GarageCEFBox-VehList>li.list-group-item.red:hover {
+div#GarageCEFBox > div.secbox > ul#GarageCEFBox-VehList > li.list-group-item.red:hover {
     cursor: pointer;
     background: rgba(152, 36, 36, 0.3);
     filter: grayscale(0);
@@ -2427,7 +2506,7 @@ div#AnimationMenuBox {
     top: 150px;
 }
 
-div#AnimationMenuBox>p.title {
+div#AnimationMenuBox > p.title {
     background-color: #c03939;
     text-align: center;
     padding: 10px;
@@ -2439,43 +2518,43 @@ div#AnimationMenuBox>p.title {
     margin-bottom: 0;
 }
 
-div#AnimationMenuBox>ul {
+div#AnimationMenuBox > ul {
     overflow: auto;
     max-height: 34vw;
 }
 
-div#AnimationMenuBox>ul>li {
+div#AnimationMenuBox > ul > li {
     position: relative;
     height: 2.8vw !important;
     border-bottom: 2px solid #1b1b1b;
 }
 
-div#AnimationMenuBox>ul>li:nth-child(odd) {
+div#AnimationMenuBox > ul > li:nth-child(odd) {
     background: rgba(58, 58, 58, 0.62);
 }
 
-div#AnimationMenuBox>ul>li:nth-child(even) {
+div#AnimationMenuBox > ul > li:nth-child(even) {
     background: rgba(82, 82, 82, 0.62);
 }
 
-div#AnimationMenuBox>ul>li>span {
+div#AnimationMenuBox > ul > li > span {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 14px;
     transition: all 0.3s ease-in-out;
 }
 
-div#AnimationMenuBox>ul>li>span:hover {
+div#AnimationMenuBox > ul > li > span:hover {
     font-size: 15px;
     cursor: pointer;
 }
 
-div#AnimationMenuBox>ul>li>button {
+div#AnimationMenuBox > ul > li > button {
     float: right;
     margin-left: 0.2vw;
 }
 
-div#AnimationMenuBox>ul>li>input {
+div#AnimationMenuBox > ul > li > input {
     float: right;
     position: absolute;
     width: 4vw;
@@ -2490,7 +2569,7 @@ div#AnimationMenuBox>ul>li>input {
     font-size: 14px;
 }
 
-div#VehicleShopCEFBox>p.closebtn {
+div#VehicleShopCEFBox > p.closebtn {
     display: table;
     color: #ffffba;
     text-align: left;
@@ -2511,23 +2590,23 @@ div#VehicleShopCEFBox>p.closebtn {
     font-size: 14px;
 }
 
-div#jobCenterApplyForm>p.closebtn,
-div#VehicleFuelstationCEFBox>p.closebtn,
-div#ClothesShopCEFBox>p.closebtn,
-div#GarageCEFBox>p.closebtn,
-div#GivePlayerBillCEFBox>p.closebtn,
-div#RecievePlayerBillCEFBox>p.closebtn,
-div#FactionStorageCEFBox>p.closebtn,
-div#VehicleTrunkCEFBox>p.closebtn,
-div#VehicleLicensingCEFBox>p.closebtn,
-div#PlayerSearchInventoryCEFBox>p.closebtn,
-div#GivePlayerLicenseCEFBox>p.closebtn,
-div#Minijob-PilotCEFBox>p.closebtn,
-div#Minijob-BusDriverCEFBox>p.closebtn,
-div#HotelManageCEFBox>p.closebtn,
-div#HouseEntranceCEFBox>p.closebtn,
-div#HouseManageCEFBox>p.closebtn,
-div#TownhallHouseSelectorBox>p.closebtn {
+div#jobCenterApplyForm > p.closebtn,
+div#VehicleFuelstationCEFBox > p.closebtn,
+div#ClothesShopCEFBox > p.closebtn,
+div#GarageCEFBox > p.closebtn,
+div#GivePlayerBillCEFBox > p.closebtn,
+div#RecievePlayerBillCEFBox > p.closebtn,
+div#FactionStorageCEFBox > p.closebtn,
+div#VehicleTrunkCEFBox > p.closebtn,
+div#VehicleLicensingCEFBox > p.closebtn,
+div#PlayerSearchInventoryCEFBox > p.closebtn,
+div#GivePlayerLicenseCEFBox > p.closebtn,
+div#Minijob-PilotCEFBox > p.closebtn,
+div#Minijob-BusDriverCEFBox > p.closebtn,
+div#HotelManageCEFBox > p.closebtn,
+div#HouseEntranceCEFBox > p.closebtn,
+div#HouseManageCEFBox > p.closebtn,
+div#TownhallHouseSelectorBox > p.closebtn {
     display: table;
     color: #ffffba;
     text-align: left;
@@ -2549,42 +2628,42 @@ div#TownhallHouseSelectorBox>p.closebtn {
     font-size: 14px;
 }
 
-div#VehicleShopCEFBox>p.closebtn:hover,
-div#jobCenterApplyForm>p.closebtn:hover,
-div#VehicleFuelstationCEFBox>p.closebtn:hover,
-div#ClothesShopCEFBox>p.closebtn:hover,
-div#GarageCEFBox>p.closebtn:hover,
-div#GivePlayerBillCEFBox>p.closebtn:hover,
-div#RecievePlayerBillCEFBox>p.closebtn:hover,
-div#FactionStorageCEFBox>p.closebtn:hover,
-div#VehicleTrunkCEFBox>p.closebtn:hover,
-div#VehicleLicensingCEFBox>p.closebtn:hover,
-div#PlayerSearchInventoryCEFBox>p.closebtn:hover,
-div#GivePlayerLicenseCEFBox>p.closebtn:hover,
-div#Minijob-PilotCEFBox>p.closebtn:hover,
-div#Minijob-BusDriverCEFBox>p.closebtn:hover,
-div#HotelManageCEFBox>p.closebtn:hover,
-div#HouseEntranceCEFBox>p.closebtn:hover,
-div#HouseManageCEFBox>p.closebtn:hover,
-div#TownhallHouseSelectorBox>p.closebtn:hover {
+div#VehicleShopCEFBox > p.closebtn:hover,
+div#jobCenterApplyForm > p.closebtn:hover,
+div#VehicleFuelstationCEFBox > p.closebtn:hover,
+div#ClothesShopCEFBox > p.closebtn:hover,
+div#GarageCEFBox > p.closebtn:hover,
+div#GivePlayerBillCEFBox > p.closebtn:hover,
+div#RecievePlayerBillCEFBox > p.closebtn:hover,
+div#FactionStorageCEFBox > p.closebtn:hover,
+div#VehicleTrunkCEFBox > p.closebtn:hover,
+div#VehicleLicensingCEFBox > p.closebtn:hover,
+div#PlayerSearchInventoryCEFBox > p.closebtn:hover,
+div#GivePlayerLicenseCEFBox > p.closebtn:hover,
+div#Minijob-PilotCEFBox > p.closebtn:hover,
+div#Minijob-BusDriverCEFBox > p.closebtn:hover,
+div#HotelManageCEFBox > p.closebtn:hover,
+div#HouseEntranceCEFBox > p.closebtn:hover,
+div#HouseManageCEFBox > p.closebtn:hover,
+div#TownhallHouseSelectorBox > p.closebtn:hover {
     cursor: pointer;
     background: rgba(214, 28, 28, 0.72);
     color: #fff;
     opacity: 1;
 }
 
-div#VehicleShopCEFBox>img {
+div#VehicleShopCEFBox > img {
     margin-top: -25px;
     width: 96px;
 }
 
-div#VehicleShopCEFBox>p#VehicleShopCEFBox-title {
+div#VehicleShopCEFBox > p#VehicleShopCEFBox-title {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 16px;
 }
 
-div#VehicleShopCEFBox>hr {
+div#VehicleShopCEFBox > hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 0;
@@ -2593,25 +2672,25 @@ div#VehicleShopCEFBox>hr {
     width: 560px;
 }
 
-div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList {
+div#VehicleShopCEFBox > ul#VehicleShopCEFBox-StoreList {
     margin-top: 1.5rem;
     overflow-y: auto;
     max-height: 450px;
 }
 
-div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList>li {
+div#VehicleShopCEFBox > ul#VehicleShopCEFBox-StoreList > li {
     padding: 0.2rem 0.75rem;
     text-align: left;
     border: 1px solid #000000 !important;
 }
 
-div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList>li>img {
+div#VehicleShopCEFBox > ul#VehicleShopCEFBox-StoreList > li > img {
     width: 6.9vw;
     float: left;
     margin-top: 52px;
 }
 
-div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList>li>span {
+div#VehicleShopCEFBox > ul#VehicleShopCEFBox-StoreList > li > span {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 12px;
@@ -2620,22 +2699,22 @@ div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList>li>span {
     position: relative;
 }
 
-div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList>li>span>b {
+div#VehicleShopCEFBox > ul#VehicleShopCEFBox-StoreList > li > span > b {
     color: #2c9c64e0;
 }
 
-div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList>li:nth-child(odd) {
+div#VehicleShopCEFBox > ul#VehicleShopCEFBox-StoreList > li:nth-child(odd) {
     background: rgba(25, 25, 25, 0.35);
     padding: 0.2rem 0.75rem;
     text-align: left;
     border: 1px solid #000000 !important;
 }
 
-div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList>li:nth-child(even) {
+div#VehicleShopCEFBox > ul#VehicleShopCEFBox-StoreList > li:nth-child(even) {
     background: rgba(16, 16, 16, 0.59);
 }
 
-div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList>li>span.buybtn {
+div#VehicleShopCEFBox > ul#VehicleShopCEFBox-StoreList > li > span.buybtn {
     color: #d8d8d89e;
     font-family: none;
     font-size: unset;
@@ -2653,7 +2732,7 @@ div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList>li>span.buybtn {
     margin-left: 5px;
 }
 
-div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList>li>span.buybtn:hover {
+div#VehicleShopCEFBox > ul#VehicleShopCEFBox-StoreList > li > span.buybtn:hover {
     cursor: pointer;
     background: #00ff7e73;
     color: #d2d2d2;
@@ -2677,14 +2756,14 @@ div#VehicleShopCEFBox>ul#VehicleShopCEFBox-StoreList>li>span.buybtn:hover {
     background: rgb(85, 85, 85);
 }
 
-div#HouseManageCEFBox>ul.nav.nav-tabs {
+div#HouseManageCEFBox > ul.nav.nav-tabs {
     border-bottom: 1px transparent;
     display: flex;
     justify-content: center;
     padding-bottom: 20px;
 }
 
-div#HouseManageCEFBox>ul.nav.nav-tabs>li {
+div#HouseManageCEFBox > ul.nav.nav-tabs > li {
     background: #dc2944;
     padding: 5px 15px 5px 15px;
     border: 1px solid #000000b5;
@@ -2694,17 +2773,17 @@ div#HouseManageCEFBox>ul.nav.nav-tabs>li {
     transition: all 0.3s ease-in-out;
 }
 
-div#HouseManageCEFBox>ul.nav.nav-tabs>li.active {
+div#HouseManageCEFBox > ul.nav.nav-tabs > li.active {
     opacity: 1;
     filter: grayscale(0);
 }
 
-div#HouseManageCEFBox>ul.nav.nav-tabs>li>a {
+div#HouseManageCEFBox > ul.nav.nav-tabs > li > a {
     color: #d2d2d2 !important;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>h3,
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>div.container>p.title {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > h3,
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > div.container > p.title {
     color: #dd2943;
     text-transform: uppercase;
     font-size: 20px;
@@ -2713,17 +2792,17 @@ div#HouseManageCEFBox>div.tab-content>div.tab-pane>div.container>p.title {
     margin-bottom: 3px;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>div.container>p.title {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > div.container > p.title {
     font-size: 16px !important;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>p {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > p {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 13px;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>div.container>input {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > div.container > input {
     text-align: center;
     background: rgba(14, 14, 14, 0.95);
     outline: none;
@@ -2735,27 +2814,27 @@ div#HouseManageCEFBox>div.tab-content>div.tab-pane>div.container>input {
     border-radius: 1px;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>div.container>button {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > div.container > button {
     border-radius: 2px;
     margin-left: 5px;
     padding: 4px 8px 4px 8px;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>div.container {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > div.container {
     margin-bottom: 25px;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>div.container>button.btn-success {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > div.container > button.btn-success {
     padding: 4px 15px 4px 15px;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>ul {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > ul {
     display: flex;
     position: relative;
     align-items: center;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>ul>li {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > ul > li {
     position: relative;
     width: 80%;
     max-width: 80%;
@@ -2763,7 +2842,7 @@ div#HouseManageCEFBox>div.tab-content>div.tab-pane>ul>li {
     border-radius: 2px;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>ul>li>p {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > ul > li > p {
     margin-bottom: 0;
     color: #d2d2d2;
     font-family: PEL;
@@ -2772,22 +2851,22 @@ div#HouseManageCEFBox>div.tab-content>div.tab-pane>ul>li>p {
     padding-left: 4%;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>ul>li:nth-child(odd) {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > ul > li:nth-child(odd) {
     background: rgb(12, 12, 12);
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>ul>li:nth-child(even) {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > ul > li:nth-child(even) {
     background: rgb(16, 16, 16);
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>ul>li>button {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > ul > li > button {
     float: right;
     margin-right: 2%;
     opacity: .15;
     transition: all 0.3s ease-in-out;
 }
 
-div#HouseManageCEFBox>div.tab-content>div.tab-pane>ul>li>button:hover {
+div#HouseManageCEFBox > div.tab-content > div.tab-pane > ul > li > button:hover {
     opacity: 1;
 }
 
@@ -2814,16 +2893,16 @@ div#UserFactionCard {
     overflow: hidden;
 }
 
-div#UserIdCard>span.nameTitle,
-div#UserIdCard>span.addresstitle,
-div#UserIdCard>span.birthdatetitle,
-div#UserFactionCard>span.birthdatetitle,
-div#UserIdCard>span.birthplacetitle,
-div#UserIdCard>span.signaturetitle,
-div#UserFactionCard>span.signaturetitle,
-div#UserFactionCard>span.nameTitle,
-div#UserFactionCard>span.ranknametitle,
-div#UserFactionCard>span.servicenumbertitle {
+div#UserIdCard > span.nameTitle,
+div#UserIdCard > span.addresstitle,
+div#UserIdCard > span.birthdatetitle,
+div#UserFactionCard > span.birthdatetitle,
+div#UserIdCard > span.birthplacetitle,
+div#UserIdCard > span.signaturetitle,
+div#UserFactionCard > span.signaturetitle,
+div#UserFactionCard > span.nameTitle,
+div#UserFactionCard > span.ranknametitle,
+div#UserFactionCard > span.servicenumbertitle {
     position: absolute;
     color: #e83e56;
     top: 5.8vw;
@@ -2834,37 +2913,37 @@ div#UserFactionCard>span.servicenumbertitle {
     text-align: center;
 }
 
-div#UserIdCard>span.nameTitle,
-div#UserIdCard>span.addresstitle,
-div#UserFactionCard>span.nameTitle,
-div#UserFactionCard>span.ranknametitle {
+div#UserIdCard > span.nameTitle,
+div#UserIdCard > span.addresstitle,
+div#UserFactionCard > span.nameTitle,
+div#UserFactionCard > span.ranknametitle {
     left: 2.5vw;
 }
 
-div#UserIdCard>span.birthdatetitle,
-div#UserFactionCard>span.birthdatetitle,
-div#UserIdCard>span.birthplacetitle,
-div#UserFactionCard>span.servicenumbertitle {
+div#UserIdCard > span.birthdatetitle,
+div#UserFactionCard > span.birthdatetitle,
+div#UserIdCard > span.birthplacetitle,
+div#UserFactionCard > span.servicenumbertitle {
     right: 2vw;
 }
 
-div#UserIdCard>span.addresstitle,
-div#UserFactionCard>span.ranknametitle,
-div#UserIdCard>span.birthplacetitle,
-div#UserFactionCard>span.servicenumbertitle {
+div#UserIdCard > span.addresstitle,
+div#UserFactionCard > span.ranknametitle,
+div#UserIdCard > span.birthplacetitle,
+div#UserFactionCard > span.servicenumbertitle {
     top: 9.4vw;
 }
 
-div#UserIdCard>span#UserIdCard-name,
-div#UserIdCard>span#UserIdCard-address,
-div#UserIdCard>span#UserIdCard-birthdate,
-div#UserFactionCard>span#UserFactionCard-birthdate,
-div#UserIdCard>span#UserIdCard-birthplace,
-div#UserIdCard>span#UserIdCard-signature,
-div#UserFactionCard>span#UserFactionCard-signature,
-div#UserFactionCard>span#UserFactionCard-name,
-div#UserFactionCard>span#UserFactionCard-rankname,
-div#UserFactionCard>span#UserFactionCard-serviceNumber {
+div#UserIdCard > span#UserIdCard-name,
+div#UserIdCard > span#UserIdCard-address,
+div#UserIdCard > span#UserIdCard-birthdate,
+div#UserFactionCard > span#UserFactionCard-birthdate,
+div#UserIdCard > span#UserIdCard-birthplace,
+div#UserIdCard > span#UserIdCard-signature,
+div#UserFactionCard > span#UserFactionCard-signature,
+div#UserFactionCard > span#UserFactionCard-name,
+div#UserFactionCard > span#UserFactionCard-rankname,
+div#UserFactionCard > span#UserFactionCard-serviceNumber {
     position: absolute;
     color: #fff;
     top: 7vw;
@@ -2874,35 +2953,35 @@ div#UserFactionCard>span#UserFactionCard-serviceNumber {
     text-align: center;
 }
 
-div#UserIdCard>span#UserIdCard-name,
-div#UserFactionCard>span#UserFactionCard-name,
-div#UserIdCard>span#UserIdCard-address,
-div#UserFactionCard>span#UserFactionCard-rankname {
+div#UserIdCard > span#UserIdCard-name,
+div#UserFactionCard > span#UserFactionCard-name,
+div#UserIdCard > span#UserIdCard-address,
+div#UserFactionCard > span#UserFactionCard-rankname {
     left: 1.4vw;
 }
 
-div#UserIdCard>span#UserIdCard-address,
-div#UserFactionCard>span#UserFactionCard-rankname,
-div#UserIdCard>span#UserIdCard-birthplace,
-div#UserFactionCard>span#UserFactionCard-serviceNumber {
+div#UserIdCard > span#UserIdCard-address,
+div#UserFactionCard > span#UserFactionCard-rankname,
+div#UserIdCard > span#UserIdCard-birthplace,
+div#UserFactionCard > span#UserFactionCard-serviceNumber {
     top: 10.6vw;
 }
 
-div#UserIdCard>span#UserIdCard-birthdate,
-div#UserFactionCard>span#UserFactionCard-birthdate,
-div#UserIdCard>span#UserIdCard-birthplace,
-div#UserFactionCard>span#UserFactionCard-serviceNumber {
+div#UserIdCard > span#UserIdCard-birthdate,
+div#UserFactionCard > span#UserFactionCard-birthdate,
+div#UserIdCard > span#UserIdCard-birthplace,
+div#UserFactionCard > span#UserFactionCard-serviceNumber {
     right: 0.5vw;
 }
 
-div#UserIdCard>span.signaturetitle,
-div#UserFactionCard>span.signaturetitle {
+div#UserIdCard > span.signaturetitle,
+div#UserFactionCard > span.signaturetitle {
     top: 14vw;
     left: 2.5vw;
 }
 
-div#UserIdCard>span#UserIdCard-signature,
-div#UserFactionCard>span#UserFactionCard-signature {
+div#UserIdCard > span#UserIdCard-signature,
+div#UserFactionCard > span#UserFactionCard-signature {
     font-family: DB;
     top: 15.5vw;
     left: -1.8vw;
@@ -2913,8 +2992,8 @@ div#UserFactionCard>span#UserFactionCard-signature {
     text-align: center;
 }
 
-div#UserIdCard>span#UserIdCard-joinInfo,
-div#UserFactionCard>span#UserFactionCard-joinInfo {
+div#UserIdCard > span#UserIdCard-joinInfo,
+div#UserFactionCard > span#UserFactionCard-joinInfo {
     position: absolute;
     color: #ffffffb8;
     bottom: 0.2vw;
@@ -2925,20 +3004,20 @@ div#UserFactionCard>span#UserFactionCard-joinInfo {
     text-align: center;
 }
 
-ul#TownHallHouseSelector-List>li:nth-child(odd) {
+ul#TownHallHouseSelector-List > li:nth-child(odd) {
     background: rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid black;
 }
 
-ul#TownHallHouseSelector-List>li:nth-child(even) {
+ul#TownHallHouseSelector-List > li:nth-child(even) {
     background: rgba(255, 255, 255, 0.15);
 }
 
-ul#TownHallHouseSelector-List>li {
+ul#TownHallHouseSelector-List > li {
     text-align: left;
 }
 
-ul#TownHallHouseSelector-List>li>span {
+ul#TownHallHouseSelector-List > li > span {
     color: #d2d2d2;
     font-family: PEL;
     font-size: 14px;
@@ -2946,7 +3025,7 @@ ul#TownHallHouseSelector-List>li>span {
     position: relative;
 }
 
-ul#TownHallHouseSelector-List>li>button {
+ul#TownHallHouseSelector-List > li > button {
     float: right;
     background: #505050;
     border-color: #0000008a;
@@ -2955,12 +3034,12 @@ ul#TownHallHouseSelector-List>li>button {
     margin-left: 5px;
 }
 
-ul#TownHallHouseSelector-List>li>button.btn-danger:hover {
+ul#TownHallHouseSelector-List > li > button.btn-danger:hover {
     background: #dc3545;
     opacity: 1;
 }
 
-ul#TownHallHouseSelector-List>li>button.btn-success:hover {
+ul#TownHallHouseSelector-List > li > button.btn-success:hover {
     opacity: 1;
     background: #35dc68;
 }
@@ -2981,7 +3060,7 @@ div#VehicleTuningMainMenuBox {
     right: 3%;
 }
 
-div#VehicleTuningMainMenuBox>span.title {
+div#VehicleTuningMainMenuBox > span.title {
     position: absolute;
     height: 8%;
     text-align: center;
@@ -2993,8 +3072,8 @@ div#VehicleTuningMainMenuBox>span.title {
     font-size: 230%;
 }
 
-div#VehicleTuningMainMenuBox>.circlediv,
-div#VehicleTuningMenuColorSelection>.circlediv {
+div#VehicleTuningMainMenuBox > .circlediv,
+div#VehicleTuningMenuColorSelection > .circlediv {
     position: absolute;
     background: rgba(0, 0, 0, 0.2);
     height: 5%;
@@ -3010,13 +3089,13 @@ div#VehicleTuningMenuColorSelection>.circlediv {
     -webkit-transition: all 0.3s ease-in-out;
 }
 
-div#VehicleTuningMainMenuBox>.circlediv:hover,
-div#VehicleTuningMenuColorSelection>.circlediv:hover {
+div#VehicleTuningMainMenuBox > .circlediv:hover,
+div#VehicleTuningMenuColorSelection > .circlediv:hover {
     color: #4c4444;
     background: rgba(255, 255, 255, 0.2);
 }
 
-div#VehicleTuningMainMenuBox>ul {
+div#VehicleTuningMainMenuBox > ul {
     position: absolute;
     height: 92%;
     width: 100%;
@@ -3029,7 +3108,7 @@ div#VehicleTuningMainMenuBox>ul {
     margin-block-start: 0;
 }
 
-div#VehicleTuningMainMenuBox>ul>li {
+div#VehicleTuningMainMenuBox > ul > li {
     position: relative;
     float: left;
     height: 30%;
@@ -3045,21 +3124,21 @@ div#VehicleTuningMainMenuBox>ul>li {
     transition: all 0.3s ease-in-out;
 }
 
-div#VehicleTuningMainMenuBox>ul>li:hover .actionbtn {
+div#VehicleTuningMainMenuBox > ul > li:hover .actionbtn {
     display: block !important;
     transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
 }
 
-div#VehicleTuningMainMenuBox>ul>li>img {
+div#VehicleTuningMainMenuBox > ul > li > img {
     position: absolute;
     width: 45%;
     padding: 23% 0% 0% 28%;
     margin: 25% 0% 0% 10%;
 }
 
-div#VehicleTuningMainMenuBox>ul>li>span.title,
-div#VehicleTuningMenuColorSelection>span.title {
+div#VehicleTuningMainMenuBox > ul > li > span.title,
+div#VehicleTuningMenuColorSelection > span.title {
     position: absolute;
     height: 18%;
     padding-top: 3%;
@@ -3071,33 +3150,33 @@ div#VehicleTuningMenuColorSelection>span.title {
     background: linear-gradient(to right, #4784cf99 0%, #ca76ab38 100%);
 }
 
-div#VehicleTuningMainMenuBox>ul>li>.far-div1,
-div#VehicleTuningMainMenuBox>ul>li>.far-div2 {
+div#VehicleTuningMainMenuBox > ul > li > .far-div1,
+div#VehicleTuningMainMenuBox > ul > li > .far-div2 {
     font-size: 175%;
     position: absolute;
     top: 46%;
     color: #307aa7;
 }
 
-div#VehicleTuningMainMenuBox>ul>li>.far-div1 {
+div#VehicleTuningMainMenuBox > ul > li > .far-div1 {
     right: 3%;
 }
 
-div#VehicleTuningMainMenuBox>ul>li>.far-div1:hover {
+div#VehicleTuningMainMenuBox > ul > li > .far-div1:hover {
     cursor: pointer;
     color: #30a74b;
 }
 
-div#VehicleTuningMainMenuBox>ul>li>.far-div2 {
+div#VehicleTuningMainMenuBox > ul > li > .far-div2 {
     left: 3%;
 }
 
-div#VehicleTuningMainMenuBox>ul>li>.far-div2:hover {
+div#VehicleTuningMainMenuBox > ul > li > .far-div2:hover {
     cursor: pointer;
     color: #a73030;
 }
 
-div#VehicleTuningMainMenuBox>ul>li>span.actionbtn {
+div#VehicleTuningMainMenuBox > ul > li > span.actionbtn {
     display: none;
     position: absolute;
     bottom: 0%;
@@ -3113,7 +3192,7 @@ div#VehicleTuningMainMenuBox>ul>li>span.actionbtn {
     -webkit-transition: all 0.3s ease-in-out;
 }
 
-div#VehicleTuningMainMenuBox>ul>li>span.actionbtn:hover {
+div#VehicleTuningMainMenuBox > ul > li > span.actionbtn:hover {
     background: linear-gradient(to right, #18692238 0%, #47cf6299 100%);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
@@ -3133,11 +3212,11 @@ div#VehicleTuningMenuColorSelection {
     right: 34%;
 }
 
-div#VehicleTuningMenuColorSelection>span.title {
+div#VehicleTuningMenuColorSelection > span.title {
     font-size: 180% !important;
 }
 
-div#VehicleTuningMenuColorSelection>div.inputArea {
+div#VehicleTuningMenuColorSelection > div.inputArea {
     position: absolute;
     top: 20%;
     background: rgba(156, 156, 156, 0.15);
@@ -3151,7 +3230,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea {
     box-shadow: 1px 4px 22px rgba(56, 56, 56, 0.5);
 }
 
-div#VehicleTuningMenuColorSelection>button {
+div#VehicleTuningMenuColorSelection > button {
     position: relative;
     top: 72%;
     background-color: #4a4a4a;
@@ -3163,12 +3242,12 @@ div#VehicleTuningMenuColorSelection>button {
     transition: all 0.3s ease-in-out;
 }
 
-div#VehicleTuningMenuColorSelection>button:hover {
+div#VehicleTuningMenuColorSelection > button:hover {
     opacity: 1;
     background-color: #29ac5b;
 }
 
-div#VehicleTuningMenuColorSelection>div.inputArea>span.title {
+div#VehicleTuningMenuColorSelection > div.inputArea > span.title {
     position: absolute;
     width: 100%;
     height: 20%;
@@ -3180,9 +3259,9 @@ div#VehicleTuningMenuColorSelection>div.inputArea>span.title {
     background: linear-gradient(to left, #ca76ab91 0%, #4784cfc9 100%);
 }
 
-div#VehicleTuningMenuColorSelection>div.inputArea>input#rgbRvalField,
-div#VehicleTuningMenuColorSelection>div.inputArea>input#rgbGvalField,
-div#VehicleTuningMenuColorSelection>div.inputArea>input#rgbBvalField {
+div#VehicleTuningMenuColorSelection > div.inputArea > input#rgbRvalField,
+div#VehicleTuningMenuColorSelection > div.inputArea > input#rgbGvalField,
+div#VehicleTuningMenuColorSelection > div.inputArea > input#rgbBvalField {
     position: absolute;
     height: 20%;
     width: 58%;
@@ -3197,24 +3276,24 @@ div#VehicleTuningMenuColorSelection>div.inputArea>input#rgbBvalField {
     font-weight: bold;
 }
 
-div#VehicleTuningMenuColorSelection>div.inputArea>input#rgbRvalField {
+div#VehicleTuningMenuColorSelection > div.inputArea > input#rgbRvalField {
     background: rgba(220, 29, 29, 0.44);
     top: 24%;
 }
 
-div#VehicleTuningMenuColorSelection>div.inputArea>input#rgbGvalField {
+div#VehicleTuningMenuColorSelection > div.inputArea > input#rgbGvalField {
     background: rgba(29, 220, 124, 0.44);
     top: 48%;
 }
 
-div#VehicleTuningMenuColorSelection>div.inputArea>input#rgbBvalField {
+div#VehicleTuningMenuColorSelection > div.inputArea > input#rgbBvalField {
     background: rgba(29, 104, 220, 0.44);
     top: 72%;
 }
 
-div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbRval,
-div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbGval,
-div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
+div#VehicleTuningMenuColorSelection > div.inputArea > label#rgbRval,
+div#VehicleTuningMenuColorSelection > div.inputArea > label#rgbGval,
+div#VehicleTuningMenuColorSelection > div.inputArea > label#rgbBval {
     position: absolute;
     height: 20%;
     width: 30%;
@@ -3232,17 +3311,17 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     font-size: 100%;
 }
 
-div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbRval {
+div#VehicleTuningMenuColorSelection > div.inputArea > label#rgbRval {
     background: rgba(220, 29, 29, 0.44);
     top: 24%;
 }
 
-div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbGval {
+div#VehicleTuningMenuColorSelection > div.inputArea > label#rgbGval {
     background: rgba(29, 220, 124, 0.44);
     top: 48%;
 }
 
-div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
+div#VehicleTuningMenuColorSelection > div.inputArea > label#rgbBval {
     background: rgba(29, 104, 220, 0.44);
     top: 72%;
 }
@@ -3265,7 +3344,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
 }
 
 .picker,
-.slide-wrapper>.slide {
+.slide-wrapper > .slide {
     cursor: crosshair;
     float: left;
 }
@@ -3362,7 +3441,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     margin-bottom: 3%;
 }
 
-#HUDlist-labelbox>div {
+#HUDlist-labelbox > div {
     position: relative;
     width: 80%;
     height: 80%;
@@ -3399,7 +3478,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     height: auto;
 }
 
-#HUDlist-carousel>div>div {
+#HUDlist-carousel > div > div {
     width: 100%;
     height: 100%;
     overflow-x: hidden;
@@ -3441,12 +3520,15 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     .phone-header-text {
         font-size: 18px;
     }
+
     #phone-screen-call {
         font-size: 25px !important;
     }
+
     .phone-scaleable {
         font-size: 30px !important;
     }
+
     #phone-screen-sms {
         font-size: 18px !important;
     }
@@ -3459,9 +3541,11 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     .phone-header-text {
         font-size: 14px;
     }
+
     #phone-banner {
         font-size: 14px;
     }
+
     .phone-scaleable {
         font-size: 22px !important;
     }
@@ -3591,8 +3675,8 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     padding: 14px;
 }
 
-#phone-sms-header-chat>span,
-#phone-sms-header-chat>svg {
+#phone-sms-header-chat > span,
+#phone-sms-header-chat > svg {
     display: inline-block;
 }
 
@@ -3686,7 +3770,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     padding-right: 13%;
 }
 
-#phone-chat-emotes>span {
+#phone-chat-emotes > span {
     position: absolute;
     display: inline;
     right: 20%;
@@ -3694,7 +3778,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     transition: .3s;
 }
 
-#phone-chat-emotes>.dropdown-menu {
+#phone-chat-emotes > .dropdown-menu {
     margin-right: 10%;
     padding: 4%;
 }
@@ -3711,7 +3795,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     margin: auto;
     float: right;
     display: block;
-    background-color: rgb(36, 119, 108)!important;
+    background-color: rgb(36, 119, 108) !important;
 }
 
 .phone-header-shadow {
@@ -3976,7 +4060,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     padding-left: 8px;
 }
 
-#phone-screen-police>div>h3 {
+#phone-screen-police > div > h3 {
     font-family: PEL;
     font-weight: bold;
     letter-spacing: 1px;
@@ -3991,7 +4075,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     padding: 0 10%;
 }
 
-#phone-police-main-footer>.btn {
+#phone-police-main-footer > .btn {
     width: 100%;
     margin: 0;
     margin-top: 5%;
@@ -4012,8 +4096,8 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     width: 100%;
 }
 
-#phone-police-querylist-head>.background-police,
-#phone-police-mostwanted-head>.background-police {
+#phone-police-querylist-head > .background-police,
+#phone-police-mostwanted-head > .background-police {
     width: 100%;
     height: 7%;
 }
@@ -4059,8 +4143,8 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     padding-top: 10%;
 }
 
-#phone-police-querylist-main>.btn,
-#phone-police-mostwanted-main>.btn {
+#phone-police-querylist-main > .btn,
+#phone-police-mostwanted-main > .btn {
     text-transform: none;
     padding: 10px;
     width: 90%;
@@ -4103,12 +4187,12 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     padding-bottom: 20%;
 }
 
-#phone-police-addwanteds-content>div {
+#phone-police-addwanteds-content > div {
     width: 100%;
 }
 
-#phone-police-addwanteds-stgb>.btn,
-#phone-police-addwanteds-active>.btn {
+#phone-police-addwanteds-stgb > .btn,
+#phone-police-addwanteds-active > .btn {
     text-transform: none;
     padding: 10px;
     width: 95%;
@@ -4116,19 +4200,19 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     text-align: left;
 }
 
-#phone-police-addwanteds-stgb>.collapse {
+#phone-police-addwanteds-stgb > .collapse {
     list-style: none;
     width: 100%;
     margin: 0;
 }
 
-#phone-police-addwanteds-stgb>.collapsing {
+#phone-police-addwanteds-stgb > .collapsing {
     -webkit-transition: none;
     transition: none;
     display: none;
 }
 
-#phone-police-addwanteds-stgb>.collapse>.btn {
+#phone-police-addwanteds-stgb > .collapse > .btn {
     text-transform: none;
     padding: 10px;
     width: 90%;
@@ -4137,7 +4221,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     text-align: left;
 }
 
-#phone-police-wanteds-list>.wanted-entry {
+#phone-police-wanteds-list > .wanted-entry {
     text-transform: none;
     text-align: left;
     padding: 2% 5%;
@@ -4146,7 +4230,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     border: 1px solid #000000a1;
 }
 
-#phone-police-wanteds-list>.wanted-entry>.close {
+#phone-police-wanteds-list > .wanted-entry > .close {
     float: right;
     vertical-align: top;
     top: 3px;
@@ -4154,7 +4238,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     opacity: .25;
 }
 
-#phone-police-wanteds-list>.wanted-entry>.close:hover {
+#phone-police-wanteds-list > .wanted-entry > .close:hover {
     opacity: 1;
 }
 
@@ -4257,11 +4341,11 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
 }
 
 .phone-grey-color-header {
-    //background-image: linear-gradient(120deg, rgb(51, 51, 51) 0, rgb(26, 26, 26) 100%) !important;
+    background-image: linear-gradient(120deg, rgb(51, 51, 51) 0, rgb(26, 26, 26) 100%) !important;
 }
 
 .phone-blue-color-header {
-    //background: linear-gradient(40deg, #4e8ff1, #303f9f) !important;
+    background: linear-gradient(40deg, #4e8ff1, #303f9f) !important;
 }
 
 #phone-screen-calling {
@@ -4294,14 +4378,14 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
 
 .btn-rounded {
     padding: 10px !important;
-    border-radius: 50%!important;
+    border-radius: 50% !important;
 }
 
 .btn-dial {
     width: 50px;
     height: 50px;
     padding: 10px !important;
-    border-radius: 50%!important;
+    border-radius: 50% !important;
 }
 
 .phone-dial-table {
@@ -4326,23 +4410,31 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     background-image: url("../utils/img/phone/messenger.png") !important;
     height: 100%;
     width: 100%;
+    border-top-right-radius: 0.5vw;
+    border-top-left-radius: 0.5vw;
 }
 
 .layer1 {
     /* Display */
     z-index: 100;
     background-image: url("../utils/img/phone/layer1.png");
+    border-top-right-radius: 0.5vw;
+    border-top-left-radius: 0.5vw;
 }
 
 .layer2 {
     /* Bg image */
     z-index: 101;
-  background-image: url("../utils/img/phone/stellar.png");
+    background-image: url("../utils/img/phone/stellar.png");
+    border-top-right-radius: 0.5vw;
+    border-top-left-radius: 0.5vw;
 
 }
 
 #phone-screen-call {
     background-image: url("../utils/img/phone/call.png");
+    border-top-right-radius: 0.5vw;
+    border-top-left-radius: 0.5vw;
 }
 
 .layer3 {
@@ -4350,6 +4442,8 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     z-index: 200;
     background-image: url("../utils/img/phone/layer3.png");
     pointer-events: none;
+    border-top-right-radius: 0.5vw;
+    border-top-left-radius: 0.5vw;
 }
 
 .layer4 {
@@ -4357,6 +4451,8 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     background-image: url("../utils/img/phone/layer4.png");
     pointer-events: none;
     display: none;
+    border-top-right-radius: 0.5vw;
+    border-top-left-radius: 0.5vw;
 }
 
 
@@ -4425,16 +4521,16 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     opacity: 0;
 }
 
-.switch-input:checked~.switch-label {
+.switch-input:checked ~ .switch-label {
     background: #E1B42B;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
-.switch-input:checked~.switch-label:before {
+.switch-input:checked ~ .switch-label:before {
     opacity: 0;
 }
 
-.switch-input:checked~.switch-label:after {
+.switch-input:checked ~ .switch-label:after {
     opacity: 1;
 }
 
@@ -4464,7 +4560,7 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
 }
 
-.switch-input:checked~.switch-handle {
+.switch-input:checked ~ .switch-handle {
     left: 74px;
     box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
 }
@@ -4515,12 +4611,12 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
     background: #eceeef;
 }
 
-.switch-flat .switch-input:checked~.switch-label {
+.switch-flat .switch-input:checked ~ .switch-label {
     background: #FFF;
     border-color: #0088cc;
 }
 
-.switch-flat .switch-input:checked~.switch-handle {
+.switch-flat .switch-input:checked ~ .switch-handle {
     left: 72px;
     background: #0088cc;
     box-shadow: none;
@@ -4528,117 +4624,170 @@ div#VehicleTuningMenuColorSelection>div.inputArea>label#rgbBval {
 
 .huds {
     height: 100%;
-    width: 100%; }
-    .huds .hud.dashboard {
-      position: absolute;
-      height: 40px;
-      bottom: 60px;
-      left: 70%;
-      -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-      transform: translateX(-50%); }
-      .huds .hud.dashboard div {
-        display: inline-block;
-        vertical-align: middle;
-        margin: 0 10px; }
-        .huds .hud.dashboard div svg {
-          opacity: .2; }
-      .huds .hud.dashboard .active svg {
-        opacity: .8; }
-      .huds .hud.dashboard .clignotant.active svg {
-        -webkit-animation: fadeLoop 1s step-start infinite !important;
-        animation: fadeLoop 1s step-start infinite !important; }
-        .huds .hud.dashboard .clignotant.active svg path {
-          stroke: #f39c12 !important; }
-  .huds .hud.dashboard .seatbelt.active {
-    opacity: 1;
-  }
-  .huds .hud.dashboard .seatbelt.active svg {
+    width: 100%;
+}
+
+.huds .hud.dashboard {
+    position: absolute;
+    height: 40px;
+    bottom: 60px;
+    left: 70%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.huds .hud.dashboard div {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.huds .hud.dashboard div svg {
+    opacity: .2;
+}
+
+.huds .hud.dashboard .active svg {
+    opacity: .8;
+}
+
+.huds .hud.dashboard .clignotant.active svg {
     -webkit-animation: fadeLoop 1s step-start infinite !important;
-    animation: fadeLoop 1s step-start infinite !important; }
-  .huds .hud.dashboard .seatbelt.active svg path {
-    fill: #f39c12 !important; }
-      .huds .hud.dashboard .feu-position.active svg {
-        opacity: 1; }
-        .huds .hud.dashboard .feu-position.active svg path {
-          fill: #2ecc71; }
-      .huds .hud.dashboard .feu-route.active svg {
-        opacity: 1; }
-        .huds .hud.dashboard .feu-route.active svg path {
-          fill: #0984e3; }
-      .huds .hud.dashboard .speedometer {
-        width: 100px;
-        height: 100px;
-        text-align: center;
-        -webkit-clip-path: polygon(100% 45%, 80% 45%, 60% 100%, 0% 100%, 0% 0%, 100% 0%);
-        clip-path: polygon(100% 45%, 80% 45%, 60% 100%, 0% 100%, 0% 0%, 100% 0%); }
-        .huds .hud.dashboard .speedometer svg {
-          opacity: 1;
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          -webkit-transform: scale(2) translate(-25%, -25%);
-          -ms-transform: scale(2) translate(-25%, -25%);
-          transform: scale(2) translate(-25%, -25%); }
-        .huds .hud.dashboard .speedometer .outer {
-          opacity: .3;
-          -webkit-transform: rotate(180deg) scale(1.2);
-          -ms-transform: rotate(180deg) scale(1.2);
-          transform: rotate(180deg) scale(1.2); }
-        .huds .hud.dashboard .speedometer .text {
-          width: 100%;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          -webkit-transform: translate(-50%, -50%);
-          -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-          margin: 0; }
-          .huds .hud.dashboard .speedometer .text .speed {
-            color: white;
-            font-size: 26px;
-            display: block; }
-          .huds .hud.dashboard .speedometer .text .kmh {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 10px;
-            display: block;
-            text-transform: uppercase; }
-    .huds .hud.fuel {
-      -webkit-transform: scale(0.7);
-      -ms-transform: scale(0.7);
-      transform: scale(0.7);
-      position: absolute;
-      bottom: -60px;
-      right: 87px;
-      position: absolute;
-      text-align: center;
-      margin: 15px 0; }
-      .huds .hud.fuel span {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 12px;
-        display: block;
-        margin-top: 0px; }
-      .huds .hud.fuel svg {
-        opacity: 1 !important; }
-  
-  .hud.fuel span {
+    animation: fadeLoop 1s step-start infinite !important;
+}
+
+.huds .hud.dashboard .clignotant.active svg path {
+    stroke: #f39c12 !important;
+}
+
+.huds .hud.dashboard .seatbelt.active {
+    opacity: 1;
+}
+
+.huds .hud.dashboard .seatbelt.active svg {
+    -webkit-animation: fadeLoop 1s step-start infinite !important;
+    animation: fadeLoop 1s step-start infinite !important;
+}
+
+.huds .hud.dashboard .seatbelt.active svg path {
+    fill: #f39c12 !important;
+}
+
+.huds .hud.dashboard .feu-position.active svg {
+    opacity: 1;
+}
+
+.huds .hud.dashboard .feu-position.active svg path {
+    fill: #2ecc71;
+}
+
+.huds .hud.dashboard .feu-route.active svg {
+    opacity: 1;
+}
+
+.huds .hud.dashboard .feu-route.active svg path {
+    fill: #0984e3;
+}
+
+.huds .hud.dashboard .speedometer {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    -webkit-clip-path: polygon(100% 45%, 80% 45%, 60% 100%, 0% 100%, 0% 0%, 100% 0%);
+    clip-path: polygon(100% 45%, 80% 45%, 60% 100%, 0% 100%, 0% 0%, 100% 0%);
+}
+
+.huds .hud.dashboard .speedometer svg {
+    opacity: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: scale(2) translate(-25%, -25%);
+    -ms-transform: scale(2) translate(-25%, -25%);
+    transform: scale(2) translate(-25%, -25%);
+}
+
+.huds .hud.dashboard .speedometer .outer {
+    opacity: .3;
+    -webkit-transform: rotate(180deg) scale(1.2);
+    -ms-transform: rotate(180deg) scale(1.2);
+    transform: rotate(180deg) scale(1.2);
+}
+
+.huds .hud.dashboard .speedometer .text {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
+.huds .hud.dashboard .speedometer .text .speed {
+    color: white;
+    font-size: 26px;
+    display: block;
+}
+
+.huds .hud.dashboard .speedometer .text .kmh {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 10px;
+    display: block;
+    text-transform: uppercase;
+}
+
+.huds .hud.fuel {
+    -webkit-transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    transform: scale(0.7);
+    position: absolute;
+    bottom: -60px;
+    right: 87px;
+    position: absolute;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.huds .hud.fuel span {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 12px;
+    display: block;
+    margin-top: 0px;
+}
+
+.huds .hud.fuel svg {
+    opacity: 1 !important;
+}
+
+.hud.fuel span {
     opacity: 0;
-    margin-top: -4px; }
-  
-  .hud.fuel span:after {
+    margin-top: -4px;
+}
+
+.hud.fuel span:after {
     position: absolute;
     content: '%';
     top: 1px;
     right: 4px;
-    font-size: 7px; }
-  
-  .hud.fuel g {
+    font-size: 7px;
+}
+
+.hud.fuel g {
     -webkit-transform: translate(16px, 13px);
     -ms-transform: translate(16px, 13px);
-    transform: translate(16px, 13px); }
-  
-  .orangeStroke {
-    stroke: #ffaf02; }
-  
-  .redStroke {
-    stroke: #FF0245; }
+    transform: translate(16px, 13px);
+}
+
+.orangeStroke {
+    stroke: #ffaf02;
+}
+
+.redStroke {
+    stroke: #FF0245;
+}
+
+.d-none {
+    display: none !important;
+}
