@@ -13,6 +13,8 @@ namespace Altv_Roleplay.Factories
         public float Fuel { get { return _Fuel; } set { _Fuel = value; this.SetSyncedMetaData("VEHICLE_FUEL", value); } }
         private float _KM { get; set; }
         public float KM { get { return _KM; } set { _KM = value; this.SetSyncedMetaData("VEHICLE_KM", value); } }
+        private bool _Locked { get; set; }
+        public bool Locked { get { return _Locked; } set { _Locked = value; this.SetSyncedMetaData("VEHICLE_LOCKED", value); } }
 
         public ClassicVehicle(IntPtr nativePointer, ushort id) : base(nativePointer, id)
         {

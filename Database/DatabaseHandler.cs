@@ -1,6 +1,5 @@
 ﻿using AltV.Net;
 using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
 using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
@@ -838,7 +837,7 @@ namespace Altv_Roleplay.Database
 
                 foreach (var veh in ServerVehicleShops.ServerVehicleShopsItems_.Where(x => x.isOnlyOnlineAvailable == false))
                 {
-                    IVehicle altVeh = Alt.CreateVehicle((uint)veh.hash, new Position(veh.posX, veh.posY, veh.posZ), new Rotation(veh.rotX, veh.rotY, veh.rotZ)); //ToDo: Fahrzeug ggf. unzerstörbar machen & freezen
+                    ClassicVehicle altVeh = (ClassicVehicle)Alt.CreateVehicle((uint)veh.hash, new Position(veh.posX, veh.posY, veh.posZ), new Rotation(veh.rotX, veh.rotY, veh.rotZ)); //ToDo: Fahrzeug ggf. unzerstörbar machen & freezen
                     altVeh.LockState = VehicleLockState.Locked;
                     altVeh.EngineOn = false;
                     altVeh.NumberplateText = "CARDEALER";
