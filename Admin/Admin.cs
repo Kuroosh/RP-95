@@ -26,8 +26,10 @@ namespace Altv_Roleplay.Admin
         [Command("pos")]
         public static void GetPlayerPosition(ClassicPlayer player)
         {
-            player?.SendChatMessage("X : " + player.Position.X + " | Y : " + player.Position.Y + " | Z : " + player.Position.Z);
-            Core.Debug.OutputDebugString("X : " + player.Position.X + " | Y : " + player.Position.Y + " | Z : " + player.Position.Z);
+            player?.SendChatMessage("POS : X : " + player.Position.X + " | Y : " + player.Position.Y + " | Z : " + player.Position.Z + " |");
+            player?.SendChatMessage("ROT X : " + player.Rotation.Roll + " | Y : " + player.Rotation.Pitch + " | Z : " + player.Rotation.Yaw);
+            Core.Debug.OutputDebugString("POS X : " + player.Position.X + " | Y : " + player.Position.Y + " | Z : " + player.Position.Z);
+            Core.Debug.OutputDebugString("ROT X : " + player.Rotation.Roll + " | Y : " + player.Rotation.Pitch + " | Z : " + player.Rotation.Yaw);
         }
 
         [Command("setadminlvl")]
@@ -123,7 +125,7 @@ namespace Altv_Roleplay.Admin
                 if (player == null || !player.Exists) return;
                 if (player.AdminLevel() < ADMINLVL_OWNER) { HUDHandler.SendNotification(player, 4, 5000, "Du benötigst mind. Admin-LVL " + ADMINLVL_OWNER); return; }
                 int count = 0;
-                foreach (var veh in Alt.Server.GetVehicles().ToList().Where(x => x != null && x.Exists && x.HasVehicleId()))
+                foreach (ClassicVehicle veh in Alt.Server.GetVehicles().Where(x => x != null && x.Exists && x.HasVehicleId()))
                 {
                     if (veh == null || !veh.Exists || !veh.HasVehicleId()) continue;
                     int currentGarageId = ServerVehicles.GetVehicleGarageId(veh);
@@ -143,7 +145,7 @@ namespace Altv_Roleplay.Admin
             {
                 if (player == null || !player.Exists || string.IsNullOrWhiteSpace(plate)) return;
                 if (player.AdminLevel() < ADMINLVL_OWNER) { HUDHandler.SendNotification(player, 4, 5000, "Du benötigst mind. Admin-LVL " + ADMINLVL_OWNER); return; }
-                var vehicle = Alt.Server.GetVehicles().ToList().FirstOrDefault(x => x != null && x.Exists && x.HasVehicleId() && (int)x.GetVehicleId() > 0 && x.NumberplateText.ToLower() == plate.ToLower());
+                ClassicVehicle vehicle = (ClassicVehicle)Alt.Server.GetVehicles().ToList().FirstOrDefault(x => x != null && x.Exists && x.HasVehicleId() && (int)x.GetVehicleId() > 0 && x.NumberplateText.ToLower() == plate.ToLower());
                 if (vehicle == null) return;
                 ServerVehicles.SetVehicleInGarage(vehicle, true, 25);
                 HUDHandler.SendNotification(player, 4, 5000, $"Fahrzeug mit dem Kennzeichen {plate} in Garage 1 (Pillbox) eingeparkt");
