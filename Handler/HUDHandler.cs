@@ -86,6 +86,7 @@ namespace Altv_Roleplay.Handler
                 ClassicVehicle veh = (ClassicVehicle)player.Vehicle;
                 veh.KM += fKM;
                 float FuelCalculation = km / 1000f;
+
                 if ((veh.Fuel -= FuelCalculation) <= 0) { veh.EngineOn = false; veh.Fuel = 0; return; }
                 veh.Fuel -= FuelCalculation;
                 Core.Debug.OutputDebugString("Fuel from " + player.Username + " | fKM : " + fKM + " | " + FuelCalculation.ToString());
