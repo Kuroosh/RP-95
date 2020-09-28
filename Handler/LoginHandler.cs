@@ -29,7 +29,7 @@ namespace Altv_Roleplay.Handler
             player.SetPlayerCurrentMinijobActionCount(0);
             player.SetPlayerFarmingActionMeta("None");
             User.SetPlayerOnline(player, 0);
-            player.EmitLocked("Client:Pedcreator:spawnPed", ServerPeds.GetAllServerPeds());
+            player.Emit("Client:Pedcreator:spawnPed", ServerPeds.GetAllServerPeds());
             CreateLoginBrowser(player);
         }
 
@@ -205,7 +205,7 @@ namespace Altv_Roleplay.Handler
             Characters.SetCharacterCurrentFunkFrequence(charid, null);
             Alt.Log($"Eingeloggt {client.Name}");
             Alt.Emit("PlayerLoggedIn", client);
-            client.EmitLocked("SaltyChat_OnConnected");
+            client.Emit("SaltyChat_OnConnected");
             if (Characters.IsCharacterUnconscious(charid))
             {
                 DeathHandler.openDeathscreen(client);
