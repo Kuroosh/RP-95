@@ -12,13 +12,13 @@ function spawnPed(model, x, y, z, rotation) {
     let modelHash = game.getHashKey(model);
     new Promise((resolve, reject) => {
         if (game.hasModelLoaded(modelHash)) {
-            resolve();
+            return resolve();
         }
         game.requestModel(modelHash);
         const timer = alt.setInterval(() => {
             if (game.hasModelLoaded(modelHash)) {
                 alt.clearInterval(timer);
-                resolve();
+                return resolve();
             }
         }, 10);
     }).then(() => {
