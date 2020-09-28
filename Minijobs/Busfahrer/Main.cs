@@ -43,7 +43,6 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
                 if (charId <= 0) return;
                 if (ServerVehicles.GetVehicleType(vehicle) != 2) return;
                 if (ServerVehicles.GetVehicleOwner(vehicle) != charId) return;
-
                 if (player.GetPlayerCurrentMinijob() != "Busfahrer") return;
 
                 if (player.GetPlayerCurrentMinijobStep() != "DRIVE_BACK_TO_START") return;
