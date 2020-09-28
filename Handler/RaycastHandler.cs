@@ -243,7 +243,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Raycast:LockVehicle")]
-        public static void LockVehicle(IPlayer player, IVehicle veh)
+        public static void LockVehicle(IPlayer player, ClassicVehicle veh)
         {
             if (player == null || !player.Exists || veh == null || !veh.Exists) return;
             Stopwatch stopwatch = new Stopwatch();
@@ -259,7 +259,7 @@ namespace Altv_Roleplay.Handler
             {
                 if (ServerVehicles.GetVehicleFactionId(veh) == 0) return;
                 string factionPlate = ServerFactions.GetFactionShortName(ServerVehicles.GetVehicleFactionId(veh));
-                if (!vehPlate.Contains(factionPlate)) { return; }
+                if (!vehPlate.Contains(factionPlate)) return;
                 if (!CharactersInventory.ExistCharacterItem(charId, "Fahrzeugschluessel " + factionPlate, "inventory")) { HUDHandler.SendNotification(player, 3, 5000, $"Du hast keinen Schlüssel für dieses Fahrzeug ({factionPlate})."); return; }
             }
             else if (ServerVehicles.GetVehicleType(veh) == 2)
@@ -270,6 +270,7 @@ namespace Altv_Roleplay.Handler
 
             bool LockState = ServerVehicles.GetVehicleLockState(veh);
             ServerVehicles.SetVehicleLockState(veh, !LockState);
+            veh.Locked = !LockState;
             if (LockState == true) { HUDHandler.SendNotification(player, 2, 2000, "Du hast das Fahrzeug aufgeschlossen."); }
             else
             {

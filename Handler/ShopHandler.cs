@@ -239,8 +239,6 @@ namespace Altv_Roleplay.Handler
         {
             try
             {
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
                 if (player == null || !player.Exists || shopid <= 0 || hash == "") return;
                 ulong fHash = Convert.ToUInt64(hash);
                 int charId = User.GetPlayerOnline(player);
@@ -255,8 +253,10 @@ namespace Altv_Roleplay.Handler
                 if (ServerVehicles.ExistServerVehiclePlate($"NL{rnd}")) { BuyVehicle(player, shopid, hash); return; }
                 if (!CharactersInventory.ExistCharacterItem(charId, "Bargeld", "inventory") || CharactersInventory.GetCharacterItemAmount(charId, "Bargeld", "inventory") < Price) { HUDHandler.SendNotification(player, 4, 5000, $"Du hast nicht genügend Bargeld dabei ({Price}$)."); return; }
                 CharactersInventory.RemoveCharacterItemAmount(charId, "Bargeld", Price, "inventory");
-                Server_Vehicles vehh = ServerVehicles.CreateVehicle(fHash, charId, 0, 0, false, 100, ParkOut, RotOut, $"NL{rnd}", 134, 134);
-                vehh.fuel = 100;
+                ClassicVehicle vehh = ServerVehicles.CreateVehicle(fHash, charId, 0, 0, false, 100, ParkOut, RotOut, $"NL{rnd}", 0, 0);
+                vehh.Fuel = 100;
+                vehh.PrimaryColorRgb = new Rgba(0, 0, 0, 0);
+                vehh.SecondaryColorRgb = new Rgba(0, 0, 0, 0);
                 CharactersInventory.AddCharacterItem(charId, $"Fahrzeugschluessel NL{rnd}", 2, "inventory");
                 HUDHandler.SendNotification(player, 2, 5000, $"Fahrzeug erfolgreich gekauft.");
                 if (!CharactersTablet.HasCharacterTutorialEntryFinished(charId, "buyVehicle"))
@@ -264,9 +264,6 @@ namespace Altv_Roleplay.Handler
                     CharactersTablet.SetCharacterTutorialEntryState(charId, "buyVehicle", true);
                     HUDHandler.SendNotification(player, 1, 2500, "Erfolg freigeschaltet: Mobilität");
                 }
-
-                stopwatch.Stop();
-                if (stopwatch.Elapsed.Milliseconds > 30) Alt.Log($"{charId} - BuyVehicle benötigte {stopwatch.Elapsed.Milliseconds}ms");
             }
             catch (Exception e)
             {

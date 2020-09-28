@@ -96,7 +96,7 @@ namespace Altv_Roleplay.Handler
                     CharactersInventory.RemoveCharacterItemAmount(charId, itemname, itemAmount, fromContainer);
                     Characters.SetCharacterHunger(charId, Characters.GetCharacterHunger(charId) + ServerItems.GetItemDesireFood(itemname) * itemAmount);
                     Characters.SetCharacterThirst(charId, Characters.GetCharacterThirst(charId) + ServerItems.GetItemDesireDrink(itemname) * itemAmount);
-                    player.EmitLocked("Client:HUD:UpdateDesire", Characters.GetCharacterHunger(charId), Characters.GetCharacterThirst(charId)); //HUD updaten
+                    //player.EmitLocked("Client:HUD:UpdateDesire", Characters.GetCharacterHunger(charId), Characters.GetCharacterThirst(charId)); //HUD updaten
                 }
                 else if (itemname == "Beamtenschutzweste")
                 {

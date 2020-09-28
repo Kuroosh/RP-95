@@ -2,8 +2,8 @@
 using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
-using Altv_Roleplay.models;
 using Altv_Roleplay.Services;
 using Altv_Roleplay.Utils;
 using System;
@@ -256,8 +256,8 @@ namespace Altv_Roleplay.Handler
                 DateTime dateTime = DateTime.Now;
                 CharactersBank.SetBankAccountMoney(bankAccountNumber, (CharactersBank.GetBankAccountMoney(bankAccountNumber) - Price));
                 ServerBankPapers.CreateNewBankPaper(bankAccountNumber, dateTime.ToString("dd.MM.yyyy"), dateTime.ToString("HH.mm"), "Ausgehende Überweisung", "Online Fahrzeugshop", $"Fahrzeugkauf: {ServerVehicles.GetVehicleNameOnHash(fHash)}", $"-{Price}", "Online Banking");
-                Server_Vehicles veh = ServerVehicles.CreateVehicle(fHash, charId, 0, 0, true, 5, new Position(0, 0, 0), new Rotation(0, 0, 0), $"NL{rnd}", fColor, fColor);
-                veh.fuel = 100;
+                ClassicVehicle veh = ServerVehicles.CreateVehicle(fHash, charId, 0, 0, true, 5, new Position(0, 0, 0), new Rotation(0, 0, 0), $"NL{rnd}", fColor, fColor);
+                veh.Fuel = 100;
                 CharactersInventory.AddCharacterItem(charId, $"Fahrzeugschluessel NL{rnd}", 2, "inventory");
                 HUDHandler.SendNotification(player, 2, 5000, $"Fahrzeug '{ServerVehicles.GetVehicleNameOnHash(fHash)}' erfolgreich für {Price}$ erworben.<br>Lieferort: La Mesa Fahrzeuggarage.");
             }

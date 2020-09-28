@@ -14,15 +14,18 @@ namespace Altv_Roleplay.Handler
         public static void CreateHUDBrowser(IPlayer client)
         {
             if (client == null || !client.Exists) return;
-            client.EmitLocked("Client:HUD:CreateCEF", Characters.GetCharacterHunger(User.GetPlayerOnline(client)), Characters.GetCharacterThirst(User.GetPlayerOnline(client)));
+            client.Emit("Client:HUD:CreateCEF", Characters.GetCharacterHunger(User.GetPlayerOnline(client)), Characters.GetCharacterThirst(User.GetPlayerOnline(client)));
         }
 
         [ScriptEvent(ScriptEventType.PlayerEnterVehicle)]
-        public static void OnPlayerEnterVehicle_Handler(ClassicVehicle vehicle, IPlayer client, byte seat)
+        public static void OnPlayerEnterVehicle_Handler(ClassicVehicle vehicle, ClassicPlayer client, byte seat)
         {
             try
             {
-                if (client == null || !client.Exists) return;
+                if (client is null) return;
+                bool LockState = ServerVehicles.GetVehicleLockState(vehicle);
+                client.Emit("ChangeVehicleLockState", LockState);
+                client.Emit("Player:SetSeatbeltState", client.Seatbelt);
                 client.Emit("Client:HUD:updateHUDPosInVeh", true, vehicle.Fuel, vehicle.KM);
             }
             catch (Exception e)
@@ -32,12 +35,13 @@ namespace Altv_Roleplay.Handler
         }
 
         [ScriptEvent(ScriptEventType.PlayerLeaveVehicle)]
-        public static void OnPlayerLeaveVehicle_Handler(IVehicle vehicle, IPlayer client, byte seat)
+        public static void OnPlayerLeaveVehicle_Handler(ClassicVehicle vehicle, ClassicPlayer client, byte seat)
         {
             try
             {
                 if (client == null || !client.Exists) return;
-                client.EmitLocked("Client:HUD:updateHUDPosInVeh", false, 0, 0);
+                client.Seatbelt = false;
+                client.Emit("Client:HUD:updateHUDPosInVeh", false, 0, 0);
             }
             catch (Exception e)
             {
@@ -69,17 +73,22 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Vehicle:UpdateVehicleKM")]
-        public static void UpdateVehicleKM(IPlayer player, float km)
+        public static void UpdateVehicleKM(ClassicPlayer player, float km)
         {
             //KM = bei 600 Meter = 600
             //600 / 1000 = 0,6   = 0,6km ?
             try
             {
-                if (player == null || !player.Exists || km <= 0) return;
+                Core.Debug.OutputDebugString(player.Username + " | " + km);
+                if (player is null || km <= 0) return;
                 if (!player.IsInVehicle || player.Vehicle == null) return;
                 float fKM = km / 1000;
                 ClassicVehicle veh = (ClassicVehicle)player.Vehicle;
-                veh.KM = (fKM += veh.KM);
+                veh.KM += fKM;
+                float FuelCalculation = km / 1000f;
+                if ((veh.Fuel -= FuelCalculation) <= 0) { veh.EngineOn = false; veh.Fuel = 0; return; }
+                veh.Fuel -= FuelCalculation;
+                Core.Debug.OutputDebugString("Fuel from " + player.Username + " | fKM : " + fKM + " | " + FuelCalculation.ToString());
             }
             catch (Exception e)
             {

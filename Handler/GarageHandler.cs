@@ -3,6 +3,7 @@ using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.models;
 using Altv_Roleplay.Utils;
@@ -208,12 +209,13 @@ namespace Altv_Roleplay.Handler
                     if (vehicle != null) { HUDHandler.SendNotification(player, 4, 5000, $"Ein unerwarteter Fehler ist aufgetreten. [GARAGE-002]"); return; }
                     var finalVeh = ServerVehicles.ServerVehicles_.FirstOrDefault(v => v.id == vehID);
                     if (finalVeh == null) { HUDHandler.SendNotification(player, 4, 5000, $"Ein unerwarteter Fehler ist aufgetreten. [GARAGE-001]"); return; }
-                    var altVeh = await AltAsync.Do(() => Alt.CreateVehicle((uint)finalVeh.hash, ServerGarages.GetGarageSlotPosition(garageid, curPid), (ServerGarages.GetGarageSlotRotation(garageid, curPid))));
+                    ClassicVehicle altVeh = await AltAsync.Do(() => (ClassicVehicle)Alt.CreateVehicle((uint)finalVeh.hash, ServerGarages.GetGarageSlotPosition(garageid, curPid), (ServerGarages.GetGarageSlotRotation(garageid, curPid))));
                     altVeh.LockState = VehicleLockState.Locked;
                     altVeh.EngineOn = false;
                     altVeh.NumberplateText = finalVeh.plate;
                     altVeh.SetVehicleId((ulong)finalVeh.id);
                     altVeh.SetVehicleTrunkState(false);
+                    altVeh.Fuel = 100;
                     ServerVehicles.SetVehicleModsCorrectly(altVeh);
                     ServerVehicles.SetVehicleInGarage(altVeh, false, garageid);
                 }
