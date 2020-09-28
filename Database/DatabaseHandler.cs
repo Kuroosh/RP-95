@@ -1511,30 +1511,28 @@ namespace Altv_Roleplay.Database
         {
             try
             {
-                using (var db = new gtaContext())
-                {
-                    ServerItems.ServerTeleports_ = new List<Server_Teleports>(db.Server_Teleports);
-                    Alt.Log($"{ServerItems.ServerTeleports_.Count} Server-Teleports wurden geladen.");
+                using var db = new gtaContext();
+                ServerItems.ServerTeleports_ = new List<Server_Teleports>(db.Server_Teleports);
+                Alt.Log($"{ServerItems.ServerTeleports_.Count} Server-Teleports wurden geladen.");
 
-                    foreach (var teleport in ServerItems.ServerTeleports_)
+                foreach (var teleport in ServerItems.ServerTeleports_)
+                {
+                    var ServerTeleportsMarkerData = new Server_Markers
                     {
-                        var ServerTeleportsMarkerData = new Server_Markers
-                        {
-                            type = 27,
-                            posX = teleport.posX,
-                            posY = teleport.posY,
-                            posZ = (float)(teleport.posZ - 0.95),
-                            scaleX = 1,
-                            scaleY = 1,
-                            scaleZ = 1,
-                            red = 224,
-                            green = 58,
-                            blue = 58,
-                            alpha = 150,
-                            bobUpAndDown = false
-                        };
-                        ServerBlips.ServerMarkers_.Add(ServerTeleportsMarkerData);
-                    }
+                        type = 27,
+                        posX = teleport.posX,
+                        posY = teleport.posY,
+                        posZ = (float)(teleport.posZ - 0.95),
+                        scaleX = 1,
+                        scaleY = 1,
+                        scaleZ = 1,
+                        red = 224,
+                        green = 58,
+                        blue = 58,
+                        alpha = 150,
+                        bobUpAndDown = false
+                    };
+                    ServerBlips.ServerMarkers_.Add(ServerTeleportsMarkerData);
                 }
             }
             catch (Exception e)

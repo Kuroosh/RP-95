@@ -183,6 +183,7 @@ namespace Altv_Roleplay.Admin
                 veh.IsAdmin = true;
                 player.Emit("setPedIntoVehicle", veh, -1);
                 veh.EngineOn = true;
+                veh.Fuel = 100;
                 veh.LockState = VehicleLockState.Unlocked;
             }
         }
