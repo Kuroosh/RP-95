@@ -5,14 +5,17 @@ using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.models;
 using Altv_Roleplay.Utils;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace Altv_Roleplay.Database
 {
     internal class DatabaseHandler
     {
+        public static string connectionString = "SERVER=" + Constants.DatabaseConfig.Host + "; DATABASE=" + Constants.DatabaseConfig.Database + "; UID=" + Constants.DatabaseConfig.User + "; PASSWORD=" + Constants.DatabaseConfig.Password + "; SSLMODE=none;";
         internal static void LoadAllPlayers()
         {
             try
@@ -23,7 +26,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllPlayers", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -37,7 +40,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllPlayerCharacters", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -56,7 +59,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharacterClothes", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -75,7 +78,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharacterWanteds", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -97,7 +100,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharacterPhoneChats", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -113,7 +116,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharacterMinijobData", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -127,7 +130,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharacterBankAccounts", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -143,7 +146,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerVehicleMods", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -167,7 +170,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerShopItems", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -263,7 +266,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerHotels", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -340,7 +343,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerHouses", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -356,7 +359,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerMinijobBusdriverRoutes", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -372,7 +375,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharactersTabletTutorialEntrys", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -416,7 +419,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerDoors", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -432,7 +435,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerLogsFaction", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -448,7 +451,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerLogsCompany", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -525,7 +528,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerFactions", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -541,7 +544,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerFactionRanks", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -557,7 +560,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerFactionMembers", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -573,7 +576,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerFactionStorageItems", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -589,7 +592,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerCompanys", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -605,7 +608,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerCompanyMember", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -621,7 +624,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerTabletNotes", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -647,7 +650,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerTabletEvents", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -663,7 +666,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerTabletAppData", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -677,7 +680,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharactersTabletApps", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -689,7 +692,7 @@ namespace Altv_Roleplay.Database
                 ServerFuelStations.ServerFuelStations_ = new List<Server_Fuel_Stations>(db.Server_Fuel_Stations);
                 Alt.Log($"{ServerFuelStations.ServerFuelStations_.Count} Server-Tankstellen wurden geladen.");
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("LoadAllServerFuelStations", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
         internal static void LoadALlServerFuelStationSpots()
@@ -871,15 +874,13 @@ namespace Altv_Roleplay.Database
         {
             try
             {
-                using (var db = new gtaContext())
-                {
-                    CharactersLicenses.ServerLicenses_ = new List<Server_Licenses>(db.Server_Licenses);
-                    Alt.Log($"{CharactersLicenses.ServerLicenses_.Count} Server-Licenses wurden geladen.");
-                }
+                using var db = new gtaContext();
+                CharactersLicenses.ServerLicenses_ = new List<Server_Licenses>(db.Server_Licenses);
+                Alt.Log($"{CharactersLicenses.ServerLicenses_.Count} Server-Licenses wurden geladen.");
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerLicenses", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -932,7 +933,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerShops", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -991,7 +992,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerBarbers", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1013,7 +1014,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharacterInventorys", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1029,7 +1030,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharacterLicenses", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1045,7 +1046,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharacterPermissions", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1061,7 +1062,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharacterSkins", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1077,7 +1078,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllCharacterLastPositions", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1093,7 +1094,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerBlips", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1109,7 +1110,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerMarkers", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1125,7 +1126,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerPeds", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1133,15 +1134,13 @@ namespace Altv_Roleplay.Database
         {
             try
             {
-                using (var db = new gtaContext())
-                {
-                    ServerAllVehicles.ServerAllVehicles_ = new List<Server_All_Vehicles>(db.Server_All_Vehicles);
-                    Alt.Log($"{ServerAllVehicles.ServerAllVehicles_.Count} Server-All-Vehicles wurden geladen.");
-                }
+                using var db = new gtaContext();
+                ServerAllVehicles.ServerAllVehicles_ = new List<Server_All_Vehicles>(db.Server_All_Vehicles);
+                Alt.Log($"{ServerAllVehicles.ServerAllVehicles_.Count} Server-All-Vehicles wurden geladen.");
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerVehiclesGlobal", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1157,7 +1156,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerAnimations", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1176,7 +1175,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerMinijobBusdriverRouteSpots", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1195,7 +1194,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerMinijobGarbageSpots", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1203,16 +1202,43 @@ namespace Altv_Roleplay.Database
         {
             try
             {
-                using var db = new gtaContext();
-                foreach (var veh in db.Server_Vehicles)
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    ServerVehicles.CreateServerVehicle(veh.id, veh.charid, (uint)(veh.hash), veh.vehType, veh.faction, veh.fuel, veh.KM, veh.engineState, veh.isEngineHealthy, true, veh.isInGarage, veh.garageId, new Position(veh.posX, veh.posY, veh.posZ), new Rotation(veh.rotX, veh.rotY, veh.rotZ), veh.plate, veh.lastUsage, veh.buyDate);
+                    connection.Open();
+                    MySqlCommand command = connection.CreateCommand();
+                    command.CommandText = "SELECT * FROM server_vehicles";
+                    using MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32("id");
+                        int charid = reader.GetInt32("charid");
+                        uint hash = reader.GetUInt32("hash");
+                        int vehType = reader.GetInt32("vehType");
+                        int faction = reader.GetInt32("faction");
+                        float fuel = reader.GetFloat("fuel");
+                        float km = reader.GetFloat("km");
+                        bool enginestate = reader.GetBoolean("enginestate");
+                        bool isEngineHealthy = reader.GetBoolean("isEngineHealthy");
+                        int lockstate = reader.GetInt32("lockstate");
+                        bool isingarage = reader.GetBoolean("isingarage");
+                        int garageid = reader.GetInt32("garageid");
+                        float posX = reader.GetFloat("posX");
+                        float posY = reader.GetFloat("posY");
+                        float posZ = reader.GetFloat("posZ");
+                        float rotX = reader.GetFloat("rotX");
+                        float rotY = reader.GetFloat("rotY");
+                        float rotZ = reader.GetFloat("rotZ");
+                        string plate = reader.GetString("plate");
+                        DateTime lastUsage = reader.GetDateTime("lastUsage");
+                        DateTime buyDate = reader.GetDateTime("buyDate");
+                        ServerVehicles.CreateServerVehicle(id, charid, hash, vehType, faction, fuel, km, enginestate, isEngineHealthy, true, isingarage, garageid, new Position(posX, posY, posZ), new Rotation(rotX, rotY, rotZ), plate, lastUsage, buyDate);
+                    }
                 }
                 Alt.Log($"{ServerVehicles.ServerVehicles_.Count} Server-Vehicles wurden geladen.");
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllVehicles", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1228,7 +1254,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllVehicleTrunkItems", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1247,7 +1273,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllVehicleMods", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1299,7 +1325,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllGarages", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1333,7 +1359,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllGarageSlots", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1347,7 +1373,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerATMs", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1402,7 +1428,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerBanks", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1418,7 +1444,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerBankPapers", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1434,7 +1460,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerItems", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1499,7 +1525,7 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllClothesShops", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1533,7 +1559,117 @@ namespace Altv_Roleplay.Database
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LoadAllServerTeleports", e);
+                Core.Debug.CatchExceptions(e);
+            }
+        }
+        public static int AddNewVehicle(ClassicVehicle IVehicle)
+        {
+            try
+            {
+                int vehId = 0;
+
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+
+                    connection.Open();
+                    MySqlCommand command = connection.CreateCommand();
+                    command.CommandText = "INSERT INTO server_vehicles (id, charid, hash, vehType, faction, fuel, km, enginestate, isEngineHealthy, lockstate, isingarage, garageid, posX, posY, posZ, rotX, rotY, rotZ, plate, lastUsage, buyDate) ";
+                    command.CommandText += "VALUES (@id, @charid, @hash, @vehType, @faction, @fuel, @km, @enginestate, @isEngineHealthy, @lockstate, @isingarage, @garageid, @posX, @posY, @posZ, @rotX, @rotY, @rotZ, @plate, @lastUsage, @buyDate)";
+
+                    Vector3 rot = IVehicle.Rotation;
+                    command.Parameters.AddWithValue("@id", IVehicle.id);
+                    command.Parameters.AddWithValue("@charid", IVehicle.charid);
+                    command.Parameters.AddWithValue("@hash", IVehicle.hash);
+                    command.Parameters.AddWithValue("@vehType", IVehicle.vehType);
+                    command.Parameters.AddWithValue("@faction", IVehicle.faction);
+                    command.Parameters.AddWithValue("@fuel", IVehicle.Fuel);
+                    command.Parameters.AddWithValue("@km", IVehicle.KM);
+                    command.Parameters.AddWithValue("@enginestate", IVehicle.engineState);
+                    command.Parameters.AddWithValue("@isEngineHealthy", IVehicle.isEngineHealthy);
+                    command.Parameters.AddWithValue("@lockstate", IVehicle.lockState);
+                    command.Parameters.AddWithValue("@isingarage", IVehicle.isInGarage);
+                    command.Parameters.AddWithValue("@garageid", IVehicle.garageId);
+                    command.Parameters.AddWithValue("@plate", IVehicle.plate);
+                    command.Parameters.AddWithValue("@lastUsage", IVehicle.lastUsage);
+                    command.Parameters.AddWithValue("@buyDate", IVehicle.buyDate);
+                    command.Parameters.AddWithValue("@posX", IVehicle.Position.X);
+                    command.Parameters.AddWithValue("@posY", IVehicle.Position.Y);
+                    command.Parameters.AddWithValue("@posZ", IVehicle.Position.Z);
+                    command.Parameters.AddWithValue("@rotX", rot.X);
+                    command.Parameters.AddWithValue("@rotY", rot.Y);
+                    command.Parameters.AddWithValue("@rotZ", rot.Z);
+                    command.ExecuteNonQuery();
+                    IVehicle.id = (int)command.LastInsertedId;
+                }
+
+                return vehId;
+            }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); return 99999; }
+        }
+
+        public static void UpdateVehicle(ClassicVehicle IVehicle)
+        {
+            using MySqlConnection connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+
+
+
+                command.CommandText = "UPDATE server_vehicles SET id = @id, charid = @charid, hash = @hash, vehType = @vehType, faction = @faction, fuel = @fuel,";
+                command.CommandText = "km = @km, enginestate = @enginestate, isEngineHealthy = @isEngineHealthy, lockstate = @lockstate, isingarage = @isingarage,";
+                command.CommandText = "garageid = @garageid, posX = @posX, posY = @posY, posZ = @posZ, rotX = @rotX, rotY = @rotY, rotZ = @rotZ, plate = @plate";
+                command.CommandText += "lastUsage = @lastUsage, buyDate = @buyDate,  WHERE id = @vehId LIMIT 1";
+                Vector3 rot = IVehicle.Rotation;
+                command.Parameters.AddWithValue("@id", IVehicle.id);
+                command.Parameters.AddWithValue("@charid", IVehicle.charid);
+                command.Parameters.AddWithValue("@hash", IVehicle.hash);
+                command.Parameters.AddWithValue("@vehType", IVehicle.vehType);
+                command.Parameters.AddWithValue("@faction", IVehicle.faction);
+                command.Parameters.AddWithValue("@fuel", IVehicle.Fuel);
+                command.Parameters.AddWithValue("@km", IVehicle.KM);
+                command.Parameters.AddWithValue("@enginestate", IVehicle.engineState);
+                command.Parameters.AddWithValue("@isEngineHealthy", IVehicle.isEngineHealthy);
+                command.Parameters.AddWithValue("@lockstate", IVehicle.lockState);
+                command.Parameters.AddWithValue("@isingarage", IVehicle.isInGarage);
+                command.Parameters.AddWithValue("@garageid", IVehicle.garageId);
+                command.Parameters.AddWithValue("@plate", IVehicle.plate);
+                command.Parameters.AddWithValue("@lastUsage", IVehicle.lastUsage);
+                command.Parameters.AddWithValue("@buyDate", IVehicle.buyDate);
+                command.Parameters.AddWithValue("@posX", IVehicle.Position.X);
+                command.Parameters.AddWithValue("@posY", IVehicle.Position.Y);
+                command.Parameters.AddWithValue("@posZ", IVehicle.Position.Z);
+                command.Parameters.AddWithValue("@rotX", rot.X);
+                command.Parameters.AddWithValue("@rotY", rot.Y);
+                command.Parameters.AddWithValue("@rotZ", rot.Z);
+
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("[EXCEPTION SaveIVehicle] " + ex.Message);
+                Console.WriteLine("[EXCEPTION SaveIVehicle] " + ex.StackTrace);
+            }
+        }
+        public static void RemoveVehicleById(int IVehicleId)
+        {
+            try
+            {
+                using MySqlConnection connection = new MySqlConnection(connectionString);
+
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+
+                command.CommandText = "DELETE FROM server_vehicles WHERE id = @IVehicleId LIMIT 1";
+                command.Parameters.AddWithValue("@IVehicleId", IVehicleId);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Core.Debug.CatchExceptions(ex);
             }
         }
 
@@ -1541,32 +1677,31 @@ namespace Altv_Roleplay.Database
         {
             try
             {
-                using (var db = new gtaContext())
+                using var db = new gtaContext();
+                db.Accounts.ToList().ForEach(x => { x.Online = 0; });
+                db.SaveChanges();
+
+                foreach (ClassicVehicle veh in Alt.GetAllVehicles().ToList())
                 {
-                    db.Accounts.ToList().ForEach(x => { x.Online = 0; });
-                    db.SaveChanges();
-
-                    foreach (var veh in db.Server_Vehicles)
+                    if (!veh.isInGarage && DateTime.Now.Subtract(veh.lastUsage).TotalHours >= 48)
                     {
-                        if (!veh.isInGarage && DateTime.Now.Subtract(veh.lastUsage).TotalHours >= 48)
-                        {
-                            veh.isInGarage = true;
-                            db.Server_Vehicles.Update(veh);
-                        }
-
-                        if (veh.vehType == 2 || veh.charid == 0)
-                        {
-                            var mod = ServerVehicles.ServerVehiclesMod_.FirstOrDefault(x => x.vehId == veh.id);
-                            if (mod != null) { db.Server_Vehicles_Mods.Remove(mod); }
-                            db.Server_Vehicles.Remove(veh);
-                        }
+                        veh.isInGarage = true;
+                        UpdateVehicle(veh);
                     }
-                    db.SaveChanges();
+
+                    if (veh.vehType == 2 || veh.charid == 0)
+                    {
+                        var mod = ServerVehicles.ServerVehiclesMod_.FirstOrDefault(x => x.vehId == veh.id);
+                        if (mod != null) { db.Server_Vehicles_Mods.Remove(mod); }
+                        RemoveVehicleById(veh.id);
+                        veh.Remove();
+                    }
                 }
+                db.SaveChanges();
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ResetDatabaseOnlineState", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
