@@ -3595,30 +3595,42 @@ div#VehicleTuningMenuColorSelection > div.inputArea > label#rgbBval {
     width: 100%;
     height: 12%;
     padding: 2% 10%;
+    border-top-left-radius: 0.5vw !important;
+    border-top-right-radius: 0.5vw !important;
 }
 
 .phone-sms-chat-divider {
     margin: 0 5%;
+    border-top-left-radius: 0.5vw !important;
+    border-top-right-radius: 0.5vw !important;
 }
 
 .phone-sms-chat-pre-name {
     font-weight: bold;
     display: inline-block;
+    border-top-left-radius: 0.5vw !important;
+    border-top-right-radius: 0.5vw !important;
 }
 
 .phone-sms-chat-pre-text {
     display: inline-block;
+    border-top-left-radius: 0.5vw !important;
+    border-top-right-radius: 0.5vw !important;
 }
 
 .phone-sms-chat-pre-time {
     float: right;
     display: inline-block;
     color: grey;
+    border-top-left-radius: 0.5vw !important;
+    border-top-right-radius: 0.5vw !important;
 }
 
 .phone-sms-chat-pre-alert {
     float: right;
     display: inline-block;
+    border-top-left-radius: 0.5vw !important;
+    border-top-right-radius: 0.5vw !important;
 }
 
 #phone-screen-sms-header {
