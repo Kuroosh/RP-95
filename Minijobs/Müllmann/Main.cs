@@ -414,7 +414,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
                     foreach (var veh in Alt.Server.GetVehicles().ToList())
                     {
                         if (veh == null || !veh.Exists) continue;
-                        if (veh.Position.IsInRange(Constants.Positions.Minijob_Müllmann_VehOutPos, 5f)) { HUDHandler.SendNotification(player, 3, 5000, "Der Ausparkpunkt ist belegt."); return; }
+                        if (veh.Position.IsInRange(Constants.Positions.Minijob_Müllmann_VehOutPos, 5f) && veh.Dimension == 0) { HUDHandler.SendNotification(player, 3, 5000, "Der Ausparkpunkt ist belegt."); return; }
                     }
 
                     ServerVehicles.CreateVehicle(3039269212, charId, 2, 0, false, 0, Constants.Positions.Minijob_Müllmann_VehOutPos, Constants.Positions.Minijob_Müllmann_VehOutRot, $"MM-{charId}", 0, 0);
