@@ -25,7 +25,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ReturnNormalItemName", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "";
         }
@@ -40,7 +40,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ReturnItemPicSRC", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "";
         }
@@ -55,7 +55,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistItem", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -70,7 +70,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetItemType", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "";
         }
@@ -85,7 +85,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetItemDescription", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "";
         }
@@ -100,7 +100,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetItemWeight", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0f;
         }
@@ -115,7 +115,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsItemDesire", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -130,7 +130,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetItemDesireFood", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -145,7 +145,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetItemDesireDrink", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -160,7 +160,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("hasItemAnimation", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -175,7 +175,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetItemAnimationName", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "";
         }
@@ -190,7 +190,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsItemDroppable", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -205,7 +205,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsItemGiveable", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -220,7 +220,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsItemUseable", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }

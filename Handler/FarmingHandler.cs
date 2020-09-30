@@ -97,7 +97,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ProduceItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

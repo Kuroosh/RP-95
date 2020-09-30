@@ -30,7 +30,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("OnPlayerEnterVehicle_Handler", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("OnPlayerLeaveVehicle_Handler", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -68,7 +68,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SendNotification", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -92,7 +92,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("UpdateVehicleKM", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

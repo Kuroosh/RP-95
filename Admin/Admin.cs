@@ -22,7 +22,15 @@ namespace Altv_Roleplay.Admin
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Owner Commands 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        [CommandEvent(CommandEventType.CommandNotFound)]
+        public static void OnPlayerCommandNotFoundHandler(ClassicPlayer player, string Command)
+        {
+            try
+            {
+                HUDHandler.SendNotification(player, 4, 5000, "/" + Command + " wurde nicht gefunden...");
+            }
+            catch { }
+        }
         [Command("pos")]
         public static void GetPlayerPosition(ClassicPlayer player)
         {
@@ -42,7 +50,7 @@ namespace Altv_Roleplay.Admin
                 HUDHandler.SendNotification(player, 4, 5000, "Admin Level von Player ID [" + playerId + "] geupdated : " + AdminID);
                 User.SetPlayerAdminLevel(playerId, AdminID);
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("SetAdminLevel", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
 
         [Command("createatm")]
@@ -53,7 +61,7 @@ namespace Altv_Roleplay.Admin
                 if (player.AdminLevel() < ADMINLVL_OWNER) { HUDHandler.SendNotification(player, 4, 5000, "Du benötigst mind. Admin-LVL " + ADMINLVL_OWNER); return; }
                 ServerATM.CreateNewATM(player, player.Position, name);
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("SetAdminLevel", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
 
         [Command("dv")]
@@ -65,11 +73,12 @@ namespace Altv_Roleplay.Admin
                 if (!player.IsInVehicle) return;
                 if (player.Vehicle != null)
                 {
-                    ServerVehicles.RemoveVehiclePermanently(player.Vehicle);
+                    ClassicVehicle veh = (ClassicVehicle)player.Vehicle;
+                    ServerVehicles.RemoveVehiclePermanently(veh);
                     player.Vehicle.Remove();
                 }
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("DeleteVehicleCMD", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
 
         [Command("ooc", greedyArg: true)]
@@ -83,7 +92,7 @@ namespace Altv_Roleplay.Admin
                         HUDHandler.SendNotification(players, 4, 5000, "[OOC] " + player.CharacterName + " : " + OOCMessage);
                 }
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("DeleteVehicleCMD", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
 
         [Command("faction")]
@@ -101,7 +110,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("FactionCMD", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -135,7 +144,7 @@ namespace Altv_Roleplay.Admin
                 }
                 HUDHandler.SendNotification(player, 4, 5000, $"{count} Fahrzeuge eingeparkt.");
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("ParkAllVehiclesCommand", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
         [Command("parkvehiclekz", true)]
@@ -152,7 +161,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CMD_parkVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -170,7 +179,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetAccountIdByMailCommand", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         [Command("spawnveh")]
@@ -203,7 +212,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CMD_ResetHwId", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -228,7 +237,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("AnnounceCommand", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -247,7 +256,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("BanCommand", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         [Command("unban")]
@@ -262,7 +271,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("UnbanCommand", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -285,12 +294,12 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerCommand", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
         [Command("aduty")]
-        public void SdutyCMD(IPlayer player)
+        public void SdutyCMD(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return;
             if (player.AdminLevel() < ADMINLVL_SUPPORTER) { HUDHandler.SendNotification(player, 4, 5000, "Du benötigst mind. Admin-LVL " + ADMINLVL_SUPPORTER); return; }
@@ -397,7 +406,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("TeamchatCommand", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         [Command("kick", greedyArg: true)]
@@ -414,7 +423,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("KickCommand", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -432,7 +441,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("WhitelistCMD", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -468,7 +477,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GotoCMD", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -520,7 +529,7 @@ namespace Altv_Roleplay.Admin
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHereCMD", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 

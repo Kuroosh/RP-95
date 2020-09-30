@@ -74,7 +74,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
                     return;
                 }
 
-                foreach (var veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"MM-{charId}").ToList())
+                foreach (ClassicVehicle veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"MM-{charId}").ToList())
                 {
                     if (veh == null || !veh.Exists) continue;
                     ServerVehicles.RemoveVehiclePermanently(veh);
@@ -83,7 +83,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerDisconnectedHandler", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -133,7 +133,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
                 }
                 player.EmitLocked("Client:Minijob:RemoveJobMarker");
 
-                foreach (var veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"MM-{charId}").ToList())
+                foreach (ClassicVehicle veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"MM-{charId}").ToList())
                 {
                     if (veh == null || !veh.Exists) continue;
                     ServerVehicles.RemoveVehiclePermanently(veh);
@@ -164,7 +164,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerExitVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -221,7 +221,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerEnterVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -364,7 +364,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ColshapeEnterExitHandler", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -388,7 +388,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
                 }
                 if (player.GetPlayerCurrentMinijob() == "Müllmann")
                 {
-                    foreach (var veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"MM-{charId}").ToList())
+                    foreach (ClassicVehicle veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"MM-{charId}").ToList())
                     {
                         if (veh == null || !veh.Exists) continue;
                         ServerVehicles.RemoveVehiclePermanently(veh);
@@ -434,7 +434,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("StartMinijob", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

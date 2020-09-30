@@ -80,7 +80,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreatePlayerCharacter", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -90,7 +90,7 @@ namespace Altv_Roleplay.Model
             {
 
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("SaveAccountInformation", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
 
         private static void SaveCharacterInformation(ClassicPlayer player)
@@ -99,7 +99,7 @@ namespace Altv_Roleplay.Model
             {
 
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("SaveCharacterInformation", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
 
 
@@ -111,7 +111,7 @@ namespace Altv_Roleplay.Model
                 SaveAccountInformation(player);
                 SaveCharacterInformation(player);
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("UpdatePlayerInformation", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
 
         public static void CreateCharacterSkin(string charname, string facefeaturesarray, string headblendsdataarray, string headoverlaysarray)
@@ -153,7 +153,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateCharacterSkin", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -167,7 +167,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterCurrentFunkFrequence", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -180,7 +180,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsCharacterInJail", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -194,7 +194,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterJailTime", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -216,7 +216,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterJailTime", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -229,7 +229,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterCurrentFunkFrequence", e);
+                Core.Debug.CatchExceptions(e);
             }
             return null;
         }
@@ -244,7 +244,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterAccountId", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -258,7 +258,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterCurrentlyRecieveCaller", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -272,7 +272,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterCurrentlyRecieveCallState", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -285,7 +285,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterPhoneTargetNumber", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -299,7 +299,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterTargetPhoneNumber", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -312,7 +312,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsCharacterPhoneFlyModeEnabled", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -326,7 +326,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterPhoneFlyModeEnabled", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -339,7 +339,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsCharacterPhoneEquipped", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -359,7 +359,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterPhoneEquipped", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -378,7 +378,7 @@ namespace Altv_Roleplay.Model
                     db.SaveChanges();
                 }
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("SetCharacterHeadOverlays", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
 
         public static bool ExistPhoneNumber(int phoneNumber)
@@ -390,7 +390,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistPhoneNumber", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -404,7 +404,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterPhonenumber", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -432,7 +432,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GenerateCharacterPhonenumber", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -469,7 +469,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateCharacterLastPos", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -495,7 +495,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("KillCharacter", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -525,7 +525,7 @@ namespace Altv_Roleplay.Model
                     db.SaveChanges();
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("IncreaseCharacterPaydayTime", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
         public static void ResetCharacterJobHourCounter(int charId)
@@ -544,7 +544,7 @@ namespace Altv_Roleplay.Model
                     }
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("ResetCharacterJobHourCounter", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
         public static void IncreaseCharacterPlayTimeHours(int charId)
@@ -561,7 +561,7 @@ namespace Altv_Roleplay.Model
                     db.SaveChanges();
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("IncreaseCharacterPlayTimeHours", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
         public static void IncreaseCharacterJobHourCounter(int charId)
@@ -578,7 +578,7 @@ namespace Altv_Roleplay.Model
                     db.SaveChanges();
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("IncreaseCharacterJobHourCounter", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
         public static void ResetCharacterPaydayTime(int charId)
@@ -595,7 +595,7 @@ namespace Altv_Roleplay.Model
                     db.SaveChanges();
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("ResetCharacterPaydayTime", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
         public static string GetCharacterName(int charId)
@@ -609,7 +609,7 @@ namespace Altv_Roleplay.Model
                     return chars.charname;
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("GetCharacterName", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
             return "SYSTEM";
         }
 
@@ -624,7 +624,7 @@ namespace Altv_Roleplay.Model
                     return chars.birthdate;
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("GetCharacterBirthdate", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
             return "";
         }
 
@@ -639,7 +639,7 @@ namespace Altv_Roleplay.Model
                     return chars.birthplace;
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("GetCharacterBirthplace", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
             return "None";
         }
 
@@ -654,7 +654,7 @@ namespace Altv_Roleplay.Model
                     return chars.accState;
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("GetCharacterAccState", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
             return 0;
         }
 
@@ -683,7 +683,7 @@ namespace Altv_Roleplay.Model
                     db.SaveChanges();
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("SetCharacterStreet", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
         public static object GetCharacterWeapon(IPlayer player, string type)
@@ -736,7 +736,7 @@ namespace Altv_Roleplay.Model
                     db.SaveChanges();
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("SetCharacterWeapon", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
         public static bool ExistCharacterName(string charName)
@@ -840,7 +840,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterInformations", e);
+                Core.Debug.CatchExceptions(e);
                 return "[]";
             }
         }
@@ -865,7 +865,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterFactionInformations", e);
+                Core.Debug.CatchExceptions(e);
                 return "[]";
             }
         }
@@ -914,7 +914,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("SetCharacterLastPosition", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -1005,7 +1005,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterCrimeFlagged", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1194,7 +1194,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterLastLogin", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1208,7 +1208,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterLastLogin", e);
+                Core.Debug.CatchExceptions(e);
             }
             return dt;
         }
@@ -1248,7 +1248,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("SetCharacterHealth", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -1269,7 +1269,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("SetCharacterBirthplace", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -1290,7 +1290,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("setCharacterAccState", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -1311,7 +1311,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("SetCharacterArmor", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -1338,7 +1338,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("SetCharacterHunger", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -1364,7 +1364,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("SetCharacterThirst", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -1389,7 +1389,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("SetCharacterFirstSpawnPlace", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -1426,7 +1426,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("SetCharacterBackpack", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -1973,7 +1973,7 @@ namespace Altv_Roleplay.Model
         }
 
         [ClientEvent("Server:ClothesShop:RequestCurrentSkin")]
-        public static void SetCharacterCorrectClothes(IPlayer player)
+        public static void SetCharacterCorrectClothes(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return;
             int charid = User.GetPlayerOnline(player);
@@ -2042,10 +2042,10 @@ namespace Altv_Roleplay.Model
             string Sec2Weapon = (string)GetCharacterWeapon(player, "SecondaryWeapon2");
             int Sec2Ammo = (int)GetCharacterWeapon(player, "SecondaryAmmo2");
             string FistWeapon = (string)GetCharacterWeapon(player, "FistWeapon");
-            if (primaryWeapon != "None") { player.GiveWeapon(WeaponHandler.GetWeaponModelByName(primaryWeapon), primaryAmmo, false); WeaponHandler.SetWeaponComponents(player, primaryWeapon); }
-            if (SecWeapon != "None") { player.GiveWeapon(WeaponHandler.GetWeaponModelByName(SecWeapon), SecAmmo, false); WeaponHandler.SetWeaponComponents(player, SecWeapon); }
-            if (Sec2Weapon != "None") { player.GiveWeapon(WeaponHandler.GetWeaponModelByName(Sec2Weapon), Sec2Ammo, false); WeaponHandler.SetWeaponComponents(player, Sec2Weapon); }
-            if (FistWeapon != "None") { player.GiveWeapon(WeaponHandler.GetWeaponModelByName(FistWeapon), 1, false); }
+            if (primaryWeapon != "None") { player.GivePlayerWeapon(WeaponHandler.GetWeaponModelByName(primaryWeapon), primaryAmmo, false); WeaponHandler.SetWeaponComponents(player, primaryWeapon); }
+            if (SecWeapon != "None") { player.GivePlayerWeapon(WeaponHandler.GetWeaponModelByName(SecWeapon), SecAmmo, false); WeaponHandler.SetWeaponComponents(player, SecWeapon); }
+            if (Sec2Weapon != "None") { player.GivePlayerWeapon(WeaponHandler.GetWeaponModelByName(Sec2Weapon), Sec2Ammo, false); WeaponHandler.SetWeaponComponents(player, Sec2Weapon); }
+            if (FistWeapon != "None") { player.GivePlayerWeapon(WeaponHandler.GetWeaponModelByName(FistWeapon), 1, false); }
         }
 
         /*   public static void SwitchCharacterClothes(IPlayer player, string ClothesName, string Type)
@@ -2308,7 +2308,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SwitchCharacterClothes", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -2374,7 +2374,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("SetCharacterClothes", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -2389,7 +2389,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsCharacterUnconscious", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -2411,7 +2411,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterUnconscious", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -2425,7 +2425,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterUnconsciousTime", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -2440,7 +2440,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsCharacterFastFarm", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -2470,7 +2470,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterFastFarm", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -2484,7 +2484,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterFastFarmTime", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }

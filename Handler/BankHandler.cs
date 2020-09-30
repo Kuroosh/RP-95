@@ -191,7 +191,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("DepositFactionMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -232,7 +232,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("WithdrawFactionMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

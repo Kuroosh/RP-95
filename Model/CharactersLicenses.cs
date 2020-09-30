@@ -38,7 +38,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateCharacterLicensesEntry", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -72,7 +72,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("HasCharacterLicense", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -91,7 +91,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetFullLicenseName", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "None";
         }
@@ -109,7 +109,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetLicensePrice", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -141,7 +141,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterLicense", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -189,7 +189,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistServerLicense", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }

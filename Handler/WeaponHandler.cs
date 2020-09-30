@@ -1,5 +1,6 @@
 ﻿using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using System;
 
@@ -7,7 +8,7 @@ namespace Altv_Roleplay.Handler
 {
     class WeaponHandler
     {
-        public static void EquipCharacterWeapon(IPlayer player, string type, string wName, int amount, string fromContainer)
+        public static void EquipCharacterWeapon(ClassicPlayer player, string type, string wName, int amount, string fromContainer)
         {
             try
             {
@@ -150,7 +151,7 @@ namespace Altv_Roleplay.Handler
 
                         if (primWeapon == "None")
                         {
-                            player.GiveWeapon(wHash, 0, true);
+                            player.GivePlayerWeapon(wHash, 0, true);
                             Characters.SetCharacterWeapon(player, "PrimaryWeapon", wName);
                             Characters.SetCharacterWeapon(player, "PrimaryAmmo", 0);
                             SetWeaponComponents(player, wName);
@@ -182,7 +183,7 @@ namespace Altv_Roleplay.Handler
                                 HUDHandler.SendNotification(player, 2, 5000, $"{wName} erfolgreich abgelegt.");
                                 Characters.SetCharacterWeapon(player, "PrimaryWeapon", "None");
                                 Characters.SetCharacterWeapon(player, "PrimaryAmmo", 0);
-                                player.RemoveWeapon(wHash);
+                                player.RemovePlayerWeapon(wHash);
                             }
                         }
                         else
@@ -195,7 +196,7 @@ namespace Altv_Roleplay.Handler
                         string fistWeapon = (string)Characters.GetCharacterWeapon(player, "FistWeapon");
                         if (fistWeapon == "None")
                         {
-                            player.GiveWeapon(wHash, 0, false);
+                            player.GivePlayerWeapon(wHash, 0, false);
                             Characters.SetCharacterWeapon(player, "FistWeapon", wName);
                             Characters.SetCharacterWeapon(player, "FistWeaponAmmo", 0);
                             HUDHandler.SendNotification(player, 2, 500, $"{wName} erfolgreich ausgerüstet.");
@@ -204,7 +205,7 @@ namespace Altv_Roleplay.Handler
                         {
                             float curWeight = CharactersInventory.GetCharacterItemWeight(charId, "inventory") + CharactersInventory.GetCharacterItemWeight(charId, "backpack");
                             float maxWeight = 15f + Characters.GetCharacterBackpackSize(Characters.GetCharacterBackpack(charId));
-                            if (curWeight < maxWeight) { Characters.SetCharacterWeapon(player, "FistWeapon", "None"); Characters.SetCharacterWeapon(player, "FistWeaponAmmo", 0); player.RemoveWeapon(wHash); HUDHandler.SendNotification(player, 2, 5000, $"{wName} erfolgreich abgelegt."); }
+                            if (curWeight < maxWeight) { Characters.SetCharacterWeapon(player, "FistWeapon", "None"); Characters.SetCharacterWeapon(player, "FistWeaponAmmo", 0); player.RemovePlayerWeapon(wHash); HUDHandler.SendNotification(player, 2, 5000, $"{wName} erfolgreich abgelegt."); }
                             else { HUDHandler.SendNotification(player, 4, 5000, "Du hast nicht genügend Platz."); }
                         }
                         else
@@ -243,12 +244,12 @@ namespace Altv_Roleplay.Handler
                                     HUDHandler.SendNotification(player, 2, 5000, $"{wName} erfolgreich abgelegt.");
                                     Characters.SetCharacterWeapon(player, "SecondaryWeapon2", "None");
                                     Characters.SetCharacterWeapon(player, "SecondaryAmmo2", "None");
-                                    player.RemoveWeapon(wHash);
+                                    player.RemovePlayerWeapon(wHash);
                                 }
                             }
                             else
                             {
-                                player.GiveWeapon(wHash, 0, true);
+                                player.GivePlayerWeapon(wHash, 0, true);
                                 Characters.SetCharacterWeapon(player, "SecondaryWeapon", wName);
                                 Characters.SetCharacterWeapon(player, "SecondaryAmmo", 0);
                                 SetWeaponComponents(player, wName);
@@ -278,14 +279,14 @@ namespace Altv_Roleplay.Handler
                                 HUDHandler.SendNotification(player, 2, 5000, $"{wName} erfolgreich abgelegt.");
                                 Characters.SetCharacterWeapon(player, "SecondaryWeapon", "None");
                                 Characters.SetCharacterWeapon(player, "SecondaryAmmo", 0);
-                                player.RemoveWeapon(wHash);
+                                player.RemovePlayerWeapon(wHash);
                             }
                         }
                         else
                         {
                             if (secondaryWeapon2 == "None")
                             {
-                                player.GiveWeapon(wHash, 0, true);
+                                player.GivePlayerWeapon(wHash, 0, true);
                                 Characters.SetCharacterWeapon(player, "SecondaryWeapon2", wName);
                                 Characters.SetCharacterWeapon(player, "SecondaryAmmo2", 0);
                                 SetWeaponComponents(player, wName);
@@ -314,7 +315,7 @@ namespace Altv_Roleplay.Handler
                                     HUDHandler.SendNotification(player, 2, 5000, $"{wName} erfolgreich abgelegt.");
                                     Characters.SetCharacterWeapon(player, "SecondaryWeapon2", "None");
                                     Characters.SetCharacterWeapon(player, "SecondaryAmmo2", 0);
-                                    player.RemoveWeapon(wHash);
+                                    player.RemovePlayerWeapon(wHash);
                                 }
                             }
                             else { HUDHandler.SendNotification(player, 3, 5000, "Du musst zuerst deine Sekundärwaffe ablegen bevor du eine neue anlegen kannst."); }
@@ -330,7 +331,7 @@ namespace Altv_Roleplay.Handler
                         else if (primaryWeapon == normalWName)
                         {
                             int newAmmo = (int)Characters.GetCharacterWeapon(player, "PrimaryAmmo") + amount;
-                            player.GiveWeapon(wHash, newAmmo, true);
+                            player.GivePlayerWeapon(wHash, newAmmo, true);
                             Characters.SetCharacterWeapon(player, "PrimaryAmmo", newAmmo);
                             HUDHandler.SendNotification(player, 2, 5000, $"Du hast {wName} in deine Waffe geladen.");
 
@@ -351,7 +352,7 @@ namespace Altv_Roleplay.Handler
                         else if (secondaryWeapon == normalWName)
                         {
                             int newAmmo = (int)Characters.GetCharacterWeapon(player, "SecondaryAmmo") + amount;
-                            player.GiveWeapon(wHash, newAmmo, true);
+                            player.GivePlayerWeapon(wHash, newAmmo, true);
                             Characters.SetCharacterWeapon(player, "SecondaryAmmo", newAmmo);
                             HUDHandler.SendNotification(player, 2, 5000, $"Du hast {wName} in deine Waffe geladen.");
 
@@ -367,7 +368,7 @@ namespace Altv_Roleplay.Handler
                             else if (secondary2Weapon == normalWName)
                             {
                                 int newAmmo = (int)Characters.GetCharacterWeapon(player, "SecondaryAmmo2") + amount;
-                                player.GiveWeapon(wHash, newAmmo, true);
+                                player.GivePlayerWeapon(wHash, newAmmo, true);
                                 Characters.SetCharacterWeapon(player, "SecondaryAmmo2", newAmmo);
                                 HUDHandler.SendNotification(player, 2, 5000, $"Du hast {wName} in deine Waffe geladen.");
 
@@ -386,7 +387,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("EquipCharacterWeapon", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 

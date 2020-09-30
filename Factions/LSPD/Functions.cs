@@ -43,7 +43,7 @@ namespace Altv_Roleplay.Factions.LSPD
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LSPDAppSearchPerson", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -77,7 +77,7 @@ namespace Altv_Roleplay.Factions.LSPD
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LSPDAppSearchVehiclePlate", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Altv_Roleplay.Factions.LSPD
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LSPDAppSearchLicense", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -131,7 +131,7 @@ namespace Altv_Roleplay.Factions.LSPD
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LSPDAppTakeLicense", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

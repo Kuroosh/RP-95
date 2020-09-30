@@ -36,7 +36,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateBankAccount", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -55,7 +55,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ChangeBankAccountPIN", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ChangeBankAccountLockStatus", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -96,7 +96,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ResetBankAccountPINTrys", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -136,7 +136,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterBankMainKonto", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -184,7 +184,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetBankAccountLockStatus", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -198,7 +198,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetBankAccountPIN", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -212,7 +212,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetBankAccountMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -232,7 +232,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetBankAccountMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -245,7 +245,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetBankAccountPinTrys", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -265,7 +265,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetBankAccountPinTrys", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

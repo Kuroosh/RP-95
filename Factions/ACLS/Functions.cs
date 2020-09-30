@@ -31,7 +31,7 @@ namespace Altv_Roleplay.Factions.ACLS
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RepairVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -64,7 +64,7 @@ namespace Altv_Roleplay.Factions.ACLS
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("TowVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -121,7 +121,7 @@ namespace Altv_Roleplay.Factions.ACLS
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openTuningMenu", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -169,7 +169,7 @@ namespace Altv_Roleplay.Factions.ACLS
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("switchTuningColor", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -184,7 +184,7 @@ namespace Altv_Roleplay.Factions.ACLS
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("resetTuningToNormal", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -360,7 +360,7 @@ namespace Altv_Roleplay.Factions.ACLS
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("switchTuning", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

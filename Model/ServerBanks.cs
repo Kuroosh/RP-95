@@ -43,7 +43,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateNewBank", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

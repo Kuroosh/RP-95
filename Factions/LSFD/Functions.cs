@@ -43,7 +43,7 @@ namespace Altv_Roleplay.Factions.LSFD
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RevivePlayer", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -71,7 +71,7 @@ namespace Altv_Roleplay.Factions.LSFD
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("HealPlayer", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

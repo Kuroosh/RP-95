@@ -57,7 +57,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
                 if (player == null || !player.Exists) return;
                 int charId = User.GetPlayerOnline(player);
                 if (charId <= 0) return;
-                foreach (var veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"PL-{charId}").ToList())
+                foreach (ClassicVehicle veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"PL-{charId}").ToList())
                 {
                     if (veh == null || !veh.Exists) continue;
                     ServerVehicles.RemoveVehiclePermanently(veh);
@@ -66,7 +66,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerDisconnectedHandler", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -85,7 +85,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
                 if (player.GetPlayerCurrentMinijobStep() == "DRIVE_BACK_TO_START" && vehicle.Position.IsInRange(Constants.Positions.Minijob_Pilot_VehOutPos, 10f))
                 {
                     var model = vehicle.Model;
-                    foreach (var veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"PL-{charId}").ToList())
+                    foreach (ClassicVehicle veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"PL-{charId}").ToList())
                     {
                         if (veh == null || !veh.Exists) continue;
                         ServerVehicles.RemoveVehiclePermanently(veh);
@@ -125,7 +125,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerExitVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -152,7 +152,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerEnterVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -177,9 +177,9 @@ namespace Altv_Roleplay.Minijobs.Pilot
                 {
                     if (client.GetPlayerCurrentMinijobStep() != "DRIVE_TO_DESTINATION" || client.GetPlayerCurrentMinijobActionCount() != 1) return;
                     client.SetPlayerCurrentMinijobActionCount(2);
-                    client.EmitLocked("Client:Minijob:RemoveJobMarkerWithFreeze", 15000);
+                    client.Emit("Client:Minijob:RemoveJobMarkerWithFreeze", 15000);
                     HUDHandler.SendNotification(client, 2, 15000, "Am Checkpoint angekommen, warte 15 Sekunden - fliege anschließend zum nächsten Flughafen.");
-                    client.EmitLocked("Client:Minijob:CreateJobMarker", "Grapeseed Airport", 3, 514, 30, MinijobSpots_[1].depositShape.Position.X, MinijobSpots_[1].depositShape.Position.Y, MinijobSpots_[1].depositShape.Position.Z, true);
+                    client.Emit("Client:Minijob:CreateJobMarker", "Grapeseed Airport", 3, 514, 30, MinijobSpots_[1].depositShape.Position.X, MinijobSpots_[1].depositShape.Position.Y, MinijobSpots_[1].depositShape.Position.Z, true);
                     return;
                 }
                 else if (colShape == MinijobSpots_[1].depositShape && state && client.IsInVehicle)
@@ -204,7 +204,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ColShapeEnterExitHandler", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -245,7 +245,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("StartMiniJob", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -259,7 +259,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
                 if (player.GetPlayerCurrentMinijob() == "Pilot")
                 {
                     //Job abbrechen
-                    foreach (var veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"PL-{charId}").ToList())
+                    foreach (ClassicVehicle veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"PL-{charId}").ToList())
                     {
                         if (veh == null || !veh.Exists) continue;
                         ServerVehicles.RemoveVehiclePermanently(veh);
@@ -285,7 +285,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("TryStartMinijob", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

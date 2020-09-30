@@ -34,7 +34,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RequestInventoryItems", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -71,7 +71,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("switchItemToDifferentInv", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -242,7 +242,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("UseItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -328,7 +328,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("DropItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -374,7 +374,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GiveItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -420,7 +420,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerSearchTakeItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 

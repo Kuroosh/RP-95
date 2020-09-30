@@ -48,7 +48,7 @@ namespace Altv_Roleplay.Services
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("NewFactionLog", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Altv_Roleplay.Services
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("NewCompanyLog", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

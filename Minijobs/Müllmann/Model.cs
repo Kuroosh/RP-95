@@ -52,7 +52,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetMinijobGarbageMaxRouteSpots", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -70,7 +70,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetMinijobGarbageMaxRoutes", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }

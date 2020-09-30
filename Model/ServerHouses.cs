@@ -77,7 +77,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -141,7 +141,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -156,7 +156,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHouseOwner", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -171,7 +171,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHousePrice", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 99999999;
         }
@@ -186,7 +186,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHouseStreet", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "";
         }
@@ -201,7 +201,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsHouseLocked", e);
+                Core.Debug.CatchExceptions(e);
             }
             return true;
         }
@@ -217,7 +217,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetHouseLocked", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -239,7 +239,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetHouseOwner", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -257,7 +257,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHouseEntrance", e);
+                Core.Debug.CatchExceptions(e);
             }
             return pos;
         }
@@ -270,7 +270,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetMaxInteriorsCount", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -285,7 +285,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHouseInteriorId", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -301,7 +301,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetInteriorExitPosition", e);
+                Core.Debug.CatchExceptions(e);
             }
             return pos;
         }
@@ -317,7 +317,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetInteriorStoragePosition", e);
+                Core.Debug.CatchExceptions(e);
             }
             return pos;
         }
@@ -333,7 +333,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetInteriorManagePosition", e);
+                Core.Debug.CatchExceptions(e);
             }
             return pos;
         }
@@ -371,7 +371,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHouseStorageItemWeight", e);
+                Core.Debug.CatchExceptions(e);
             }
             return invWeight;
         }
@@ -387,7 +387,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetInteriorStorageLimit", e);
+                Core.Debug.CatchExceptions(e);
             }
             return limit;
         }
@@ -433,7 +433,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("AddServerHouseStorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -447,7 +447,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistServerHouseStorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -462,7 +462,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetServerHouseStorageItemAmount", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -509,7 +509,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RemoveServerHouseStorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -523,7 +523,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("HasHouseStorageUpgrade", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -538,7 +538,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("HasHouseAlarmUpgrade", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -573,7 +573,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetHouseUpgradeState", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -595,7 +595,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetHouseBankMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -609,7 +609,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHouseBankMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -632,7 +632,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetHouseRentState", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -646,7 +646,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("HasHouseBankUpgrade", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -661,7 +661,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsCharacterRentedInHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -676,7 +676,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsCharacterRentedInAnyHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -691,7 +691,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHouseRentPrice", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -720,7 +720,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("AddServerHouseRenter", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -741,7 +741,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RemoveServerHouseRenter", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -755,7 +755,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistInteriorId", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -778,7 +778,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetHouseRentPrice", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

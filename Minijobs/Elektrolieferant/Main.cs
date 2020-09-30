@@ -64,7 +64,7 @@ namespace Altv_Roleplay.Minijobs.Elektrolieferant
                 if (player == null || !player.Exists) return;
                 int charId = User.GetPlayerOnline(player);
                 if (charId <= 0) return;
-                foreach (var veh in Alt.Server.GetVehicles().ToList().Where(x => x.NumberplateText == $"EL-{charId}").ToList())
+                foreach (ClassicVehicle veh in Alt.Server.GetVehicles().ToList().Where(x => x.NumberplateText == $"EL-{charId}").ToList())
                 {
                     if (veh == null || !veh.Exists) continue;
                     ServerVehicles.RemoveVehiclePermanently(veh);
@@ -73,7 +73,7 @@ namespace Altv_Roleplay.Minijobs.Elektrolieferant
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerDisconnectedHandler", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -136,7 +136,7 @@ namespace Altv_Roleplay.Minijobs.Elektrolieferant
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerEnterVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -217,7 +217,7 @@ namespace Altv_Roleplay.Minijobs.Elektrolieferant
                 else if (player.GetPlayerCurrentMinijob() == "Elektrolieferant" && player.GetPlayerCurrentMinijobStep() == "DRIVE_BACK_TO_START" && vehicle.Position.IsInRange(Constants.Positions.Minijob_Elektrolieferant_VehOutPos, 8f))
                 {
                     player.EmitLocked("Client:Minijob:RemoveJobMarker");
-                    foreach (var veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"EL-{charId}").ToList())
+                    foreach (ClassicVehicle veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"EL-{charId}").ToList())
                     {
                         if (veh == null || !veh.Exists)
                         {
@@ -249,7 +249,7 @@ namespace Altv_Roleplay.Minijobs.Elektrolieferant
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerExitVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -358,7 +358,7 @@ namespace Altv_Roleplay.Minijobs.Elektrolieferant
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ColshapeEnterExitHandler", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -372,7 +372,7 @@ namespace Altv_Roleplay.Minijobs.Elektrolieferant
                 if (player.GetPlayerCurrentMinijob() == "Elektrolieferant")
                 {
                     //Job abbrechen
-                    foreach (var veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"EL-{charId}").ToList())
+                    foreach (ClassicVehicle veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"EL-{charId}").ToList())
                     {
                         if (veh == null || !veh.Exists) continue;
                         ServerVehicles.RemoveVehiclePermanently(veh);
@@ -412,7 +412,7 @@ namespace Altv_Roleplay.Minijobs.Elektrolieferant
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("StartMinijob", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

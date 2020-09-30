@@ -18,7 +18,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistClothesShop", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -32,7 +32,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetClothesPrice", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }

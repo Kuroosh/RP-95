@@ -136,7 +136,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openShop", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -183,7 +183,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("robShop", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -253,7 +253,7 @@ namespace Altv_Roleplay.Handler
                 if (ServerVehicles.ExistServerVehiclePlate($"NL{rnd}")) { BuyVehicle(player, shopid, hash); return; }
                 if (!CharactersInventory.ExistCharacterItem(charId, "Bargeld", "inventory") || CharactersInventory.GetCharacterItemAmount(charId, "Bargeld", "inventory") < Price) { HUDHandler.SendNotification(player, 4, 5000, $"Du hast nicht genügend Bargeld dabei ({Price}$)."); return; }
                 CharactersInventory.RemoveCharacterItemAmount(charId, "Bargeld", Price, "inventory");
-                ClassicVehicle vehh = ServerVehicles.CreateVehicle(fHash, charId, 0, 0, false, 100, ParkOut, RotOut, $"NL{rnd}", 0, 0);
+                ClassicVehicle vehh = ServerVehicles.CreateVehicle((uint)fHash, charId, 0, 0, false, 100, ParkOut, RotOut, $"NL{rnd}", 0, 0);
                 vehh.Fuel = 100;
                 vehh.PrimaryColorRgb = new Rgba(0, 0, 0, 0);
                 vehh.SecondaryColorRgb = new Rgba(0, 0, 0, 0);
@@ -267,7 +267,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("BuyVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         #endregion
@@ -322,7 +322,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openClothesShop", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -352,7 +352,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("buyClothesShopItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         #endregion

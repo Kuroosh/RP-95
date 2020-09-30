@@ -42,7 +42,7 @@ namespace Altv_Roleplay.Factions.LSFS
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GiveLicense", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

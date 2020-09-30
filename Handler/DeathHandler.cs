@@ -3,7 +3,6 @@ using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
-using AltV.Net.Resources.Chat.Api;
 using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
@@ -38,7 +37,7 @@ namespace Altv_Roleplay.Handler
                 if (killerPlayer is null) return;
                 WeaponModel weaponModel = (WeaponModel)weapon;
                 if (weaponModel == WeaponModel.Fist) return;
-                if (Enum.IsDefined(typeof(AntiCheat.forbiddenWeapons), (Utils.AntiCheat.forbiddenWeapons)weaponModel))
+                /*if (Enum.IsDefined(typeof(AntiCheat.forbiddenWeapons), (Utils.AntiCheat.forbiddenWeapons)weaponModel))
                 {
                     User.SetPlayerBanned(killerPlayer, true, $"Waffen Hack[2]: {weaponModel}");
                     killerPlayer.Kick("");
@@ -49,10 +48,11 @@ namespace Altv_Roleplay.Handler
                     }
                     return;
                 }
+                */
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("OnPlayerDeath", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -71,11 +71,11 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openDeathscreen", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
-        internal static void closeDeathscreen(IPlayer player)
+        internal static void closeDeathscreen(ClassicPlayer player)
         {
             try
             {
@@ -106,11 +106,11 @@ namespace Altv_Roleplay.Handler
                 Characters.SetCharacterWeapon(player, "FistWeaponAmmo", 0);
                 player.Emit("Client:Smartphone:equipPhone", false, Characters.GetCharacterPhonenumber(charId), Characters.IsCharacterPhoneFlyModeEnabled(charId));
                 Characters.SetCharacterPhoneEquipped(charId, false);
-                player.RemoveAllWeapons();
+                player.RemoveAllPlayerWeapons();
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("closeDeathscreen", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         internal static void revive(IPlayer player)
@@ -133,7 +133,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("revive", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

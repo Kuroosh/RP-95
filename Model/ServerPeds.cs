@@ -39,7 +39,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateServerPed", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 

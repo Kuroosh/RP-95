@@ -48,7 +48,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateServerFactionMember", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -64,7 +64,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("sendMsg", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -77,7 +77,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetFactionIdByServiceNumber", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -91,7 +91,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCurrentServicePhoneOwner", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -105,7 +105,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsNumberAFactionNumber", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -121,7 +121,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("UpdateCurrentServicePhoneOwner", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -143,7 +143,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("AddNewFactionDispatch", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -157,7 +157,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistDispatchBySender", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -172,7 +172,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistDispatch", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -190,7 +190,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RemoveDispatch", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -207,7 +207,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RemoveDispatchWithoutFactionId", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -229,7 +229,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("createFactionDispatch", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -251,7 +251,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RemoveServerFactionMember", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -295,7 +295,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("AddServerFactionStorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -309,7 +309,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetServerFactionStorageItemAmount", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -354,7 +354,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RemoveServerFactionStorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -422,7 +422,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetFactionRankPaycheck", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -439,7 +439,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsCharacterInAnyFaction", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -457,7 +457,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterFactionId", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -475,7 +475,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterFactionRank", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -498,7 +498,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterFactionRank", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -515,7 +515,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterFactionServiceNumber", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -534,7 +534,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterFactionLastChange", e);
+                Core.Debug.CatchExceptions(e);
             }
             return dt;
         }
@@ -549,7 +549,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistFactionServiceNumber", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -564,7 +564,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetFactionMaxRankCount", e);
+                Core.Debug.CatchExceptions(e);
             }
             return rankCount;
         }
@@ -582,7 +582,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsCharacterInFactionDuty", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -597,7 +597,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetFactionDutyMemberCount", e);
+                Core.Debug.CatchExceptions(e);
             }
             return memberCount;
         }
@@ -620,7 +620,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterInFactionDuty", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -637,7 +637,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetFactionBankMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -660,7 +660,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetFactionBankMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -775,7 +775,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistServerFactionStorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -793,7 +793,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistServerFactionRankOnId", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }

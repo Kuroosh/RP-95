@@ -51,7 +51,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetFuelStationBankMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -114,7 +114,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetFuelStationAvailableLiters", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 

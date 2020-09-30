@@ -51,7 +51,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
 
                 player.EmitLocked("Client:Minijob:RemoveJobMarker");
 
-                foreach (var veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"BUS-{charId}").ToList())
+                foreach (ClassicVehicle veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"BUS-{charId}").ToList())
                 {
                     if (veh == null || !veh.Exists)
                     {
@@ -89,7 +89,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerExitVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -116,7 +116,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerEnterVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -172,7 +172,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ColshapeEnterExitHandler", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -186,7 +186,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
                 if (player.GetPlayerCurrentMinijob() == "Busfahrer")
                 {
                     //Job abbrechen
-                    foreach (var veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"BUS-{charId}").ToList())
+                    foreach (ClassicVehicle veh in Alt.Server.GetVehicles().Where(x => x.NumberplateText == $"BUS-{charId}").ToList())
                     {
                         if (veh == null || !veh.Exists) continue;
                         ServerVehicles.RemoveVehiclePermanently(veh);
@@ -215,7 +215,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("TryStartMinijob", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -235,7 +235,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
                     if (veh == null || !veh.Exists) continue;
                     if (veh.Position.IsInRange(Constants.Positions.Minijob_Busdriver_VehOutPos, 8f)) { HUDHandler.SendNotification(player, 3, 5000, "Der Ausparkpunkt ist blockiert."); return; }
                 }
-                ServerVehicles.CreateVehicle(Model.GetRouteVehicleHash(routeId), charId, 2, 0, false, 0, Constants.Positions.Minijob_Busdriver_VehOutPos, Constants.Positions.Minijob_Busdriver_VehOutRot, $"BUS-{charId}", 132, 132);
+                ServerVehicles.CreateVehicle((uint)Model.GetRouteVehicleHash(routeId), charId, 2, 0, false, 0, Constants.Positions.Minijob_Busdriver_VehOutPos, Constants.Positions.Minijob_Busdriver_VehOutRot, $"BUS-{charId}", 132, 132);
                 player.SetPlayerCurrentMinijob("Busfahrer");
                 player.SetPlayerCurrentMinijobStep("FirstStepInVehicle");
                 player.SetPlayerCurrentMinijobRouteId((ulong)routeId);
@@ -245,7 +245,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("StartMiniJob", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

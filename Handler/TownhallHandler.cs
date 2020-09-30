@@ -63,7 +63,7 @@ namespace Altv_Roleplay.Handler
                     HUDHandler.SendNotification(player, 1, 2500, "Erfolg freigeschaltet: Die Tür vom Arbeitsamt");
                 }
             }
-            catch (Exception e) { Core.Debug.CatchExceptions("SelectJobcenterJob", e); }
+            catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
         internal static void openHouseSelector(IPlayer player)
@@ -78,7 +78,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openHouseSelector", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

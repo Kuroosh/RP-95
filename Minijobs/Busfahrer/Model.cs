@@ -45,7 +45,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistRoute", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -60,7 +60,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetRouteVehicleHash", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -75,7 +75,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetRouteNeededEXP", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -90,7 +90,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetRouteGivenEXP", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -105,7 +105,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetRouteGivenMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -133,7 +133,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateMinijobRouteSpot", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -155,7 +155,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetMinijobMaxRouteSpots", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }

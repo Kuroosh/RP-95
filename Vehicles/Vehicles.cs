@@ -20,7 +20,7 @@ namespace Altv_Roleplay.Vehicles
 
                 }
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("OnVehicleUpdate", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
     }
 }

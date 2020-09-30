@@ -30,7 +30,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SupportCommand", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -55,7 +55,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("testtCommand", e);
+                Core.Debug.CatchExceptions(e);
             }
         }*/
 
@@ -100,7 +100,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-Core.Debug.CatchExceptions("", e);
+Core.Debug.CatchExceptions(e);
             }
         }
 

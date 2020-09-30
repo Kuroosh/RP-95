@@ -39,7 +39,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreatePlayerAccount", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -125,7 +125,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsPlayerBanned", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -193,7 +193,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetPlayerOnline", e);
+                Core.Debug.CatchExceptions(e);
                 return 0;
             }
         }
@@ -208,7 +208,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsCharacterOnline", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -272,7 +272,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("SetPlayerOnline", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -294,7 +294,7 @@ namespace Altv_Roleplay.Model
                 }
                 catch (Exception e)
                 {
-                    Core.Debug.CatchExceptions("SetPlayerBanned", e);
+                    Core.Debug.CatchExceptions(e);
                 }
             }
         }
@@ -316,7 +316,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetPlayerBanned", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -330,7 +330,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistPlayerById", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -351,7 +351,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetPlayerWhitelistState", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -371,7 +371,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetPlayerAdminLevel", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

@@ -279,7 +279,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception ex)
             {
-                Core.Debug.CatchExceptions("PressE", ex);
+                Core.Debug.CatchExceptions(ex);
             }
         }
 
@@ -354,7 +354,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PressU", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

@@ -42,7 +42,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateCharacterTabletAppEntry", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -78,7 +78,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateCharacterTabletTutorialAppEntry", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         public static bool ExistCharacterTutorialAppEntry(int charId)
@@ -117,7 +117,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateServerTabletEvent", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -141,7 +141,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateServerTabletNote", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -161,7 +161,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("DeleteServerTabletNote", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -178,7 +178,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetServerTabletAppPrice", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 999999999;
         }
@@ -206,7 +206,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("HasCharacterTabletApp", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -232,7 +232,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("HasCharacterTutorialEntryFinished", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -262,7 +262,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterTutorialEntryState", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -295,7 +295,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ChangeCharacterTabletAppInstallState", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -325,7 +325,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetCharacterTabletApps", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -443,12 +443,12 @@ namespace Altv_Roleplay.Model
                 if (vehicle != null)
                 {
                     if (vehicle.isInGarage) { return ServerGarages.GetGarageSlotPosition(vehicle.garageId, 1); }
-                    else { return new Position(vehicle.posX, vehicle.posY, vehicle.posZ); }
+                    else { return new Position(vehicle.Position.X, vehicle.Position.Y, vehicle.Position.Z); }
                 }
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterTabletVehiclePosition", e);
+                Core.Debug.CatchExceptions(e);
             }
             return new Position(0, 0, 0);
         }

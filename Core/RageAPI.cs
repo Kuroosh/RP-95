@@ -22,7 +22,7 @@ namespace Altv_Roleplay.Core
                 if (element == null) return;
                 element.SetData(key, value);
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("rpSetElementData", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
         public static void rpSetSharedElementData<T>(this IEntity element, string key, T value)
         {
@@ -32,7 +32,7 @@ namespace Altv_Roleplay.Core
                 element.SetData(key, value);
                 element.SetSyncedMetaData(key, value);
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("rpSetSharedElementData", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
         public static void rpSetStreamSharedElementData<T>(this IEntity element, string key, T value)
         {
@@ -42,7 +42,7 @@ namespace Altv_Roleplay.Core
                 element.SetData(key, value);
                 element.SetStreamSyncedMetaData(key, value);
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("rpSetStreamSharedElementData", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
     }
 }

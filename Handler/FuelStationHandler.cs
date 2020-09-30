@@ -57,7 +57,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("FuelVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

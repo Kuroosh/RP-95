@@ -16,34 +16,32 @@ namespace Altv_Roleplay.Handler
 {
     class TimerHandler
     {
-        public static void OnMinuteSpent(object unused)
+        private static void SaveAllVehicles()
         {
             try
             {
-                /*Console.WriteLine($"Timer - Thread = {Thread.CurrentThread.ManagedThreadId}");
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();*/
-                foreach (ClassicVehicle Veh in Alt.Server.GetVehicles().ToList())
+                foreach (ClassicVehicle vehicle in Alt.GetAllVehicles().ToList())
                 {
-                    if (Veh == null || !Veh.Exists) { continue; }
-                    using var vRef = new VehicleRef(Veh);
+                    if (vehicle == null || !vehicle.Exists) { continue; }
+                    using var vRef = new VehicleRef(vehicle);
                     if (!vRef.Exists) continue;
-                    lock (Veh)
+                    lock (vehicle)
                     {
-                        if (Veh == null) continue;
-                        ulong vehID = Veh.GetVehicleId();
+                        if (vehicle == null) continue;
+                        int vehID = vehicle.id;
                         if (vehID <= 0) { continue; }
-                        ServerVehicles.SaveVehiclePositionAndStates(Veh);
-                        if (Veh.EngineOn == true) { Veh.Fuel -= 0.03f; }
+                        if (vehicle.EngineOn == true) { vehicle.Fuel -= 0.03f; }
+                        Database.DatabaseHandler.UpdateVehicle(vehicle);
                     }
                 }
-
-                /*stopwatch.Stop();
-                Alt.Log($"OnEntityTimer: Vehicle Foreach benötigte: {stopwatch.Elapsed}");
-
-                stopwatch.Reset();
-                stopwatch.Start();*/
-                foreach (IPlayer player in Alt.Server.GetPlayers().ToList())
+            }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
+        }
+        private static void SaveAllPlayers()
+        {
+            try
+            {
+                foreach (ClassicPlayer player in Alt.Server.GetPlayers().ToList())
                 {
                     if (player == null) continue;
                     using var playerReference = new PlayerRef(player);
@@ -60,7 +58,7 @@ namespace Altv_Roleplay.Handler
                             Characters.SetCharacterHealth(charId, player.Health);
                             Characters.SetCharacterArmor(charId, player.Armor);
                             WeatherHandler.SetRealTime(player);
-                            if (player.IsInVehicle) { player.EmitLocked("Client:HUD:GetDistanceForVehicleKM"); HUDHandler.SendInformationToVehicleHUD(player); }
+                            if (player.IsInVehicle) { player.Emit("Client:HUD:GetDistanceForVehicleKM"); HUDHandler.SendInformationToVehicleHUD(player); }
                             Characters.IncreaseCharacterPaydayTime(charId);
 
                             if (Characters.IsCharacterUnconscious(charId))
@@ -71,7 +69,7 @@ namespace Altv_Roleplay.Handler
                                 {
                                     Characters.SetCharacterUnconscious(charId, false, 0);
                                     DeathHandler.closeDeathscreen(player);
-                                    player.Spawn(new Position(355.54285f, -596.33405f, 28.75768f));
+                                    player.Spawn(new Position(355.54285f, -596.33405f, 28.75768f), 0);
                                     player.Health = player.MaxHealth;
                                 }
                             }
@@ -193,17 +191,10 @@ namespace Altv_Roleplay.Handler
                         }
                     }
                 }
-                //stopwatch.Stop();
-                //Alt.Log($"OnEntityTimer: Player Foreach benötigte: {stopwatch.Elapsed}");
-                VehicleAutomaticParkFetch();
             }
-            catch (Exception ex)
-            {
-                Alt.Log($"{ex}");
-            }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
-
-        public static void VehicleAutomaticParkFetch()
+        private static void VehicleAutomaticParkFetch()
         {
             try
             {
@@ -242,7 +233,28 @@ namespace Altv_Roleplay.Handler
                     }
                 }
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("VehicleAutomaticParkFetch", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
+        }
+        public static void OnMinuteSpent(object unused)
+        {
+            try
+            {
+                /*Console.WriteLine($"Timer - Thread = {Thread.CurrentThread.ManagedThreadId}");
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();*/
+                SaveAllVehicles();
+                SaveAllPlayers();
+                VehicleAutomaticParkFetch();
+                /*stopwatch.Stop();
+                Alt.Log($"OnEntityTimer: Vehicle Foreach benötigte: {stopwatch.Elapsed}");
+
+                stopwatch.Reset();
+                stopwatch.Start();*/
+
+                //stopwatch.Stop();
+                //Alt.Log($"OnEntityTimer: Player Foreach benötigte: {stopwatch.Elapsed}");
+            }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
 
         /*internal static void OnDesireTimer(object sender, ElapsedEventArgs e)

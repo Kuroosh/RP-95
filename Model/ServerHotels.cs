@@ -49,7 +49,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RequestHotelApartmentItems", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -67,7 +67,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHotelName", e);
+                Core.Debug.CatchExceptions(e);
                 return "Fehler";
             }
         }
@@ -88,7 +88,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetApartmentOwnerName", e);
+                Core.Debug.CatchExceptions(e);
             }
             return name;
         }
@@ -106,7 +106,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistHotelApartment", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -124,7 +124,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetApartmentOwner", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -142,7 +142,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetApartmentPrice", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 999999999;
         }
@@ -160,7 +160,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("HasCharacterAnApartment", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -179,7 +179,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterRentedHotelName", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "Fehler";
         }
@@ -204,7 +204,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetApartmentOwner", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -221,7 +221,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetApartmentRentHours", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -241,7 +241,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHotelPosition", e);
+                Core.Debug.CatchExceptions(e);
             }
             return pos;
         }
@@ -259,7 +259,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetHotelIdByApartmentId", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -274,7 +274,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterApartmentId", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -332,7 +332,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("AddServerHotelStorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -346,7 +346,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistServerHotelStorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -361,7 +361,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetServerHotelStorageItemAmount", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -406,7 +406,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RemoveServerHotelStorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         public static float GetHotelStorageItemWeight(int apartmentId)
@@ -435,7 +435,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetApartmentInteriorId", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }

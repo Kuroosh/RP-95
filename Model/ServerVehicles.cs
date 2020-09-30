@@ -3,6 +3,7 @@ using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
+using Altv_Roleplay.Database;
 using Altv_Roleplay.Factories;
 using Altv_Roleplay.models;
 using Altv_Roleplay.Utils;
@@ -16,44 +17,37 @@ namespace Altv_Roleplay.Model
     class ServerVehicles
     {
         //this two
-        public static List<Server_Vehicles> ServerVehiclesLocked_ { get { lock (ServerVehicles_) return ServerVehicles_.ToList(); } set => ServerVehicles_ = value; }
-        public static List<Server_Vehicles> ServerVehicles_ = new List<Server_Vehicles>();
+        public static List<ClassicVehicle> ServerVehiclesLocked_ { get { lock (ServerVehicles_) return ServerVehicles_.ToList(); } set => ServerVehicles_ = value; }
+        public static List<ClassicVehicle> ServerVehicles_ = new List<ClassicVehicle>();
         public static List<Server_Vehicles_Mod> ServerVehiclesMod_ = new List<Server_Vehicles_Mod>();
         public static List<Server_Vehicle_Items> ServerVehicleTrunkItems_ = new List<Server_Vehicle_Items>();
         public static List<Server_All_Vehicle_Mods> ServerAllVehicleMods_ = new List<Server_All_Vehicle_Mods>();
 
+        public const int GARAGE_DIM = 1000;
         public static void CreateServerVehicle(int id, int charid, uint hash, int vehType, int factionid, float fuel, float km, bool engineState, bool isEngineHealthy, bool lockState, bool isInGarage, int garageId, Position position, Rotation rotation, string plate, DateTime lastUsage, DateTime buyDate)
         {
-            var newVehicleData = new Server_Vehicles
-            {
-                id = id,
-                charid = charid,
-                hash = hash,
-                vehType = vehType,
-                faction = factionid,
-                fuel = fuel,
-                KM = km,
-                engineState = engineState,
-                isEngineHealthy = isEngineHealthy,
-                lockState = lockState,
-                isInGarage = isInGarage,
-                garageId = garageId,
-                posX = position.X,
-                posY = position.Y,
-                posZ = position.Z + 2,
-                rotX = rotation.Pitch,
-                rotY = rotation.Roll,
-                rotZ = rotation.Yaw,
-                plate = plate,
-                lastUsage = lastUsage,
-                buyDate = buyDate
-            };
-            ServerVehicles_.Add(newVehicleData);
-
-            if (isInGarage) return;
             ClassicVehicle veh = (ClassicVehicle)Alt.CreateVehicle(hash, position, rotation);
+            veh.id = id;
+            veh.charid = charid;
+            veh.hash = hash;
+            veh.vehType = vehType;
+            veh.faction = factionid;
             veh.Fuel = fuel;
             veh.KM = km;
+            veh.engineState = engineState;
+            veh.isEngineHealthy = isEngineHealthy;
+            veh.lockState = lockState;
+            veh.isInGarage = isInGarage;
+            veh.garageId = garageId;
+            veh.posX = position.X;
+            veh.posY = position.Y;
+            veh.posZ = position.Z + 2;
+            veh.rotX = rotation.Pitch;
+            veh.rotY = rotation.Roll;
+            veh.rotZ = rotation.Yaw;
+            veh.plate = plate;
+            veh.lastUsage = lastUsage;
+            veh.buyDate = buyDate;
             if (position == new Position(0, 0, 0)) { SetVehicleInGarage(veh, true, 10); return; }
             if (lockState == true) { veh.LockState = VehicleLockState.Locked; }
             else if (lockState == false) { veh.LockState = VehicleLockState.Unlocked; }
@@ -62,6 +56,8 @@ namespace Altv_Roleplay.Model
             veh.SetVehicleId((ulong)id);
             veh.SetVehicleTrunkState(false);
             SetVehicleModsCorrectly(veh);
+            if (isInGarage) veh.Dimension = GARAGE_DIM;
+            ServerVehicles_.Add(veh);
         }
 
         public static void AddVehicleTrunkItem(int vehId, string itemName, int itemAmount, bool inGlovebox)
@@ -82,15 +78,13 @@ namespace Altv_Roleplay.Model
                 {
                     //Item existiert, itemAmount erhöhen
                     hasItem.itemAmount += itemAmount;
-                    using (gtaContext db = new gtaContext())
+                    using gtaContext db = new gtaContext();
+                    var dbitem = db.Server_Vehicle_Items.FirstOrDefault(i => i.vehId == vehId && i.itemName == itemName && i.isInGlovebox == inGlovebox);
+                    if (dbitem != null)
                     {
-                        var dbitem = db.Server_Vehicle_Items.FirstOrDefault(i => i.vehId == vehId && i.itemName == itemName && i.isInGlovebox == inGlovebox);
-                        if (dbitem != null)
-                        {
-                            dbitem.itemAmount = dbitem.itemAmount += itemAmount;
-                        }
-                        db.SaveChanges();
+                        dbitem.itemAmount = dbitem.itemAmount += itemAmount;
                     }
+                    db.SaveChanges();
                 }
                 else
                 {
@@ -105,7 +99,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("AddVehicleTrunkItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -121,7 +115,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetVehicleIdByPlate", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -136,7 +130,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetVehicleTrunkItemAmount", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -190,7 +184,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistVehicleTrunkItem", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -219,9 +213,9 @@ namespace Altv_Roleplay.Model
                 if (state == true) veh.LockState = VehicleLockState.Locked;
                 else if (state == false) veh.LockState = VehicleLockState.Unlocked;
                 vehs.lockState = state;
-                using gtaContext db = new gtaContext();
+                /*using gtaContext db = new gtaContext();
                 db.Server_Vehicles.Update(vehs);
-                db.SaveChanges();
+                db.SaveChanges();*/
             }
         }
 
@@ -314,7 +308,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetVehicleHashById", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -332,7 +326,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetVehicleOwnerById", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -372,16 +366,16 @@ namespace Altv_Roleplay.Model
                 if (vehs != null)
                 {
                     vehs.isEngineHealthy = state;
-                    using (gtaContext db = new gtaContext())
+                    /*using (gtaContext db = new gtaContext())
                     {
                         db.Server_Vehicles.Update(vehs);
                         db.SaveChanges();
-                    }
+                    }*/
                 }
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetVehicleEngineHealthy", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -401,7 +395,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsVehicleEngineHealthy", e);
+                Core.Debug.CatchExceptions(e);
                 return false;
             }
         }
@@ -469,16 +463,17 @@ namespace Altv_Roleplay.Model
                 {
                     vehicle.plate = plate;
 
-                    using (gtaContext db = new gtaContext())
+                    /*using (gtaContext db = new gtaContext())
                     {
                         db.Server_Vehicles.Update(vehicle);
                         db.SaveChanges();
                     }
+                    */
                 }
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetServerVehiclePlate", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -494,11 +489,11 @@ namespace Altv_Roleplay.Model
             return false;
         }
 
-        public static int GetVehicleGarageId(IVehicle veh)
+        public static int GetVehicleGarageId(ClassicVehicle veh)
         {
-            ulong vehID = veh.GetVehicleId();
+            int vehID = veh.id;
             if (veh == null || !veh.Exists || vehID == 0) return 0;
-            var vehs = ServerVehicles_.FirstOrDefault(v => (ulong)v.id == vehID);
+            var vehs = ServerVehicles_.FirstOrDefault(v => v.id == vehID);
             if (vehs != null)
             {
                 return vehs.garageId;
@@ -511,22 +506,23 @@ namespace Altv_Roleplay.Model
             try
             {
                 if (veh == null || !veh.Exists) return;
-                ulong vehID = veh.GetVehicleId();
+                int vehID = veh.id;
                 if (vehID == 0) return;
                 var dbVehicle = ServerVehicles_.FirstOrDefault(v => v.id == (int)veh.GetVehicleId());
                 if (dbVehicle == null) return;
                 dbVehicle.isInGarage = state;
                 dbVehicle.lastUsage = DateTime.Now;
                 dbVehicle.KM = veh.KM;
-                dbVehicle.fuel = veh.Fuel;
+                dbVehicle.Fuel = veh.Fuel;
                 if (state == true) { dbVehicle.garageId = garageId; dbVehicle.engineState = false; dbVehicle.lockState = true; veh.Remove(); }
-                using gtaContext db = new gtaContext();
+                /*using gtaContext db = new gtaContext();
                 db.Server_Vehicles.Update(dbVehicle);
                 db.SaveChanges();
+                */
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetVehicleInGarage", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -566,7 +562,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetVehicleVehicleTrunkWeight", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0f;
         }
@@ -591,18 +587,19 @@ namespace Altv_Roleplay.Model
                     if (veh.LockState == VehicleLockState.Locked) { vehs.lockState = true; }
                     else if (veh.LockState == VehicleLockState.Unlocked) { vehs.lockState = false; }
                     vehs.KM = veh.KM;
-                    vehs.fuel = veh.Fuel;
+                    vehs.Fuel = veh.Fuel;
 
-                    using (gtaContext db = new gtaContext())
+                    /*using (gtaContext db = new gtaContext())
                     {
                         db.Server_Vehicles.Update(vehs);
                         db.SaveChanges();
                     }
+                    */
                 }
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SaveVehiclePositionAndStates", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -690,7 +687,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("AddVehicleModToList", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -811,7 +808,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetVehicleModsCorrectly", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -882,99 +879,87 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("InstallVehicleMod", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
-        public static ClassicVehicle CreateVehicle(ulong hash, int charid, int vehtype, int faction, bool isInGarage, int garageId, Position pos, Rotation rot, string plate, int primaryColor, int secondaryColor)
+        public static ClassicVehicle CreateVehicle(uint hash, int charid, int vehtype, int faction, bool isInGarage, int garageId, Position pos, Rotation rot, string plate, int primaryColor, int secondaryColor)
         {
             try
             {
-                Server_Vehicles nVehicle = new Server_Vehicles
-                {
-                    charid = charid,
-                    hash = hash,
-                    vehType = vehtype,
-                    faction = faction,
-                    fuel = GetVehicleFuelLimitOnHash(hash),
-                    KM = 0f,
-                    engineState = false,
-                    isEngineHealthy = true,
-                    lockState = true,
-                    isInGarage = isInGarage,
-                    garageId = garageId,
-                    posX = pos.X,
-                    posY = pos.Y,
-                    posZ = pos.Z,
-                    rotX = rot.Pitch,
-                    rotY = rot.Roll,
-                    rotZ = rot.Yaw,
-                    plate = plate,
-                    lastUsage = DateTime.Now,
-                    buyDate = DateTime.Now
-                };
-                ServerVehicles_.Add(nVehicle);
-
-                using (gtaContext db = new gtaContext())
-                {
-                    db.Server_Vehicles.Add(nVehicle);
-                    db.SaveChanges();
-                }
-
-                if (vehtype != 2) { AddVehicleModToList(nVehicle.id, nVehicle.id, primaryColor, secondaryColor, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 0, 0, 0, 0, 0); }
-                if (isInGarage) return null;
-                ClassicVehicle veh = (ClassicVehicle)Alt.CreateVehicle((uint)hash, pos, rot);
+                ClassicVehicle veh = (ClassicVehicle)Alt.CreateVehicle(hash, pos, rot);
+                veh.charid = charid;
+                veh.hash = hash;
+                veh.vehType = vehtype;
+                veh.faction = faction;
+                veh.Fuel = GetVehicleFuelLimitOnHash(hash);
+                veh.KM = 0f;
+                veh.engineState = false;
+                veh.isEngineHealthy = true;
+                veh.lockState = true;
+                veh.isInGarage = isInGarage;
+                veh.garageId = garageId;
+                veh.posX = pos.X;
+                veh.posY = pos.Y;
+                veh.posZ = pos.Z;
+                veh.rotX = rot.Pitch;
+                veh.rotY = rot.Roll;
+                veh.rotZ = rot.Yaw;
+                veh.plate = plate;
+                veh.lastUsage = DateTime.Now;
+                veh.buyDate = DateTime.Now;
+                if (isInGarage) veh.Dimension = GARAGE_DIM;
+                ServerVehicles_.Add(veh);
+                DatabaseHandler.AddNewVehicle(veh);
+                if (vehtype != 2) { AddVehicleModToList(veh.id, veh.id, primaryColor, secondaryColor, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 0, 0, 0, 0, 0); }
+                if (isInGarage) { veh.Dimension = GARAGE_DIM; return null; }
                 veh.NumberplateText = plate;
                 veh.LockState = VehicleLockState.Locked;
                 veh.EngineOn = false;
-                veh.SetVehicleId((ulong)nVehicle.id);
+                veh.SetVehicleId((ulong)veh.id);
                 veh.SetVehicleTrunkState(false);
                 veh.Fuel = GetVehicleFuelLimitOnHash(hash);
-                if (vehtype != 2) { SetVehicleModsCorrectly(veh); }
+                if (vehtype != 2) SetVehicleModsCorrectly(veh);
                 return veh;
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateVehicle", e);
+                Core.Debug.CatchExceptions(e);
                 return null;
             }
         }
 
-        public static void RemoveVehiclePermanently(IVehicle veh)
+        public static void RemoveVehiclePermanently(ClassicVehicle veh)
         {
             try
             {
                 if (veh == null || !veh.Exists) return;
-                ulong vehID; vehID = veh.GetVehicleId();
+                int vehID = veh.VehicleId;
                 if (vehID <= 0) return;
-                var mod = ServerVehiclesMod_.FirstOrDefault(x => x.vehId == (int)vehID);
-                var vehItems = ServerVehicleTrunkItems_.Where(x => x.vehId == (int)vehID).ToList();
-                var vehDb = ServerVehicles_.FirstOrDefault(x => x.id == (int)vehID);
-                using (gtaContext db = new gtaContext())
+                var mod = ServerVehiclesMod_.FirstOrDefault(x => x.vehId == vehID);
+                var vehItems = ServerVehicleTrunkItems_.Where(x => x.vehId == vehID).ToList();
+                using gtaContext db = new gtaContext();
+                foreach (var item in vehItems)
                 {
-                    foreach (var item in vehItems)
-                    {
-                        db.Server_Vehicle_Items.Remove(item);
-                        ServerVehicleTrunkItems_.Remove(item);
-                    }
-
-                    if (mod != null)
-                    {
-                        db.Server_Vehicles_Mods.Remove(mod);
-                        ServerVehiclesMod_.Remove(mod);
-                    }
-
-                    if (vehDb != null)
-                    {
-                        db.Server_Vehicles.Remove(vehDb);
-                        ServerVehicles_.Remove(vehDb);
-                    }
-                    db.SaveChanges();
+                    db.Server_Vehicle_Items.Remove(item);
+                    ServerVehicleTrunkItems_.Remove(item);
                 }
+
+                if (mod != null)
+                {
+                    db.Server_Vehicles_Mods.Remove(mod);
+                    ServerVehiclesMod_.Remove(mod);
+                }
+
+                if (veh != null)
+                    DatabaseHandler.RemoveVehicleById(veh.id);
+
+
+                db.SaveChanges();
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RemoveVehiclePermanently", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -987,7 +972,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ReturnMaxVehicleMods", e);
+                Core.Debug.CatchExceptions(e);
             }
             return maxMods;
         }
@@ -1001,7 +986,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ReturnMaxTuningWheels", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -1263,7 +1248,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetVehicleModID", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -1285,7 +1270,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ReturnMaxVehicleMod", e);
+                Core.Debug.CatchExceptions(e);
             }
             return maxMods;
         }
@@ -1315,7 +1300,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("AddVehicleMods", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -1329,7 +1314,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetVehicleModName", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "";
         }

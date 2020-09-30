@@ -36,7 +36,7 @@ namespace Altv_Roleplay.Factions.Justice
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GiveWeaponLicense", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -61,7 +61,7 @@ namespace Altv_Roleplay.Factions.Justice
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SearchBankAccounts", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -84,7 +84,7 @@ namespace Altv_Roleplay.Factions.Justice
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ViewBankTransactions", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

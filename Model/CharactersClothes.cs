@@ -28,7 +28,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateCharacterOwnedClothes", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -40,7 +40,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistCharacterClothes", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }

@@ -39,7 +39,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateServerCompany", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -73,7 +73,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateServerCompanyMember", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -96,7 +96,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RemoveServerCompanyMember", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -118,7 +118,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ChangeServerCompanyOwner", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -140,7 +140,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ChangeServerCompanyMemberRank", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -157,7 +157,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsCharacterInAnyServerCompany", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -175,7 +175,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterServerCompanyId", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -259,7 +259,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SetServerCompanyMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 

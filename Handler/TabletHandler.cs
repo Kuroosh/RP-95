@@ -28,7 +28,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openCEF", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -48,7 +48,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RequestTabletData", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -132,7 +132,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RefreshTabletData", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -166,7 +166,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("AppStoreInstallUninstallApp", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -192,7 +192,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("BankingAppNewTransaction", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -222,7 +222,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("EventsAppNewEntry", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -256,14 +256,14 @@ namespace Altv_Roleplay.Handler
                 DateTime dateTime = DateTime.Now;
                 CharactersBank.SetBankAccountMoney(bankAccountNumber, (CharactersBank.GetBankAccountMoney(bankAccountNumber) - Price));
                 ServerBankPapers.CreateNewBankPaper(bankAccountNumber, dateTime.ToString("dd.MM.yyyy"), dateTime.ToString("HH.mm"), "Ausgehende Überweisung", "Online Fahrzeugshop", $"Fahrzeugkauf: {ServerVehicles.GetVehicleNameOnHash(fHash)}", $"-{Price}", "Online Banking");
-                ClassicVehicle veh = ServerVehicles.CreateVehicle(fHash, charId, 0, 0, true, 5, new Position(0, 0, 0), new Rotation(0, 0, 0), $"NL{rnd}", fColor, fColor);
+                ClassicVehicle veh = ServerVehicles.CreateVehicle((uint)fHash, charId, 0, 0, true, 5, new Position(0, 0, 0), new Rotation(0, 0, 0), $"NL{rnd}", fColor, fColor);
                 veh.Fuel = 100;
                 CharactersInventory.AddCharacterItem(charId, $"Fahrzeugschluessel NL{rnd}", 2, "inventory");
                 HUDHandler.SendNotification(player, 2, 5000, $"Fahrzeug '{ServerVehicles.GetVehicleNameOnHash(fHash)}' erfolgreich für {Price}$ erworben.<br>Lieferort: La Mesa Fahrzeuggarage.");
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("VehicleStoreBuyVehicle", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -281,7 +281,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("NotesAppNewNote", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -298,7 +298,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("NotesAppDeleteNote", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -316,7 +316,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("DeleteFactionDispatch", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -347,7 +347,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CompanyAppInviteNewMember", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -377,7 +377,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("FactionManagerAppInviteNewMember", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -403,7 +403,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CompanyAppLeaveCompany", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -455,7 +455,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CompanyAppRankAction", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -522,7 +522,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("FactionManagerRankAction", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -551,7 +551,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("FactionManagerSetRankPaycheck", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -578,7 +578,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("sendDispatchToFaction", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

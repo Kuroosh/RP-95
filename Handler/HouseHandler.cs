@@ -3,6 +3,7 @@ using AltV.Net.Async;
 using AltV.Net.Data;
 using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
 using System;
@@ -25,7 +26,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openEntranceCEF", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -51,7 +52,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("BuyHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -71,7 +72,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LockHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -96,7 +97,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("EnterHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -118,7 +119,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LeaveHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -140,7 +141,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openManageCEF", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -165,7 +166,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openStorage", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -198,7 +199,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("StorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -238,11 +239,11 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("TakeItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
-        internal static async void BreakIntoHouse(IPlayer player, int houseId)
+        internal static async void BreakIntoHouse(ClassicPlayer player, int houseId)
         {
             //Funktion: um in andere Häuser einzubrechen
             try
@@ -273,15 +274,15 @@ namespace Altv_Roleplay.Handler
                             HUDHandler.SendNotification(houseOwnerPlayer, 3, 3500, $"Jemand bricht in dein Haus ein: {ServerHouses.GetHouseStreet(houseId)}");
                         }
                     }
-                    player.GiveWeapon(WeaponModel.Crowbar, 1, true);
+                    player.GivePlayerWeapon(WeaponModel.Crowbar, 1, true);
                     player.SetPlayerUsingCrowbar(true);
                     //ToDo: Animation
                     HUDHandler.SendNotification(player, 1, duration, "Aufbrechen des Hauses begonnen (5 Minuten)...");
                     await Task.Delay(duration);
                     if (player == null || !player.Exists) return;
-                    if (!player.Position.IsInRange(curPos, 3f)) { HUDHandler.SendNotification(player, 3, 5000, "Aufbrechen abgebrochen, du bist zu weit entfernt."); player.SetPlayerUsingCrowbar(false); player.RemoveWeapon(WeaponModel.Crowbar); return; }
+                    if (!player.Position.IsInRange(curPos, 3f)) { HUDHandler.SendNotification(player, 3, 5000, "Aufbrechen abgebrochen, du bist zu weit entfernt."); player.SetPlayerUsingCrowbar(false); player.RemovePlayerWeapon(WeaponModel.Crowbar); return; }
                     if (!player.IsPlayerUsingCrowbar()) return;
-                    player.RemoveWeapon(WeaponModel.Crowbar);
+                    player.RemovePlayerWeapon(WeaponModel.Crowbar);
                     ServerHouses.SetHouseLocked(houseId, false);
                     HUDHandler.SendNotification(player, 2, 2500, "Haus aufgebrochen, beeil dich.");
                     player.SetPlayerUsingCrowbar(false);
@@ -298,7 +299,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("BreakIntoHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -316,7 +317,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("setMainHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -341,7 +342,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SellHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -382,7 +383,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("WithdrawMoney", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -432,7 +433,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("BuyUpgrade", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -456,7 +457,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RemoveRenter", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -481,7 +482,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("setRentState", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -505,7 +506,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("setRentPrice", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -537,7 +538,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RentHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -556,7 +557,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("UnrentHouse", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

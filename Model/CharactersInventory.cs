@@ -78,7 +78,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("AddCharacterItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -124,7 +124,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RemoveCharacterItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -137,7 +137,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistCharacterItem", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -191,7 +191,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RenameCharactersItemName", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -204,7 +204,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterItemAmount", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -227,7 +227,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetCharacterItemWeight", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0f;
         }
@@ -253,7 +253,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("IsItemActive", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }

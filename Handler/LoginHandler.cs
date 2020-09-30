@@ -14,8 +14,8 @@ namespace Altv_Roleplay.Handler
 {
     class LoginHandler : IScript
     {
-        [ScriptEvent(ScriptEventType.PlayerConnect)]
-        public static void OnPlayerConnect_Handler(ClassicPlayer player, string reason)
+        [ServerEvent("GlobalSystems:PlayerReady")]
+        public static void OnPlayerConnect_Handler(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return;
             player.SetSyncedMetaData("PLAYER_SPAWNED", false);
@@ -45,7 +45,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("OnPlayerDisconnected_Handler", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 

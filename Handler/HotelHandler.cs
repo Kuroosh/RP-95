@@ -25,7 +25,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openCEF", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -52,7 +52,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RentHotel", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -75,7 +75,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LockHotel", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -99,7 +99,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("EnterHotel", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -120,7 +120,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LeaveHotel", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -143,7 +143,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openStorage", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -172,7 +172,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("StorageHotelItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -209,7 +209,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("TakeHotelItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

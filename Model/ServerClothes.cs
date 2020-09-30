@@ -18,7 +18,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetClothesGender", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -32,7 +32,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetClothesType", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "";
         }
@@ -46,7 +46,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetClothesDraw", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -59,7 +59,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistClothes", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -73,7 +73,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetClothesTexture", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }

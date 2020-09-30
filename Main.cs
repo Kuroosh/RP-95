@@ -276,7 +276,7 @@ namespace Altv_Roleplay
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("BanPlayer", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -312,7 +312,7 @@ namespace Altv_Roleplay
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreateMod", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -380,7 +380,6 @@ namespace Altv_Roleplay
                             continue;
                         }
 
-                        ServerVehicles.SaveVehiclePositionAndStates(Veh);
                         if (Veh.EngineOn == true)
                         {
                             Veh.Fuel -= 0.03f;
@@ -392,7 +391,7 @@ namespace Altv_Roleplay
             stopwatch.Reset();
             stopwatch.Start();
 
-            foreach (IPlayer player in Alt.Server.GetPlayers().ToList())
+            foreach (ClassicPlayer player in Alt.Server.GetPlayers().ToList())
             {
                 if (player == null)
                 {
@@ -447,7 +446,7 @@ namespace Altv_Roleplay
                                 {
                                     Characters.SetCharacterUnconscious(charId, false, 0);
                                     DeathHandler.closeDeathscreen(player);
-                                    player.Spawn(new Position(355.54285f, -596.33405f, 28.75768f));
+                                    player.Spawn(new Position(355.54285f, -596.33405f, 28.75768f), 0);
                                     player.Health = player.MaxHealth;
                                 }
                             }

@@ -77,7 +77,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("tryCall", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("acceptCall", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -118,7 +118,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerDisconnect", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -171,7 +171,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("denyCall", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         #endregion
@@ -189,7 +189,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("requestSmartphoneChats", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -222,7 +222,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("requestChatMessages", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -239,7 +239,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("createNewChat", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -258,7 +258,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("sendChatMessage", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -273,7 +273,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("deleteChat", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         #endregion
@@ -305,7 +305,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("requestPhoneContacts", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -342,7 +342,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("addNewContact", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -359,7 +359,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("deleteContact", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         #endregion
@@ -389,7 +389,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RequestLSPDIntranet", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -409,7 +409,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SearchLSPDIntranetPeople", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -440,7 +440,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GiveLSPDIntranetWanteds", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -461,7 +461,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("requestLSPDIntranetPersonWanteds", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -482,7 +482,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("requestPoliceAppMostWanteds", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -502,7 +502,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("DeleteLSPDIntranetWanted", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         #endregion
@@ -528,7 +528,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("joinRadioFrequence", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -545,7 +545,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("joinRadioFrequence", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         #endregion
@@ -561,7 +561,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("setFlyModeEnabled", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         #endregion

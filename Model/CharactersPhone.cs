@@ -34,7 +34,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreatePhoneChat", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -57,7 +57,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreatePhoneContact", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -83,7 +83,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("CreatePhoneChatMessage", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -110,7 +110,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("DeletePhoneChat", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -129,7 +129,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("DeletePhoneContact", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -149,7 +149,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("EditContact", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -161,7 +161,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistContactById", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -174,7 +174,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistContactByName", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -187,7 +187,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistContactByNumber", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -200,7 +200,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistChatByNumbers", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -213,7 +213,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ExistChatById", e);
+                Core.Debug.CatchExceptions(e);
             }
             return false;
         }
@@ -246,7 +246,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("RequestChatJSON", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -259,7 +259,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetLastMessageUnix", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }
@@ -273,7 +273,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetLastMessageText", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "";
         }

@@ -75,7 +75,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("VehicleTrunkStorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -142,7 +142,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("VehicleTrunkTakeItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -169,7 +169,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("OpenLicensingCEF", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -223,7 +223,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("LicensingAction", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

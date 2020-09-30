@@ -70,7 +70,7 @@ namespace Altv_Roleplay.models
         public virtual DbSet<Server_Tablet_Events> Server_Tablet_Events { get; set; }
         public virtual DbSet<Server_Tablet_Notes> Server_Tablet_Notes { get; set; }
         public virtual DbSet<Server_Teleports> Server_Teleports { get; set; }
-        public virtual DbSet<Server_Vehicles> Server_Vehicles { get; set; }
+        //public virtual DbSet<ClassicVehicle> Server_Vehicles { get; set; }
         public virtual DbSet<Server_Vehicles_Mod> Server_Vehicles_Mods { get; set; }
         public virtual DbSet<Server_Vehicle_Items> Server_Vehicle_Items { get; set; }
         public virtual DbSet<Server_Vehicle_Shops> Server_Vehicle_Shops { get; set; }
@@ -1079,7 +1079,7 @@ namespace Altv_Roleplay.models
                 entity.Property(e => e.timestamp).IsRequired().HasColumnName("timestamp").HasDefaultValueSql("CURRENT_TIMESTAMP");
             });
 
-            modelBuilder.Entity<Server_Vehicles>(entity =>
+            /*modelBuilder.Entity<Server_All_Vehicles>(entity =>
             {
                 entity.HasKey(e => e.id);
                 entity.ToTable("server_vehicles", Constants.DatabaseConfig.Database);
@@ -1089,7 +1089,7 @@ namespace Altv_Roleplay.models
                 entity.Property(e => e.hash).HasColumnName("hash");
                 entity.Property(e => e.vehType).HasColumnName("vehType").HasColumnType("int(11)");
                 entity.Property(e => e.faction).HasColumnName("faction");
-                entity.Property(e => e.fuel).HasColumnName("fuel");
+                entity.Property(e => e.Fuel).HasColumnName("fuel");
                 entity.Property(e => e.KM).HasColumnName("km");
                 entity.Property(e => e.engineState).HasColumnName("enginestate");
                 entity.Property(e => e.isEngineHealthy).HasColumnName("isEngineHealthy");
@@ -1105,7 +1105,7 @@ namespace Altv_Roleplay.models
                 entity.Property(e => e.plate).HasColumnName("plate").HasMaxLength(8);
                 entity.Property(e => e.lastUsage).HasColumnName("lastUsage");
                 entity.Property(e => e.buyDate).HasColumnName("buyDate");
-            });
+            });*/
 
             modelBuilder.Entity<Server_Vehicles_Mod>(entity =>
             {

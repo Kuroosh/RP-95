@@ -46,7 +46,7 @@ namespace Altv_Roleplay.Model
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetVehicleClass", e);
+                Core.Debug.CatchExceptions(e);
             }
             return 0;
         }

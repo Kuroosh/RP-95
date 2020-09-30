@@ -16,7 +16,7 @@ namespace Altv_Roleplay.Handler
     class RaycastHandler : IScript
     {
         [ClientEvent("Server:InteractionMenu:GetMenuVehicleItems")]
-        public static void GetMenuVehicleItems(IPlayer player, string type, IVehicle veh)
+        public static void GetMenuVehicleItems(ClassicPlayer player, string type, ClassicVehicle veh)
         {
             try
             {
@@ -24,8 +24,8 @@ namespace Altv_Roleplay.Handler
                 stopwatch.Start();
                 if (type != "vehicleIn" && type != "vehicleOut") return;
                 if (veh == null || !veh.Exists || player == null || !player.Exists) return;
-                ulong vehID = veh.GetVehicleId();
-                int charId = (int)player.GetCharacterMetaId();
+                int vehID = veh.id;
+                int charId = player.CharacterId;
                 //Alt.Log($"GetVehicleItems: {vehID} - {charId}");
                 bool vehTrunkIsOpen = veh.GetVehicleTrunkState(); //false = zu || true = offen
                 if (charId <= 0 || vehID <= 0) return;
@@ -78,7 +78,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetMenuVehicleItems", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
         [ClientEvent("InteractionMenu:BuckleUp")]
@@ -94,7 +94,7 @@ namespace Altv_Roleplay.Handler
                 else
                     HUDHandler.SendNotification(player, 4, 5000, "Du bist nun nicht mehr angeschnallt!");
             }
-            catch (Exception ex) { Core.Debug.CatchExceptions("BuckleUp", ex); }
+            catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
 
 
@@ -161,7 +161,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetMenuPlayerItems", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -205,7 +205,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("jailPlayer", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -238,7 +238,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("OpenVehicleFuelMenu", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -348,7 +348,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("OpenCloseVehicleTrunk", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -370,7 +370,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ViewVehicleTrunk", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -389,7 +389,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("ViewVehicleGlovebox", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -446,7 +446,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("OpenGivePlayerBillCEF", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -468,7 +468,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("openGivePlayerLicenseCEF", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -504,7 +504,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerBillGiveBill", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -566,12 +566,12 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("PlayerBillAction", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
         [ClientEvent("Server:Raycast:GiveTakeHandcuffs")]
-        public static void GiveTakeHandcuffs(IPlayer player, IPlayer targetPlayer)
+        public static void GiveTakeHandcuffs(ClassicPlayer player, ClassicPlayer targetPlayer)
         {
             try
             {
@@ -627,7 +627,7 @@ namespace Altv_Roleplay.Handler
                     else if (CharactersInventory.ExistCharacterItem(charId, "Handschellen", "backpack") && CharactersInventory.GetCharacterItemAmount(charId, "Handschellen", "backpack") > 0) { CharactersInventory.RemoveCharacterItemAmount(charId, "Handschellen", 1, "backpack"); }
                     InventoryHandler.InventoryAnimation(targetPlayer, "handcuffs", -1);
                     targetPlayer.SetPlayerIsCuffed("handcuffs", true);
-                    targetPlayer.GiveWeapon(WeaponModel.Fist, 0, true);
+                    targetPlayer.GivePlayerWeapon(WeaponModel.Fist, 0, true);
                     HUDHandler.SendNotification(targetPlayer, 1, 2000, "Dir wurden Handschellen angelegt.");
                     HUDHandler.SendNotification(player, 2, 2000, "Handschellen angelegt.");
                     stopwatch.Stop();
@@ -637,12 +637,12 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GiveTakeHandcuffs", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
         [ClientEvent("Server:Raycast:GiveTakeRopeCuffs")]
-        public static void GiveTakeRopeCuffs(IPlayer player, IPlayer targetPlayer)
+        public static void GiveTakeRopeCuffs(ClassicPlayer player, ClassicPlayer targetPlayer)
         {
             try
             {
@@ -697,7 +697,7 @@ namespace Altv_Roleplay.Handler
                     else if (CharactersInventory.ExistCharacterItem(charId, "Seil", "backpack") && CharactersInventory.GetCharacterItemAmount(charId, "Seil", "backpack") > 0) { CharactersInventory.RemoveCharacterItemAmount(charId, "Seil", 1, "backpack"); }
                     InventoryHandler.InventoryAnimation(targetPlayer, "handcuffs", -1);
                     targetPlayer.SetPlayerIsCuffed("ropecuffs", true);
-                    targetPlayer.GiveWeapon(WeaponModel.Fist, 0, true);
+                    targetPlayer.GivePlayerWeapon(WeaponModel.Fist, 0, true);
                     HUDHandler.SendNotification(targetPlayer, 1, 2000, "Du wurdest mit einem Seil gefesselt.");
                     HUDHandler.SendNotification(player, 2, 2000, "Seil angelegt.");
                     stopwatch.Stop();
@@ -707,7 +707,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GiveTakeRopeCuffs", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -728,7 +728,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("SearchPlayerInventory", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -766,7 +766,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("showIdCard", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

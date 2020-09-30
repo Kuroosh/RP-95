@@ -68,7 +68,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("OpenGarageCEF", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -130,7 +130,7 @@ namespace Altv_Roleplay.Handler
             try
             {
                 if (player == null || !player.Exists || garageId == 0 || charId == 0) return "undefined";
-                List<Server_Vehicles> inGarageVehs = null;
+                List<ClassicVehicle> inGarageVehs = null;
                 if (isFaction == false) { inGarageVehs = ServerVehicles.ServerVehicles_.Where(x => x.isInGarage == true && x.garageId == garageId).ToList(); }
                 else if (isFaction == true) { inGarageVehs = ServerVehicles.ServerVehicles_.Where(x => x.isInGarage == true && x.garageId == garageId && x.plate.Contains(factionShort)).ToList(); }
                 dynamic array = new JArray() as dynamic;
@@ -156,7 +156,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("GetGarageParkOutString", e);
+                Core.Debug.CatchExceptions(e);
             }
             return "[]";
         }
@@ -195,7 +195,7 @@ namespace Altv_Roleplay.Handler
                     {
                         foreach (var veh in Alt.Server.GetVehicles().ToList())
                         {
-                            if (veh.Position.IsInRange(ServerGarages.GetGarageSlotPosition(garageid, curPid), 2f))
+                            if (veh.Position.IsInRange(ServerGarages.GetGarageSlotPosition(garageid, curPid), 2f) && veh.Dimension == 0)
                             {
                                 slotAreFree = false;
                                 curPid++;
@@ -213,7 +213,7 @@ namespace Altv_Roleplay.Handler
                     altVeh.LockState = VehicleLockState.Locked;
                     altVeh.EngineOn = false;
                     altVeh.NumberplateText = finalVeh.plate;
-                    altVeh.Fuel = finalVeh.fuel;
+                    altVeh.Fuel = finalVeh.Fuel;
                     altVeh.KM = finalVeh.KM;
                     altVeh.SetVehicleId((ulong)finalVeh.id);
                     altVeh.SetVehicleTrunkState(false);
@@ -232,7 +232,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("DoGarageAction", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }

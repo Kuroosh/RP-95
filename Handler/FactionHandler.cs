@@ -31,7 +31,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("FactionStorageStorageItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
 
@@ -74,7 +74,7 @@ namespace Altv_Roleplay.Handler
             }
             catch (Exception e)
             {
-                Core.Debug.CatchExceptions("FactionStorageTakeItem", e);
+                Core.Debug.CatchExceptions(e);
             }
         }
     }
