@@ -247,7 +247,7 @@ namespace Altv_Roleplay.Handler
                 bool PlaceFree = true;
                 Position ParkOut = ServerVehicleShops.GetVehicleShopOutPosition(shopid);
                 Rotation RotOut = ServerVehicleShops.GetVehicleShopOutRotation(shopid);
-                foreach (IVehicle veh in Alt.Server.GetVehicles().ToList()) { if (veh.Position.IsInRange(ParkOut, 2f)) { PlaceFree = false; break; } }
+                foreach (IVehicle veh in Alt.Server.GetVehicles().ToList()) { if (veh.Position.IsInRange(ParkOut, 2f) && veh.Dimension == 0) { PlaceFree = false; break; } }
                 if (!PlaceFree) { HUDHandler.SendNotification(player, 3, 5000, $"Der Ausladepunkt ist belegt."); return; }
                 int rnd = new Random().Next(100000, 999999);
                 if (ServerVehicles.ExistServerVehiclePlate($"NL{rnd}")) { BuyVehicle(player, shopid, hash); return; }
