@@ -56,7 +56,7 @@ namespace Altv_Roleplay.Model
             veh.SetVehicleId((ulong)id);
             veh.SetVehicleTrunkState(false);
             SetVehicleModsCorrectly(veh);
-            if (isInGarage) veh.Dimension = GARAGE_DIM;
+            if (isInGarage) veh.Dimension = (GARAGE_DIM + veh.Id);
             ServerVehicles_.Add(veh);
         }
 
@@ -514,7 +514,7 @@ namespace Altv_Roleplay.Model
                 dbVehicle.lastUsage = DateTime.Now;
                 dbVehicle.KM = veh.KM;
                 dbVehicle.Fuel = veh.Fuel;
-                if (state == true) { dbVehicle.garageId = garageId; dbVehicle.engineState = false; dbVehicle.lockState = true; veh.Remove(); }
+                if (state == true) { dbVehicle.garageId = garageId; dbVehicle.engineState = false; dbVehicle.lockState = true; veh.Dimension = (GARAGE_DIM + veh.id); }
                 /*using gtaContext db = new gtaContext();
                 db.Server_Vehicles.Update(dbVehicle);
                 db.SaveChanges();
@@ -908,11 +908,10 @@ namespace Altv_Roleplay.Model
                 veh.plate = plate;
                 veh.lastUsage = DateTime.Now;
                 veh.buyDate = DateTime.Now;
-                if (isInGarage) veh.Dimension = GARAGE_DIM;
+                if (isInGarage) veh.Dimension = (GARAGE_DIM + veh.id);
                 ServerVehicles_.Add(veh);
                 DatabaseHandler.AddNewVehicle(veh);
                 if (vehtype != 2) { AddVehicleModToList(veh.id, veh.id, primaryColor, secondaryColor, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 255, 0, 0, 0, 0, 0); }
-                if (isInGarage) { veh.Dimension = GARAGE_DIM; return null; }
                 veh.NumberplateText = plate;
                 veh.LockState = VehicleLockState.Locked;
                 veh.EngineOn = false;
