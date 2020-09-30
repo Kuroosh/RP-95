@@ -12,7 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Altv_Roleplay.Handler
 {
@@ -161,14 +160,12 @@ namespace Altv_Roleplay.Handler
             return "[]";
         }
 
-        [AsyncClientEvent("Server:Garage:DoAction")]
-        public async Task DoGarageAction(IPlayer player, int garageid, string action, int vehID)
+        [ClientEvent("Server:Garage:DoAction")]
+        public static void DoGarageAction(IPlayer player, int garageid, string action, int vehID)
         {
             try
             {
                 if (player == null || !player.Exists || action == "" || vehID <= 0 || garageid <= 0) return;
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
                 int charId = User.GetPlayerOnline(player);
                 if (charId <= 0) return;
                 ClassicVehicle vehicle = (ClassicVehicle)Alt.Server.GetVehicles().ToList().FirstOrDefault(x => x.GetVehicleId() == (ulong)vehID);
@@ -176,12 +173,7 @@ namespace Altv_Roleplay.Handler
                 {
                     //Fahrzeug einparken
                     if (vehicle == null) return;
-                    if (!vehicle.Position.IsInRange(player.Position, 50f)) return;
-
-                    //var gData = ServerGarages.ServerGarageSlots_.FirstOrDefault(x => vehicle.Position.IsInRange(new Position(x.posX, x.posY, x.posZ), 15f) && x.garageId == garageid);
-                    //Position garagePos = new Position(gData.posX, gData.posY, gData.posZ);
-                    //Alt.Log($"StorageVeh: {gData} - {gData.garageId} - {garagePos} - {garagePos.ToString()}");
-                    //if (garagePos == null || garagePos == new Position(0, 0, 0)) return;
+                    if (!vehicle.Position.IsInRange(player.Position, 50f) && vehicle.Dimension == 0) return;
                     ServerVehicles.SetVehicleInGarage(vehicle, true, garageid);
                     HUDHandler.SendNotification(player, 2, 5000, $"Fahrzeug erfolgreich eingeparkt.");
                 }
@@ -206,19 +198,17 @@ namespace Altv_Roleplay.Handler
                         if (slotAreFree) break;
                     }
                     if (!slotAreFree) { HUDHandler.SendNotification(player, 4, 5000, $"Es ist kein Parkplatz mehr frei."); return; }
-                    if (vehicle != null) { HUDHandler.SendNotification(player, 4, 5000, $"Ein unerwarteter Fehler ist aufgetreten. [GARAGE-002]"); return; }
-                    var finalVeh = ServerVehicles.ServerVehicles_.FirstOrDefault(v => v.id == vehID);
-                    if (finalVeh == null) { HUDHandler.SendNotification(player, 4, 5000, $"Ein unerwarteter Fehler ist aufgetreten. [GARAGE-001]"); return; }
-                    ClassicVehicle altVeh = await AltAsync.Do(() => (ClassicVehicle)Alt.CreateVehicle((uint)finalVeh.hash, ServerGarages.GetGarageSlotPosition(garageid, curPid), (ServerGarages.GetGarageSlotRotation(garageid, curPid))));
-                    altVeh.LockState = VehicleLockState.Locked;
-                    altVeh.EngineOn = false;
-                    altVeh.NumberplateText = finalVeh.plate;
-                    altVeh.Fuel = finalVeh.Fuel;
-                    altVeh.KM = finalVeh.KM;
-                    altVeh.SetVehicleId((ulong)finalVeh.id);
-                    altVeh.SetVehicleTrunkState(false);
-                    ServerVehicles.SetVehicleModsCorrectly(altVeh);
-                    ServerVehicles.SetVehicleInGarage(altVeh, false, garageid);
+                    if (vehicle is null) { HUDHandler.SendNotification(player, 4, 5000, $"Ein unerwarteter Fehler ist aufgetreten. [GARAGE-002]"); return; }
+
+                    vehicle.Position = ServerGarages.GetGarageSlotPosition(garageid, curPid);
+                    vehicle.Rotation = ServerGarages.GetGarageSlotRotation(garageid, curPid);
+                    vehicle.Dimension = 0;
+                    vehicle.isInGarage = false;
+                    vehicle.LockState = VehicleLockState.Locked;
+                    vehicle.EngineOn = false;
+                    vehicle.SetVehicleTrunkState(false);
+                    ServerVehicles.SetVehicleModsCorrectly(vehicle);
+                    ServerVehicles.SetVehicleInGarage(vehicle, false, garageid);
                 }
 
                 if (!CharactersTablet.HasCharacterTutorialEntryFinished(charId, "useGarage"))
@@ -226,9 +216,6 @@ namespace Altv_Roleplay.Handler
                     CharactersTablet.SetCharacterTutorialEntryState(charId, "useGarage", true);
                     HUDHandler.SendNotification(player, 1, 2500, "Erfolg freigeschaltet: Keine Schäden");
                 }
-                stopwatch.Stop();
-
-                if (stopwatch.Elapsed.Milliseconds > 30) Alt.Log($"{charId} - DoGarageAction benötigte {stopwatch.Elapsed.Milliseconds}ms");
             }
             catch (Exception e)
             {
