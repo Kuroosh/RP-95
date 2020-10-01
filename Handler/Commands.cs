@@ -18,7 +18,7 @@ namespace Altv_Roleplay.Handler
         // User Commands 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         [Command("support")]
-        public void SupportCommand(IPlayer player, string msg)
+        public void SupportCommand(ClassicPlayer player, string msg)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace Altv_Roleplay.Handler
 
 
         /*[Command("testt")]
-        public void testtCommand(IPlayer player)
+        public void testtCommand(ClassicPlayer player)
         {
             if (player.AdminLevel() <= 8) { HUDHandler.SendNotification(player, 4, 5000, "Keine Rechte."); return; }
             try
@@ -76,7 +76,7 @@ namespace Altv_Roleplay.Handler
         /*
 
         [Command("call", true)]
-        public void CallCMD(IPlayer player, int targetId)
+        public void CallCMD(ClassicPlayer player, int targetId)
         {
             try
             {

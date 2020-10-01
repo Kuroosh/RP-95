@@ -362,7 +362,7 @@ namespace Altv_Roleplay.Minijobs.Elektrolieferant
             }
         }
 
-        internal static void StartMinijob(IPlayer player)
+        internal static void StartMinijob(ClassicPlayer player)
         {
             try
             {

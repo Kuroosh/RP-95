@@ -1,5 +1,5 @@
 ﻿using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Handler;
 using Altv_Roleplay.models;
 using Newtonsoft.Json;
@@ -13,7 +13,7 @@ namespace Altv_Roleplay.Model
     {
         public static List<Server_Peds> ServerPeds_ = new List<Server_Peds>();
 
-        public static void CreateServerPed(IPlayer client, string model, Position pos, float rotation)
+        public static void CreateServerPed(ClassicPlayer client, string model, Position pos, float rotation)
         {
             if (client == null || !client.Exists) return;
             var ServerPedData = new Server_Peds

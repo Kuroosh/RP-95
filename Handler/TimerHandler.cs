@@ -1,7 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
 using AltV.Net.Elements.Refs;
 using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
@@ -20,6 +19,7 @@ namespace Altv_Roleplay.Handler
         {
             try
             {
+                int _c = 0;
                 foreach (ClassicVehicle vehicle in Alt.GetAllVehicles().ToList())
                 {
                     if (vehicle == null || !vehicle.Exists) { continue; }
@@ -29,11 +29,13 @@ namespace Altv_Roleplay.Handler
                     {
                         if (vehicle == null) continue;
                         int vehID = vehicle.id;
-                        if (vehID <= 0) { continue; }
-                        if (vehicle.EngineOn == true) { vehicle.Fuel -= 0.03f; }
+                        if (vehID <= 0) continue;
+                        if (vehicle.EngineOn == true) vehicle.Fuel -= 0.03f;
                         Database.DatabaseHandler.UpdateVehicle(vehicle);
+                        _c++;
                     }
                 }
+                Core.Debug.OutputDebugString("Updated " + _c + " Vehicles.");
             }
             catch (Exception ex) { Core.Debug.CatchExceptions(ex); }
         }
@@ -226,7 +228,7 @@ namespace Altv_Roleplay.Handler
                     {
                         int oldOwnerId = hotelApartment.ownerId;
                         ServerHotels.SetApartmentOwner(hotelApartment.hotelId, hotelApartment.id, 0);
-                        foreach (IPlayer players in Alt.Server.GetPlayers().ToList().Where(x => x != null && x.Exists && User.GetPlayerOnline(x) == oldOwnerId))
+                        foreach (ClassicPlayer players in Alt.Server.GetPlayers().ToList().Where(x => x != null && x.Exists && User.GetPlayerOnline((ClassicPlayer)x) == oldOwnerId))
                         {
                             HUDHandler.SendNotification(players, 1, 5000, "Deine Mietdauer im Hotel ist ausgelaufen, dein Zimmer wurde gekündigt");
                         }
@@ -260,7 +262,7 @@ namespace Altv_Roleplay.Handler
         /*internal static void OnDesireTimer(object sender, ElapsedEventArgs e)
          {
              Alt.Log("OnDesireTimer Timer aufgerufen");
-             foreach (IPlayer player in Alt.Server.GetPlayers().ToList())
+             foreach (ClassicPlayer player in Alt.Server.GetPlayers().ToList())
              {
                  if (player == null) continue;
                  using (var pRef = new PlayerRef(player))

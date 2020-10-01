@@ -1,5 +1,5 @@
 ﻿using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Handler;
 using Altv_Roleplay.models;
 using System;
@@ -12,7 +12,7 @@ namespace Altv_Roleplay.Model
     {
         public static List<Server_Shops> ServerShops_ = new List<Server_Shops>();
 
-        public static void CreateServerShop(IPlayer client, int shopid, string name, Position pos)
+        public static void CreateServerShop(ClassicPlayer client, int shopid, string name, Position pos)
         {
             if (client == null || !client.Exists) return;
             var ServerShopData = new Server_Shops

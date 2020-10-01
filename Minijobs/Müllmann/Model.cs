@@ -75,7 +75,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
             return 0;
         }
 
-        public static Server_Minijob_Garbage_Spots GetCharacterMinijobNextSpot(IPlayer player)
+        public static Server_Minijob_Garbage_Spots GetCharacterMinijobNextSpot(ClassicPlayer player)
         {
             if (player == null || !player.Exists)
             {

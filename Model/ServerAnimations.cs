@@ -1,5 +1,5 @@
 ﻿using AltV.Net.Async;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.models;
 using Newtonsoft.Json;
 using System;
@@ -17,7 +17,7 @@ namespace Altv_Roleplay.Model
             return JsonConvert.SerializeObject(ServerAnimations_);
         }
 
-        public static void RequestAnimationMenuContent(IPlayer player)
+        public static void RequestAnimationMenuContent(ClassicPlayer player)
         {
             try
             {

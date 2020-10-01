@@ -11,7 +11,7 @@ namespace Altv_Roleplay.Handler
     class HUDHandler : IScript
     {
 
-        public static void CreateHUDBrowser(IPlayer client)
+        public static void CreateHUDBrowser(ClassicPlayer client)
         {
             if (client == null || !client.Exists) return;
             client.Emit("Client:HUD:CreateCEF", Characters.GetCharacterHunger(User.GetPlayerOnline(client)), Characters.GetCharacterThirst(User.GetPlayerOnline(client)));
@@ -49,7 +49,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        public static void SendInformationToVehicleHUD(IPlayer player)
+        public static void SendInformationToVehicleHUD(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return;
             ClassicVehicle Veh = (ClassicVehicle)player.Vehicle;

@@ -1,6 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Handler;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
@@ -12,7 +12,7 @@ namespace Altv_Roleplay.Factions.Justice
     class Functions : IScript
     {
         [ClientEvent("Server:Tablet:JusticeAppGiveWeaponLicense")]
-        public static void GiveWeaponLicense(IPlayer player, string targetCharName)
+        public static void GiveWeaponLicense(ClassicPlayer player, string targetCharName)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace Altv_Roleplay.Factions.Justice
         }
 
         [ClientEvent("Server:Tablet:JusticeAppSearchBankAccounts")]
-        public static void SearchBankAccounts(IPlayer player, string targetCharName)
+        public static void SearchBankAccounts(ClassicPlayer player, string targetCharName)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace Altv_Roleplay.Factions.Justice
         }
 
         [ClientEvent("Server:Tablet:JusticeAppViewBankTransactions")]
-        public static void ViewBankTransactions(IPlayer player, int accNumber)
+        public static void ViewBankTransactions(ClassicPlayer player, int accNumber)
         {
             try
             {

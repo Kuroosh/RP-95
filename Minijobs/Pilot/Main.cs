@@ -209,7 +209,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
         }
 
         [ClientEvent("Server:MinijobPilot:StartJob")]
-        public static void StartMiniJob(IPlayer player, int level)
+        public static void StartMiniJob(ClassicPlayer player, int level)
         {
             try
             {
@@ -249,7 +249,7 @@ namespace Altv_Roleplay.Minijobs.Pilot
             }
         }
 
-        internal static void TryStartMinijob(IPlayer player)
+        internal static void TryStartMinijob(ClassicPlayer player)
         {
             try
             {

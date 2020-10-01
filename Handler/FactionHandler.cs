@@ -1,5 +1,5 @@
 ﻿using AltV.Net;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Services;
 using Altv_Roleplay.Utils;
@@ -10,7 +10,7 @@ namespace Altv_Roleplay.Handler
     class FactionHandler : IScript
     {
         [ClientEvent("Server:FactionStorage:StorageItem")]
-        public static void FactionStorageStorageItem(IPlayer player, int factionId, int charId, string itemName, int amount, string fromContainer)
+        public static void FactionStorageStorageItem(ClassicPlayer player, int factionId, int charId, string itemName, int amount, string fromContainer)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:FactionStorage:TakeItem")]
-        public static void FactionStorageTakeItem(IPlayer player, int factionId, int charId, string itemName, int amount)
+        public static void FactionStorageTakeItem(ClassicPlayer player, int factionId, int charId, string itemName, int amount)
         {
             try
             {

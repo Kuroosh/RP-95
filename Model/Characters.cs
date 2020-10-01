@@ -20,7 +20,7 @@ namespace Altv_Roleplay.Model
         public static List<Characters_LastPos> CharactersLastPos = new List<Characters_LastPos>();
         public static List<Characters_Permissions> CharactersPermissions = new List<Characters_Permissions>();
 
-        public static void CreatePlayerCharacter(IPlayer client, string charname, string birthdate, bool gender, string facefeaturesarray, string headblendsdataarray, string headoverlaysarray)
+        public static void CreatePlayerCharacter(ClassicPlayer client, string charname, string birthdate, bool gender, string facefeaturesarray, string headblendsdataarray, string headoverlaysarray)
         {
             try
             {
@@ -409,7 +409,7 @@ namespace Altv_Roleplay.Model
             return 0;
         }
 
-        public static void GenerateCharacterPhonenumber(IPlayer player, int charId)
+        public static void GenerateCharacterPhonenumber(ClassicPlayer player, int charId)
         {
             try
             {
@@ -474,7 +474,7 @@ namespace Altv_Roleplay.Model
         }
 
         [ClientEvent("Server:Charselector:KillCharacter")]
-        public static void KillCharacter(IPlayer client, int charId)
+        public static void KillCharacter(ClassicPlayer client, int charId)
         {
             try
             {
@@ -686,7 +686,7 @@ namespace Altv_Roleplay.Model
             catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
-        public static object GetCharacterWeapon(IPlayer player, string type)
+        public static object GetCharacterWeapon(ClassicPlayer player, string type)
         {
             object obj = null;
             if (player == null || !player.Exists) return obj;
@@ -709,7 +709,7 @@ namespace Altv_Roleplay.Model
             return obj;
         }
 
-        public static void SetCharacterWeapon(IPlayer player, string type, object weaponValue)
+        public static void SetCharacterWeapon(ClassicPlayer player, string type, object weaponValue)
         {
             try
             {
@@ -805,7 +805,7 @@ namespace Altv_Roleplay.Model
             return "";
         }
 
-        public static string GetPlayerCharacters(IPlayer player)
+        public static string GetPlayerCharacters(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return "";
 
@@ -870,7 +870,7 @@ namespace Altv_Roleplay.Model
             }
         }
 
-        public static string GetCharacterFirstSpawnPlace(IPlayer player, int charId)
+        public static string GetCharacterFirstSpawnPlace(ClassicPlayer player, int charId)
         {
             if (player == null || !player.Exists || charId == 0) return "";
             var chars = PlayerCharacters.FirstOrDefault(p => p.charId == charId && p.accountId == User.GetPlayerAccountId(player));
@@ -1369,7 +1369,7 @@ namespace Altv_Roleplay.Model
             }
         }
 
-        public static void SetCharacterFirstSpawnPlace(IPlayer player, int charId, string spawnplace)
+        public static void SetCharacterFirstSpawnPlace(ClassicPlayer player, int charId, string spawnplace)
         {
             if (player == null || !player.Exists || charId == 0) return;
             var chars = PlayerCharacters.FirstOrDefault(p => p.charId == charId && p.accountId == User.GetPlayerAccountId(player));
@@ -1396,7 +1396,7 @@ namespace Altv_Roleplay.Model
 
 
 
-        public static void SetCharacterBackpack(IPlayer player, string backpack)
+        public static void SetCharacterBackpack(ClassicPlayer player, string backpack)
         {
             if (player == null || !player.Exists) return;
             var charId = User.GetPlayerOnline(player);
@@ -1431,7 +1431,7 @@ namespace Altv_Roleplay.Model
             }
         }
 
-        public static void SetCharacterCorrectTorso(IPlayer player, int topID)
+        public static void SetCharacterCorrectTorso(ClassicPlayer player, int topID)
         {
             if (player == null || !player.Exists) return;
             int charId = User.GetPlayerOnline(player);
@@ -2048,7 +2048,7 @@ namespace Altv_Roleplay.Model
             if (FistWeapon != "None") { player.GivePlayerWeapon(WeaponHandler.GetWeaponModelByName(FistWeapon), 1, false); }
         }
 
-        /*   public static void SwitchCharacterClothes(IPlayer player, string ClothesName, string Type)
+        /*   public static void SwitchCharacterClothes(ClassicPlayer player, string ClothesName, string Type)
            {
                if (player == null || !player.Exists) return;
                bool ClothesGender = false;

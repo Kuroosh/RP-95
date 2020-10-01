@@ -391,7 +391,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        public static void SetWeaponComponents(IPlayer player, string wName)
+        public static void SetWeaponComponents(ClassicPlayer player, string wName)
         {
             if (player == null || !player.Exists) return;
             switch (wName)

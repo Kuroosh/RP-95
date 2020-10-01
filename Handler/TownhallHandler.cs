@@ -1,6 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
 using System;
@@ -10,7 +10,7 @@ namespace Altv_Roleplay.Handler
     class TownhallHandler : IScript
     {
         [ClientEvent("Server:HUD:sendIdentityCardApplyForm")]
-        public static void sendIdentityCardApplyForm(IPlayer player, string birthplace)
+        public static void sendIdentityCardApplyForm(ClassicPlayer player, string birthplace)
         {
             if (player == null || !player.Exists) return;
             int charId = User.GetPlayerOnline(player);
@@ -22,7 +22,7 @@ namespace Altv_Roleplay.Handler
             HUDHandler.SendNotification(player, 1, 5000, "Erfolg freigeschaltet: Identifizierung");
         }
 
-        internal static void tryCreateIdentityCardApplyForm(IPlayer player)
+        internal static void tryCreateIdentityCardApplyForm(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return;
             int charId = User.GetPlayerOnline(player);
@@ -35,7 +35,7 @@ namespace Altv_Roleplay.Handler
             player.EmitLocked("Client:HUD:createIdentityCardApplyForm", charname, gender, adress, birthdate, curBirthpl);
         }
 
-        internal static void createJobcenterBrowser(IPlayer player)
+        internal static void createJobcenterBrowser(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return;
             int charId = User.GetPlayerOnline(player);
@@ -45,7 +45,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Jobcenter:SelectJob")]
-        public static void SelectJobcenterJob(IPlayer player, string jobName)
+        public static void SelectJobcenterJob(ClassicPlayer player, string jobName)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace Altv_Roleplay.Handler
             catch (Exception e) { Core.Debug.CatchExceptions(e); }
         }
 
-        internal static void openHouseSelector(IPlayer player)
+        internal static void openHouseSelector(ClassicPlayer player)
         {
             try
             {

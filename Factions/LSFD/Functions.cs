@@ -1,6 +1,7 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Handler;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
@@ -12,7 +13,7 @@ namespace Altv_Roleplay.Factions.LSFD
     public class Functions : IScript
     {
         [AsyncClientEvent("Server:Raycast:RevivePlayer")]
-        public async Task RevivePlayer(IPlayer player, IPlayer targetPlayer)
+        public async Task RevivePlayer(ClassicPlayer player, ClassicPlayer targetPlayer)
         {
             try
             {
@@ -48,7 +49,7 @@ namespace Altv_Roleplay.Factions.LSFD
         }
 
         [AsyncClientEvent("Server:Raycast:healPlayer")]
-        public async Task HealPlayer(IPlayer player, IPlayer targetPlayer)
+        public async Task HealPlayer(ClassicPlayer player, IPlayer targetPlayer)
         {
             try
             {

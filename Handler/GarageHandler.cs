@@ -17,7 +17,7 @@ namespace Altv_Roleplay.Handler
 {
     class GarageHandler : IScript
     {
-        internal static void OpenGarageCEF(IPlayer player, int garageId)
+        internal static void OpenGarageCEF(ClassicPlayer player, int garageId)
         {
             try
             {
@@ -71,12 +71,12 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        public static string GetGarageParkInString(IPlayer player, IReadOnlyCollection<Server_Garage_Slots> garageSlots, int charId, int garageId, bool isFaction, string factionShort, int factionId)
+        public static string GetGarageParkInString(ClassicPlayer player, IReadOnlyCollection<Server_Garage_Slots> garageSlots, int charId, int garageId, bool isFaction, string factionShort, int factionId)
         {
             if (player == null || !player.Exists || !garageSlots.Any() || garageId == 0 || charId == 0) return "undefined";
             List<IVehicle> vehicles = null;
-            if (isFaction == false) { vehicles = Alt.Server.GetVehicles().Where(x => x != null && x.Exists && x.HasVehicleId() && x.GetVehicleId() > 0 && x.Position.IsInRange(player.Position, 50f)).ToList(); }
-            else if (isFaction == true) { vehicles = Alt.Server.GetVehicles().Where(x => x != null && x.Exists && x.HasVehicleId() && x.GetVehicleId() > 0 && x.Position.IsInRange(player.Position, 50f) && ServerVehicles.GetVehicleFactionId(x) == factionId && x.NumberplateText.Contains(factionShort)).ToList(); }
+            if (isFaction == false) { vehicles = Alt.Server.GetVehicles().Where(x => x != null && x.Exists && x.HasVehicleId() && x.GetVehicleId() > 0 && x.Position.IsInRange(player.Position, 50f) && x.Dimension == 0).ToList(); }
+            else if (isFaction == true) { vehicles = Alt.Server.GetVehicles().Where(x => x != null && x.Exists && x.HasVehicleId() && x.GetVehicleId() > 0 && x.Position.IsInRange(player.Position, 50f) && ServerVehicles.GetVehicleFactionId(x) == factionId && x.NumberplateText.Contains(factionShort) && x.Dimension == 0).ToList(); }
             int garageType = ServerGarages.GetGarageType(garageId);
             if (garageType == -1) return "undefined";
             dynamic array = new JArray() as dynamic;
@@ -124,14 +124,14 @@ namespace Altv_Roleplay.Handler
             return array.ToString();
         }
 
-        public static string GetGarageParkOutString(IPlayer player, int garageId, int charId, bool isFaction, string factionShort)
+        public static string GetGarageParkOutString(ClassicPlayer player, int garageId, int charId, bool isFaction, string factionShort)
         {
             try
             {
                 if (player == null || !player.Exists || garageId == 0 || charId == 0) return "undefined";
                 List<ClassicVehicle> inGarageVehs = null;
-                if (isFaction == false) { inGarageVehs = ServerVehicles.ServerVehicles_.Where(x => x.isInGarage == true && x.garageId == garageId).ToList(); }
-                else if (isFaction == true) { inGarageVehs = ServerVehicles.ServerVehicles_.Where(x => x.isInGarage == true && x.garageId == garageId && x.plate.Contains(factionShort)).ToList(); }
+                if (isFaction == false) { inGarageVehs = ServerVehicles.ServerVehicles_.Where(x => x.isInGarage && x.garageId == garageId).ToList(); }
+                else if (isFaction == true) { inGarageVehs = ServerVehicles.ServerVehicles_.Where(x => x.isInGarage && x.garageId == garageId && x.plate.Contains(factionShort)).ToList(); }
                 dynamic array = new JArray() as dynamic;
                 dynamic entry = new JObject();
 
@@ -161,7 +161,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Garage:DoAction")]
-        public static void DoGarageAction(IPlayer player, int garageid, string action, int vehID)
+        public static void DoGarageAction(ClassicPlayer player, int garageid, string action, int vehID)
         {
             try
             {
@@ -182,33 +182,29 @@ namespace Altv_Roleplay.Handler
                     //Fahrzeug ausparken
                     Position outPos = new Position(0, 0, 0);
                     int curPid = 1;
-                    bool slotAreFree = true;
+                    bool Created = false;
                     foreach (var x in ServerGarages.ServerGarageSlots_.Where(x => x.garageId == garageid))
                     {
-                        foreach (var veh in Alt.Server.GetVehicles().ToList())
+                        foreach (ClassicVehicle veh in Alt.Server.GetVehicles().ToList())
                         {
-                            if (veh.Position.IsInRange(ServerGarages.GetGarageSlotPosition(garageid, curPid), 2f) && veh.Dimension == 0)
+                            if (!veh.Position.IsInRange(ServerGarages.GetGarageSlotPosition(garageid, curPid), 2f) && veh.Dimension == 0)
                             {
-                                slotAreFree = false;
                                 curPid++;
-                                break;
+                                Created = true;
+                                vehicle.Position = ServerGarages.GetGarageSlotPosition(garageid, curPid);
+                                vehicle.Rotation = ServerGarages.GetGarageSlotRotation(garageid, curPid);
+                                vehicle.Dimension = 0;
+                                vehicle.isInGarage = false;
+                                vehicle.LockState = VehicleLockState.Locked;
+                                vehicle.EngineOn = false;
+                                vehicle.SetVehicleTrunkState(false);
+                                ServerVehicles.SetVehicleModsCorrectly(vehicle);
+                                ServerVehicles.SetVehicleInGarage(vehicle, false, garageid);
+                                return;
                             }
-                            else slotAreFree = true;
                         }
-                        if (slotAreFree) break;
                     }
-                    if (!slotAreFree) { HUDHandler.SendNotification(player, 4, 5000, $"Es ist kein Parkplatz mehr frei."); return; }
-                    if (vehicle is null) { HUDHandler.SendNotification(player, 4, 5000, $"Ein unerwarteter Fehler ist aufgetreten. [GARAGE-002]"); return; }
-
-                    vehicle.Position = ServerGarages.GetGarageSlotPosition(garageid, curPid);
-                    vehicle.Rotation = ServerGarages.GetGarageSlotRotation(garageid, curPid);
-                    vehicle.Dimension = 0;
-                    vehicle.isInGarage = false;
-                    vehicle.LockState = VehicleLockState.Locked;
-                    vehicle.EngineOn = false;
-                    vehicle.SetVehicleTrunkState(false);
-                    ServerVehicles.SetVehicleModsCorrectly(vehicle);
-                    ServerVehicles.SetVehicleInGarage(vehicle, false, garageid);
+                    if (!Created) { HUDHandler.SendNotification(player, 4, 5000, $"Es ist kein Parkplatz mehr frei."); return; }
                 }
 
                 if (!CharactersTablet.HasCharacterTutorialEntryFinished(charId, "useGarage"))

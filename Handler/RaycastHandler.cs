@@ -99,7 +99,7 @@ namespace Altv_Roleplay.Handler
 
 
         [ClientEvent("Server:InteractionMenu:GetMenuPlayerItems")]
-        public static void GetMenuPlayerItems(IPlayer player, string type, IPlayer targetPlayer)
+        public static void GetMenuPlayerItems(ClassicPlayer player, string type, IPlayer targetPlayer)
         {
             try
             {
@@ -243,7 +243,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Raycast:LockVehicle")]
-        public static void LockVehicle(IPlayer player, ClassicVehicle veh)
+        public static void LockVehicle(ClassicPlayer player, ClassicVehicle veh)
         {
             if (player == null || !player.Exists || veh == null || !veh.Exists) return;
             Stopwatch stopwatch = new Stopwatch();
@@ -318,7 +318,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Raycast:OpenCloseVehicleTrunk")]
-        public static void OpenCloseVehicleTrunk(IPlayer player, IVehicle veh)
+        public static void OpenCloseVehicleTrunk(ClassicPlayer player, IVehicle veh)
         {
             try
             {
@@ -394,7 +394,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Raycast:showPlayerSupportId")]
-        public static void showPlayerSupportId(IPlayer player, IPlayer targetPlayer)
+        public static void showPlayerSupportId(ClassicPlayer player, IPlayer targetPlayer)
         {
             if (player == null || !player.Exists || targetPlayer == null || !targetPlayer.Exists) return;
             int targetCharId = User.GetPlayerOnline(targetPlayer);
@@ -403,7 +403,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Raycast:givePlayerItemRequest")]
-        public static void givePlayerItemRequest(IPlayer player, IPlayer targetPlayer)
+        public static void givePlayerItemRequest(ClassicPlayer player, IPlayer targetPlayer)
         {
             if (player == null || !player.Exists || targetPlayer == null || !targetPlayer.Exists) return;
             Stopwatch stopwatch = new Stopwatch();
@@ -418,7 +418,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Raycast:OpenGivePlayerBillCEF")]
-        public static void OpenGivePlayerBillCEF(IPlayer player, IPlayer targetPlayer, string type) //Types:  faction | company
+        public static void OpenGivePlayerBillCEF(ClassicPlayer player, IPlayer targetPlayer, string type) //Types:  faction | company
         {
             try
             {
@@ -451,7 +451,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Raycast:openGivePlayerLicenseCEF")]
-        public static void openGivePlayerLicenseCEF(IPlayer player, IPlayer targetPlayer)
+        public static void openGivePlayerLicenseCEF(ClassicPlayer player, IPlayer targetPlayer)
         {
             try
             {
@@ -473,7 +473,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:PlayerBill:giveBill")]
-        public static void PlayerBillGiveBill(IPlayer player, string type, string reason, int targetCharId, int moneyAmount) //Types:  faction | company
+        public static void PlayerBillGiveBill(ClassicPlayer player, string type, string reason, int targetCharId, int moneyAmount) //Types:  faction | company
         {
             try
             {
@@ -509,7 +509,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:PlayerBill:BillAction")]
-        public static void PlayerBillAction(IPlayer player, string action, string type, int factionCompanyId, int moneyAmount, string reason, int givenBillOwnerCharId)
+        public static void PlayerBillAction(ClassicPlayer player, string action, string type, int factionCompanyId, int moneyAmount, string reason, int givenBillOwnerCharId)
         {
             try
             {
@@ -712,7 +712,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Raycast:SearchPlayerInventory")]
-        public static void SearchPlayerInventory(IPlayer player, IPlayer targetPlayer)
+        public static void SearchPlayerInventory(ClassicPlayer player, IPlayer targetPlayer)
         {
             try
             {
@@ -733,7 +733,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Raycast:showIdcard")]
-        public static void showIdCard(IPlayer player, IPlayer targetPlayer)
+        public static void showIdCard(ClassicPlayer player, IPlayer targetPlayer)
         {
             try
             {

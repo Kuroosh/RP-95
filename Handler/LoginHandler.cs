@@ -50,13 +50,13 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:CEF:setCefStatus")]
-        public static void setCefStatus(IPlayer player, bool status)
+        public static void setCefStatus(ClassicPlayer player, bool status)
         {
             if (player == null || !player.Exists) return;
             player.SetSyncedMetaData("IsCefOpen", status);
         }
 
-        public static void CreateLoginBrowser(IPlayer client)
+        public static void CreateLoginBrowser(ClassicPlayer client)
         {
             if (client == null || !client.Exists) return;
             client.Model = 0x3D843282;
@@ -127,13 +127,13 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Charselector:PreviewCharacter")]
-        public static void PreviewCharacter(IPlayer client, int charid)
+        public static void PreviewCharacter(ClassicPlayer client, int charid)
         {
             if (client == null) return;
             client.Emit("Client:Charselector:ViewCharacter", Characters.GetCharacterGender(charid), Characters.GetCharacterSkin("facefeatures", charid), Characters.GetCharacterSkin("headblendsdata", charid), Characters.GetCharacterSkin("headoverlays", charid));
         }
 
-        public static void SendDataToCharselectorArea(IPlayer client)
+        public static void SendDataToCharselectorArea(ClassicPlayer client)
         {
             if (client == null || !client.Exists) return;
             var charArray = Characters.GetPlayerCharacters(client);

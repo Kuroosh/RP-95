@@ -1,7 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
 using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Services;
@@ -15,7 +14,7 @@ namespace Altv_Roleplay.Handler
     class TabletHandler : IScript
     {
         [ClientEvent("Server:Tablet:openCEF")]
-        public static void openCEF(IPlayer player)
+        public static void openCEF(ClassicPlayer player)
         {
             try
             {
@@ -33,7 +32,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:RequestTabletData")]
-        public static void RequestTabletData(IPlayer player)
+        public static void RequestTabletData(ClassicPlayer player)
         {
             try
             {
@@ -52,7 +51,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        public static void RefreshTabletData(IPlayer player, bool openTablet)
+        public static void RefreshTabletData(ClassicPlayer player, bool openTablet)
         {
             try
             {
@@ -137,7 +136,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:AppStoreInstallUninstallApp")]
-        public static void AppStoreInstallUninstallApp(IPlayer player, string appName, bool isInstalling)
+        public static void AppStoreInstallUninstallApp(ClassicPlayer player, string appName, bool isInstalling)
         {
             try
             {
@@ -171,7 +170,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:BankingAppNewTransaction")]
-        public static void BankingAppNewTransaction(IPlayer player, int targetAccountNumber, string transactionMessage, int moneyAmount)
+        public static void BankingAppNewTransaction(ClassicPlayer player, int targetAccountNumber, string transactionMessage, int moneyAmount)
         {
             try
             {
@@ -197,7 +196,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:EventsAppNewEntry")]
-        public static void EventsAppNewEntry(IPlayer player, string title, string callNumber, string eventDate, string eventTime, string location, string eventType, string information)
+        public static void EventsAppNewEntry(ClassicPlayer player, string title, string callNumber, string eventDate, string eventTime, string location, string eventType, string information)
         {
             try
             {
@@ -214,7 +213,7 @@ namespace Altv_Roleplay.Handler
                 CharactersTablet.CreateServerTabletEvent(charId, title, callNumber, eventDate, eventTime, location, eventType, information);
                 HUDHandler.SendNotification(player, 2, 5000, $"Sie haben erfolgreich ein Event für eine Gebühr von 250$ eingetragen. Die Anzeigedauer beträgt 7 Tage.");
                 RefreshTabletData(player, false);
-                foreach (IPlayer client in Alt.Server.GetPlayers().ToList())
+                foreach (ClassicPlayer client in Alt.Server.GetPlayers().ToList())
                 {
                     if (client == null || !client.Exists) continue;
                     HUDHandler.SendNotification(client, 1, 5000, "Ein neues Event wurde eingetragen, checke die Events-App im Tablet!");
@@ -227,7 +226,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:VehicleStoreBuyVehicle")]
-        public static void VehicleStoreBuyVehicle(IPlayer player, string hash, int shopId, string color)
+        public static void VehicleStoreBuyVehicle(ClassicPlayer player, string hash, int shopId, string color)
         {
             try
             {
@@ -268,7 +267,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:NotesAppNewNote")]
-        public static void NotesAppNewNote(IPlayer player, string title, string text, string color)
+        public static void NotesAppNewNote(ClassicPlayer player, string title, string text, string color)
         {
             try
             {
@@ -286,7 +285,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:NotesAppDeleteNote")]
-        public static void NotesAppDeleteNote(IPlayer player, int noteId)
+        public static void NotesAppDeleteNote(ClassicPlayer player, int noteId)
         {
             try
             {
@@ -303,7 +302,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:DeleteFactionDispatch")]
-        public static void DeleteFactionDispatch(IPlayer player, int factionId, int senderId)
+        public static void DeleteFactionDispatch(ClassicPlayer player, int factionId, int senderId)
         {
             try
             {
@@ -321,7 +320,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:CompanyAppInviteNewMember")]
-        public static void CompanyAppInviteNewMember(IPlayer player, string targetCharName, int companyId)
+        public static void CompanyAppInviteNewMember(ClassicPlayer player, string targetCharName, int companyId)
         {
             try
             {
@@ -352,7 +351,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:FactionManagerAppInviteNewMember")]
-        public static void FactionManagerAppInviteNewMember(IPlayer player, string targetCharName, int dienstnummer, int factionId)
+        public static void FactionManagerAppInviteNewMember(ClassicPlayer player, string targetCharName, int dienstnummer, int factionId)
         {
             try
             {
@@ -382,7 +381,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:CompanyAppLeaveCompany")]
-        public static void CompanyAppLeaveCompany(IPlayer player)
+        public static void CompanyAppLeaveCompany(ClassicPlayer player)
         {
             try
             {
@@ -408,7 +407,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:CompanyAppRankAction")]
-        public static void CompanyAppRankAction(IPlayer player, int rankId, int targetCharId)
+        public static void CompanyAppRankAction(ClassicPlayer player, int rankId, int targetCharId)
         {
             try
             {
@@ -424,7 +423,7 @@ namespace Altv_Roleplay.Handler
                 if (ServerCompanys.GetCharacterServerCompanyRank(charId) == 1 && ServerCompanys.GetCharacterServerCompanyRank(targetCharId) >= 1) { HUDHandler.SendNotification(player, 3, 5000, "Dieser Person kannst du diesen Rang nicht setzen."); return; }
                 if (ServerCompanys.GetCharacterServerCompanyRank(targetCharId) == rankId) { HUDHandler.SendNotification(player, 3, 5000, "Die Person besitzt diesen Rang bereits."); return; }
                 if (ServerCompanys.GetCharacterServerCompanyRank(charId) == 1 && ServerCompanys.GetCharacterServerCompanyRank(targetCharId) == 0 && (rankId > 0 && rankId < 5)) { HUDHandler.SendNotification(player, 3, 5000, "Dieser Person kannst du diesen Rang nicht setzen."); return; }
-                var targetPlayer = Alt.Server.GetPlayers().ToList().FirstOrDefault(x => x.GetCharacterMetaId() == (ulong)targetCharId);
+                var targetPlayer = (ClassicPlayer)Alt.Server.GetPlayers().ToList().FirstOrDefault(x => x.GetCharacterMetaId() == (ulong)targetCharId);
                 if (rankId == 1337)
                 {
                     //Entlasse Spieler aus Unternehmen.
@@ -460,7 +459,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:FactionManagerRankAction")]
-        public static void FactionManagerRankAction(IPlayer player, string action, int targetCharId)
+        public static void FactionManagerRankAction(ClassicPlayer player, string action, int targetCharId)
         {
             try
             {
@@ -527,7 +526,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:FactionManagerSetRankPaycheck")]
-        public static void FactionManagerSetRankPaycheck(IPlayer player, int rankId, int paycheck)
+        public static void FactionManagerSetRankPaycheck(ClassicPlayer player, int rankId, int paycheck)
         {
             try
             {
@@ -556,7 +555,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Tablet:sendDispatchToFaction")]
-        public static void sendDispatchToFaction(IPlayer player, int factionId, string msg)
+        public static void sendDispatchToFaction(ClassicPlayer player, int factionId, string msg)
         {
             try
             {

@@ -224,8 +224,8 @@ namespace Altv_Roleplay
             //Alt.OnClient<IPlayer, IVehicle, string, string, int, int, int>("Server:Tuning:switchTuningColor", Factions.ACLS.Functions.switchTuningColor);
             //Alt.OnClient<IPlayer, IVehicle>("Server:Tuning:resetToNormal", Factions.ACLS.Functions.resetTuningToNormal);
             //Alt.OnClient<IPlayer, IVehicle, string, int, string>("Server:Tuning:switchTuning", Factions.ACLS.Functions.switchTuning);
-            Alt.OnClient<IPlayer, string, int, int>("Server:Utilities:createNewMod", CreateMod);
-            Alt.OnClient<IPlayer, string>("Server:Utilities:BanMe", BanPlayer);
+            Alt.OnClient<ClassicPlayer, string, int, int>("Server:Utilities:createNewMod", CreateMod);
+            Alt.OnClient<ClassicPlayer, string>("Server:Utilities:BanMe", BanPlayer);
             #endregion
 
             //WTF ?!!!!!!!!
@@ -253,7 +253,7 @@ namespace Altv_Roleplay
         }
 
         #region Event Functions
-        private void BanPlayer(IPlayer player, string msg)
+        private void BanPlayer(ClassicPlayer player, string msg)
         {
             try
             {
@@ -280,7 +280,7 @@ namespace Altv_Roleplay
             }
         }
 
-        private void CreateMod(IPlayer player, string MName, int MType, int MID)
+        private void CreateMod(ClassicPlayer player, string MName, int MType, int MID)
         {
             try
             {
@@ -350,7 +350,7 @@ namespace Altv_Roleplay
             }
         }
 
-        private void TeleportToWaypoint(IPlayer player, float x, float y, float z)
+        private void TeleportToWaypoint(ClassicPlayer player, float x, float y, float z)
         {
             if (player == null) return;
             player.Position = new Position(x, y, z);
@@ -363,28 +363,19 @@ namespace Altv_Roleplay
 
             foreach (ClassicVehicle Veh in Alt.Server.GetVehicles().ToList())
             {
-                if (Veh == null || !Veh.Exists) { continue; }
-                using (var vRef = new VehicleRef(Veh))
+                if (Veh == null || !Veh.Exists) continue;
+                using var vRef = new VehicleRef(Veh);
+                if (!vRef.Exists) continue;
+                lock (Veh)
                 {
-                    if (!vRef.Exists) continue;
-                    lock (Veh)
-                    {
-                        if (Veh == null || !Veh.Exists)
-                        {
-                            continue;
-                        }
-                        ulong vehID = Veh.GetVehicleId();
-
-                        if (vehID <= 0)
-                        {
-                            continue;
-                        }
-
-                        if (Veh.EngineOn == true)
-                        {
-                            Veh.Fuel -= 0.03f;
-                        }
-                    }
+                    if (Veh == null || !Veh.Exists) continue;
+                    int vehID = Veh.id;
+                    if (vehID <= 0) continue;
+                    if (Veh.EngineOn == true) Veh.Fuel -= 0.03f;
+                    int currentGarageId = ServerVehicles.GetVehicleGarageId(Veh);
+                    if (currentGarageId <= 0) continue;
+                    ServerVehicles.SetVehicleInGarage(Veh, true, currentGarageId);
+                    Database.DatabaseHandler.UpdateVehicle(Veh);
                 }
             }
 
@@ -393,196 +384,182 @@ namespace Altv_Roleplay
 
             foreach (ClassicPlayer player in Alt.Server.GetPlayers().ToList())
             {
-                if (player == null)
-                {
-                    continue;
-                }
+                if (player == null) continue;
 
-                using (var playerReference = new PlayerRef(player))
-                {
-                    if (!playerReference.Exists)
-                    {
-                        return;
-                    }
-                    if (player == null || !player.Exists)
-                    {
-                        continue;
-                    }
+                using var playerReference = new PlayerRef(player);
+                if (!playerReference.Exists) return;
+                if (player == null || !player.Exists) continue;
 
-                    lock (player)
+                lock (player)
+                {
+                    if (player == null || !player.Exists) continue;
+
+                    int charId = User.GetPlayerOnline(player);
+                    if (charId > 0)
                     {
-                        if (player == null || !player.Exists)
+                        Characters.SetCharacterLastPosition(charId, player.Position, player.Dimension);
+
+                        if (User.IsPlayerBanned(player))
                         {
-                            continue;
+                            player.kickWithMessage($"Du bist gebannt. (Grund: {User.GetPlayerBanReason(player)}).");
+                        }
+                        Characters.SetCharacterHealth(charId, player.Health);
+                        Characters.SetCharacterArmor(charId, player.Armor);
+                        WeatherHandler.SetRealTime(player);
+                        if (player.IsInVehicle)
+                        {
+                            player.EmitLocked("Client:HUD:GetDistanceForVehicleKM");
+                            HUDHandler.SendInformationToVehicleHUD(player);
+                        }
+                        Characters.IncreaseCharacterPaydayTime(charId);
+
+                        if (Characters.IsCharacterUnconscious(charId))
+                        {
+                            int unconsciousTime = Characters.GetCharacterUnconsciousTime(charId);
+                            if (unconsciousTime > 0)
+                            {
+                                Characters.SetCharacterUnconscious(charId, true, unconsciousTime - 1);
+                            }
+                            else if (unconsciousTime <= 0)
+                            {
+                                Characters.SetCharacterUnconscious(charId, false, 0);
+                                DeathHandler.closeDeathscreen(player);
+                                player.Spawn(new Position(355.54285f, -596.33405f, 28.75768f), 0);
+                                player.Health = player.MaxHealth;
+                            }
                         }
 
-                        int charId = User.GetPlayerOnline(player);
-                        if (charId > 0)
+                        if (Characters.IsCharacterFastFarm(charId))
                         {
-                            Characters.SetCharacterLastPosition(charId, player.Position, player.Dimension);
-
-                            if (User.IsPlayerBanned(player))
+                            int fastFarmTime = Characters.GetCharacterFastFarmTime(charId);
+                            if (fastFarmTime > 0)
                             {
-                                player.kickWithMessage($"Du bist gebannt. (Grund: {User.GetPlayerBanReason(player)}).");
+                                Characters.SetCharacterFastFarm(charId, true, fastFarmTime - 1);
                             }
-                            Characters.SetCharacterHealth(charId, player.Health);
-                            Characters.SetCharacterArmor(charId, player.Armor);
-                            WeatherHandler.SetRealTime(player);
-                            if (player.IsInVehicle)
+                            else if (fastFarmTime <= 0)
                             {
-                                player.EmitLocked("Client:HUD:GetDistanceForVehicleKM");
-                                HUDHandler.SendInformationToVehicleHUD(player);
+                                Characters.SetCharacterFastFarm(charId, false, 0);
                             }
-                            Characters.IncreaseCharacterPaydayTime(charId);
+                        }
 
-                            if (Characters.IsCharacterUnconscious(charId))
+                        if (Characters.IsCharacterInJail(charId))
+                        {
+                            int jailTime = Characters.GetCharacterJailTime(charId);
+                            if (jailTime > 0)
                             {
-                                int unconsciousTime = Characters.GetCharacterUnconsciousTime(charId);
-                                if (unconsciousTime > 0)
-                                {
-                                    Characters.SetCharacterUnconscious(charId, true, unconsciousTime - 1);
-                                }
-                                else if (unconsciousTime <= 0)
-                                {
-                                    Characters.SetCharacterUnconscious(charId, false, 0);
-                                    DeathHandler.closeDeathscreen(player);
-                                    player.Spawn(new Position(355.54285f, -596.33405f, 28.75768f), 0);
-                                    player.Health = player.MaxHealth;
-                                }
+                                Characters.SetCharacterJailTime(charId, true, jailTime - 1);
                             }
-
-                            if (Characters.IsCharacterFastFarm(charId))
+                            else if (jailTime <= 0)
                             {
-                                int fastFarmTime = Characters.GetCharacterFastFarmTime(charId);
-                                if (fastFarmTime > 0)
+                                if (CharactersWanteds.HasCharacterWanteds(charId))
                                 {
-                                    Characters.SetCharacterFastFarm(charId, true, fastFarmTime - 1);
-                                }
-                                else if (fastFarmTime <= 0)
-                                {
-                                    Characters.SetCharacterFastFarm(charId, false, 0);
-                                }
-                            }
+                                    int jailTimes = CharactersWanteds.GetCharacterWantedFinalJailTime(charId);
+                                    int jailPrice = CharactersWanteds.GetCharacterWantedFinalJailPrice(charId);
 
-                            if (Characters.IsCharacterInJail(charId))
-                            {
-                                int jailTime = Characters.GetCharacterJailTime(charId);
-                                if (jailTime > 0)
-                                {
-                                    Characters.SetCharacterJailTime(charId, true, jailTime - 1);
-                                }
-                                else if (jailTime <= 0)
-                                {
-                                    if (CharactersWanteds.HasCharacterWanteds(charId))
+                                    if (CharactersBank.HasCharacterBankMainKonto(charId))
                                     {
-                                        int jailTimes = CharactersWanteds.GetCharacterWantedFinalJailTime(charId);
-                                        int jailPrice = CharactersWanteds.GetCharacterWantedFinalJailPrice(charId);
+                                        int accNumber = CharactersBank.GetCharacterBankMainKonto(charId);
+                                        int bankMoney = CharactersBank.GetBankAccountMoney(accNumber);
 
-                                        if (CharactersBank.HasCharacterBankMainKonto(charId))
-                                        {
-                                            int accNumber = CharactersBank.GetCharacterBankMainKonto(charId);
-                                            int bankMoney = CharactersBank.GetBankAccountMoney(accNumber);
-
-                                            CharactersBank.SetBankAccountMoney(accNumber, bankMoney - jailPrice);
-                                            HUDHandler.SendNotification(player, 1, 7500, $"Durch deine Inhaftierung wurden dir {jailPrice}$ vom Konto abgezogen.");
-                                        }
-                                        HUDHandler.SendNotification(player, 1, 7500, $"Du sitzt nun für {jailTimes} Minuten im Gefängnis.");
-                                        Characters.SetCharacterJailTime(charId, true, jailTimes);
-                                        CharactersWanteds.RemoveCharacterWanteds(charId);
-                                        player.Position = new Position(1691.4594f, 2565.7056f, 45.556763f);
-                                        if (Characters.GetCharacterGender(charId) == false)
-                                        {
-                                            player.EmitLocked("Client:SpawnArea:setCharClothes", 11, 5, 0);
-                                            player.EmitLocked("Client:SpawnArea:setCharClothes", 3, 5, 0);
-                                            player.EmitLocked("Client:SpawnArea:setCharClothes", 4, 7, 15);
-                                            player.EmitLocked("Client:SpawnArea:setCharClothes", 6, 7, 0);
-                                            player.EmitLocked("Client:SpawnArea:setCharClothes", 8, 1, 88);
-                                        }
+                                        CharactersBank.SetBankAccountMoney(accNumber, bankMoney - jailPrice);
+                                        HUDHandler.SendNotification(player, 1, 7500, $"Durch deine Inhaftierung wurden dir {jailPrice}$ vom Konto abgezogen.");
                                     }
-                                    else
+                                    HUDHandler.SendNotification(player, 1, 7500, $"Du sitzt nun für {jailTimes} Minuten im Gefängnis.");
+                                    Characters.SetCharacterJailTime(charId, true, jailTimes);
+                                    CharactersWanteds.RemoveCharacterWanteds(charId);
+                                    player.Position = new Position(1691.4594f, 2565.7056f, 45.556763f);
+                                    if (Characters.GetCharacterGender(charId) == false)
                                     {
-                                        Characters.SetCharacterJailTime(charId, false, 0);
-                                        Characters.SetCharacterCorrectClothes(player);
-                                        player.Position = new Position(1846.022f, 2585.8945f, 45.657f);
-                                        HUDHandler.SendNotification(player, 1, 2500, "Du wurdest aus dem Gefängnis entlassen.");
-                                    }
-                                }
-                            }
-
-                            if (Characters.GetCharacterPaydayTime(charId) >= 60)
-                            {
-                                Characters.IncreaseCharacterPlayTimeHours(charId);
-                                Characters.ResetCharacterPaydayTime(charId);
-
-                                if (CharactersBank.HasCharacterBankMainKonto(charId))
-                                {
-                                    int accountNumber = CharactersBank.GetCharacterBankMainKonto(charId);
-                                    CharactersBank.SetBankAccountMoney(accountNumber, CharactersBank.GetBankAccountMoney(accountNumber) + 250); //250$ Stütze
-                                    ServerBankPapers.CreateNewBankPaper(accountNumber, DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("de-DE")), DateTime.Now.ToString("t", CultureInfo.CreateSpecificCulture("de-DE")), "Eingehende Überweisung", "Staat", "Arbeitslosengeld", "+250$", "Unbekannt");
-
-                                    if (!Characters.IsCharacterCrimeFlagged(charId) && Characters.GetCharacterJob(charId) != "None" && DateTime.Now.Subtract(Convert.ToDateTime(Characters.GetCharacterLastJobPaycheck(charId))).TotalHours >= 12 && !ServerFactions.IsCharacterInAnyFaction(charId))
-                                    {
-                                        if (Characters.GetCharacterJobHourCounter(charId) >= ServerJobs.GetJobNeededHours(Characters.GetCharacterJob(charId)) - 1)
-                                        {
-                                            int jobCheck = ServerJobs.GetJobPaycheck(Characters.GetCharacterJob(charId));
-                                            Characters.SetCharacterLastJobPaycheck(charId, DateTime.Now);
-                                            Characters.ResetCharacterJobHourCounter(charId);
-                                            CharactersBank.SetBankAccountMoney(accountNumber, CharactersBank.GetBankAccountMoney(accountNumber) + jobCheck);
-                                            ServerBankPapers.CreateNewBankPaper(accountNumber, DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("de-DE")), DateTime.Now.ToString("t", CultureInfo.CreateSpecificCulture("de-DE")), "Eingehende Überweisung", "Arbeitsamt", $"Gehalt: {Characters.GetCharacterJob(charId)}", $"+{jobCheck}$", "Unbekannt");
-                                            HUDHandler.SendNotification(player, 1, 5000, $"Gehalt erhalten (Beruf: {Characters.GetCharacterJob(charId)} | Gehalt: {jobCheck}$)");
-                                        }
-                                        else
-                                        {
-                                            Characters.IncreaseCharacterJobHourCounter(charId);
-                                        }
-                                    }
-
-                                    if (ServerFactions.IsCharacterInAnyFaction(charId) && ServerFactions.IsCharacterInFactionDuty(charId))
-                                    {
-                                        int factionid = ServerFactions.GetCharacterFactionId(charId);
-                                        int factionPayCheck = ServerFactions.GetFactionRankPaycheck(factionid, ServerFactions.GetCharacterFactionRank(charId));
-
-                                        if (ServerFactions.GetFactionBankMoney(factionid) >= factionPayCheck)
-                                        {
-                                            ServerFactions.SetFactionBankMoney(factionid, ServerFactions.GetFactionBankMoney(factionid) - factionPayCheck);
-                                            CharactersBank.SetBankAccountMoney(accountNumber, CharactersBank.GetBankAccountMoney(accountNumber) + factionPayCheck);
-                                            HUDHandler.SendNotification(player, 1, 5000, $"Du hast deinen Lohn i.H.v. {factionPayCheck}$ erhalten ({ServerFactions.GetFactionRankName(factionid, ServerFactions.GetCharacterFactionRank(charId))})");
-                                            ServerBankPapers.CreateNewBankPaper(accountNumber, DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("de-DE")), DateTime.Now.ToString("t", CultureInfo.CreateSpecificCulture("de-DE")), "Eingehende Überweisung", $"{ServerFactions.GetFactionFullName(factionid)}", $"Gehalt: {ServerFactions.GetFactionRankName(factionid, ServerFactions.GetCharacterFactionRank(charId))}", $"+{factionPayCheck}$", "Dauerauftrag");
-                                            LoggingService.NewFactionLog(factionid, charId, 0, "paycheck", $"{Characters.GetCharacterName(charId)} hat seinen Lohn i.H.v. {factionPayCheck}$ erhalten ({ServerFactions.GetFactionRankName(factionid, ServerFactions.GetCharacterFactionRank(charId))}).");
-                                        }
-                                        else
-                                        {
-                                            HUDHandler.SendNotification(player, 3, 5000, $"Deine Fraktion hat nicht genügend Geld um dich zu bezahlen ({factionPayCheck}$).");
-                                        }
-                                    }
-
-                                    var playerVehicles = ServerVehicles.ServerVehicles_.Where(x => x.id > 0 && x.charid == charId && x.plate.Contains("NL"));
-                                    int taxMoney = 0;
-
-                                    foreach (var i in playerVehicles)
-                                    {
-                                        if (!i.plate.Contains("NL")) continue;
-                                        taxMoney += ServerAllVehicles.GetVehicleTaxes(i.hash);
-                                    }
-
-                                    if (playerVehicles != null && taxMoney > 0)
-                                    {
-                                        if (CharactersBank.GetBankAccountMoney(accountNumber) < taxMoney)
-                                        {
-                                            HUDHandler.SendNotification(player, 3, 5000, $"Deine Fahrzeugsteuern konnten nicht abgebucht werden ({taxMoney}$)");
-                                        }
-                                        else
-                                        {
-                                            CharactersBank.SetBankAccountMoney(accountNumber, CharactersBank.GetBankAccountMoney(accountNumber) - taxMoney);
-                                            ServerBankPapers.CreateNewBankPaper(accountNumber, DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("de-DE")), DateTime.Now.ToString("t", CultureInfo.CreateSpecificCulture("de-DE")), "Ausgehende Überweisung", "Zulassungsamt", $"Fahrzeugsteuer", $"-{taxMoney}$", "Bankeinzug");
-                                            HUDHandler.SendNotification(player, 1, 5000, $"Du hast deine Fahrzeugsteuern i.H.v. {taxMoney}$ bezahlt.");
-                                        }
+                                        player.EmitLocked("Client:SpawnArea:setCharClothes", 11, 5, 0);
+                                        player.EmitLocked("Client:SpawnArea:setCharClothes", 3, 5, 0);
+                                        player.EmitLocked("Client:SpawnArea:setCharClothes", 4, 7, 15);
+                                        player.EmitLocked("Client:SpawnArea:setCharClothes", 6, 7, 0);
+                                        player.EmitLocked("Client:SpawnArea:setCharClothes", 8, 1, 88);
                                     }
                                 }
                                 else
                                 {
-                                    HUDHandler.SendNotification(player, 3, 5000, $"Dein Einkommen konnte nicht überwiesen werden da du kein Hauptkonto hast.");
+                                    Characters.SetCharacterJailTime(charId, false, 0);
+                                    Characters.SetCharacterCorrectClothes(player);
+                                    player.Position = new Position(1846.022f, 2585.8945f, 45.657f);
+                                    HUDHandler.SendNotification(player, 1, 2500, "Du wurdest aus dem Gefängnis entlassen.");
                                 }
+                            }
+                        }
+
+                        if (Characters.GetCharacterPaydayTime(charId) >= 60)
+                        {
+                            Characters.IncreaseCharacterPlayTimeHours(charId);
+                            Characters.ResetCharacterPaydayTime(charId);
+
+                            if (CharactersBank.HasCharacterBankMainKonto(charId))
+                            {
+                                int accountNumber = CharactersBank.GetCharacterBankMainKonto(charId);
+                                CharactersBank.SetBankAccountMoney(accountNumber, CharactersBank.GetBankAccountMoney(accountNumber) + 250); //250$ Stütze
+                                ServerBankPapers.CreateNewBankPaper(accountNumber, DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("de-DE")), DateTime.Now.ToString("t", CultureInfo.CreateSpecificCulture("de-DE")), "Eingehende Überweisung", "Staat", "Arbeitslosengeld", "+250$", "Unbekannt");
+
+                                if (!Characters.IsCharacterCrimeFlagged(charId) && Characters.GetCharacterJob(charId) != "None" && DateTime.Now.Subtract(Convert.ToDateTime(Characters.GetCharacterLastJobPaycheck(charId))).TotalHours >= 12 && !ServerFactions.IsCharacterInAnyFaction(charId))
+                                {
+                                    if (Characters.GetCharacterJobHourCounter(charId) >= ServerJobs.GetJobNeededHours(Characters.GetCharacterJob(charId)) - 1)
+                                    {
+                                        int jobCheck = ServerJobs.GetJobPaycheck(Characters.GetCharacterJob(charId));
+                                        Characters.SetCharacterLastJobPaycheck(charId, DateTime.Now);
+                                        Characters.ResetCharacterJobHourCounter(charId);
+                                        CharactersBank.SetBankAccountMoney(accountNumber, CharactersBank.GetBankAccountMoney(accountNumber) + jobCheck);
+                                        ServerBankPapers.CreateNewBankPaper(accountNumber, DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("de-DE")), DateTime.Now.ToString("t", CultureInfo.CreateSpecificCulture("de-DE")), "Eingehende Überweisung", "Arbeitsamt", $"Gehalt: {Characters.GetCharacterJob(charId)}", $"+{jobCheck}$", "Unbekannt");
+                                        HUDHandler.SendNotification(player, 1, 5000, $"Gehalt erhalten (Beruf: {Characters.GetCharacterJob(charId)} | Gehalt: {jobCheck}$)");
+                                    }
+                                    else
+                                    {
+                                        Characters.IncreaseCharacterJobHourCounter(charId);
+                                    }
+                                }
+
+                                if (ServerFactions.IsCharacterInAnyFaction(charId) && ServerFactions.IsCharacterInFactionDuty(charId))
+                                {
+                                    int factionid = ServerFactions.GetCharacterFactionId(charId);
+                                    int factionPayCheck = ServerFactions.GetFactionRankPaycheck(factionid, ServerFactions.GetCharacterFactionRank(charId));
+
+                                    if (ServerFactions.GetFactionBankMoney(factionid) >= factionPayCheck)
+                                    {
+                                        ServerFactions.SetFactionBankMoney(factionid, ServerFactions.GetFactionBankMoney(factionid) - factionPayCheck);
+                                        CharactersBank.SetBankAccountMoney(accountNumber, CharactersBank.GetBankAccountMoney(accountNumber) + factionPayCheck);
+                                        HUDHandler.SendNotification(player, 1, 5000, $"Du hast deinen Lohn i.H.v. {factionPayCheck}$ erhalten ({ServerFactions.GetFactionRankName(factionid, ServerFactions.GetCharacterFactionRank(charId))})");
+                                        ServerBankPapers.CreateNewBankPaper(accountNumber, DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("de-DE")), DateTime.Now.ToString("t", CultureInfo.CreateSpecificCulture("de-DE")), "Eingehende Überweisung", $"{ServerFactions.GetFactionFullName(factionid)}", $"Gehalt: {ServerFactions.GetFactionRankName(factionid, ServerFactions.GetCharacterFactionRank(charId))}", $"+{factionPayCheck}$", "Dauerauftrag");
+                                        LoggingService.NewFactionLog(factionid, charId, 0, "paycheck", $"{Characters.GetCharacterName(charId)} hat seinen Lohn i.H.v. {factionPayCheck}$ erhalten ({ServerFactions.GetFactionRankName(factionid, ServerFactions.GetCharacterFactionRank(charId))}).");
+                                    }
+                                    else
+                                    {
+                                        HUDHandler.SendNotification(player, 3, 5000, $"Deine Fraktion hat nicht genügend Geld um dich zu bezahlen ({factionPayCheck}$).");
+                                    }
+                                }
+
+                                var playerVehicles = ServerVehicles.ServerVehicles_.Where(x => x.id > 0 && x.charid == charId && x.plate.Contains("NL"));
+                                int taxMoney = 0;
+
+                                foreach (var i in playerVehicles)
+                                {
+                                    if (!i.plate.Contains("NL")) continue;
+                                    taxMoney += ServerAllVehicles.GetVehicleTaxes(i.hash);
+                                }
+
+                                if (playerVehicles != null && taxMoney > 0)
+                                {
+                                    if (CharactersBank.GetBankAccountMoney(accountNumber) < taxMoney)
+                                    {
+                                        HUDHandler.SendNotification(player, 3, 5000, $"Deine Fahrzeugsteuern konnten nicht abgebucht werden ({taxMoney}$)");
+                                    }
+                                    else
+                                    {
+                                        CharactersBank.SetBankAccountMoney(accountNumber, CharactersBank.GetBankAccountMoney(accountNumber) - taxMoney);
+                                        ServerBankPapers.CreateNewBankPaper(accountNumber, DateTime.Now.ToString("d", CultureInfo.CreateSpecificCulture("de-DE")), DateTime.Now.ToString("t", CultureInfo.CreateSpecificCulture("de-DE")), "Ausgehende Überweisung", "Zulassungsamt", $"Fahrzeugsteuer", $"-{taxMoney}$", "Bankeinzug");
+                                        HUDHandler.SendNotification(player, 1, 5000, $"Du hast deine Fahrzeugsteuern i.H.v. {taxMoney}$ bezahlt.");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                HUDHandler.SendNotification(player, 3, 5000, $"Dein Einkommen konnte nicht überwiesen werden da du kein Hauptkonto hast.");
                             }
                         }
                     }

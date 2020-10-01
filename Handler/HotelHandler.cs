@@ -1,6 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.models;
 using Altv_Roleplay.Utils;
@@ -12,7 +12,7 @@ namespace Altv_Roleplay.Handler
 {
     class HotelHandler : IScript
     {
-        internal static void openCEF(IPlayer player, Server_Hotels hotelPos)
+        internal static void openCEF(ClassicPlayer player, Server_Hotels hotelPos)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Hotel:RentHotel")]
-        public static void RentHotel(IPlayer player, int hotelId, int apartmentId)
+        public static void RentHotel(ClassicPlayer player, int hotelId, int apartmentId)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Hotel:LockHotel")]
-        public static void LockHotel(IPlayer player, int hotelId, int apartmentId)
+        public static void LockHotel(ClassicPlayer player, int hotelId, int apartmentId)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Hotel:EnterHotel")]
-        public static void EnterHotel(IPlayer player, int hotelId, int apartmentId)
+        public static void EnterHotel(ClassicPlayer player, int hotelId, int apartmentId)
         {
             try
             {
@@ -103,7 +103,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        internal static void LeaveHotel(IPlayer player)
+        internal static void LeaveHotel(ClassicPlayer player)
         {
             try
             {
@@ -124,7 +124,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        internal static void openStorage(IPlayer player)
+        internal static void openStorage(ClassicPlayer player)
         {
             try
             {
@@ -148,7 +148,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:HotelStorage:StorageItem")]
-        public static void StorageHotelItem(IPlayer player, int apartmentId, string itemName, int itemAmount, string fromContainer)
+        public static void StorageHotelItem(ClassicPlayer player, int apartmentId, string itemName, int itemAmount, string fromContainer)
         {
             try
             {
@@ -177,7 +177,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:HotelStorage:TakeItem")]
-        public static void TakeHotelItem(IPlayer player, int apartmentId, string itemName, int itemAmount)
+        public static void TakeHotelItem(ClassicPlayer player, int apartmentId, string itemName, int itemAmount)
         {
             try
             {

@@ -11,7 +11,7 @@ namespace Altv_Roleplay.Model
     class User
     {
         public static List<Accounts> Player = new List<Accounts>();
-        public static void CreatePlayerAccount(IPlayer player, string username, string email, string password)
+        public static void CreatePlayerAccount(ClassicPlayer player, string username, string email, string password)
         {
             if (player == null || !player.Exists) return;
 
@@ -55,7 +55,7 @@ namespace Altv_Roleplay.Model
             return false;
         }
 
-        public static bool ExistPlayerSocialClub(IPlayer player)
+        public static bool ExistPlayerSocialClub(ClassicPlayer player)
         {
             var pl = Player.FirstOrDefault(p => p.socialClub == player.SocialClubId);
 
@@ -102,7 +102,7 @@ namespace Altv_Roleplay.Model
             return false;
         }
 
-        public static bool IsPlayerBanned(IPlayer player)
+        public static bool IsPlayerBanned(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return false;
             var pl = Player.FirstOrDefault(p => p.socialClub == player.SocialClubId);
@@ -130,7 +130,7 @@ namespace Altv_Roleplay.Model
             return false;
         }
 
-        public static string GetPlayerBanReason(IPlayer player)
+        public static string GetPlayerBanReason(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return "";
             var pl = Player.FirstOrDefault(p => p.socialClub == player.SocialClubId);
@@ -143,7 +143,7 @@ namespace Altv_Roleplay.Model
             return "";
         }
 
-        public static int GetPlayerAccountId(IPlayer player)
+        public static int GetPlayerAccountId(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return 0;
             var pl = Player.FirstOrDefault(p => p.socialClub == player.SocialClubId);
@@ -213,7 +213,7 @@ namespace Altv_Roleplay.Model
             return false;
         }
 
-        public static ulong GetPlayerHardwareID(IPlayer player)
+        public static ulong GetPlayerHardwareID(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return 0;
             var pl = Player.FirstOrDefault(p => p.socialClub == player.SocialClubId);
@@ -225,7 +225,7 @@ namespace Altv_Roleplay.Model
             return 0;
         }
 
-        public static void SetPlayerHardwareID(IPlayer player)
+        public static void SetPlayerHardwareID(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return;
             var pl = Player.FirstOrDefault(p => p.socialClub == player.SocialClubId);
@@ -277,7 +277,7 @@ namespace Altv_Roleplay.Model
             }
         }
 
-        public static void SetPlayerBanned(IPlayer player, bool state, string reason)
+        public static void SetPlayerBanned(ClassicPlayer player, bool state, string reason)
         {
             if (player == null || !player.Exists) return;
             var pl = Player.FirstOrDefault(p => p.socialClub == player.SocialClubId);

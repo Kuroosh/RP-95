@@ -1217,10 +1217,11 @@ namespace Altv_Roleplay.Database
                         int faction = reader.GetInt32("faction");
                         float fuel = reader.GetFloat("fuel");
                         float km = reader.GetFloat("km");
-                        bool enginestate = reader.GetBoolean("enginestate");
-                        bool isEngineHealthy = reader.GetBoolean("isEngineHealthy");
-                        int lockstate = reader.GetInt32("lockstate");
-                        bool isingarage = reader.GetBoolean("isingarage");
+                        bool enginestate = bool.Parse(reader.GetString("enginestate"));
+                        bool isEngineHealthy = bool.Parse(reader.GetString("isEngineHealthy"));
+                        bool lockstate = bool.Parse(reader.GetString("lockstate"));
+                        bool isingarage = bool.Parse(reader.GetString("isingarage"));
+                        Core.Debug.OutputDebugString("enginestate : " + enginestate + " | isEngineHealthy : " + isEngineHealthy + " | lockstate : " + lockstate + " | isingarage : " + isingarage);
                         int garageid = reader.GetInt32("garageid");
                         float posX = reader.GetFloat("posX");
                         float posY = reader.GetFloat("posY");
@@ -1615,12 +1616,10 @@ namespace Altv_Roleplay.Database
                 connection.Open();
                 MySqlCommand command = connection.CreateCommand();
 
-
-
                 command.CommandText = "UPDATE server_vehicles SET id = @id, charid = @charid, hash = @hash, vehType = @vehType, faction = @faction, fuel = @fuel,";
-                command.CommandText = "km = @km, enginestate = @enginestate, isEngineHealthy = @isEngineHealthy, lockstate = @lockstate, isingarage = @isingarage,";
-                command.CommandText = "garageid = @garageid, posX = @posX, posY = @posY, posZ = @posZ, rotX = @rotX, rotY = @rotY, rotZ = @rotZ, plate = @plate";
-                command.CommandText += "lastUsage = @lastUsage, buyDate = @buyDate,  WHERE id = @vehId LIMIT 1";
+                command.CommandText += "km = @km, enginestate = @enginestate, isEngineHealthy = @isEngineHealthy, lockstate = @lockstate, isingarage = @isingarage,";
+                command.CommandText += "garageid = @garageid, posX = @posX, posY = @posY, posZ = @posZ, rotX = @rotX, rotY = @rotY, rotZ = @rotZ, plate = @plate,";
+                command.CommandText += "lastUsage = @lastUsage, buyDate = @buyDate WHERE id = @id";
                 Vector3 rot = IVehicle.Rotation;
                 command.Parameters.AddWithValue("@id", IVehicle.id);
                 command.Parameters.AddWithValue("@charid", IVehicle.charid);
@@ -1629,20 +1628,21 @@ namespace Altv_Roleplay.Database
                 command.Parameters.AddWithValue("@faction", IVehicle.faction);
                 command.Parameters.AddWithValue("@fuel", IVehicle.Fuel);
                 command.Parameters.AddWithValue("@km", IVehicle.KM);
-                command.Parameters.AddWithValue("@enginestate", IVehicle.engineState);
-                command.Parameters.AddWithValue("@isEngineHealthy", IVehicle.isEngineHealthy);
-                command.Parameters.AddWithValue("@lockstate", IVehicle.lockState);
-                command.Parameters.AddWithValue("@isingarage", IVehicle.isInGarage);
+                command.Parameters.AddWithValue("@enginestate", IVehicle.engineState.ToString());
+                command.Parameters.AddWithValue("@isEngineHealthy", IVehicle.isEngineHealthy.ToString());
+                command.Parameters.AddWithValue("@lockstate", IVehicle.lockState.ToString());
+                command.Parameters.AddWithValue("@isingarage", IVehicle.isInGarage.ToString());
                 command.Parameters.AddWithValue("@garageid", IVehicle.garageId);
-                command.Parameters.AddWithValue("@plate", IVehicle.plate);
-                command.Parameters.AddWithValue("@lastUsage", IVehicle.lastUsage);
-                command.Parameters.AddWithValue("@buyDate", IVehicle.buyDate);
                 command.Parameters.AddWithValue("@posX", IVehicle.Position.X);
                 command.Parameters.AddWithValue("@posY", IVehicle.Position.Y);
                 command.Parameters.AddWithValue("@posZ", IVehicle.Position.Z);
                 command.Parameters.AddWithValue("@rotX", rot.X);
                 command.Parameters.AddWithValue("@rotY", rot.Y);
                 command.Parameters.AddWithValue("@rotZ", rot.Z);
+                command.Parameters.AddWithValue("@plate", IVehicle.plate);
+                command.Parameters.AddWithValue("@lastUsage", IVehicle.lastUsage);
+                command.Parameters.AddWithValue("@buyDate", IVehicle.buyDate);
+
 
 
                 command.ExecuteNonQuery();

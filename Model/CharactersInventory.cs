@@ -1,5 +1,5 @@
 ﻿using AltV.Net;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.models;
 using Newtonsoft.Json;
 using System;
@@ -232,7 +232,7 @@ namespace Altv_Roleplay.Model
             return 0f;
         }
 
-        public static bool IsItemActive(IPlayer player, string itemName)
+        public static bool IsItemActive(ClassicPlayer player, string itemName)
         {
             try
             {

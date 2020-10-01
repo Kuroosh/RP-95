@@ -48,7 +48,6 @@ namespace Altv_Roleplay.Model
             veh.plate = plate;
             veh.lastUsage = lastUsage;
             veh.buyDate = buyDate;
-            if (position == new Position(0, 0, 0)) { SetVehicleInGarage(veh, true, 10); return; }
             if (lockState == true) { veh.LockState = VehicleLockState.Locked; }
             else if (lockState == false) { veh.LockState = VehicleLockState.Unlocked; }
             veh.NumberplateText = plate;
@@ -56,8 +55,8 @@ namespace Altv_Roleplay.Model
             veh.SetVehicleId((ulong)id);
             veh.SetVehicleTrunkState(false);
             SetVehicleModsCorrectly(veh);
-            if (isInGarage) veh.Dimension = (GARAGE_DIM + veh.Id);
             ServerVehicles_.Add(veh);
+            if (position == new Position(0, 0, 0) || isInGarage) { SetVehicleInGarage(veh, true, 10); Core.Debug.OutputDebugString("Fahrzeug wurde in der Dimension : " + (GARAGE_DIM + veh.Id) + " geparkt."); }
         }
 
         public static void AddVehicleTrunkItem(int vehId, string itemName, int itemAmount, bool inGlovebox)
@@ -508,7 +507,7 @@ namespace Altv_Roleplay.Model
                 if (veh == null || !veh.Exists) return;
                 int vehID = veh.id;
                 if (vehID == 0) return;
-                var dbVehicle = ServerVehicles_.FirstOrDefault(v => v.id == (int)veh.GetVehicleId());
+                var dbVehicle = ServerVehicles_.FirstOrDefault(v => v.id == veh.id);
                 if (dbVehicle == null) return;
                 dbVehicle.isInGarage = state;
                 dbVehicle.lastUsage = DateTime.Now;

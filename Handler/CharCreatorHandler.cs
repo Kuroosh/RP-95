@@ -1,7 +1,7 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 
 namespace Altv_Roleplay.Handler
@@ -9,7 +9,7 @@ namespace Altv_Roleplay.Handler
     class CharCreatorHandler : IScript
     {
         [ClientEvent("Server:Charcreator:CreateCEF")]
-        public static void CreateCefBrowser(IPlayer client)
+        public static void CreateCefBrowser(ClassicPlayer client)
         {
             if (client == null || !client.Exists) return;
             client.EmitLocked("Client:Charcreator:CreateCEF");
@@ -18,7 +18,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Charcreator:CreateCharacter")]
-        public static void CreateCharacter(IPlayer client, string charname, string birthdate, bool gender, string facefeaturesarray, string headblendsdataarray, string headoverlaysarray)
+        public static void CreateCharacter(ClassicPlayer client, string charname, string birthdate, bool gender, string facefeaturesarray, string headblendsdataarray, string headoverlaysarray)
         {
             if (client == null || !client.Exists) return;
             if (Characters.ExistCharacterName(charname))
@@ -34,7 +34,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Barber:finishBarber")]
-        public static void finishBarber(IPlayer player, string headoverlaysarray)
+        public static void finishBarber(ClassicPlayer player, string headoverlaysarray)
         {
             if (player == null || !player.Exists) return;
             int charId = User.GetPlayerOnline(player);
@@ -45,7 +45,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Barber:RequestCurrentSkin")]
-        public static void SetCorrectCharacterSkin(IPlayer player)
+        public static void SetCorrectCharacterSkin(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return;
             int charid = User.GetPlayerOnline(player);

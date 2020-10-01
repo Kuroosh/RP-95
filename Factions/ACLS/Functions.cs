@@ -14,7 +14,7 @@ namespace Altv_Roleplay.Factions.ACLS
     class Functions : IScript
     {
         [ClientEvent("Server:Raycast:RepairVehicle")]
-        public static void RepairVehicle(IPlayer player, IVehicle vehicle)
+        public static void RepairVehicle(ClassicPlayer player, IVehicle vehicle)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Altv_Roleplay.Factions.ACLS
 
 
         [ClientEvent("Server:Raycast:tuneVehicle")]
-        public static void openTuningMenu(IPlayer player, IVehicle vehicle)
+        public static void openTuningMenu(ClassicPlayer player, IVehicle vehicle)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace Altv_Roleplay.Factions.ACLS
         }
 
         [ClientEvent("Server:Tuning:switchTuningColor")]
-        public static void switchTuningColor(IPlayer player, IVehicle vehicle, string Type, string Data, int R, int G, int B)
+        public static void switchTuningColor(ClassicPlayer player, IVehicle vehicle, string Type, string Data, int R, int G, int B)
         {
             try
             {
@@ -174,7 +174,7 @@ namespace Altv_Roleplay.Factions.ACLS
         }
 
         [ClientEvent("Server:Tuning:resetToNormal")]
-        public static void resetTuningToNormal(IPlayer player, IVehicle vehicle)
+        public static void resetTuningToNormal(ClassicPlayer player, IVehicle vehicle)
         {
             try
             {
@@ -189,7 +189,7 @@ namespace Altv_Roleplay.Factions.ACLS
         }
 
         [ClientEvent("Server:Tuning:switchTuning")]
-        public static void switchTuning(IPlayer player, IVehicle vehicle, string Type, int ModType, string Action)
+        public static void switchTuning(ClassicPlayer player, IVehicle vehicle, string Type, int ModType, string Action)
         {
             try
             {

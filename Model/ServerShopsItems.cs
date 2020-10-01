@@ -1,4 +1,4 @@
-﻿using AltV.Net.Elements.Entities;
+﻿using Altv_Roleplay.Factories;
 using Altv_Roleplay.models;
 using Newtonsoft.Json;
 using System;
@@ -11,7 +11,7 @@ namespace Altv_Roleplay.Model
     {
         public static List<Server_Shops_Items> ServerShopsItems_ = new List<Server_Shops_Items>();
 
-        public static void CreateServerShopItem(IPlayer client, int shopId, string itemName, int itemAmount, int itemPrice)
+        public static void CreateServerShopItem(ClassicPlayer client, int shopId, string itemName, int itemAmount, int itemPrice)
         {
             if (client == null || !client.Exists) return;
             var ServerShopItemData = new Server_Shops_Items

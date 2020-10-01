@@ -15,7 +15,7 @@ namespace Altv_Roleplay.Handler
 {
     class HouseHandler : IScript
     {
-        internal static void openEntranceCEF(IPlayer player, int houseId)
+        internal static void openEntranceCEF(ClassicPlayer player, int houseId)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:House:BuyHouse")]
-        public static void BuyHouse(IPlayer player, int houseId)
+        public static void BuyHouse(ClassicPlayer player, int houseId)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        internal static void LockHouse(IPlayer player, int houseId)
+        internal static void LockHouse(ClassicPlayer player, int houseId)
         {
             try
             {
@@ -77,7 +77,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:House:EnterHouse")]
-        public static void EnterHouse(IPlayer player, int houseId)
+        public static void EnterHouse(ClassicPlayer player, int houseId)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        internal static void LeaveHouse(IPlayer player, int interiorId)
+        internal static void LeaveHouse(ClassicPlayer player, int interiorId)
         {
             try
             {
@@ -123,7 +123,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        internal static void openManageCEF(IPlayer player)
+        internal static void openManageCEF(ClassicPlayer player)
         {
             try
             {
@@ -145,7 +145,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        internal static void openStorage(IPlayer player)
+        internal static void openStorage(ClassicPlayer player)
         {
             try
             {
@@ -171,7 +171,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:HouseStorage:StorageItem")]
-        public static void StorageItem(IPlayer player, int houseId, string itemName, int itemAmount, string fromContainer)
+        public static void StorageItem(ClassicPlayer player, int houseId, string itemName, int itemAmount, string fromContainer)
         {
             try
             {
@@ -204,7 +204,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:HouseStorage:TakeItem")]
-        public static void TakeItem(IPlayer player, int houseId, string itemName, int itemAmount)
+        public static void TakeItem(ClassicPlayer player, int houseId, string itemName, int itemAmount)
         {
             try
             {
@@ -304,7 +304,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:House:setMainHouse")]
-        public static void setMainHouse(IPlayer player, int houseId)
+        public static void setMainHouse(ClassicPlayer player, int houseId)
         {
             try
             {
@@ -322,7 +322,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:House:SellHouse")]
-        public static void SellHouse(IPlayer player, int houseId)
+        public static void SellHouse(ClassicPlayer player, int houseId)
         {
             try
             {
@@ -347,7 +347,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:HouseManage:DepositMoney")]
-        public static void DepositMoney(IPlayer player, int houseId, int money)
+        public static void DepositMoney(ClassicPlayer player, int houseId, int money)
         {
             if (player == null || !player.Exists || houseId <= 0 || money <= 0) return;
             int charId = (int)player.GetCharacterMetaId();
@@ -364,7 +364,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:HouseManage:WithdrawMoney")]
-        public static void WithdrawMoney(IPlayer player, int houseId, int money)
+        public static void WithdrawMoney(ClassicPlayer player, int houseId, int money)
         {
             try
             {
@@ -388,7 +388,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:HouseManage:BuyUpgrade")]
-        public static void BuyUpgrade(IPlayer player, int houseId, string upgrade)
+        public static void BuyUpgrade(ClassicPlayer player, int houseId, string upgrade)
         {
             try
             {
@@ -438,7 +438,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:HouseManage:RemoveRenter")]
-        public static void RemoveRenter(IPlayer player, int houseId, int renterId)
+        public static void RemoveRenter(ClassicPlayer player, int houseId, int renterId)
         {
             try
             {
@@ -462,7 +462,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:HouseManage:setRentState")]
-        public static void setRentState(IPlayer player, int houseId, string rentState)
+        public static void setRentState(ClassicPlayer player, int houseId, string rentState)
         {
             try
             {
@@ -487,7 +487,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:HouseManage:setRentPrice")]
-        public static void setRentPrice(IPlayer player, int houseId, int rentPrice)
+        public static void setRentPrice(ClassicPlayer player, int houseId, int rentPrice)
         {
             try
             {
@@ -511,7 +511,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:House:RentHouse")]
-        public static void RentHouse(IPlayer player, int houseId)
+        public static void RentHouse(ClassicPlayer player, int houseId)
         {
             try
             {
@@ -543,7 +543,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:House:UnrentHouse")]
-        public static void UnrentHouse(IPlayer player, int houseId)
+        public static void UnrentHouse(ClassicPlayer player, int houseId)
         {
             try
             {

@@ -1,4 +1,4 @@
-﻿using AltV.Net.Elements.Entities;
+﻿using Altv_Roleplay.Factories;
 using Altv_Roleplay.models;
 using Newtonsoft.Json;
 using System;
@@ -41,7 +41,7 @@ namespace Altv_Roleplay.Model
             }
         }
 
-        public static string GetBankAccountBankPaper(IPlayer player, int accountNumber)
+        public static string GetBankAccountBankPaper(ClassicPlayer player, int accountNumber)
         {
             if (player == null || !player.Exists) return "";
             var items = ServerBankPaper_.Where(x => x.accountNumber == accountNumber).Select(x => new

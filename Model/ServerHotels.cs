@@ -1,7 +1,7 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.models;
 using Newtonsoft.Json;
 using System;
@@ -16,7 +16,7 @@ namespace Altv_Roleplay.Model
         public static List<Server_Hotels_Apartments> ServerHotelsApartments_ = new List<Server_Hotels_Apartments>();
         public static List<Server_Hotels_Storage> ServerHotelsStorage_ = new List<Server_Hotels_Storage>();
 
-        internal static void RequestHotelApartmentItems(IPlayer player, int hotelId)
+        internal static void RequestHotelApartmentItems(ClassicPlayer player, int hotelId)
         {
             try
             {

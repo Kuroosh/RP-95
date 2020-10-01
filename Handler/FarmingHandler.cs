@@ -1,5 +1,5 @@
 ﻿using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
 using System;
@@ -9,7 +9,7 @@ namespace Altv_Roleplay.Handler
 {
     class FarmingHandler
     {
-        internal static async void FarmFieldAction(IPlayer player, string itemName, int itemMinAmount, int itemMaxAmount, string animation, int duration)
+        internal static async void FarmFieldAction(ClassicPlayer player, string itemName, int itemMinAmount, int itemMaxAmount, string animation, int duration)
         {
             if (player == null || !player.Exists || itemName == "" || itemMinAmount == 0 || itemMaxAmount == 0 || animation == "") return;
             int charId = User.GetPlayerOnline(player);
@@ -43,7 +43,7 @@ namespace Altv_Roleplay.Handler
                 return;
             }
         }
-        internal static async void ProduceItem(IPlayer player, string neededItem, string producedItem, int neededItemAmount, int producedItemAmount, int duration)
+        internal static async void ProduceItem(ClassicPlayer player, string neededItem, string producedItem, int neededItemAmount, int producedItemAmount, int duration)
         {
             try
             {

@@ -137,7 +137,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
         }
 
-        public static Server_Minijob_Busdriver_Spots GetCharacterMinijobNextSpot(IPlayer player)
+        public static Server_Minijob_Busdriver_Spots GetCharacterMinijobNextSpot(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return null;
             var spot = ServerMinijobBusdriverSpots_.FirstOrDefault(x => x.routeId == (int)player.GetPlayerCurrentMinijobRouteId() && x.spotId == (int)player.GetPlayerCurrentMinijobActionCount());

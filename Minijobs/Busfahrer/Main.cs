@@ -106,7 +106,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
                 if (player.GetPlayerCurrentMinijobStep() == "None") return;
                 if (player.GetPlayerCurrentMinijobStep() == "FirstStepInVehicle")
                 {
-                    var spot = Model.GetCharacterMinijobNextSpot(player);
+                    var spot = Model.GetCharacterMinijobNextSpot((ClassicPlayer)player);
                     if (spot == null) return;
                     HUDHandler.SendNotification(player, 1, 25000, "Fahre zur ersten Haltestelle und warte dort 10 Sekunden.");
                     player.SetPlayerCurrentMinijobStep("DRIVE_TO_NEXT_STATION");
@@ -126,7 +126,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             {
                 if (colShape == null) return;
                 if (!colShape.Exists) return;
-                IPlayer client = targetEntity as IPlayer;
+                ClassicPlayer client = targetEntity as ClassicPlayer;
                 if (client == null || !client.Exists) return;
                 int charId = User.GetPlayerOnline(client);
                 if (charId <= 0) return;
@@ -176,7 +176,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
             }
         }
 
-        internal static void TryStartMinijob(IPlayer player)
+        internal static void TryStartMinijob(ClassicPlayer player)
         {
             try
             {
@@ -220,7 +220,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
         }
 
         [ClientEvent("Server:MinijobBusdriver:StartJob")]
-        public static void StartMiniJob(IPlayer player, int routeId)
+        public static void StartMiniJob(ClassicPlayer player, int routeId)
         {
             try
             {

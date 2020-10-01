@@ -20,7 +20,7 @@ namespace Altv_Roleplay.Handler
 
         #region Shops
         [ClientEvent("Server:Shop:buyItem")]
-        public static void buyShopItem(IPlayer player, int shopId, int amount, string itemname)
+        public static void buyShopItem(ClassicPlayer player, int shopId, int amount, string itemname)
         {
             if (player == null || !player.Exists || shopId <= 0 || amount <= 0 || itemname == "") return;
             Stopwatch stopwatch = new Stopwatch();
@@ -93,7 +93,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        internal static void openShop(IPlayer player, Server_Shops shopPos)
+        internal static void openShop(ClassicPlayer player, Server_Shops shopPos)
         {
             try
             {
@@ -189,7 +189,7 @@ namespace Altv_Roleplay.Handler
 
 
         [ClientEvent("Server:Shop:sellItem")]
-        public static void sellShopItem(IPlayer player, int shopId, int amount, string itemname)
+        public static void sellShopItem(ClassicPlayer player, int shopId, int amount, string itemname)
         {
             if (player == null || !player.Exists || shopId <= 0 || amount <= 0 || itemname == "") return;
             Stopwatch stopwatch = new Stopwatch();
@@ -227,7 +227,7 @@ namespace Altv_Roleplay.Handler
 
         #region VehicleShop
 
-        internal static void OpenVehicleShop(IPlayer player, string shopname, int shopId)
+        internal static void OpenVehicleShop(ClassicPlayer player, string shopname, int shopId)
         {
             if (player == null || !player.Exists || shopId <= 0) return;
             var array = ServerVehicleShops.GetVehicleShopItems(shopId);
@@ -235,7 +235,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:VehicleShop:BuyVehicle")]
-        public static void BuyVehicle(IPlayer player, int shopid, string hash)
+        public static void BuyVehicle(ClassicPlayer player, int shopid, string hash)
         {
             try
             {

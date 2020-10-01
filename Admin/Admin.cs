@@ -1,7 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
 using AltV.Net.Enums;
 using AltV.Net.Resources.Chat.Api;
 using Altv_Roleplay.Factories;
@@ -86,7 +85,7 @@ namespace Altv_Roleplay.Admin
         {
             try
             {
-                foreach (IPlayer players in Alt.GetAllPlayers().ToList())
+                foreach (ClassicPlayer players in Alt.GetAllPlayers().ToList())
                 {
                     if (player.Position.Distance(players.Position) <= 15)
                         HUDHandler.SendNotification(players, 4, 5000, "[OOC] " + player.CharacterName + " : " + OOCMessage);
@@ -115,7 +114,7 @@ namespace Altv_Roleplay.Admin
         }
 
         [Command("giveitem")]
-        public void GiveItemCMD(IPlayer player, string itemName, int itemAmount)
+        public void GiveItemCMD(ClassicPlayer player, string itemName, int itemAmount)
         {
             if (player == null || !player.Exists) return;
             if (player.AdminLevel() < ADMINLVL_OWNER) { HUDHandler.SendNotification(player, 4, 5000, "Du benötigst mind. Admin-LVL " + ADMINLVL_OWNER); return; }
@@ -127,7 +126,7 @@ namespace Altv_Roleplay.Admin
         }
 
         [Command("parkallvehicles")]
-        public static void ParkAllVehiclesCommand(IPlayer player)
+        public static void ParkAllVehiclesCommand(ClassicPlayer player)
         {
             try
             {
@@ -148,7 +147,7 @@ namespace Altv_Roleplay.Admin
         }
 
         [Command("parkvehiclekz", true)]
-        public static void CMD_parkVehicle(IPlayer player, string plate)
+        public static void CMD_parkVehicle(ClassicPlayer player, string plate)
         {
             try
             {
@@ -200,7 +199,7 @@ namespace Altv_Roleplay.Admin
         }
 
         [Command("resethwid")]
-        public void CMD_ResetHwId(IPlayer player, int accountId)
+        public void CMD_ResetHwId(ClassicPlayer player, int accountId)
         {
             try
             {
@@ -222,14 +221,14 @@ namespace Altv_Roleplay.Admin
         // Moderator Commands 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
         [Command("announce", true)]
-        public void AnnounceCommand(IPlayer player, string msg)
+        public void AnnounceCommand(ClassicPlayer player, string msg)
         {
             try
             {
                 if (player == null || !player.Exists) return;
                 if (player.AdminLevel() < ADMINLVL_MODERATOR) { HUDHandler.SendNotification(player, 4, 5000, "Du benötigst mind. Admin-LVL " + ADMINLVL_MODERATOR); return; }
 
-                foreach (IPlayer client in Alt.Server.GetPlayers().ToList())
+                foreach (ClassicPlayer client in Alt.Server.GetPlayers().ToList())
                 {
                     if (client == null || !client.Exists) continue;
                     HUDHandler.SendNotification(client, 4, 5000, msg);
@@ -243,14 +242,14 @@ namespace Altv_Roleplay.Admin
 
 
         [Command("ban")]
-        public static void BanCommand(IPlayer player, int accId)
+        public static void BanCommand(ClassicPlayer player, int accId)
         {
             try
             {
                 if (player == null || !player.Exists || accId <= 0) return;
                 if (player.AdminLevel() < ADMINLVL_MODERATOR) { HUDHandler.SendNotification(player, 4, 5000, "Du benötigst mind. Admin-LVL " + ADMINLVL_MODERATOR); return; }
                 User.SetPlayerBanned(accId, true, $"Gebannt von {Characters.GetCharacterName(User.GetPlayerOnline(player))}");
-                var targetP = Alt.Server.GetPlayers().ToList().FirstOrDefault(x => x != null && x.Exists && User.GetPlayerAccountId(x) == accId);
+                ClassicPlayer targetP = (ClassicPlayer)Alt.Server.GetPlayers().ToList().FirstOrDefault(x => x != null && x.Exists && User.GetPlayerAccountId((ClassicPlayer)x) == accId);
                 if (targetP != null) targetP.Kick("");
                 HUDHandler.SendNotification(player, 4, 5000, $"Spieler mit ID {accId} Erfolgreich gebannt.");
             }
@@ -279,7 +278,7 @@ namespace Altv_Roleplay.Admin
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         [Command("players")]
-        public void PlayerCommand(IPlayer player)
+        public void PlayerCommand(ClassicPlayer player)
         {
             try
             {
@@ -388,7 +387,7 @@ namespace Altv_Roleplay.Admin
         }
 
         [Command("teamchat", true)]
-        public void TeamchatCommand(IPlayer player, string msg)
+        public void TeamchatCommand(ClassicPlayer player, string msg)
         {
             try
             {
@@ -399,7 +398,7 @@ namespace Altv_Roleplay.Admin
                 }
 
                 if (player == null || !player.Exists || User.GetPlayerOnline(player) <= 0) return;
-                foreach (IPlayer admin in Alt.Server.GetPlayers().ToList().Where(x => x != null && x.Exists && x.HasSyncedMetaData("isAduty") && x.AdminLevel() > 0))
+                foreach (ClassicPlayer admin in Alt.Server.GetPlayers().ToList().Where(x => x != null && x.Exists && x.HasSyncedMetaData("isAduty") && x.AdminLevel() > 0))
                 {
                     admin.SendChatMessage($"[TEAMCHAT] {player.Name}: {msg}");
                 }
@@ -410,12 +409,12 @@ namespace Altv_Roleplay.Admin
             }
         }
         [Command("kick", greedyArg: true)]
-        public static void KickCommand(IPlayer player, int charId, string Reason)
+        public static void KickCommand(ClassicPlayer player, int charId, string Reason)
         {
             try
             {
                 if (player == null || !player.Exists || charId <= 0 || player.AdminLevel() <= 0) return;
-                var targetP = Alt.Server.GetPlayers().ToList().FirstOrDefault(x => x != null && x.Exists && User.GetPlayerOnline(x) == charId);
+                ClassicPlayer targetP = (ClassicPlayer)Alt.Server.GetPlayers().ToList().FirstOrDefault(x => x != null && x.Exists && User.GetPlayerOnline((ClassicPlayer)x) == charId);
                 if (targetP == null) return;
                 if (player.AdminLevel() < ADMINLVL_SUPPORTER) { HUDHandler.SendNotification(player, 4, 5000, "Du benötigst mind. Admin-LVL " + ADMINLVL_SUPPORTER); return; }
                 targetP.Kick(Reason);
@@ -428,7 +427,7 @@ namespace Altv_Roleplay.Admin
         }
 
         [Command("whitelist")]
-        public void WhitelistCMD(IPlayer player, int targetAccId)
+        public void WhitelistCMD(ClassicPlayer player, int targetAccId)
         {
             try
             {
@@ -447,7 +446,7 @@ namespace Altv_Roleplay.Admin
 
 
         [Command("goto")]
-        public void GotoCMD(IPlayer player, int targetId)
+        public void GotoCMD(ClassicPlayer player, int targetId)
         {
             try
             {
@@ -469,7 +468,7 @@ namespace Altv_Roleplay.Admin
                     HUDHandler.SendNotification(player, 3, 5000, $"Warnung: Der angegebene Charaktername wurde nicht gefunden ({targetCharName} - ID: {targetId}).");
                     return;
                 }
-                var targetPlayer = Alt.Server.GetPlayers().FirstOrDefault(x => x != null && x.Exists && x.GetCharacterMetaId() == (ulong)targetId);
+                var targetPlayer = (ClassicPlayer)Alt.Server.GetPlayers().FirstOrDefault(x => x != null && x.Exists && x.GetCharacterMetaId() == (ulong)targetId);
                 if (targetPlayer == null || !targetPlayer.Exists) { HUDHandler.SendNotification(player, 4, 5000, "Fehler: Spieler ist nicht online."); return; }
                 HUDHandler.SendNotification(targetPlayer, 1, 5000, $"{Characters.GetCharacterName((int)player.GetCharacterMetaId())} hat sich zu dir teleportiert.");
                 HUDHandler.SendNotification(player, 2, 5000, $"Du hast dich zu dem Spieler {Characters.GetCharacterName((int)targetPlayer.GetCharacterMetaId())} teleportiert.");
@@ -482,16 +481,16 @@ namespace Altv_Roleplay.Admin
         }
 
         [Command("revive")]
-        public void ReviveTargetCMD(IPlayer player, int targetId)
+        public void ReviveTargetCMD(ClassicPlayer player, int targetId)
         {
             if (player == null || !player.Exists) return;
             if (player.AdminLevel() < ADMINLVL_SUPPORTER) { HUDHandler.SendNotification(player, 4, 5000, "Du benötigst mind. Admin-LVL " + ADMINLVL_SUPPORTER); return; }
             string charName = Characters.GetCharacterName(targetId);
             if (!Characters.ExistCharacterName(charName)) return;
-            IPlayer tp = Alt.Server.GetPlayers().FirstOrDefault(x => x != null && x.Exists && x.GetCharacterMetaId() == (ulong)targetId);
+            ClassicPlayer tp = (ClassicPlayer)Alt.Server.GetPlayers().FirstOrDefault(x => x != null && x.Exists && x.GetCharacterMetaId() == (ulong)targetId);
             if (tp != null)
             {
-                DeathHandler.revive(tp);
+                DeathHandler.revive((ClassicPlayer)tp);
                 HUDHandler.SendNotification(player, 1, 5000, $"Du hast den Spieler {charName} wiederbelebt.");
                 return;
             }
@@ -499,7 +498,7 @@ namespace Altv_Roleplay.Admin
         }
 
         [Command("gethere")]
-        public void GetHereCMD(IPlayer player, int targetId)
+        public void GetHereCMD(ClassicPlayer player, int targetId)
         {
             try
             {
@@ -521,7 +520,7 @@ namespace Altv_Roleplay.Admin
                     HUDHandler.SendNotification(player, 3, 5000, $"Warnung: Der angegebene Charaktername wurde nicht gefunden ({targetCharName} - ID: {targetId}).");
                     return;
                 }
-                var targetPlayer = Alt.Server.GetPlayers().FirstOrDefault(x => x != null && x.Exists && x.GetCharacterMetaId() == (ulong)targetId);
+                ClassicPlayer targetPlayer = (ClassicPlayer)Alt.Server.GetPlayers().FirstOrDefault(x => x != null && x.Exists && x.GetCharacterMetaId() == (ulong)targetId);
                 if (targetPlayer == null || !targetPlayer.Exists) { HUDHandler.SendNotification(player, 4, 5000, "Fehler: Spieler ist nicht online."); return; }
                 HUDHandler.SendNotification(targetPlayer, 1, 5000, $"{Characters.GetCharacterName((int)player.GetCharacterMetaId())} hat dich zu Ihm teleportiert.");
                 HUDHandler.SendNotification(player, 2, 5000, $"Du hast den Spieler {Characters.GetCharacterName((int)targetPlayer.GetCharacterMetaId())} zu dir teleportiert.");

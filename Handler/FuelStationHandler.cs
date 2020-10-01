@@ -13,7 +13,7 @@ namespace Altv_Roleplay.Handler
     class FuelStationHandler : IScript
     {
         [AsyncClientEvent("Server:FuelStation:FuelVehicleAction")]
-        public async Task FuelVehicle(IPlayer player, int vID, int fuelstationId, string fueltype, int selectedLiterAmount, int selectedLiterPrice)
+        public async Task FuelVehicle(ClassicPlayer player, int vID, int fuelstationId, string fueltype, int selectedLiterAmount, int selectedLiterPrice)
         {
             try
             {

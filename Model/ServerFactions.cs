@@ -1,6 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Handler;
 using Altv_Roleplay.models;
 using Altv_Roleplay.Utils;
@@ -211,7 +211,7 @@ namespace Altv_Roleplay.Model
             }
         }
 
-        public static void createFactionDispatch(IPlayer player, int factionId, string msg, string notificationMsg)
+        public static void createFactionDispatch(ClassicPlayer player, int factionId, string msg, string notificationMsg)
         {
             try
             {

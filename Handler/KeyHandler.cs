@@ -14,7 +14,7 @@ namespace Altv_Roleplay.Handler
     class KeyHandler : IScript
     {
         [ClientEvent("Server:KeyHandler:PressE")]
-        public static void PressE(IPlayer player)
+        public static void PressE(ClassicPlayer player)
         {
             try
             {
@@ -284,7 +284,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:KeyHandler:PressU")]
-        public static void PressU(IPlayer player)
+        public static void PressU(ClassicPlayer player)
         {
             try
             {

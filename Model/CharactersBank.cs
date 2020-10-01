@@ -1,4 +1,4 @@
-﻿using AltV.Net.Elements.Entities;
+﻿using Altv_Roleplay.Factories;
 using Altv_Roleplay.models;
 using Newtonsoft.Json;
 using System;
@@ -158,7 +158,7 @@ namespace Altv_Roleplay.Model
             return JsonConvert.SerializeObject(items);
         }
 
-        public static int GetCharacterBankAccountCount(IPlayer player)
+        public static int GetCharacterBankAccountCount(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return 0;
             int charid = User.GetPlayerOnline(player);

@@ -1,6 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 
 namespace Altv_Roleplay.Handler
@@ -8,7 +8,7 @@ namespace Altv_Roleplay.Handler
     class RegisterHandler : IScript
     {
         [ClientEvent("Server:Register:RegisterNewPlayer")]
-        public static void RegisterNewPlayer(IPlayer player, string username, string email, string pass, string passrepeat)
+        public static void RegisterNewPlayer(ClassicPlayer player, string username, string email, string pass, string passrepeat)
         {
             if (player == null || !player.Exists) return;
 

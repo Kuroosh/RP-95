@@ -1,5 +1,5 @@
 ﻿using AltV.Net;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Handler;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
@@ -12,7 +12,7 @@ namespace Altv_Roleplay.Factions.LSFS
     class Functions : IScript
     {
         [ClientEvent("Server:GivePlayerLicense:GiveLicense")]
-        public static void GiveLicense(IPlayer player, int targetCharId, string licShort)
+        public static void GiveLicense(ClassicPlayer player, int targetCharId, string licShort)
         {
             try
             {

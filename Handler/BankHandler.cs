@@ -12,7 +12,7 @@ namespace Altv_Roleplay.Handler
     class BankHandler : IScript
     {
         [ClientEvent("Server:Bank:CreateNewBankAccount")]
-        public static void CreateNewBankAccount(IPlayer player, string zoneName)
+        public static void CreateNewBankAccount(ClassicPlayer player, string zoneName)
         {
             if (player == null || !player.Exists || zoneName == "") return;
             if (CharactersBank.GetCharacterBankAccountCount(player) >= 2) { HUDHandler.SendNotification(player, 4, 5000, "Du kannst nur zwei Bankkonten gleichzeitig haben."); return; }
@@ -32,7 +32,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Bank:BankAccountAction")]
-        public static void BankAccountAction(IPlayer player, string action, string accountNumberStr)
+        public static void BankAccountAction(ClassicPlayer player, string action, string accountNumberStr)
         {
             if (player == null || !player.Exists || action == "" || accountNumberStr == "") return;
             int accountNumber = Int32.Parse(accountNumberStr);
@@ -75,7 +75,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:ATM:WithdrawMoney")]
-        public static void WithdrawATMMoney(IPlayer player, int accountNumber, int amount, string zoneName)
+        public static void WithdrawATMMoney(ClassicPlayer player, int accountNumber, int amount, string zoneName)
         {
             if (player == null || !player.Exists || accountNumber == 0 || amount < 1) return;
             int charid = User.GetPlayerOnline(player);
@@ -91,7 +91,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:ATM:TryPin")]
-        public static void TryATMPin(IPlayer player, string action, int accountNumber)
+        public static void TryATMPin(ClassicPlayer player, string action, int accountNumber)
         {
             if (player == null || !player.Exists) return;
             int charid = User.GetPlayerOnline(player);
@@ -115,7 +115,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:ATM:DepositMoney")]
-        public static void DepositATMMoney(IPlayer player, int accountNumber, int amount, string zoneName)
+        public static void DepositATMMoney(ClassicPlayer player, int accountNumber, int amount, string zoneName)
         {
             if (player == null || !player.Exists || accountNumber == 0 || amount < 1) return;
             int charid = User.GetPlayerOnline(player);
@@ -130,7 +130,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:ATM:TransferMoney")]
-        public static void TransferATMMoney(IPlayer player, int accountNumber, int targetNumber, int amount, string zoneName)
+        public static void TransferATMMoney(ClassicPlayer player, int accountNumber, int targetNumber, int amount, string zoneName)
         {
             if (player == null || !player.Exists || accountNumber == 0 || targetNumber == 0 || amount < 1) return;
             int charid = User.GetPlayerOnline(player);
@@ -149,7 +149,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:FactionBank:DepositMoney")]
-        public static void DepositFactionMoney(IPlayer player, string type, int factionId, int moneyAmount) //Type: faction | company
+        public static void DepositFactionMoney(ClassicPlayer player, string type, int factionId, int moneyAmount) //Type: faction | company
         {
             try
             {
@@ -196,7 +196,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:FactionBank:WithdrawMoney")]
-        public static void WithdrawFactionMoney(IPlayer player, string type, int factionId, int moneyAmount) //Type: faction | company
+        public static void WithdrawFactionMoney(ClassicPlayer player, string type, int factionId, int moneyAmount) //Type: faction | company
         {
             try
             {

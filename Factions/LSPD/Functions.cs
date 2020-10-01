@@ -1,6 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using Altv_Roleplay.Handler;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
@@ -12,7 +12,7 @@ namespace Altv_Roleplay.Factions.LSPD
     class Functions : IScript
     {
         [ClientEvent("Server:Tablet:LSPDAppSearchPerson")]
-        public static void LSPDAppSearchPerson(IPlayer player, string targetCharname)
+        public static void LSPDAppSearchPerson(ClassicPlayer player, string targetCharname)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace Altv_Roleplay.Factions.LSPD
         }
 
         [ClientEvent("Server:Tablet:LSPDAppSearchVehiclePlate")]
-        public static void LSPDAppSearchVehiclePlate(IPlayer player, string targetPlate)
+        public static void LSPDAppSearchVehiclePlate(ClassicPlayer player, string targetPlate)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace Altv_Roleplay.Factions.LSPD
         }
 
         [ClientEvent("Server:Tablet:LSPDAppSearchLicense")]
-        public static void LSPDAppSearchLicense(IPlayer player, string targetCharname)
+        public static void LSPDAppSearchLicense(ClassicPlayer player, string targetCharname)
         {
             try
             {
@@ -108,7 +108,7 @@ namespace Altv_Roleplay.Factions.LSPD
         }
 
         [ClientEvent("Server:Tablet:LSPDAppTakeLicense")]
-        public static void LSPDAppTakeLicense(IPlayer player, string targetCharname, string licName)
+        public static void LSPDAppTakeLicense(ClassicPlayer player, string targetCharname, string licName)
         {
             try
             {

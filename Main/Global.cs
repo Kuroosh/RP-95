@@ -1,11 +1,6 @@
 ﻿using AltV.Net.Async;
-using AltV.Net.Elements.Entities;
+using Altv_Roleplay.Factories;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
-using System.Text;
-using System.Threading;
 
 class Global : Altv_Roleplay.Main
 {
@@ -26,7 +21,7 @@ class Global : Altv_Roleplay.Main
                 });
             }
 
-            public static void TriggerClientEventSafe(IPlayer entity, string eventName, params object[] args)
+            public static void TriggerClientEventSafe(ClassicPlayer entity, string eventName, params object[] args)
             {
                 if (entity != null && entity.Exists)
                     entity.EmitLocked(eventName, args);

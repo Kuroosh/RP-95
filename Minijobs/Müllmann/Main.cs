@@ -22,7 +22,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
         {
             Alt.Log("Lade Minijob: Müllmann...");
             Alt.OnColShape += ColshapeEnterExitHandler;
-            Alt.OnPlayerEnterVehicle += PlayerEnterVehicle;
+            //Alt.OnPlayerEnterVehicle += PlayerEnterVehicle;
             Alt.OnPlayerLeaveVehicle += PlayerExitVehicle;
             Alt.OnPlayerDisconnect += PlayerDisconnectedHandler;
 
@@ -168,7 +168,8 @@ namespace Altv_Roleplay.Minijobs.Müllmann
             }
         }
 
-        private static void PlayerEnterVehicle(IVehicle vehicle, IPlayer player, byte seat)
+        [ScriptEvent(ScriptEventType.PlayerEnterVehicle)]
+        private static void PlayerEnterVehicle(IVehicle vehicle, ClassicPlayer player, byte seat)
         {
             try
             {
@@ -239,7 +240,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
                     return;
                 }
 
-                IPlayer client = targetEntity as IPlayer;
+                ClassicPlayer client = targetEntity as ClassicPlayer;
                 if (client == null || !client.Exists)
                 {
                     return;
@@ -368,7 +369,7 @@ namespace Altv_Roleplay.Minijobs.Müllmann
             }
         }
 
-        internal static void StartMinijob(IPlayer player)
+        internal static void StartMinijob(ClassicPlayer player)
         {
             try
             {

@@ -146,7 +146,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        internal static void OpenLicensingCEF(IPlayer player)
+        internal static void OpenLicensingCEF(ClassicPlayer player)
         {
             try
             {
@@ -174,7 +174,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:VehicleLicensing:LicensingAction")]
-        public static void LicensingAction(IPlayer player, string action, int vehId, string vehPlate, string newPlate)
+        public static void LicensingAction(ClassicPlayer player, string action, int vehId, string vehPlate, string newPlate)
         {
             try
             {

@@ -1,7 +1,6 @@
 ﻿using AltV.Net;
 using AltV.Net.Async;
 using AltV.Net.Data;
-using AltV.Net.Elements.Entities;
 using Altv_Roleplay.Factories;
 using Altv_Roleplay.Model;
 using Altv_Roleplay.Utils;
@@ -14,7 +13,7 @@ namespace Altv_Roleplay.Handler
     class InventoryHandler : IScript
     {
         [ClientEvent("Server:Inventory:RequestInventoryItems")]
-        public static void RequestInventoryItems(IPlayer player)
+        public static void RequestInventoryItems(ClassicPlayer player)
         {
             try
             {
@@ -39,7 +38,7 @@ namespace Altv_Roleplay.Handler
         }
 
         [ClientEvent("Server:Inventory:closeCEF")]
-        public static void CloseInventoryCEF(IPlayer player)
+        public static void CloseInventoryCEF(ClassicPlayer player)
         {
             if (player == null || !player.Exists) return;
             player.EmitLocked("Client:Inventory:closeCEF");
@@ -387,7 +386,7 @@ namespace Altv_Roleplay.Handler
                 int charId = player.CharacterId;
                 if (charId <= 0) return;
                 if (player.HasPlayerHandcuffs() || player.HasPlayerRopeCuffs()) { HUDHandler.SendNotification(player, 3, 5000, "Wie willst du das mit Handschellen/Fesseln machen?"); return; }
-                var targetPlayer = Alt.Server.GetPlayers().ToList().FirstOrDefault(x => x.GetCharacterMetaId() == (ulong)givenTargetCharId);
+                var targetPlayer = (ClassicPlayer)Alt.Server.GetPlayers().ToList().FirstOrDefault(x => x.GetCharacterMetaId() == (ulong)givenTargetCharId);
                 int targetCharId = (int)targetPlayer.GetCharacterMetaId();
                 if (targetCharId != givenTargetCharId) return;
                 if (targetPlayer == null || !targetPlayer.Exists) return;
@@ -424,7 +423,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        internal static void InventoryAnimation(IPlayer player, string Animation, int duration)
+        internal static void InventoryAnimation(ClassicPlayer player, string Animation, int duration)
         {
             if (player == null || !player.Exists || player.IsInVehicle || Animation == "") return;
             if (Animation == "eat") player.EmitLocked("Client:Inventory:PlayAnimation", "amb@code_human_wander_eating_donut@male@idle_ah", "idle_c", 3500, 49, false);
@@ -439,7 +438,7 @@ namespace Altv_Roleplay.Handler
             else if (Animation == "verband") player.EmitLocked("Client:Inventory:PlayAnimation", "anim@heists@narcotics@funding@gang_idle", "gang_chatting_idle01", 3000, 49, false);
         }
 
-        internal static void StopAnimation(IPlayer player, string animDict, string animName)
+        internal static void StopAnimation(ClassicPlayer player, string animDict, string animName)
         {
             if (player == null || !player.Exists) return;
             player.EmitLocked("Client:Inventory:StopAnimation", animDict, animName);

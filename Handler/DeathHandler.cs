@@ -42,7 +42,7 @@ namespace Altv_Roleplay.Handler
                     User.SetPlayerBanned(killerPlayer, true, $"Waffen Hack[2]: {weaponModel}");
                     killerPlayer.Kick("");
                     player.Health = 200;
-                    foreach (IPlayer p in Alt.Server.GetPlayers().ToList().Where(x => x != null && x.Exists && ((ClassicPlayer)x).CharacterId > 0 && x.AdminLevel() > 0))
+                    foreach (ClassicPlayer p in Alt.Server.GetPlayers().ToList().Where(x => x != null && x.Exists && ((ClassicPlayer)x).CharacterId > 0 && x.AdminLevel() > 0))
                     {
                         p.SendChatMessage($"{Characters.GetCharacterName(killerPlayer.CharacterId)} wurde gebannt: Waffenhack[2] - {weaponModel}");
                     }
@@ -56,7 +56,7 @@ namespace Altv_Roleplay.Handler
             }
         }
 
-        internal static void openDeathscreen(IPlayer player)
+        internal static void openDeathscreen(ClassicPlayer player)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace Altv_Roleplay.Handler
                 int charId = (int)player.GetCharacterMetaId();
                 if (charId <= 0) return;
                 Position pos = new Position(player.Position.X, player.Position.Y, player.Position.Z + 1);
-                player.Spawn(pos);
+                player.Spawn(pos, 0);
                 player.Emit("Client:Ragdoll:SetPedToRagdoll", true, 0); //Ragdoll setzen
                 player.Emit("Client:Deathscreen:openCEF"); // Deathscreen öffnen
                 player.SetPlayerIsUnconscious(true);
@@ -113,7 +113,7 @@ namespace Altv_Roleplay.Handler
                 Core.Debug.CatchExceptions(e);
             }
         }
-        internal static void revive(IPlayer player)
+        internal static void revive(ClassicPlayer player)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace Altv_Roleplay.Handler
                 if (charId <= 0) return;
                 player.EmitLocked("Client:Deathscreen:closeCEF");
                 //player.SetPlayerIsUnconscious(false);
-                player.Spawn(player.Position);
+                player.Spawn(player.Position, 0);
                 Characters.SetCharacterUnconscious(charId, false, 0);
                 //DeathHandler.closeDeathscreen(player);
                 //player.Spawn(new Position(355.54285f, -596.33405f, 28.75768f));
