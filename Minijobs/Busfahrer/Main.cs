@@ -100,6 +100,7 @@ namespace Altv_Roleplay.Minijobs.Busfahrer
                 if (player == null || vehicle == null || !player.Exists || !vehicle.Exists) return;
                 int charId = User.GetPlayerOnline(player);
                 if (charId <= 0) return;
+
                 if (ServerVehicles.GetVehicleType(vehicle) != 2) return;
                 if (ServerVehicles.GetVehicleOwner(vehicle) != charId) return;
                 if (player.GetPlayerCurrentMinijob() != "Busfahrer") return;
